@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPulse", "PowerPulse\PowerPulse.csproj", "{CD6BBAC1-7F41-4448-B246-FE3F4B3793ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD6BBAC1-7F41-4448-B246-FE3F4B3793ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6BBAC1-7F41-4448-B246-FE3F4B3793ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6BBAC1-7F41-4448-B246-FE3F4B3793ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6BBAC1-7F41-4448-B246-FE3F4B3793ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F89AC8B1-BEA9-4331-92D5-C55BD74D512A}
+	EndGlobalSection
+EndGlobal
