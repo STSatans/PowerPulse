@@ -125,7 +125,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -133,11 +132,6 @@
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

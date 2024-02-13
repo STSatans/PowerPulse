@@ -37,7 +37,6 @@ namespace PowerPulse
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //verificacao de login
             try
             {
                 SqlConnection BD = new SqlConnection(con);
