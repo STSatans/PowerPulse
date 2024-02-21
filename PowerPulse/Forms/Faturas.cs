@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PowerPulse.Forms
 {
-    public partial class Form1 : Form
+    public partial class Faturas : Form
     {
-        public Form1()
+        public Faturas()
         {
             InitializeComponent();
         }

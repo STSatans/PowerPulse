@@ -30,34 +30,87 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnFatura = new FontAwesome.Sharp.IconButton();
+            this.BtnStats = new FontAwesome.Sharp.IconButton();
             this.btnAdm = new FontAwesome.Sharp.IconButton();
             this.btnContratos = new FontAwesome.Sharp.IconButton();
             this.btnUsinas = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
+            this.panelTitleBar = new System.Windows.Forms.Panel();
             this.lblForm = new System.Windows.Forms.Label();
+            this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
+            this.panelShadow = new System.Windows.Forms.Panel();
+            this.panelDesktop = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
+            this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelMenu.Controls.Add(this.btnFatura);
+            this.panelMenu.Controls.Add(this.BtnStats);
             this.panelMenu.Controls.Add(this.btnAdm);
             this.panelMenu.Controls.Add(this.btnContratos);
             this.panelMenu.Controls.Add(this.btnUsinas);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 670);
+            this.panelMenu.Size = new System.Drawing.Size(165, 544);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnFatura
+            // 
+            this.btnFatura.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFatura.FlatAppearance.BorderSize = 0;
+            this.btnFatura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFatura.ForeColor = System.Drawing.Color.White;
+            this.btnFatura.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
+            this.btnFatura.IconColor = System.Drawing.Color.White;
+            this.btnFatura.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFatura.IconSize = 32;
+            this.btnFatura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFatura.Location = new System.Drawing.Point(0, 336);
+            this.btnFatura.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFatura.Name = "btnFatura";
+            this.btnFatura.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.btnFatura.Size = new System.Drawing.Size(165, 49);
+            this.btnFatura.TabIndex = 5;
+            this.btnFatura.Text = "Faturas";
+            this.btnFatura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFatura.UseVisualStyleBackColor = true;
+            this.btnFatura.Click += new System.EventHandler(this.btnFatura_Click);
+            // 
+            // BtnStats
+            // 
+            this.BtnStats.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnStats.FlatAppearance.BorderSize = 0;
+            this.BtnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnStats.ForeColor = System.Drawing.Color.White;
+            this.BtnStats.IconChar = FontAwesome.Sharp.IconChar.Bucket;
+            this.BtnStats.IconColor = System.Drawing.Color.White;
+            this.BtnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnStats.IconSize = 32;
+            this.BtnStats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnStats.Location = new System.Drawing.Point(0, 287);
+            this.BtnStats.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnStats.Name = "BtnStats";
+            this.BtnStats.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.BtnStats.Size = new System.Drawing.Size(165, 49);
+            this.BtnStats.TabIndex = 4;
+            this.BtnStats.Text = "Estatisticas";
+            this.BtnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnStats.UseVisualStyleBackColor = true;
+            this.BtnStats.Click += new System.EventHandler(this.BtnStats_Click);
             // 
             // btnAdm
             // 
@@ -69,15 +122,16 @@
             this.btnAdm.IconColor = System.Drawing.Color.Black;
             this.btnAdm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdm.Location = new System.Drawing.Point(0, 292);
-            this.btnAdm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdm.Location = new System.Drawing.Point(0, 238);
+            this.btnAdm.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdm.Name = "btnAdm";
-            this.btnAdm.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnAdm.Size = new System.Drawing.Size(220, 60);
+            this.btnAdm.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.btnAdm.Size = new System.Drawing.Size(165, 49);
             this.btnAdm.TabIndex = 3;
             this.btnAdm.Text = "Admin";
             this.btnAdm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdm.UseVisualStyleBackColor = true;
+            this.btnAdm.Click += new System.EventHandler(this.btnAdm_Click);
             // 
             // btnContratos
             // 
@@ -90,15 +144,16 @@
             this.btnContratos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnContratos.IconSize = 32;
             this.btnContratos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnContratos.Location = new System.Drawing.Point(0, 232);
-            this.btnContratos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContratos.Location = new System.Drawing.Point(0, 189);
+            this.btnContratos.Margin = new System.Windows.Forms.Padding(2);
             this.btnContratos.Name = "btnContratos";
-            this.btnContratos.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnContratos.Size = new System.Drawing.Size(220, 60);
+            this.btnContratos.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.btnContratos.Size = new System.Drawing.Size(165, 49);
             this.btnContratos.TabIndex = 2;
             this.btnContratos.Text = "Contratos";
             this.btnContratos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnContratos.UseVisualStyleBackColor = true;
+            this.btnContratos.Click += new System.EventHandler(this.btnContratos_Click);
             // 
             // btnUsinas
             // 
@@ -111,48 +166,62 @@
             this.btnUsinas.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnUsinas.IconSize = 32;
             this.btnUsinas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsinas.Location = new System.Drawing.Point(0, 172);
+            this.btnUsinas.Location = new System.Drawing.Point(0, 140);
             this.btnUsinas.Margin = new System.Windows.Forms.Padding(0);
             this.btnUsinas.Name = "btnUsinas";
-            this.btnUsinas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnUsinas.Size = new System.Drawing.Size(220, 60);
+            this.btnUsinas.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.btnUsinas.Size = new System.Drawing.Size(165, 49);
             this.btnUsinas.TabIndex = 1;
             this.btnUsinas.Text = "Usinas";
             this.btnUsinas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsinas.UseVisualStyleBackColor = true;
+            this.btnUsinas.Click += new System.EventHandler(this.btnUsinas_Click);
             // 
             // panelLogo
             // 
             this.panelLogo.Controls.Add(this.pictureBox1);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(2);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(220, 172);
+            this.panelLogo.Size = new System.Drawing.Size(165, 140);
             this.panelLogo.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
-            this.panel2.Controls.Add(this.lblForm);
-            this.panel2.Controls.Add(this.iconCurrentChildForm);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(220, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(980, 75);
-            this.panel2.TabIndex = 1;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(211, 147);
+            this.pictureBox1.Size = new System.Drawing.Size(158, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // panelTitleBar
+            // 
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelTitleBar.Controls.Add(this.lblForm);
+            this.panelTitleBar.Controls.Add(this.iconCurrentChildForm);
+            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitleBar.Location = new System.Drawing.Point(165, 0);
+            this.panelTitleBar.Margin = new System.Windows.Forms.Padding(2);
+            this.panelTitleBar.Name = "panelTitleBar";
+            this.panelTitleBar.Size = new System.Drawing.Size(735, 61);
+            this.panelTitleBar.TabIndex = 1;
+            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // lblForm
+            // 
+            this.lblForm.AutoSize = true;
+            this.lblForm.ForeColor = System.Drawing.Color.White;
+            this.lblForm.Location = new System.Drawing.Point(40, 28);
+            this.lblForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblForm.Name = "lblForm";
+            this.lblForm.Size = new System.Drawing.Size(35, 13);
+            this.lblForm.TabIndex = 3;
+            this.lblForm.Text = "label1";
             // 
             // iconCurrentChildForm
             // 
@@ -160,40 +229,66 @@
             this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
             this.iconCurrentChildForm.IconColor = System.Drawing.Color.White;
             this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCurrentChildForm.Location = new System.Drawing.Point(16, 26);
+            this.iconCurrentChildForm.IconSize = 24;
+            this.iconCurrentChildForm.Location = new System.Drawing.Point(12, 21);
+            this.iconCurrentChildForm.Margin = new System.Windows.Forms.Padding(2);
             this.iconCurrentChildForm.Name = "iconCurrentChildForm";
-            this.iconCurrentChildForm.Size = new System.Drawing.Size(32, 32);
+            this.iconCurrentChildForm.Size = new System.Drawing.Size(24, 26);
             this.iconCurrentChildForm.TabIndex = 2;
             this.iconCurrentChildForm.TabStop = false;
             // 
-            // lblForm
+            // panelShadow
             // 
-            this.lblForm.AutoSize = true;
-            this.lblForm.ForeColor = System.Drawing.Color.White;
-            this.lblForm.Location = new System.Drawing.Point(54, 35);
-            this.lblForm.Name = "lblForm";
-            this.lblForm.Size = new System.Drawing.Size(44, 16);
-            this.lblForm.TabIndex = 3;
-            this.lblForm.Text = "label1";
+            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(55)))));
+            this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelShadow.Location = new System.Drawing.Point(165, 61);
+            this.panelShadow.Name = "panelShadow";
+            this.panelShadow.Size = new System.Drawing.Size(735, 9);
+            this.panelShadow.TabIndex = 2;
+            // 
+            // panelDesktop
+            // 
+            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelDesktop.Controls.Add(this.pictureBox2);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(165, 70);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(735, 474);
+            this.panelDesktop.TabIndex = 3;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(12, 46);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(702, 384);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 670);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(900, 544);
+            this.Controls.Add(this.panelDesktop);
+            this.Controls.Add(this.panelShadow);
+            this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.Text = "Main";
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelTitleBar.ResumeLayout(false);
+            this.panelTitleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
+            this.panelDesktop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,9 +300,14 @@
         private System.Windows.Forms.Panel panelLogo;
         private FontAwesome.Sharp.IconButton btnAdm;
         private FontAwesome.Sharp.IconButton btnContratos;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelTitleBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private System.Windows.Forms.Label lblForm;
+        private FontAwesome.Sharp.IconButton btnFatura;
+        private FontAwesome.Sharp.IconButton BtnStats;
+        private System.Windows.Forms.Panel panelShadow;
+        private System.Windows.Forms.Panel panelDesktop;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
