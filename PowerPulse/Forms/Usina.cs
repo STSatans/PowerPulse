@@ -27,6 +27,7 @@ namespace PowerPulse.Forms
             btnUpdate.Enabled = false;
             btnUpdate.Hide();
         }
+
         private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
         private void btnDel_Click(object sender, EventArgs e)
