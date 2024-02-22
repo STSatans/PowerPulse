@@ -27,6 +27,7 @@ namespace PowerPulse.Forms
             btnUpdate.Enabled = false;
             btnUpdate.Hide();
         }
+
         private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
         private void btnDel_Click(object sender, EventArgs e)
@@ -57,6 +58,10 @@ namespace PowerPulse.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //go to other form
+            AddUsina addUsina = new AddUsina();
+            this.Hide();
+            addUsina.Show();
+            addUsina.Dock = DockStyle.Fill;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

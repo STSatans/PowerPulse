@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace PowerPulse.Forms
 {
-    public partial class Contratos : Form
+    public partial class AddUsina : Form
     {
-        public Contratos()
+        public AddUsina()
         {
             InitializeComponent();
-        }
-
-        private void Contratos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
