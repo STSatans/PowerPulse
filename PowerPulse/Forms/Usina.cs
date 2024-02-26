@@ -15,76 +15,118 @@ namespace PowerPulse.Forms
 {
     public partial class Usina : Form
     {
+        private Form currentChildForm;
         public Usina()
         {
             InitializeComponent();
-            txtNome.Enabled = false;
-            txtData.Enabled = false;
-            txtLocal.Enabled = false;
-            txtTipo.Enabled = false;
+        }
+
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        //SqlConnection BD = new SqlConnection(con);
+        SqlConnection BD = new SqlConnection(con2);
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd= new SqlCommand("Delete from Usina where ID="+listView1.SelectedItems.ToString()+"");
+            cmd.ExecuteNonQuery();
+        }
+
+        private void Usina_Load(object sender, EventArgs e)
+        {
             btnCancel.Enabled = false;
             btnCancel.Hide();
             btnUpdate.Enabled = false;
             btnUpdate.Hide();
-        }
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        SqlConnection BD = new SqlConnection(con);
-        private void btnDel_Click(object sender, EventArgs e)
-        {
             BD.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = BD;
-            cmd.CommandText = "Delete * from where";
-            //delete selected and confirm
-        }
-        private void lblStatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblStatus_TextChanged(object sender, EventArgs e)
-        {
-            if(lblStatus.Text=="Offline")
+            SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.HasRows)
             {
-                lblStatus.ForeColor = Color.Red;
+               if(rdr.Read())
+                {
+                   ListView item = new ListView();
+                }
             }
-            else
-            {
-                lblStatus.ForeColor = Color.Green;
-            }
+            BD.Close();
+            load();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            btnCancel.Show();
+            btnUpdate.Show();
+            btnEditar.Hide();
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;  
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //go to other form
-            AddUsina addUsina = new AddUsina();
-            this.Hide();
-            addUsina.Show();
-            addUsina.Dock = DockStyle.Fill;
+            OpenChildForm(new AddUsina());
+        }
+        private void OpenChildForm(Form childForm)
+        {
+            //open only form
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
+            currentChildForm = childForm;
+            //End
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void label5_Click(object sender, EventArgs e)
         {
-            //enable txtbox
-            txtTipo.Enabled=true;
-            txtData.Enabled=true;
-            txtLocal.Enabled=true;
-            txtNome.Enabled=true;
-            btnUpdate.Show();
-            btnCancel.Show();
 
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //Reset
+            Reset();
         }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
+        
+        private void Reset()
         {
-            //Update
-
+            btnCancel.Enabled = false;
+            btnUpdate.Enabled = false;
+            btnEditar.Enabled = true;
+            btnCancel.Hide();
+            btnUpdate.Hide();
+            btnEditar.Show(); 
+            //Reset txt com dados BD
+        }
+        private void load()
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina='1'",BD);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.HasRows)
+            {
+                if (rdr.Read())
+                {
+                    txtNome.Text = rdr["Nome"].ToString();
+                    txtLoc.Text = rdr["localizacao"].ToString();
+                    txtCapMat.Text = rdr["Capacidade"].ToString();
+                    lblEstado.Text = rdr["status"].ToString();
+                    lblTipo.Text = rdr["tipo"].ToString();
+                    dtpData.Text = rdr["data_construcao"].ToString();
+                }
+            }
+            
+            txtCapMat.Enabled = false;
+            txtLoc.Enabled = false;
+            txtNome.Enabled = false;
+            txtProdMax.Enabled = false;
         }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -50,6 +50,15 @@
             this.panel1.Size = new System.Drawing.Size(180, 157);
             this.panel1.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(59, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Total Usinas";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
@@ -57,31 +66,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(171, 157);
             this.panel2.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(402, 12);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(193, 157);
-            this.panel3.TabIndex = 2;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(601, 12);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(187, 157);
-            this.panel4.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Total Usinas";
             // 
             // label2
             // 
@@ -93,6 +77,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Total Producao";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Location = new System.Drawing.Point(402, 12);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(193, 157);
+            this.panel3.TabIndex = 2;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -101,6 +93,14 @@
             this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Total Contratos";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Location = new System.Drawing.Point(601, 12);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(187, 157);
+            this.panel4.TabIndex = 3;
             // 
             // label4
             // 

@@ -104,6 +104,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddUsina.resx">
+      <DependentUpon>AddUsina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Contratos.resx">
       <DependentUpon>Contratos.cs</DependentUpon>
     </EmbeddedResource>

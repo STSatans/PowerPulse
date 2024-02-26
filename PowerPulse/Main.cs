@@ -34,10 +34,10 @@ namespace PowerPulse
             btnAdm.Visible = false;
             btnAdm.Enabled = false;
         }
-        //private static readonly string con2= ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con2= ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         //SqlConnection BD=new SqlConnection(con);//con casa
-        //SqlConnection BD2 = new SqlConnection(con);//con estagio
+        SqlConnection BD2 = new SqlConnection(con2);//con estagio
 
         private void Main_Load(object sender, EventArgs e)
         {
@@ -85,12 +85,12 @@ namespace PowerPulse
             //stats para Users
             if (lblCargo.Text == "Admin")
             {
-            ActivateButton(sender, Color.White);
+                ActivateButton(sender, Color.White);
                 //OpenChildForm(new ADMStats());
             }
             else
             {
-            ActivateButton(sender, Color.White);
+                ActivateButton(sender, Color.White);
                 OpenChildForm(new Stats()); 
             }
             //criar novo form pra Stats de ADM
@@ -119,8 +119,6 @@ namespace PowerPulse
         {
             Application.Exit();
         }
-
-
 
         private void ActivateButton(object senderBtn, Color color)
         {

@@ -37,22 +37,22 @@
             this.btnContratos = new FontAwesome.Sharp.IconButton();
             this.btnUsinas = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
+            this.lblCargo = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.picUser = new System.Windows.Forms.PictureBox();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.lblForm = new System.Windows.Forms.Label();
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.picUser = new System.Windows.Forms.PictureBox();
-            this.lblUser = new System.Windows.Forms.Label();
-            this.lblCargo = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -203,6 +203,7 @@
             // 
             // panelLogo
             // 
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
             this.panelLogo.Controls.Add(this.lblCargo);
             this.panelLogo.Controls.Add(this.lblUser);
             this.panelLogo.Controls.Add(this.picUser);
@@ -213,9 +214,41 @@
             this.panelLogo.Size = new System.Drawing.Size(165, 101);
             this.panelLogo.TabIndex = 1;
             // 
+            // lblCargo
+            // 
+            this.lblCargo.AutoSize = true;
+            this.lblCargo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblCargo.ForeColor = System.Drawing.Color.Black;
+            this.lblCargo.Location = new System.Drawing.Point(64, 53);
+            this.lblCargo.Name = "lblCargo";
+            this.lblCargo.Size = new System.Drawing.Size(46, 17);
+            this.lblCargo.TabIndex = 2;
+            this.lblCargo.Text = "Cargo";
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblUser.ForeColor = System.Drawing.Color.Black;
+            this.lblUser.Location = new System.Drawing.Point(64, 30);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(38, 17);
+            this.lblUser.TabIndex = 1;
+            this.lblUser.Text = "User";
+            // 
+            // picUser
+            // 
+            this.picUser.Location = new System.Drawing.Point(3, 21);
+            this.picUser.Name = "picUser";
+            this.picUser.Size = new System.Drawing.Size(55, 55);
+            this.picUser.TabIndex = 0;
+            this.picUser.TabStop = false;
+            // 
             // panelTitleBar
             // 
-            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
             this.panelTitleBar.Controls.Add(this.lblForm);
             this.panelTitleBar.Controls.Add(this.iconCurrentChildForm);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -229,7 +262,7 @@
             // lblForm
             // 
             this.lblForm.AutoSize = true;
-            this.lblForm.ForeColor = System.Drawing.Color.White;
+            this.lblForm.ForeColor = System.Drawing.Color.Black;
             this.lblForm.Location = new System.Drawing.Point(40, 28);
             this.lblForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForm.Name = "lblForm";
@@ -239,9 +272,10 @@
             // 
             // iconCurrentChildForm
             // 
-            this.iconCurrentChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.iconCurrentChildForm.BackColor = System.Drawing.Color.Transparent;
+            this.iconCurrentChildForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
-            this.iconCurrentChildForm.IconColor = System.Drawing.Color.White;
+            this.iconCurrentChildForm.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconCurrentChildForm.IconSize = 24;
             this.iconCurrentChildForm.Location = new System.Drawing.Point(12, 21);
@@ -253,7 +287,7 @@
             // 
             // panelShadow
             // 
-            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(55)))));
+            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(245)))), ((int)(((byte)(87)))));
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelShadow.Location = new System.Drawing.Point(165, 61);
             this.panelShadow.Name = "panelShadow";
@@ -281,38 +315,6 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // picUser
-            // 
-            this.picUser.Location = new System.Drawing.Point(3, 21);
-            this.picUser.Name = "picUser";
-            this.picUser.Size = new System.Drawing.Size(55, 55);
-            this.picUser.TabIndex = 0;
-            this.picUser.TabStop = false;
-            // 
-            // lblUser
-            // 
-            this.lblUser.AutoSize = true;
-            this.lblUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblUser.ForeColor = System.Drawing.Color.White;
-            this.lblUser.Location = new System.Drawing.Point(64, 30);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(38, 17);
-            this.lblUser.TabIndex = 1;
-            this.lblUser.Text = "User";
-            // 
-            // lblCargo
-            // 
-            this.lblCargo.AutoSize = true;
-            this.lblCargo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblCargo.ForeColor = System.Drawing.Color.White;
-            this.lblCargo.Location = new System.Drawing.Point(64, 53);
-            this.lblCargo.Name = "lblCargo";
-            this.lblCargo.Size = new System.Drawing.Size(46, 17);
-            this.lblCargo.TabIndex = 2;
-            this.lblCargo.Text = "Cargo";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,12 +333,12 @@
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             this.ResumeLayout(false);
 
         }
