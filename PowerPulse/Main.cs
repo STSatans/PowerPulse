@@ -122,6 +122,85 @@ namespace PowerPulse
 
 
 
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        SqlConnection BD=new SqlConnection(con);
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = BD;
+            cmd.CommandText = "Select from ";
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.HasRows)
+            {
+                if(reader.Read())
+                {
+                    lblUser.Text = reader.GetString(0);
+                    lblCargo.Text = reader.GetString(1);
+                    if(lblCargo.Text=="Admin")
+                    {
+                        btnAdm.Visible=true;
+                        btnAdm.Enabled=true;
+                    }
+                }
+            }
+        }
+
+        private void btnUsinas_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Usina());
+        }
+
+        private void btnContratos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Contratos());
+        }
+
+        private void btnAdm_Click(object sender, EventArgs e)
+        {
+            //apenas visivel para adm
+            OpenChildForm(new Admin());
+        }
+
+        private void BtnStats_Click(object sender, EventArgs e)
+        {
+
+            //stats para Users
+            if (lblCargo.Text == "Admin")
+            {
+                //OpenChildForm(new ADMStats());
+            }
+            else
+            { OpenChildForm(new Stats()); }
+            //criar novo form pra Stats de ADM
+        }
+        
+        private void btnFatura_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Faturas());
+        }
+
+        //drag form
+        [DllImport("user32.dll",EntryPoint ="ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.dll",EntryPoint ="SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd,int wMsg,int wParam, int IParam);
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
+
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
