@@ -107,6 +107,9 @@
     <EmbeddedResource Include="Forms\AddUsina.resx">
       <DependentUpon>AddUsina.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Contratos.resx">
       <DependentUpon>Contratos.cs</DependentUpon>
     </EmbeddedResource>

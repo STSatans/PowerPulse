@@ -31,8 +31,9 @@ namespace PowerPulse
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            btnAdm.Visible = false;
-            btnAdm.Enabled = false;
+
+           // btnAdm.Visible = false;
+            //btnAdm.Enabled = false;
         }
         private static readonly string con2= ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
@@ -176,10 +177,19 @@ namespace PowerPulse
 
         private void Reset()
         {
+            DisableButton();
             leftBorderBtn.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
-            iconCurrentChildForm.IconColor = Color.White;
+            iconCurrentChildForm.IconColor = Color.MediumPurple;
             lblForm.Text = "Home";
+        }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                FormBorderStyle = FormBorderStyle.None;
+            else
+                FormBorderStyle = FormBorderStyle.Sizable;
         }
     }
 }
