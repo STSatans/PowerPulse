@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnMant = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.btnFatura = new FontAwesome.Sharp.IconButton();
             this.BtnStats = new FontAwesome.Sharp.IconButton();
@@ -58,6 +59,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelMenu.Controls.Add(this.btnMant);
             this.panelMenu.Controls.Add(this.btnExit);
             this.panelMenu.Controls.Add(this.btnFatura);
             this.panelMenu.Controls.Add(this.BtnStats);
@@ -71,6 +73,28 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(165, 586);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnMant
+            // 
+            this.btnMant.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMant.FlatAppearance.BorderSize = 0;
+            this.btnMant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMant.ForeColor = System.Drawing.Color.White;
+            this.btnMant.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnMant.IconColor = System.Drawing.Color.White;
+            this.btnMant.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMant.IconSize = 32;
+            this.btnMant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMant.Location = new System.Drawing.Point(0, 401);
+            this.btnMant.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMant.Name = "btnMant";
+            this.btnMant.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnMant.Size = new System.Drawing.Size(165, 60);
+            this.btnMant.TabIndex = 7;
+            this.btnMant.Text = "Manutenção";
+            this.btnMant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMant.UseVisualStyleBackColor = true;
+            this.btnMant.Click += new System.EventHandler(this.btnMant_Click);
             // 
             // btnExit
             // 
@@ -143,7 +167,7 @@
             this.btnAdm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdm.ForeColor = System.Drawing.Color.Snow;
             this.btnAdm.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnAdm.IconColor = System.Drawing.Color.Black;
+            this.btnAdm.IconColor = System.Drawing.Color.BlanchedAlmond;
             this.btnAdm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdm.Location = new System.Drawing.Point(0, 221);
@@ -196,7 +220,7 @@
             this.btnUsinas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnUsinas.Size = new System.Drawing.Size(165, 60);
             this.btnUsinas.TabIndex = 1;
-            this.btnUsinas.Text = "Usinas";
+            this.btnUsinas.Text = "Centrais";
             this.btnUsinas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsinas.UseVisualStyleBackColor = true;
             this.btnUsinas.Click += new System.EventHandler(this.btnUsinas_Click);
@@ -220,7 +244,7 @@
             this.lblCargo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblCargo.ForeColor = System.Drawing.Color.Black;
-            this.lblCargo.Location = new System.Drawing.Point(72, 53);
+            this.lblCargo.Location = new System.Drawing.Point(73, 53);
             this.lblCargo.Name = "lblCargo";
             this.lblCargo.Size = new System.Drawing.Size(46, 17);
             this.lblCargo.TabIndex = 2;
@@ -232,7 +256,7 @@
             this.lblUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUser.ForeColor = System.Drawing.Color.Black;
-            this.lblUser.Location = new System.Drawing.Point(72, 30);
+            this.lblUser.Location = new System.Drawing.Point(73, 28);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(38, 17);
             this.lblUser.TabIndex = 1;
@@ -240,7 +264,7 @@
             // 
             // picUser
             // 
-            this.picUser.Location = new System.Drawing.Point(11, 21);
+            this.picUser.Location = new System.Drawing.Point(12, 21);
             this.picUser.Name = "picUser";
             this.picUser.Size = new System.Drawing.Size(55, 55);
             this.picUser.TabIndex = 0;
@@ -324,12 +348,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1027, 586);
+            this.ControlBox = false;
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
@@ -369,5 +394,6 @@
         private System.Windows.Forms.Label lblCargo;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.PictureBox picUser;
+        private FontAwesome.Sharp.IconButton btnMant;
     }
 }

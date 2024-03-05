@@ -30,21 +30,21 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTipoCliente = new System.Windows.Forms.TextBox();
+            this.txtMoradaCliente = new System.Windows.Forms.TextBox();
+            this.txtContato = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtTipoContrato = new System.Windows.Forms.TextBox();
+            this.txtPagamento = new System.Windows.Forms.TextBox();
+            this.txtTel = new System.Windows.Forms.TextBox();
+            this.txtMoradaCont = new System.Windows.Forms.TextBox();
+            this.txtNrCont = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -68,13 +68,14 @@
             this.listView1.Size = new System.Drawing.Size(776, 191);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtTipoCliente);
+            this.panel1.Controls.Add(this.txtMoradaCliente);
+            this.panel1.Controls.Add(this.txtContato);
+            this.panel1.Controls.Add(this.txtNome);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -85,33 +86,33 @@
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
             // 
-            // textBox4
+            // txtTipoCliente
             // 
-            this.textBox4.Location = new System.Drawing.Point(116, 124);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(113, 20);
-            this.textBox4.TabIndex = 9;
+            this.txtTipoCliente.Location = new System.Drawing.Point(116, 124);
+            this.txtTipoCliente.Name = "txtTipoCliente";
+            this.txtTipoCliente.Size = new System.Drawing.Size(113, 20);
+            this.txtTipoCliente.TabIndex = 9;
             // 
-            // textBox3
+            // txtMoradaCliente
             // 
-            this.textBox3.Location = new System.Drawing.Point(90, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(235, 20);
-            this.textBox3.TabIndex = 8;
+            this.txtMoradaCliente.Location = new System.Drawing.Point(90, 98);
+            this.txtMoradaCliente.Name = "txtMoradaCliente";
+            this.txtMoradaCliente.Size = new System.Drawing.Size(235, 20);
+            this.txtMoradaCliente.TabIndex = 8;
             // 
-            // textBox2
+            // txtContato
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(123, 20);
-            this.textBox2.TabIndex = 7;
+            this.txtContato.Location = new System.Drawing.Point(70, 69);
+            this.txtContato.Name = "txtContato";
+            this.txtContato.Size = new System.Drawing.Size(123, 20);
+            this.txtContato.TabIndex = 7;
             // 
-            // textBox1
+            // txtNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(58, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(267, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtNome.Location = new System.Drawing.Point(58, 42);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(267, 20);
+            this.txtNome.TabIndex = 6;
             // 
             // label6
             // 
@@ -167,11 +168,11 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox10);
-            this.panel2.Controls.Add(this.textBox9);
-            this.panel2.Controls.Add(this.textBox8);
-            this.panel2.Controls.Add(this.textBox7);
-            this.panel2.Controls.Add(this.textBox6);
+            this.panel2.Controls.Add(this.txtTipoContrato);
+            this.panel2.Controls.Add(this.txtPagamento);
+            this.panel2.Controls.Add(this.txtTel);
+            this.panel2.Controls.Add(this.txtMoradaCont);
+            this.panel2.Controls.Add(this.txtNrCont);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label9);
@@ -183,40 +184,40 @@
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
             // 
-            // textBox10
+            // txtTipoContrato
             // 
-            this.textBox10.Location = new System.Drawing.Point(127, 148);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(117, 20);
-            this.textBox10.TabIndex = 15;
+            this.txtTipoContrato.Location = new System.Drawing.Point(127, 148);
+            this.txtTipoContrato.Name = "txtTipoContrato";
+            this.txtTipoContrato.Size = new System.Drawing.Size(117, 20);
+            this.txtTipoContrato.TabIndex = 15;
             // 
-            // textBox9
+            // txtPagamento
             // 
-            this.textBox9.Location = new System.Drawing.Point(164, 122);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 14;
+            this.txtPagamento.Location = new System.Drawing.Point(164, 122);
+            this.txtPagamento.Name = "txtPagamento";
+            this.txtPagamento.Size = new System.Drawing.Size(100, 20);
+            this.txtPagamento.TabIndex = 14;
             // 
-            // textBox8
+            // txtTel
             // 
-            this.textBox8.Location = new System.Drawing.Point(77, 95);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 13;
+            this.txtTel.Location = new System.Drawing.Point(77, 95);
+            this.txtTel.Name = "txtTel";
+            this.txtTel.Size = new System.Drawing.Size(100, 20);
+            this.txtTel.TabIndex = 13;
             // 
-            // textBox7
+            // txtMoradaCont
             // 
-            this.textBox7.Location = new System.Drawing.Point(69, 66);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(209, 20);
-            this.textBox7.TabIndex = 12;
+            this.txtMoradaCont.Location = new System.Drawing.Point(69, 66);
+            this.txtMoradaCont.Name = "txtMoradaCont";
+            this.txtMoradaCont.Size = new System.Drawing.Size(209, 20);
+            this.txtMoradaCont.TabIndex = 12;
             // 
-            // textBox6
+            // txtNrCont
             // 
-            this.textBox6.Location = new System.Drawing.Point(94, 41);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 11;
+            this.txtNrCont.Location = new System.Drawing.Point(94, 41);
+            this.txtNrCont.Name = "txtNrCont";
+            this.txtNrCont.Size = new System.Drawing.Size(100, 20);
+            this.txtNrCont.TabIndex = 11;
             // 
             // label8
             // 
@@ -287,6 +288,7 @@
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnEdit
             // 
@@ -371,14 +373,14 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnIns;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtTipoCliente;
+        private System.Windows.Forms.TextBox txtMoradaCliente;
+        private System.Windows.Forms.TextBox txtContato;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtTipoContrato;
+        private System.Windows.Forms.TextBox txtPagamento;
+        private System.Windows.Forms.TextBox txtTel;
+        private System.Windows.Forms.TextBox txtMoradaCont;
+        private System.Windows.Forms.TextBox txtNrCont;
     }
 }

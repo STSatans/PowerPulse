@@ -30,11 +30,6 @@ namespace PowerPulse.Forms
            btnUpdate.Hide();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             btnUpdate.Show();
@@ -60,6 +55,44 @@ namespace PowerPulse.Forms
         private void verificarTXT()
         {
 
+        }
+        private void L()
+        {
+            txtContato.Enabled = false;
+            txtMoradaCliente.Enabled = false;
+            txtMoradaCont.Enabled = false;
+            txtNome.Enabled = false;
+            txtNrCont.Enabled = false;
+            txtPagamento.Enabled = false;
+            txtTel.Enabled = false;
+            txtTipoCliente.Enabled = false;
+            txtTipoContrato.Enabled = false;
+        }
+        private void Enable()
+        {
+            txtContato.Enabled = true;
+            txtMoradaCliente.Enabled = true;
+            txtMoradaCont.Enabled = true;
+            txtNome.Enabled = true;
+            txtNrCont.Enabled = true;
+            txtPagamento.Enabled = true;
+            txtTel.Enabled = true;
+            txtTipoCliente.Enabled = true;
+            txtTipoContrato.Enabled = true;
+        }
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            BD2.Open();
+            SqlCommand cmd = new SqlCommand("Delete from ",BD2);
+            int rows= cmd.ExecuteNonQuery();
+            if (rows > 0)
+            {
+                MessageBox.Show("");
+            }
+            else
+            {
+                MessageBox.Show("");
+            }
         }
     }
 }

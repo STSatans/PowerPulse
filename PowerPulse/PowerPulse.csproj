@@ -66,6 +66,18 @@
     <Compile Include="Forms\Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AdmStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdmStats.Designer.cs">
+      <DependentUpon>AdmStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cliente.Designer.cs">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Contratos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +89,12 @@
     </Compile>
     <Compile Include="Forms\Faturas.Designer.cs">
       <DependentUpon>Faturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Manutencao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Manutencao.Designer.cs">
+      <DependentUpon>Manutencao.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Stats.cs">
       <SubType>Form</SubType>
@@ -109,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cliente.resx">
+      <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Contratos.resx">
       <DependentUpon>Contratos.cs</DependentUpon>

@@ -88,9 +88,13 @@ namespace PowerPulse
                 switch (loginResult)
                 {
                     case LoginResult.Success:
-                        Main main = new Main();
-                        this.Hide();
+                        Main main = new Main
+                        {
+                            User = userID
+                        };
                         main.Show();
+                        this.Hide();
+                        
                         break;
 
                     case LoginResult.InvalidUserID:
