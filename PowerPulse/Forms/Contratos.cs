@@ -25,9 +25,27 @@ namespace PowerPulse.Forms
 
         private void Contratos_Load(object sender, EventArgs e)
         {
-           //Btns
-           btnCancel.Hide();
-           btnUpdate.Hide();
+            //Btns
+            btnCancel.Hide();
+            btnUpdate.Hide();
+            BD2.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Contrato",BD2);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                // Criar um array de strings para armazenar os dados de uma linha
+                string[] row = new string[rdr.FieldCount];
+
+                // Preencher o array com os valores das colunas
+                for (int i = 0; i < rdr.FieldCount; i++)
+                {
+                    row[i] = rdr[i].ToString();
+                }
+
+                // Adicionar os valores ao ListView
+                listView1.Items.Add(new ListViewItem(row));
+            }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -39,11 +57,11 @@ namespace PowerPulse.Forms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             BD2.Open();
-            SqlCommand cmd= new SqlCommand("Update Fatura Set",BD2);
-            int rows=cmd.ExecuteNonQuery();
-            if(rows>1)
+            SqlCommand cmd = new SqlCommand("Update Fatura Set", BD2);
+            int rows = cmd.ExecuteNonQuery();
+            if (rows > 1)
             {
-                MessageBox.Show("Valores Inseridos Com sucesso","Aviso",MessageBoxButtons.OK);
+                MessageBox.Show("Valores Inseridos Com sucesso", "Aviso", MessageBoxButtons.OK);
                 btnCancel.Hide();
             }
             else
@@ -83,8 +101,8 @@ namespace PowerPulse.Forms
         private void btnDel_Click(object sender, EventArgs e)
         {
             BD2.Open();
-            SqlCommand cmd = new SqlCommand("Delete from ",BD2);
-            int rows= cmd.ExecuteNonQuery();
+            SqlCommand cmd = new SqlCommand("Delete from ", BD2);
+            int rows = cmd.ExecuteNonQuery();
             if (rows > 0)
             {
                 MessageBox.Show("");

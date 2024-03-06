@@ -29,6 +29,15 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.colNrContrato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMorada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTipocontrato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTipoClient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTipoCliente = new System.Windows.Forms.TextBox();
             this.txtMoradaCliente = new System.Windows.Forms.TextBox();
@@ -62,6 +71,18 @@
             // 
             // listView1
             // 
+            this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNrContrato,
+            this.colMorada,
+            this.colTelefone,
+            this.colPagamento,
+            this.colTipocontrato,
+            this.colTipoClient,
+            this.colNome,
+            this.columnHeader8,
+            this.columnHeader9});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(36, 245);
             this.listView1.Name = "listView1";
@@ -69,6 +90,18 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // colNrContrato
+            // 
+            this.colNrContrato.Text = "Contrato";
+            // 
+            // colMorada
+            // 
+            this.colMorada.Text = "Morada";
+            // 
+            // colTelefone
+            // 
+            this.colTelefone.Text = "Telefone";
             // 
             // panel1
             // 
@@ -382,5 +415,14 @@
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.TextBox txtMoradaCont;
         private System.Windows.Forms.TextBox txtNrCont;
+        private System.Windows.Forms.ColumnHeader colNrContrato;
+        private System.Windows.Forms.ColumnHeader colMorada;
+        private System.Windows.Forms.ColumnHeader colTelefone;
+        private System.Windows.Forms.ColumnHeader colPagamento;
+        private System.Windows.Forms.ColumnHeader colTipocontrato;
+        private System.Windows.Forms.ColumnHeader colTipoClient;
+        private System.Windows.Forms.ColumnHeader colNome;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }

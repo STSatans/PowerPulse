@@ -212,5 +212,11 @@ namespace PowerPulse
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Manutencao());
         }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.FromArgb(75, 255, 87));
+            OpenChildForm(new Cliente());
+        }
     }
 }
