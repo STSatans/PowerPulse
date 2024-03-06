@@ -105,6 +105,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.txtTipoCliente);
             this.panel1.Controls.Add(this.txtMoradaCliente);
             this.panel1.Controls.Add(this.txtContato);
@@ -201,6 +202,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.txtTipoContrato);
             this.panel2.Controls.Add(this.txtPagamento);
             this.panel2.Controls.Add(this.txtTel);
@@ -315,6 +317,7 @@
             // 
             // btnDel
             // 
+            this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDel.Location = new System.Drawing.Point(357, 442);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(143, 23);
@@ -325,6 +328,7 @@
             // 
             // btnEdit
             // 
+            this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEdit.Location = new System.Drawing.Point(393, 95);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
@@ -335,6 +339,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdate.Location = new System.Drawing.Point(393, 122);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
@@ -345,15 +350,18 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.Location = new System.Drawing.Point(393, 149);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnIns
             // 
+            this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIns.Location = new System.Drawing.Point(393, 45);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);

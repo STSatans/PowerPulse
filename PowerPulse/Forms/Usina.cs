@@ -29,25 +29,26 @@ namespace PowerPulse.Forms
         private void btnDel_Click(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd= new SqlCommand("Delete from Usina where ID="+listView1.SelectedItems.ToString()+"");
+            SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems.ToString() + "");
             cmd.ExecuteNonQuery();
         }
 
         private void Usina_Load(object sender, EventArgs e)
         {
+            //Btns
             btnCancel.Enabled = false;
             btnCancel.Hide();
             btnUpdate.Enabled = false;
             btnUpdate.Hide();
-
+            //con
             BD.Open();
             SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
-            while(rdr.HasRows)
+            while (rdr.HasRows)
             {
-               if(rdr.Read())
+                if (rdr.Read())
                 {
-                   ListView item = new ListView();
+                    ListView item = new ListView();
                 }
             }
             BD.Close();
@@ -60,9 +61,33 @@ namespace PowerPulse.Forms
             btnUpdate.Show();
             btnEditar.Hide();
             btnUpdate.Enabled = true;
-            btnCancel.Enabled = true;  
+            btnCancel.Enabled = true;
+            txtOpen();
         }
-
+        private void txtOpen()
+        {
+            txtLoc.Enabled = true;
+            txtNome.Enabled = true;
+            txtProdMax.Enabled = true;
+            txtCapMat.Enabled = true;
+            dtpData.Enabled = true;
+            txtCapMat.BackColor = Color.White;
+            txtLoc.BackColor = Color.White;
+            txtNome.BackColor = Color.White;
+            txtProdMax.BackColor = Color.White;
+        }
+        private void txtClose()
+        {
+            txtLoc.Enabled = false;
+            txtNome.Enabled =false;
+            txtProdMax.Enabled = false;
+            txtCapMat.Enabled = false;
+            dtpData.Enabled = false;
+            txtCapMat.BackColor = Color.FromArgb(16, 17, 61);
+            txtLoc.BackColor = Color.FromArgb(16, 17, 61);
+            txtNome.BackColor = Color.FromArgb(16, 17, 61);
+            txtProdMax.BackColor = Color.FromArgb(16, 17, 61);
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OpenChildForm(new AddUsina());
@@ -93,24 +118,39 @@ namespace PowerPulse.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Reset();
+            txtClose();
         }
-        
+
         private void Reset()
         {
+            BD.Open();
+            SqlCommand cmd= new SqlCommand("Select * from Usina where ID_Usina="+listView1.SelectedItems.ToString()+"",BD);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.HasRows)
+            {
+                if(rdr.Read())
+                {
+                    txtNome.Text = rdr["Nome"].ToString();
+                    txtLoc.Text = rdr["localizacao"].ToString();
+                    txtCapMat.Text = rdr["Capacidade"].ToString();
+                    lblTipo.Text = rdr["Tipo"].ToString();
+                    dtpData.Text = rdr["data_construcao"].ToString();
+                }
+            }
             btnCancel.Enabled = false;
             btnUpdate.Enabled = false;
             btnEditar.Enabled = true;
             btnCancel.Hide();
             btnUpdate.Hide();
-            btnEditar.Show(); 
+            btnEditar.Show();
             //Reset txt com dados BD
         }
         private void load()
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina='1'",BD);
+            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina='1'", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
-            while(rdr.HasRows)
+            while (rdr.HasRows)
             {
                 if (rdr.Read())
                 {
@@ -122,7 +162,7 @@ namespace PowerPulse.Forms
                     dtpData.Text = rdr["data_construcao"].ToString();
                 }
             }
-            
+
             txtCapMat.Enabled = false;
             txtLoc.Enabled = false;
             txtNome.Enabled = false;

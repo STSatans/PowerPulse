@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnCliente = new FontAwesome.Sharp.IconButton();
             this.btnMant = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.btnFatura = new FontAwesome.Sharp.IconButton();
@@ -47,7 +48,6 @@
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnCliente = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
@@ -73,8 +73,30 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(165, 692);
+            this.panelMenu.Size = new System.Drawing.Size(165, 627);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.ForeColor = System.Drawing.Color.White;
+            this.btnCliente.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnCliente.IconColor = System.Drawing.Color.White;
+            this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCliente.IconSize = 32;
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCliente.Location = new System.Drawing.Point(0, 461);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnCliente.Size = new System.Drawing.Size(165, 60);
+            this.btnCliente.TabIndex = 8;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnMant
             // 
@@ -108,7 +130,7 @@
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 32;
-            this.btnExit.Location = new System.Drawing.Point(0, 643);
+            this.btnExit.Location = new System.Drawing.Point(0, 578);
             this.btnExit.Margin = new System.Windows.Forms.Padding(0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
@@ -281,7 +303,7 @@
             this.panelTitleBar.Location = new System.Drawing.Point(165, 0);
             this.panelTitleBar.Margin = new System.Windows.Forms.Padding(2);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(945, 61);
+            this.panelTitleBar.Size = new System.Drawing.Size(891, 61);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -313,30 +335,28 @@
             // 
             // panelShadow
             // 
-            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(245)))), ((int)(((byte)(87)))));
+            this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelShadow.Location = new System.Drawing.Point(165, 61);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(945, 9);
+            this.panelShadow.Size = new System.Drawing.Size(891, 9);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
             // 
-            this.panelDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.panelDesktop.Controls.Add(this.pictureBox2);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(165, 70);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(945, 622);
+            this.panelDesktop.Size = new System.Drawing.Size(891, 557);
             this.panelDesktop.TabIndex = 3;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(274, 132);
+            this.pictureBox2.Location = new System.Drawing.Point(247, 99);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(408, 340);
@@ -344,34 +364,12 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // btnCliente
-            // 
-            this.btnCliente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCliente.FlatAppearance.BorderSize = 0;
-            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCliente.ForeColor = System.Drawing.Color.White;
-            this.btnCliente.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btnCliente.IconColor = System.Drawing.Color.White;
-            this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCliente.IconSize = 32;
-            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(0, 461);
-            this.btnCliente.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnCliente.Size = new System.Drawing.Size(165, 60);
-            this.btnCliente.TabIndex = 8;
-            this.btnCliente.Text = "Cliente";
-            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCliente.UseVisualStyleBackColor = true;
-            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(1110, 692);
+            this.ClientSize = new System.Drawing.Size(1056, 627);
             this.ControlBox = false;
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);

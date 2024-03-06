@@ -72,7 +72,9 @@ namespace PowerPulse.Forms
 
         private void verificarTXT()
         {
-
+            SqlConnection bd = new SqlConnection(con2);
+            bd.Open();
+            SqlCommand cmd = new SqlCommand("Select from ", bd);
         }
         private void L()
         {
@@ -111,6 +113,11 @@ namespace PowerPulse.Forms
             {
                 MessageBox.Show("");
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
