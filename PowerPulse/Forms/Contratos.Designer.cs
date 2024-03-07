@@ -72,6 +72,7 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNrContrato,
@@ -83,6 +84,7 @@
             this.colNome,
             this.columnHeader8,
             this.columnHeader9});
+            this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(36, 245);
             this.listView1.Name = "listView1";
@@ -90,6 +92,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // colNrContrato
             // 
@@ -318,9 +321,10 @@
             // btnDel
             // 
             this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDel.Location = new System.Drawing.Point(357, 442);
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDel.Location = new System.Drawing.Point(367, 442);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(143, 23);
+            this.btnDel.Size = new System.Drawing.Size(133, 23);
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
@@ -329,6 +333,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Location = new System.Drawing.Point(393, 95);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
@@ -340,6 +345,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Location = new System.Drawing.Point(393, 122);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
@@ -351,6 +357,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Location = new System.Drawing.Point(393, 149);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
@@ -362,6 +369,7 @@
             // btnIns
             // 
             this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIns.Location = new System.Drawing.Point(393, 45);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
@@ -373,6 +381,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(846, 477);
             this.Controls.Add(this.btnIns);
             this.Controls.Add(this.btnCancel);
@@ -382,6 +391,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "Contratos";
             this.Text = "Contratos";
             this.Load += new System.EventHandler(this.Contratos_Load);

@@ -68,25 +68,21 @@ namespace PowerPulse.Forms
         {
             txtLoc.Enabled = true;
             txtNome.Enabled = true;
-            txtProdMax.Enabled = true;
             txtCapMat.Enabled = true;
             dtpData.Enabled = true;
             txtCapMat.BackColor = Color.White;
             txtLoc.BackColor = Color.White;
             txtNome.BackColor = Color.White;
-            txtProdMax.BackColor = Color.White;
         }
         private void txtClose()
         {
             txtLoc.Enabled = false;
             txtNome.Enabled =false;
-            txtProdMax.Enabled = false;
             txtCapMat.Enabled = false;
             dtpData.Enabled = false;
             txtCapMat.BackColor = Color.FromArgb(16, 17, 61);
             txtLoc.BackColor = Color.FromArgb(16, 17, 61);
             txtNome.BackColor = Color.FromArgb(16, 17, 61);
-            txtProdMax.BackColor = Color.FromArgb(16, 17, 61);
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -166,7 +162,11 @@ namespace PowerPulse.Forms
             txtCapMat.Enabled = false;
             txtLoc.Enabled = false;
             txtNome.Enabled = false;
-            txtProdMax.Enabled = false;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

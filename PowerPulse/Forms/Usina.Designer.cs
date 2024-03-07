@@ -32,7 +32,6 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtpData = new System.Windows.Forms.DateTimePicker();
-            this.txtProdMax = new System.Windows.Forms.TextBox();
             this.txtLoc = new System.Windows.Forms.TextBox();
             this.txtCapMat = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
+            this.lblManutencao = new System.Windows.Forms.Label();
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,12 +90,13 @@
             this.listView1.Size = new System.Drawing.Size(355, 406);
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel2.Controls.Add(this.lblManutencao);
             this.panel2.Controls.Add(this.dtpData);
-            this.panel2.Controls.Add(this.txtProdMax);
             this.panel2.Controls.Add(this.txtLoc);
             this.panel2.Controls.Add(this.txtCapMat);
             this.panel2.Controls.Add(this.txtNome);
@@ -117,17 +118,6 @@
             this.dtpData.Name = "dtpData";
             this.dtpData.Size = new System.Drawing.Size(120, 26);
             this.dtpData.TabIndex = 13;
-            // 
-            // txtProdMax
-            // 
-            this.txtProdMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
-            this.txtProdMax.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtProdMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtProdMax.ForeColor = System.Drawing.Color.White;
-            this.txtProdMax.Location = new System.Drawing.Point(120, 192);
-            this.txtProdMax.Name = "txtProdMax";
-            this.txtProdMax.Size = new System.Drawing.Size(220, 19);
-            this.txtProdMax.TabIndex = 12;
             // 
             // txtLoc
             // 
@@ -169,9 +159,9 @@
             this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(3, 193);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(118, 20);
+            this.label10.Size = new System.Drawing.Size(141, 20);
             this.label10.TabIndex = 7;
-            this.label10.Text = "Produção Max.:";
+            this.label10.Text = "Prox. Manutencao:";
             // 
             // label9
             // 
@@ -349,6 +339,8 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnUpdate.IconColor = System.Drawing.Color.Black;
             this.btnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -362,6 +354,8 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCancel.IconColor = System.Drawing.Color.Black;
             this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -376,6 +370,8 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
             this.btnEditar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEditar.IconColor = System.Drawing.Color.Black;
             this.btnEditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -399,6 +395,8 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnAdd.IconColor = System.Drawing.Color.Black;
             this.btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -413,6 +411,8 @@
             // btnDel
             // 
             this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDel.ForeColor = System.Drawing.Color.White;
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;
             this.btnDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -423,6 +423,17 @@
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // lblManutencao
+            // 
+            this.lblManutencao.AutoSize = true;
+            this.lblManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblManutencao.ForeColor = System.Drawing.Color.White;
+            this.lblManutencao.Location = new System.Drawing.Point(150, 193);
+            this.lblManutencao.Name = "lblManutencao";
+            this.lblManutencao.Size = new System.Drawing.Size(137, 20);
+            this.lblManutencao.TabIndex = 14;
+            this.lblManutencao.Text = "Data Manutencao";
             // 
             // Usina
             // 
@@ -469,7 +480,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpData;
-        private System.Windows.Forms.TextBox txtProdMax;
         private System.Windows.Forms.TextBox txtLoc;
         private System.Windows.Forms.TextBox txtCapMat;
         private System.Windows.Forms.TextBox txtNome;
@@ -478,5 +488,6 @@
         private System.Windows.Forms.Label lblProdM;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label lblManutencao;
     }
 }

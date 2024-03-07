@@ -16,5 +16,19 @@ namespace PowerPulse.Forms
         {
             InitializeComponent();
         }
+
+        private void AddUsina_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "Solar"||comboBox1.SelectedItem.ToString() == "Eolica"|| comboBox1.SelectedItem.ToString() == "Hidroeletrica")
+            {
+                panel1.Hide();
+            }
+           
+        }
     }
 }

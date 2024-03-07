@@ -35,6 +35,7 @@
             this.btnIns = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnDel = new FontAwesome.Sharp.IconButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.ColID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,7 +43,6 @@
             this.colMorada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -136,6 +136,13 @@
             this.panel2.Size = new System.Drawing.Size(343, 217);
             this.panel2.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(148, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
+            // 
             // btnDel
             // 
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -186,13 +193,6 @@
             // 
             this.colTipo.Text = "Tipo de Cliente";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(148, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,6 +200,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(816, 489);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Cliente";
             this.Text = "Cliente";
