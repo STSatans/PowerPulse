@@ -41,18 +41,22 @@ namespace PowerPulse.Forms
             btnUpdate.Enabled = false;
             btnUpdate.Hide();
             //con
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.HasRows)
-            {
-                if (rdr.Read())
-                {
-                    ListView item = new ListView();
-                }
-            }
-            BD.Close();
-            load();
+
+            //BD.Open();
+            //SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
+            //SqlDataReader rdr = cmd.ExecuteReader();
+            //while (rdr.HasRows)
+            //{
+            //    if (rdr.Read())
+            //    {
+            //        listView1.Items.Add(rdr["ID_Usina"].ToString());
+            //        listView1.Items.Add(rdr["Nome"].ToString());
+            //        listView1.Items.Add(rdr["Tipo"].ToString());
+            //        listView1.Items.Add(rdr["Capacidade"].ToString());
+            //        listView1.Items.Add(rdr["Localizacao"].ToString());
+            //        listView1.Items.Add(rdr["data_construcao"].ToString());
+            //    }
+            //}
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -166,7 +170,17 @@ namespace PowerPulse.Forms
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            BD.Open();
+
+            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina="+listView1.SelectedIndices.ToString()+"");
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.HasRows)
+            {
+                if (rdr.Read())
+                {
+                   //inserir labels
+                }
+            }
         }
     }
 }

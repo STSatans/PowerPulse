@@ -31,6 +31,7 @@
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblManutencao = new System.Windows.Forms.Label();
             this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.txtLoc = new System.Windows.Forms.TextBox();
             this.txtCapMat = new System.Windows.Forms.TextBox();
@@ -57,7 +58,12 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.lblManutencao = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,12 +90,20 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(355, 406);
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // panel2
@@ -109,6 +123,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(424, 226);
             this.panel2.TabIndex = 8;
+            // 
+            // lblManutencao
+            // 
+            this.lblManutencao.AutoSize = true;
+            this.lblManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblManutencao.ForeColor = System.Drawing.Color.White;
+            this.lblManutencao.Location = new System.Drawing.Point(150, 193);
+            this.lblManutencao.Name = "lblManutencao";
+            this.lblManutencao.Size = new System.Drawing.Size(137, 20);
+            this.lblManutencao.TabIndex = 14;
+            this.lblManutencao.Text = "Data Manutencao";
             // 
             // dtpData
             // 
@@ -424,16 +449,29 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // lblManutencao
+            // columnHeader1
             // 
-            this.lblManutencao.AutoSize = true;
-            this.lblManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblManutencao.ForeColor = System.Drawing.Color.White;
-            this.lblManutencao.Location = new System.Drawing.Point(150, 193);
-            this.lblManutencao.Name = "lblManutencao";
-            this.lblManutencao.Size = new System.Drawing.Size(137, 20);
-            this.lblManutencao.TabIndex = 14;
-            this.lblManutencao.Text = "Data Manutencao";
+            this.columnHeader1.Text = "ID";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Nome";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Tipo";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Capacidade";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Localizacao";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Data_construcao";
             // 
             // Usina
             // 
@@ -489,5 +527,11 @@
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblManutencao;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
