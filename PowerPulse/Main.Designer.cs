@@ -33,11 +33,9 @@
             this.btnCliente = new FontAwesome.Sharp.IconButton();
             this.btnMant = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
-            this.btnFatura = new FontAwesome.Sharp.IconButton();
-            this.BtnStats = new FontAwesome.Sharp.IconButton();
             this.btnAdm = new FontAwesome.Sharp.IconButton();
             this.btnContratos = new FontAwesome.Sharp.IconButton();
-            this.btnUsinas = new FontAwesome.Sharp.IconButton();
+            this.btnCentrais = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.lblCargo = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
@@ -48,6 +46,8 @@
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnFaturas = new FontAwesome.Sharp.IconButton();
+            this.btnStats = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
@@ -60,14 +60,14 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelMenu.Controls.Add(this.btnStats);
+            this.panelMenu.Controls.Add(this.btnFaturas);
             this.panelMenu.Controls.Add(this.btnCliente);
             this.panelMenu.Controls.Add(this.btnMant);
             this.panelMenu.Controls.Add(this.btnExit);
-            this.panelMenu.Controls.Add(this.btnFatura);
-            this.panelMenu.Controls.Add(this.BtnStats);
             this.panelMenu.Controls.Add(this.btnAdm);
             this.panelMenu.Controls.Add(this.btnContratos);
-            this.panelMenu.Controls.Add(this.btnUsinas);
+            this.panelMenu.Controls.Add(this.btnCentrais);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
@@ -87,7 +87,7 @@
             this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCliente.IconSize = 32;
             this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(0, 461);
+            this.btnCliente.Location = new System.Drawing.Point(0, 341);
             this.btnCliente.Margin = new System.Windows.Forms.Padding(0);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
@@ -109,7 +109,7 @@
             this.btnMant.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMant.IconSize = 32;
             this.btnMant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMant.Location = new System.Drawing.Point(0, 401);
+            this.btnMant.Location = new System.Drawing.Point(0, 281);
             this.btnMant.Margin = new System.Windows.Forms.Padding(0);
             this.btnMant.Name = "btnMant";
             this.btnMant.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
@@ -139,50 +139,6 @@
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnFatura
-            // 
-            this.btnFatura.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnFatura.FlatAppearance.BorderSize = 0;
-            this.btnFatura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFatura.ForeColor = System.Drawing.Color.White;
-            this.btnFatura.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
-            this.btnFatura.IconColor = System.Drawing.Color.White;
-            this.btnFatura.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnFatura.IconSize = 32;
-            this.btnFatura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFatura.Location = new System.Drawing.Point(0, 341);
-            this.btnFatura.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFatura.Name = "btnFatura";
-            this.btnFatura.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnFatura.Size = new System.Drawing.Size(165, 60);
-            this.btnFatura.TabIndex = 5;
-            this.btnFatura.Text = "Faturas";
-            this.btnFatura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFatura.UseVisualStyleBackColor = true;
-            this.btnFatura.Click += new System.EventHandler(this.btnFatura_Click);
-            // 
-            // BtnStats
-            // 
-            this.BtnStats.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BtnStats.FlatAppearance.BorderSize = 0;
-            this.BtnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnStats.ForeColor = System.Drawing.Color.White;
-            this.BtnStats.IconChar = FontAwesome.Sharp.IconChar.Bucket;
-            this.BtnStats.IconColor = System.Drawing.Color.White;
-            this.BtnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnStats.IconSize = 32;
-            this.BtnStats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnStats.Location = new System.Drawing.Point(0, 281);
-            this.BtnStats.Margin = new System.Windows.Forms.Padding(0);
-            this.BtnStats.Name = "BtnStats";
-            this.BtnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.BtnStats.Size = new System.Drawing.Size(165, 60);
-            this.BtnStats.TabIndex = 4;
-            this.BtnStats.Text = "Estatisticas";
-            this.BtnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnStats.UseVisualStyleBackColor = true;
-            this.BtnStats.Click += new System.EventHandler(this.BtnStats_Click);
             // 
             // btnAdm
             // 
@@ -227,27 +183,27 @@
             this.btnContratos.UseVisualStyleBackColor = true;
             this.btnContratos.Click += new System.EventHandler(this.btnContratos_Click);
             // 
-            // btnUsinas
+            // btnCentrais
             // 
-            this.btnUsinas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUsinas.FlatAppearance.BorderSize = 0;
-            this.btnUsinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsinas.ForeColor = System.Drawing.Color.White;
-            this.btnUsinas.IconChar = FontAwesome.Sharp.IconChar.Bolt;
-            this.btnUsinas.IconColor = System.Drawing.Color.White;
-            this.btnUsinas.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnUsinas.IconSize = 32;
-            this.btnUsinas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsinas.Location = new System.Drawing.Point(0, 101);
-            this.btnUsinas.Margin = new System.Windows.Forms.Padding(0);
-            this.btnUsinas.Name = "btnUsinas";
-            this.btnUsinas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnUsinas.Size = new System.Drawing.Size(165, 60);
-            this.btnUsinas.TabIndex = 1;
-            this.btnUsinas.Text = "Centrais";
-            this.btnUsinas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnUsinas.UseVisualStyleBackColor = true;
-            this.btnUsinas.Click += new System.EventHandler(this.btnUsinas_Click);
+            this.btnCentrais.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCentrais.FlatAppearance.BorderSize = 0;
+            this.btnCentrais.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCentrais.ForeColor = System.Drawing.Color.White;
+            this.btnCentrais.IconChar = FontAwesome.Sharp.IconChar.Bolt;
+            this.btnCentrais.IconColor = System.Drawing.Color.White;
+            this.btnCentrais.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnCentrais.IconSize = 32;
+            this.btnCentrais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCentrais.Location = new System.Drawing.Point(0, 101);
+            this.btnCentrais.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCentrais.Name = "btnCentrais";
+            this.btnCentrais.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnCentrais.Size = new System.Drawing.Size(165, 60);
+            this.btnCentrais.TabIndex = 1;
+            this.btnCentrais.Text = "Centrais";
+            this.btnCentrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCentrais.UseVisualStyleBackColor = true;
+            this.btnCentrais.Click += new System.EventHandler(this.btnCentrais_Click);
             // 
             // panelLogo
             // 
@@ -310,7 +266,7 @@
             // lblForm
             // 
             this.lblForm.AutoSize = true;
-            this.lblForm.ForeColor = System.Drawing.Color.Black;
+            this.lblForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.lblForm.Location = new System.Drawing.Point(40, 28);
             this.lblForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForm.Name = "lblForm";
@@ -364,6 +320,50 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
+            // btnFaturas
+            // 
+            this.btnFaturas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFaturas.FlatAppearance.BorderSize = 0;
+            this.btnFaturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaturas.ForeColor = System.Drawing.Color.White;
+            this.btnFaturas.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnFaturas.IconColor = System.Drawing.Color.White;
+            this.btnFaturas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFaturas.IconSize = 32;
+            this.btnFaturas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFaturas.Location = new System.Drawing.Point(0, 401);
+            this.btnFaturas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFaturas.Name = "btnFaturas";
+            this.btnFaturas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnFaturas.Size = new System.Drawing.Size(165, 60);
+            this.btnFaturas.TabIndex = 9;
+            this.btnFaturas.Text = "Faturas";
+            this.btnFaturas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFaturas.UseVisualStyleBackColor = true;
+            this.btnFaturas.Click += new System.EventHandler(this.btnFaturas_Click);
+            // 
+            // btnStats
+            // 
+            this.btnStats.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStats.FlatAppearance.BorderSize = 0;
+            this.btnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStats.ForeColor = System.Drawing.Color.White;
+            this.btnStats.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnStats.IconColor = System.Drawing.Color.White;
+            this.btnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnStats.IconSize = 32;
+            this.btnStats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStats.Location = new System.Drawing.Point(0, 461);
+            this.btnStats.Margin = new System.Windows.Forms.Padding(0);
+            this.btnStats.Name = "btnStats";
+            this.btnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnStats.Size = new System.Drawing.Size(165, 60);
+            this.btnStats.TabIndex = 10;
+            this.btnStats.Text = "Stats";
+            this.btnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStats.UseVisualStyleBackColor = true;
+            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,15 +400,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMenu;
-        private FontAwesome.Sharp.IconButton btnUsinas;
+        private FontAwesome.Sharp.IconButton btnCentrais;
         private System.Windows.Forms.Panel panelLogo;
         private FontAwesome.Sharp.IconButton btnAdm;
         private FontAwesome.Sharp.IconButton btnContratos;
         private System.Windows.Forms.Panel panelTitleBar;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private System.Windows.Forms.Label lblForm;
-        private FontAwesome.Sharp.IconButton btnFatura;
-        private FontAwesome.Sharp.IconButton BtnStats;
         private System.Windows.Forms.Panel panelShadow;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -418,5 +416,7 @@
         private System.Windows.Forms.PictureBox picUser;
         private FontAwesome.Sharp.IconButton btnMant;
         private FontAwesome.Sharp.IconButton btnCliente;
+        private FontAwesome.Sharp.IconButton btnStats;
+        private FontAwesome.Sharp.IconButton btnFaturas;
     }
 }

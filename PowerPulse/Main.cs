@@ -75,7 +75,7 @@ namespace PowerPulse
             }
         }
 
-        private void btnUsinas_Click(object sender, EventArgs e)
+        private void btnCentrais_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Usina());
@@ -92,29 +92,6 @@ namespace PowerPulse
             //apenas visivel para adm
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Admin());
-        }
-
-        private void BtnStats_Click(object sender, EventArgs e)
-        {
-
-            //stats para Users
-            if (lblCargo.Text == "Admin")
-            {
-                ActivateButton(sender, Color.FromArgb(75, 255, 87));
-                OpenChildForm(new AdmStats());
-            }
-            else
-            {
-                ActivateButton(sender, Color.FromArgb(75, 255, 87));
-                OpenChildForm(new Stats());
-            }
-            //criar novo form pra Stats de ADM
-        }
-
-        private void btnFatura_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Faturas());
         }
 
         //drag form
@@ -217,6 +194,18 @@ namespace PowerPulse
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Cliente());
+        }
+
+        private void btnStats_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.FromArgb(75, 255, 87));
+            OpenChildForm(new Stats());
+        }
+
+        private void btnFaturas_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.FromArgb(75, 255, 87));
+            OpenChildForm(new Faturas());
         }
     }
 }

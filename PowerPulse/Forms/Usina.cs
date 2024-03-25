@@ -28,35 +28,75 @@ namespace PowerPulse.Forms
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems.ToString() + "");
-            cmd.ExecuteNonQuery();
+            try
+            {
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems.ToString() + "");
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            { BD.Close(); }
         }
 
         private void Usina_Load(object sender, EventArgs e)
         {
-            //Btns
-            btnCancel.Enabled = false;
-            btnCancel.Hide();
-            btnUpdate.Enabled = false;
-            btnUpdate.Hide();
-            //con
+            try
+            {
+                //listview configs
+                listView1.View = View.SmallIcon;
+                listView1.SmallImageList = ImgSm;
+                //Btns
+                btnCancel.Enabled = false;
+                btnCancel.Hide();
+                btnUpdate.Enabled = false;
+                btnUpdate.Hide();
+                //con
 
-            //BD.Open();
-            //SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
-            //SqlDataReader rdr = cmd.ExecuteReader();
-            //while (rdr.HasRows)
-            //{
-            //    if (rdr.Read())
-            //    {
-            //        listView1.Items.Add(rdr["ID_Usina"].ToString());
-            //        listView1.Items.Add(rdr["Nome"].ToString());
-            //        listView1.Items.Add(rdr["Tipo"].ToString());
-            //        listView1.Items.Add(rdr["Capacidade"].ToString());
-            //        listView1.Items.Add(rdr["Localizacao"].ToString());
-            //        listView1.Items.Add(rdr["data_construcao"].ToString());
-            //    }
-            //}
+                BD.Open();
+
+                SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    if (rdr.HasRows)
+                    {
+                        ListViewItem lvi = new ListViewItem(rdr["Nome"].ToString());
+                        listView1.Items.Add(lvi);
+                        if (rdr["Tipo"].ToString() == "Solar")
+                        {
+                            lvi.ImageIndex = 0;
+                        }
+                        else if (rdr["Tipo"].ToString() == "Eolica")
+                        {
+                            lvi.ImageIndex = 1;
+                        }
+                        else if (rdr["Tipo"].ToString() == "Fossil")
+                        {
+                            lvi.ImageIndex = 2;
+                        }
+                        else if (rdr["Tipo"].ToString() == "Geotermica")
+                        {
+                            lvi.ImageIndex = 3;
+                        }
+                        else if (rdr["Tipo"].ToString() == "Nuclear")
+                        {
+                            lvi.ImageIndex = 4;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            { BD.Close(); }
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -66,27 +106,6 @@ namespace PowerPulse.Forms
             btnEditar.Hide();
             btnUpdate.Enabled = true;
             btnCancel.Enabled = true;
-            txtOpen();
-        }
-        private void txtOpen()
-        {
-            txtLoc.Enabled = true;
-            txtNome.Enabled = true;
-            txtCapMat.Enabled = true;
-            dtpData.Enabled = true;
-            txtCapMat.BackColor = Color.White;
-            txtLoc.BackColor = Color.White;
-            txtNome.BackColor = Color.White;
-        }
-        private void txtClose()
-        {
-            txtLoc.Enabled = false;
-            txtNome.Enabled =false;
-            txtCapMat.Enabled = false;
-            dtpData.Enabled = false;
-            txtCapMat.BackColor = Color.FromArgb(16, 17, 61);
-            txtLoc.BackColor = Color.FromArgb(16, 17, 61);
-            txtNome.BackColor = Color.FromArgb(16, 17, 61);
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -118,69 +137,62 @@ namespace PowerPulse.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Reset();
-            txtClose();
         }
 
         private void Reset()
         {
-            BD.Open();
-            SqlCommand cmd= new SqlCommand("Select * from Usina where ID_Usina="+listView1.SelectedItems.ToString()+"",BD);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            while(rdr.HasRows)
+            try
             {
-                if(rdr.Read())
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina=" + listView1.SelectedItems.ToString() + "", BD);
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.HasRows)
                 {
-                    txtNome.Text = rdr["Nome"].ToString();
-                    txtLoc.Text = rdr["localizacao"].ToString();
-                    txtCapMat.Text = rdr["Capacidade"].ToString();
-                    lblTipo.Text = rdr["Tipo"].ToString();
-                    dtpData.Text = rdr["data_construcao"].ToString();
+                    if (rdr.Read())
+                    {
+                        txtNome.Text = rdr["Nome"].ToString();
+                        txtLoc.Text = rdr["localizacao"].ToString();
+                        txtCapMat.Text = rdr["Capacidade"].ToString();
+                        lblTipo.Text = rdr["Tipo"].ToString();
+                        dtpData.Text = rdr["data_construcao"].ToString();
+                    }
                 }
+                btnCancel.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnEditar.Enabled = true;
+                btnCancel.Hide();
+                btnUpdate.Hide();
+                btnEditar.Show();
+                //Reset txt com dados BD
             }
-            btnCancel.Enabled = false;
-            btnUpdate.Enabled = false;
-            btnEditar.Enabled = true;
-            btnCancel.Hide();
-            btnUpdate.Hide();
-            btnEditar.Show();
-            //Reset txt com dados BD
-        }
-        private void load()
-        {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina='1'", BD);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.HasRows)
+            catch (Exception ex)
             {
-                if (rdr.Read())
-                {
-                    txtNome.Text = rdr["Nome"].ToString();
-                    txtLoc.Text = rdr["localizacao"].ToString();
-                    txtCapMat.Text = rdr["Capacidade"].ToString();
-                    lblEstado.Text = rdr["status"].ToString();
-                    lblTipo.Text = rdr["tipo"].ToString();
-                    dtpData.Text = rdr["data_construcao"].ToString();
-                }
+                MessageBox.Show(ex.Message);
             }
-
-            txtCapMat.Enabled = false;
-            txtLoc.Enabled = false;
-            txtNome.Enabled = false;
+            finally
+            { BD.Close(); }
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BD.Open();
-
-            SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina="+listView1.SelectedIndices.ToString()+"");
-            SqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.HasRows)
+            try
             {
-                if (rdr.Read())
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina=" + listView1.SelectedIndices.ToString() + "", BD);
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.HasRows)
                 {
-                   //inserir labels
+                    if (rdr.Read())
+                    {
+                        //inserir labels
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            { BD.Close(); }
         }
     }
 }

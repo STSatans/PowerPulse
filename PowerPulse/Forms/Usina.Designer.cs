@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usina));
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ImgSm = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblManutencao = new System.Windows.Forms.Label();
             this.dtpData = new System.Windows.Forms.DateTimePicker();
@@ -58,12 +62,6 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,21 +88,36 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader7});
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
+            this.listView1.LargeImageList = this.ImgSm;
             this.listView1.Location = new System.Drawing.Point(12, 3);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(355, 406);
+            this.listView1.SmallImageList = this.ImgSm;
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "ID";
+            // 
+            // ImgSm
+            // 
+            this.ImgSm.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSm.ImageStream")));
+            this.ImgSm.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSm.Images.SetKeyName(0, "solar-cell.png");
+            this.ImgSm.Images.SetKeyName(1, "eolic-energy.png");
+            this.ImgSm.Images.SetKeyName(2, "fossil-fuel.png");
+            this.ImgSm.Images.SetKeyName(3, "geothermal.png");
+            this.ImgSm.Images.SetKeyName(4, "nuclear-plant.png");
             // 
             // panel2
             // 
@@ -449,30 +462,6 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "ID";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Nome";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tipo";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Capacidade";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Localizacao";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Data_construcao";
-            // 
             // Usina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,11 +516,7 @@
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblManutencao;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ImageList ImgSm;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

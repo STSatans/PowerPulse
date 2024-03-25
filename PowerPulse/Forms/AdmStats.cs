@@ -16,5 +16,6 @@ namespace PowerPulse.Forms
         {
             InitializeComponent();
         }
+
     }
 }

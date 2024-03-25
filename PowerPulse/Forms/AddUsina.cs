@@ -27,14 +27,6 @@ namespace PowerPulse.Forms
         private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         //SqlConnection BD = new SqlConnection(con);
         SqlConnection BD = new SqlConnection(con2);
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbTipo.SelectedItem.ToString() == "Solar"||cmbTipo.SelectedItem.ToString() == "Eolica"|| cmbTipo.SelectedItem.ToString() == "Hidroeletrica")
-            {
-                panel1.Hide();
-            }
-           
-        }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -56,6 +48,14 @@ namespace PowerPulse.Forms
             else
             {
                 MessageBox.Show("Nao Inseridos", "Inserido", MessageBoxButtons.OK);
+            }
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbTipo.SelectedItem.ToString()=="Eolica"|| cmbTipo.SelectedItem.ToString() == "Solar")
+            {
+                panel1.Hide();
             }
         }
     }
