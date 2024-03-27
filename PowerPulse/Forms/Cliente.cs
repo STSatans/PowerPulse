@@ -27,6 +27,9 @@ namespace PowerPulse.Forms
 
         private void Cliente_Load(object sender, EventArgs e)
         {
+            btnEdit.Enabled = false;
+            btnEdit.Visible = false;
+
             BD2.Open();
             SqlCommand cmd = new SqlCommand("Select * from Cliente", BD2);
             SqlDataReader rdr = cmd.ExecuteReader();
@@ -44,6 +47,11 @@ namespace PowerPulse.Forms
                 // Adicionar os valores ao ListView
                 listView1.Items.Add(new ListViewItem(row));
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

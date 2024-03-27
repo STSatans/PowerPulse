@@ -41,6 +41,7 @@
             this.colCost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDesc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.cmbTipoM = new System.Windows.Forms.ComboBox();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.dtpDataFim = new System.Windows.Forms.DateTimePicker();
@@ -50,7 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIns = new FontAwesome.Sharp.IconButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.panelDesktop.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +193,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(418, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "€";
+            // 
             // cmbTipoM
             // 
             this.cmbTipoM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
@@ -294,16 +304,6 @@
             this.btnIns.Text = "Inserir";
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(418, 153);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "€";
             // 
             // Manutencao
             // 

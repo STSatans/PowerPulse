@@ -146,6 +146,9 @@
     <EmbeddedResource Include="Forms\Contratos.resx">
       <DependentUpon>Contratos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Faturas.resx">
+      <DependentUpon>Faturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Manutencao.resx">
       <DependentUpon>Manutencao.cs</DependentUpon>
     </EmbeddedResource>

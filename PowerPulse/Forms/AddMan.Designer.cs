@@ -167,7 +167,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(7, 43);
+            this.label4.Location = new System.Drawing.Point(6, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 20);
             this.label4.TabIndex = 8;
@@ -178,7 +178,7 @@
             // 
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(166, 42);
+            this.comboBox2.Location = new System.Drawing.Point(170, 71);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 7;
@@ -228,9 +228,9 @@
             this.cmbUsina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.cmbUsina.ForeColor = System.Drawing.Color.White;
             this.cmbUsina.FormattingEnabled = true;
-            this.cmbUsina.Location = new System.Drawing.Point(78, 19);
+            this.cmbUsina.Location = new System.Drawing.Point(78, 18);
             this.cmbUsina.Name = "cmbUsina";
-            this.cmbUsina.Size = new System.Drawing.Size(121, 21);
+            this.cmbUsina.Size = new System.Drawing.Size(195, 21);
             this.cmbUsina.TabIndex = 2;
             // 
             // label1
@@ -286,6 +286,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddMan";
             this.Text = "AddMan";
+            this.Load += new System.EventHandler(this.AddMan_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -28,6 +28,8 @@ namespace PowerPulse.Forms
             //Btns
             btnCancel.Hide();
             btnUpdate.Hide();
+            btnEdit.Hide();
+            EditOFF();
             BD2.Open();
             SqlCommand cmd = new SqlCommand("Select * from Contrato",BD2);
             SqlDataReader rdr = cmd.ExecuteReader();
@@ -70,36 +72,6 @@ namespace PowerPulse.Forms
             }
         }
 
-        private void verificarTXT()
-        {
-            SqlConnection bd = new SqlConnection(con2);
-            bd.Open();
-            SqlCommand cmd = new SqlCommand("Select from ", bd);
-        }
-        private void L()
-        {
-            txtContato.Enabled = false;
-            txtMoradaCliente.Enabled = false;
-            txtMoradaCont.Enabled = false;
-            txtNome.Enabled = false;
-            txtNrCont.Enabled = false;
-            txtPagamento.Enabled = false;
-            txtTel.Enabled = false;
-            txtTipoCliente.Enabled = false;
-            txtTipoContrato.Enabled = false;
-        }
-        private void Enable()
-        {
-            txtContato.Enabled = true;
-            txtMoradaCliente.Enabled = true;
-            txtMoradaCont.Enabled = true;
-            txtNome.Enabled = true;
-            txtNrCont.Enabled = true;
-            txtPagamento.Enabled = true;
-            txtTel.Enabled = true;
-            txtTipoCliente.Enabled = true;
-            txtTipoContrato.Enabled = true;
-        }
         private void btnDel_Click(object sender, EventArgs e)
         {
             BD2.Open();
@@ -118,11 +90,32 @@ namespace PowerPulse.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
-        }
-
+        } 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnEdit.Show();
+        }
+        //Métodos
 
+        private void EditOFF()
+        {
+            txtNome.Enabled = false;
+            txtMoradaCliente.Enabled = false;
+            txtContato.Enabled = false;
+            cmbTipoCl.Enabled = false;
+        }
+        private void EditOn()
+        {
+            txtNome.Enabled = false;
+            txtMoradaCliente.Enabled = false;
+            txtContato.Enabled = false;
+            cmbTipoCl.Enabled = false;
+        }
+
+        private void btnIns_Click(object sender, EventArgs e)
+        {
+            BD2.Open();
+            SqlCommand cmd = new SqlCommand("Inser into Contrato values()");
         }
     }
 }

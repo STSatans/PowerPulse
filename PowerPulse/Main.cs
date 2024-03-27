@@ -133,9 +133,10 @@ namespace PowerPulse
                 leftBorderBtn.BringToFront();
                 //Current Child Form Icon
                 iconCurrentChildForm.IconChar = currentBtn.IconChar;
-                iconCurrentChildForm.IconColor = color;
+                iconCurrentChildForm.IconColor = Color.LightSteelBlue;
             }
         }
+
         private void DisableButton()
         {
             if (currentBtn != null)
