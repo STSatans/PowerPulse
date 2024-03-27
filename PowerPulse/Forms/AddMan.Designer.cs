@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDesc = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCosts = new System.Windows.Forms.TextBox();
@@ -43,11 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtDesc = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,11 +77,53 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtDesc
+            // 
+            this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDesc.Location = new System.Drawing.Point(93, 165);
+            this.txtDesc.Multiline = true;
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(589, 222);
+            this.txtDesc.TabIndex = 17;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Location = new System.Drawing.Point(90, 389);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(595, 1);
+            this.panel4.TabIndex = 16;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(90, 162);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(595, 1);
+            this.panel3.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Location = new System.Drawing.Point(684, 162);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1, 228);
+            this.panel2.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(90, 162);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1, 228);
+            this.panel1.TabIndex = 13;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(7, 162);
+            this.label7.Location = new System.Drawing.Point(6, 160);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 20);
             this.label7.TabIndex = 12;
@@ -230,48 +272,6 @@
             this.btnDel.TabIndex = 1;
             this.btnDel.Text = "Inserir";
             this.btnDel.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(90, 162);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 228);
-            this.panel1.TabIndex = 13;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(684, 162);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1, 228);
-            this.panel2.TabIndex = 14;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(90, 162);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(595, 1);
-            this.panel3.TabIndex = 15;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(90, 389);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(595, 1);
-            this.panel4.TabIndex = 16;
-            // 
-            // txtDesc
-            // 
-            this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
-            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDesc.Location = new System.Drawing.Point(93, 165);
-            this.txtDesc.Multiline = true;
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(589, 222);
-            this.txtDesc.TabIndex = 17;
             // 
             // AddMan
             // 
