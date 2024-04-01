@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnStats = new FontAwesome.Sharp.IconButton();
+            this.btnFaturas = new FontAwesome.Sharp.IconButton();
             this.btnCliente = new FontAwesome.Sharp.IconButton();
             this.btnMant = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
@@ -46,8 +48,6 @@
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnFaturas = new FontAwesome.Sharp.IconButton();
-            this.btnStats = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
@@ -75,6 +75,50 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(165, 627);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnStats
+            // 
+            this.btnStats.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStats.FlatAppearance.BorderSize = 0;
+            this.btnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStats.ForeColor = System.Drawing.Color.White;
+            this.btnStats.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnStats.IconColor = System.Drawing.Color.White;
+            this.btnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnStats.IconSize = 32;
+            this.btnStats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStats.Location = new System.Drawing.Point(0, 461);
+            this.btnStats.Margin = new System.Windows.Forms.Padding(0);
+            this.btnStats.Name = "btnStats";
+            this.btnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnStats.Size = new System.Drawing.Size(165, 60);
+            this.btnStats.TabIndex = 10;
+            this.btnStats.Text = "Stats";
+            this.btnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStats.UseVisualStyleBackColor = true;
+            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
+            // 
+            // btnFaturas
+            // 
+            this.btnFaturas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFaturas.FlatAppearance.BorderSize = 0;
+            this.btnFaturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaturas.ForeColor = System.Drawing.Color.White;
+            this.btnFaturas.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnFaturas.IconColor = System.Drawing.Color.White;
+            this.btnFaturas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFaturas.IconSize = 32;
+            this.btnFaturas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFaturas.Location = new System.Drawing.Point(0, 401);
+            this.btnFaturas.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFaturas.Name = "btnFaturas";
+            this.btnFaturas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnFaturas.Size = new System.Drawing.Size(165, 60);
+            this.btnFaturas.TabIndex = 9;
+            this.btnFaturas.Text = "Faturas";
+            this.btnFaturas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFaturas.UseVisualStyleBackColor = true;
+            this.btnFaturas.Click += new System.EventHandler(this.btnFaturas_Click);
             // 
             // btnCliente
             // 
@@ -207,7 +251,7 @@
             // 
             // panelLogo
             // 
-            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(235)))), ((int)(((byte)(87)))));
             this.panelLogo.Controls.Add(this.lblCargo);
             this.panelLogo.Controls.Add(this.lblUser);
             this.panelLogo.Controls.Add(this.picUser);
@@ -252,7 +296,7 @@
             // 
             // panelTitleBar
             // 
-            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(87)))));
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(235)))), ((int)(((byte)(87)))));
             this.panelTitleBar.Controls.Add(this.lblForm);
             this.panelTitleBar.Controls.Add(this.iconCurrentChildForm);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -266,11 +310,12 @@
             // lblForm
             // 
             this.lblForm.AutoSize = true;
+            this.lblForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
-            this.lblForm.Location = new System.Drawing.Point(40, 28);
+            this.lblForm.Location = new System.Drawing.Point(48, 28);
             this.lblForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForm.Name = "lblForm";
-            this.lblForm.Size = new System.Drawing.Size(35, 13);
+            this.lblForm.Size = new System.Drawing.Size(46, 17);
             this.lblForm.TabIndex = 3;
             this.lblForm.Text = "label1";
             // 
@@ -281,11 +326,10 @@
             this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
             this.iconCurrentChildForm.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCurrentChildForm.IconSize = 24;
             this.iconCurrentChildForm.Location = new System.Drawing.Point(12, 21);
             this.iconCurrentChildForm.Margin = new System.Windows.Forms.Padding(2);
             this.iconCurrentChildForm.Name = "iconCurrentChildForm";
-            this.iconCurrentChildForm.Size = new System.Drawing.Size(24, 26);
+            this.iconCurrentChildForm.Size = new System.Drawing.Size(32, 32);
             this.iconCurrentChildForm.TabIndex = 2;
             this.iconCurrentChildForm.TabStop = false;
             // 
@@ -319,50 +363,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
-            // 
-            // btnFaturas
-            // 
-            this.btnFaturas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnFaturas.FlatAppearance.BorderSize = 0;
-            this.btnFaturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFaturas.ForeColor = System.Drawing.Color.White;
-            this.btnFaturas.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btnFaturas.IconColor = System.Drawing.Color.White;
-            this.btnFaturas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnFaturas.IconSize = 32;
-            this.btnFaturas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFaturas.Location = new System.Drawing.Point(0, 401);
-            this.btnFaturas.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFaturas.Name = "btnFaturas";
-            this.btnFaturas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnFaturas.Size = new System.Drawing.Size(165, 60);
-            this.btnFaturas.TabIndex = 9;
-            this.btnFaturas.Text = "Faturas";
-            this.btnFaturas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFaturas.UseVisualStyleBackColor = true;
-            this.btnFaturas.Click += new System.EventHandler(this.btnFaturas_Click);
-            // 
-            // btnStats
-            // 
-            this.btnStats.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStats.FlatAppearance.BorderSize = 0;
-            this.btnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStats.ForeColor = System.Drawing.Color.White;
-            this.btnStats.IconChar = FontAwesome.Sharp.IconChar.Wrench;
-            this.btnStats.IconColor = System.Drawing.Color.White;
-            this.btnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnStats.IconSize = 32;
-            this.btnStats.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStats.Location = new System.Drawing.Point(0, 461);
-            this.btnStats.Margin = new System.Windows.Forms.Padding(0);
-            this.btnStats.Name = "btnStats";
-            this.btnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnStats.Size = new System.Drawing.Size(165, 60);
-            this.btnStats.TabIndex = 10;
-            this.btnStats.Text = "Stats";
-            this.btnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStats.UseVisualStyleBackColor = true;
-            this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
             // 
             // Main
             // 

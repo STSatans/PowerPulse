@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -46,6 +38,13 @@ namespace PowerPulse.Forms
         {
             try
             {
+                //labels 
+                lblEstado.Text = "";
+                lblGasto.Text = "";
+                lblManutencao.Text = "";
+                lblMatUs.Text = "";
+                lblProdM.Text = "";
+                lblManutencao.Text = "";
                 //listview configs
                 listView1.View = View.SmallIcon;
                 listView1.SmallImageList = ImgSm;
@@ -95,7 +94,9 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { BD.Close(); }
+            {
+                BD.Close();
+            }
 
         }
 
@@ -176,17 +177,25 @@ namespace PowerPulse.Forms
         {
             try
             {
+                string Item = listView1.SelectedItems[0].Text;
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina=" + listView1.SelectedIndices.ToString() + "", BD);
+                SqlCommand cmd = new SqlCommand("Select *,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome='" + Item + "'", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.HasRows)
+                while (rdr.Read())
                 {
-                    if (rdr.Read())
+                    if (rdr.HasRows)
                     {
                         //inserir labels
+                        lblEstado.Text = rdr["status"].ToString();
+                        lblTipo.Text = rdr["Tipo"].ToString();
+                        lblProdM.Text = rdr["ProdMax"].ToString();
+                        lblMatUs.Text = rdr["Material"].ToString();
+                        lblGasto.Text = rdr["Gasto"].ToString();
+                        lblManutencao.Text = rdr["data_ini"].ToString();
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

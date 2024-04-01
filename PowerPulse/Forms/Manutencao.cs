@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,11 @@ namespace PowerPulse.Forms
     public partial class Manutencao : Form
     {
         private Form currentChildForm;
+
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        //SqlConnection BD = new SqlConnection(con);
+        SqlConnection BD = new SqlConnection(con2);
         public Manutencao()
         {
             InitializeComponent();
@@ -20,15 +27,29 @@ namespace PowerPulse.Forms
 
         private void Manutencao_Load(object sender, EventArgs e)
         {
+            //BTN
+            btnEdit.Visible = false;
             btnCanc.Visible = false;
             btnConf.Visible = false;
-
+            //Txt
             txtCost.Enabled = false;
-
+            //cmb
             cmbTipoM.Enabled = false;
-            
+            //dtp
             dtpDataIni.Enabled = false;
             dtpDataFim.Enabled = false;
+
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Manutencao_Usina",BD);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.Read())
+            {
+                if(rdr.HasRows)
+                {
+
+                }
+            }
+
         }
         private void OpenChildForm(Form childForm)
         {

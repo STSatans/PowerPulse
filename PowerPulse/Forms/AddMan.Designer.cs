@@ -47,7 +47,7 @@
             this.cmbUsina = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new FontAwesome.Sharp.IconButton();
-            this.btnDel = new FontAwesome.Sharp.IconButton();
+            this.btnIns = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,8 +79,10 @@
             // 
             // txtDesc
             // 
+            this.txtDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDesc.ForeColor = System.Drawing.Color.White;
             this.txtDesc.Location = new System.Drawing.Point(93, 165);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
@@ -89,6 +91,7 @@
             // 
             // panel4
             // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Location = new System.Drawing.Point(90, 389);
             this.panel4.Name = "panel4";
@@ -97,6 +100,7 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(90, 162);
             this.panel3.Name = "panel3";
@@ -105,6 +109,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Location = new System.Drawing.Point(684, 162);
             this.panel2.Name = "panel2";
@@ -113,6 +118,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(90, 162);
             this.panel1.Name = "panel1";
@@ -177,11 +183,17 @@
             // comboBox2
             // 
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.comboBox2.ForeColor = System.Drawing.Color.White;
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Simples",
+            "Geral",
+            "Especifica"});
             this.comboBox2.Location = new System.Drawing.Point(170, 71);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 7;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -260,18 +272,20 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.iconButton1_Click);
             // 
-            // btnDel
+            // btnIns
             // 
-            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnDel.IconColor = System.Drawing.Color.Black;
-            this.btnDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDel.Location = new System.Drawing.Point(382, 415);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 23);
-            this.btnDel.TabIndex = 1;
-            this.btnDel.Text = "Inserir";
-            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnIns.IconColor = System.Drawing.Color.Black;
+            this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnIns.Location = new System.Drawing.Point(382, 415);
+            this.btnIns.Name = "btnIns";
+            this.btnIns.Size = new System.Drawing.Size(75, 23);
+            this.btnIns.TabIndex = 1;
+            this.btnIns.Text = "Inserir";
+            this.btnIns.UseVisualStyleBackColor = true;
+            this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
             // AddMan
             // 
@@ -279,7 +293,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.btnIns);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnBack);
             this.ForeColor = System.Drawing.Color.White;
@@ -309,7 +323,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private FontAwesome.Sharp.IconButton btnDel;
+        private FontAwesome.Sharp.IconButton btnIns;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;

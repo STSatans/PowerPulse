@@ -42,5 +42,29 @@ namespace PowerPulse.Forms
             }
 
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCosts.BackColor= Color.White;
+            txtCosts.ForeColor= Color.Black;
+        }
+
+        private void btnIns_Click(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select ID_Usina from Usina where Nome='"+cmbUsina.Text+"'");
+            SqlDataReader r = cmd.ExecuteReader();
+            while (r.Read())
+            {
+                if (r.HasRows)
+                {
+                    string ID = r["ID"].ToString();
+                }
+            }
+            BD.Close();
+            SqlConnection conn = new SqlConnection(con2);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand("Inser into manutencao_usina values(@ID_Usina,@)");
+        }
     }
 }

@@ -133,7 +133,7 @@ namespace PowerPulse
                 leftBorderBtn.BringToFront();
                 //Current Child Form Icon
                 iconCurrentChildForm.IconChar = currentBtn.IconChar;
-                iconCurrentChildForm.IconColor = Color.LightSteelBlue;
+                iconCurrentChildForm.IconColor = Color.FromArgb(16, 17, 61);
             }
         }
 
@@ -173,7 +173,7 @@ namespace PowerPulse
             DisableButton();
             leftBorderBtn.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
-            iconCurrentChildForm.IconColor = Color.MediumPurple;
+            iconCurrentChildForm.IconColor = Color.FromArgb(16, 17, 61);
             lblForm.Text = "Home";
         }
 
@@ -199,8 +199,16 @@ namespace PowerPulse
 
         private void btnStats_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Stats());
+            if (lblCargo.Text == "Admin")
+            {
+                ActivateButton(sender, Color.FromArgb(75, 255, 87));
+                OpenChildForm(new AdmStats());
+            }
+            else
+            {
+                ActivateButton(sender, Color.FromArgb(75, 255, 87));
+                OpenChildForm(new Stats());
+            }
         }
 
         private void btnFaturas_Click(object sender, EventArgs e)
