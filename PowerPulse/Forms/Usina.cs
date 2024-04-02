@@ -179,7 +179,7 @@ namespace PowerPulse.Forms
             {
                 string Item = listView1.SelectedItems[0].Text;
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Select *,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome='" + Item + "'", BD);
+                SqlCommand cmd = new SqlCommand("Select *,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome = '" + Item + "'", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {

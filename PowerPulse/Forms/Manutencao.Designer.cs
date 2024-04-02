@@ -57,6 +57,7 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.panelDesktop.Controls.Add(this.btnDel);
             this.panelDesktop.Controls.Add(this.btnCanc);
             this.panelDesktop.Controls.Add(this.btnConf);
@@ -83,6 +84,7 @@
             this.btnDel.TabIndex = 6;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnCanc
             // 
@@ -205,7 +207,7 @@
             // 
             // cmbTipoM
             // 
-            this.cmbTipoM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.cmbTipoM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbTipoM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbTipoM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cmbTipoM.ForeColor = System.Drawing.Color.White;
@@ -221,7 +223,7 @@
             // 
             // txtCost
             // 
-            this.txtCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCost.ForeColor = System.Drawing.Color.White;

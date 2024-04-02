@@ -40,16 +40,26 @@ namespace PowerPulse.Forms
             dtpDataFim.Enabled = false;
 
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Manutencao_Usina",BD);
+            SqlCommand cmd = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao from Manutencao_Usina",BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             while(rdr.Read())
             {
                 if(rdr.HasRows)
                 {
+                    // Criar um array de strings para armazenar os dados de uma linha
+                    string[] row = new string[rdr.FieldCount];
 
+                    // Preencher o array com os valores das colunas
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        row[i] = rdr[i].ToString();
+                    }
+
+                    // Adicionar os valores ao ListView
+                    listView1.Items.Add(new ListViewItem(row));
                 }
             }
-
+            BD.Close();
         }
         private void OpenChildForm(Form childForm)
         {
@@ -95,6 +105,34 @@ namespace PowerPulse.Forms
             txtCost.Enabled =false ;
 
             //Reset infos
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Delete Top(1) from Manutencao_Usina where id_usina=@ID", BD);
+                foreach (ListViewItem selectedItem in listView1.SelectedItems)
+                {
+                    cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);
+                    int rows = cmd.ExecuteNonQuery();
+                    if (rows > 0)
+                    {
+                        MessageBox.Show("Eliminados");
+                        listView1.Items.Remove(selectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro");
+                    }
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Crash");
+            }
+            finally { BD.Close(); }
         }
     }
 }

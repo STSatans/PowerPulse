@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panelDesktop = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -267,13 +268,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
             // 
+            // panelDesktop
+            // 
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 0);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(816, 489);
+            this.panelDesktop.TabIndex = 12;
+            // 
             // AddUsina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(816, 489);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUsina";
@@ -308,5 +318,6 @@
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.TextBox txtLoc;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panelDesktop;
     }
 }

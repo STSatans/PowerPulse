@@ -47,7 +47,7 @@ namespace PowerPulse.Forms
                 // Adicionar os valores ao ListView
                 listView1.Items.Add(new ListViewItem(row));
             }
-
+            BD2.Close();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

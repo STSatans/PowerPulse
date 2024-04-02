@@ -159,6 +159,8 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColID,
             this.colNome,
@@ -193,12 +195,13 @@
             // colTipo
             // 
             this.colTipo.Text = "Tipo de Cliente";
+            this.colTipo.Width = 104;
             // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(816, 489);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.White;

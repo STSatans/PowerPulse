@@ -88,7 +88,7 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader7});
@@ -159,7 +159,7 @@
             // 
             // txtLoc
             // 
-            this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtLoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtLoc.ForeColor = System.Drawing.Color.White;
@@ -170,7 +170,7 @@
             // 
             // txtCapMat
             // 
-            this.txtCapMat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtCapMat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCapMat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCapMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCapMat.ForeColor = System.Drawing.Color.White;
@@ -181,7 +181,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
@@ -466,7 +466,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panelDesktop);

@@ -48,7 +48,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new FontAwesome.Sharp.IconButton();
             this.btnIns = new FontAwesome.Sharp.IconButton();
+            this.panelDesktop = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.panelDesktop.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,7 +82,7 @@
             // txtDesc
             // 
             this.txtDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDesc.ForeColor = System.Drawing.Color.White;
             this.txtDesc.Location = new System.Drawing.Point(93, 165);
@@ -149,14 +151,15 @@
             // 
             // txtCosts
             // 
-            this.txtCosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtCosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCosts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCosts.ForeColor = System.Drawing.Color.White;
-            this.txtCosts.Location = new System.Drawing.Point(466, 72);
+            this.txtCosts.Location = new System.Drawing.Point(466, 73);
             this.txtCosts.Name = "txtCosts";
             this.txtCosts.Size = new System.Drawing.Size(157, 19);
             this.txtCosts.TabIndex = 10;
+            this.txtCosts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -182,7 +185,7 @@
             // 
             // comboBox2
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.comboBox2.ForeColor = System.Drawing.Color.White;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
@@ -237,13 +240,14 @@
             // 
             // cmbUsina
             // 
-            this.cmbUsina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.cmbUsina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbUsina.ForeColor = System.Drawing.Color.White;
             this.cmbUsina.FormattingEnabled = true;
             this.cmbUsina.Location = new System.Drawing.Point(78, 18);
             this.cmbUsina.Name = "cmbUsina";
             this.cmbUsina.Size = new System.Drawing.Size(195, 21);
             this.cmbUsina.TabIndex = 2;
+            this.cmbUsina.SelectedIndexChanged += new System.EventHandler(this.cmbUsina_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -264,13 +268,13 @@
             this.btnBack.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnBack.IconColor = System.Drawing.Color.Black;
             this.btnBack.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBack.Location = new System.Drawing.Point(12, 25);
+            this.btnBack.Location = new System.Drawing.Point(12, 18);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 0;
             this.btnBack.Text = "Voltar";
             this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnIns
             // 
@@ -287,15 +291,24 @@
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
+            // panelDesktop
+            // 
+            this.panelDesktop.Controls.Add(this.groupBox1);
+            this.panelDesktop.Controls.Add(this.btnBack);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 0);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(800, 450);
+            this.panelDesktop.TabIndex = 2;
+            // 
             // AddMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnIns);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddMan";
@@ -303,6 +316,7 @@
             this.Load += new System.EventHandler(this.AddMan_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelDesktop.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,5 +343,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txtDesc;
+        private System.Windows.Forms.Panel panelDesktop;
     }
 }
