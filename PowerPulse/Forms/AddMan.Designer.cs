@@ -283,7 +283,7 @@
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(382, 415);
+            this.btnIns.Location = new System.Drawing.Point(440, 415);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
             this.btnIns.TabIndex = 1;
@@ -293,6 +293,7 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Controls.Add(this.btnIns);
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnBack);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -307,7 +308,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnIns);
             this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

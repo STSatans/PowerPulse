@@ -40,11 +40,11 @@ namespace PowerPulse.Forms
             dtpDataFim.Enabled = false;
 
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao from Manutencao_Usina",BD);
+            SqlCommand cmd = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao from Manutencao_Usina", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
-            while(rdr.Read())
+            while (rdr.Read())
             {
-                if(rdr.HasRows)
+                if (rdr.HasRows)
                 {
                     // Criar um array de strings para armazenar os dados de uma linha
                     string[] row = new string[rdr.FieldCount];
@@ -87,12 +87,12 @@ namespace PowerPulse.Forms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             btnCanc.Visible = true;
-            btnConf.Visible=true;
-            cmbTipoM.Enabled=true;
-            dtpDataFim.Enabled=true;
-            dtpDataIni.Enabled=true;
-            txtCost.Enabled=true;
-            
+            btnConf.Visible = true;
+            cmbTipoM.Enabled = true;
+            dtpDataFim.Enabled = true;
+            dtpDataIni.Enabled = true;
+            txtCost.Enabled = true;
+
         }
 
         private void btnCanc_Click(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace PowerPulse.Forms
             cmbTipoM.Enabled = false;
             dtpDataFim.Enabled = false;
             dtpDataIni.Enabled = false;
-            txtCost.Enabled =false ;
+            txtCost.Enabled = false;
 
             //Reset infos
         }
@@ -128,11 +128,35 @@ namespace PowerPulse.Forms
                     }
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Crash");
             }
             finally { BD.Close(); }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                // Get the selected item
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+
+                // Display subitems in separate labels
+                for (int i = 0; i < selectedItem.SubItems.Count; i++)
+                {
+                    dtpDataIni.Value =Convert.ToDateTime( selectedItem.SubItems[1].Text);
+                    dtpDataFim.Value = Convert.ToDateTime(selectedItem.SubItems[2].Text);
+                    txtCost.Text = selectedItem.SubItems[4].Text;
+                    txtCost.ForeColor = Color.White;
+                    txtCost.BackColor= Color.Black;
+                }
+                btnEdit.Visible = true;
+            }
+            else
+            {
+
+            }
         }
     }
 }

@@ -70,7 +70,7 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNrContrato,
@@ -123,7 +123,7 @@
             // 
             // cmbTipoCl
             // 
-            this.cmbTipoCl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.cmbTipoCl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbTipoCl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbTipoCl.FormattingEnabled = true;
             this.cmbTipoCl.Location = new System.Drawing.Point(127, 144);
@@ -133,7 +133,7 @@
             // 
             // txtMoradaCliente
             // 
-            this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMoradaCliente.Location = new System.Drawing.Point(90, 98);
             this.txtMoradaCliente.Name = "txtMoradaCliente";
@@ -142,7 +142,7 @@
             // 
             // txtContato
             // 
-            this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtContato.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtContato.Location = new System.Drawing.Point(70, 69);
@@ -152,7 +152,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
@@ -386,7 +386,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(846, 477);
             this.Controls.Add(this.btnIns);
             this.Controls.Add(this.btnCancel);
