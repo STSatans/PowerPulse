@@ -16,10 +16,10 @@ namespace PowerPulse.Forms
     {
         private Form currentChildForm;
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         //SqlConnection BD = new SqlConnection(con);
-        SqlConnection BD = new SqlConnection(con2);
+        SqlConnection BD = new SqlConnection(con);
         public Manutencao()
         {
             InitializeComponent();
@@ -157,6 +157,11 @@ namespace PowerPulse.Forms
             {
 
             }
+        }
+
+        private void btnConf_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -18,10 +18,10 @@ namespace PowerPulse.Forms
         {
             InitializeComponent();
         }
-        private static readonly string con2 = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         //SqlConnection BD=new SqlConnection(con);//con casa
-        SqlConnection BD2 = new SqlConnection(con2);//con estagio
+        SqlConnection BD = new SqlConnection(con);//con estagio
 
         private void Contratos_Load(object sender, EventArgs e)
         {
@@ -30,8 +30,8 @@ namespace PowerPulse.Forms
             btnUpdate.Hide();
             btnEdit.Hide();
             EditOFF();
-            BD2.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Contrato",BD2);
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Contrato",BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -47,7 +47,7 @@ namespace PowerPulse.Forms
                 // Adicionar os valores ao ListView
                 listView1.Items.Add(new ListViewItem(row));
             }
-            BD2.Close();
+            BD.Close();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -58,8 +58,8 @@ namespace PowerPulse.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            BD2.Open();
-            SqlCommand cmd = new SqlCommand("Update Fatura Set", BD2);
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Update Fatura Set", BD);
             int rows = cmd.ExecuteNonQuery();
             if (rows > 1)
             {
@@ -74,8 +74,8 @@ namespace PowerPulse.Forms
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            BD2.Open();
-            SqlCommand cmd = new SqlCommand("Delete from ", BD2);
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Delete from ", BD);
             int rows = cmd.ExecuteNonQuery();
             if (rows > 0)
             {
@@ -114,7 +114,7 @@ namespace PowerPulse.Forms
 
         private void btnIns_Click(object sender, EventArgs e)
         {
-            BD2.Open();
+            BD.Open();
             SqlCommand cmd = new SqlCommand("Inser into Contrato values()");
         }
     }

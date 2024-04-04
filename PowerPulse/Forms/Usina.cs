@@ -38,6 +38,7 @@ namespace PowerPulse.Forms
         {
             try
             {
+                dtpData.Value=DateTime.Today;
                 //labels 
                 lblEstado.Text = "";
                 lblGasto.Text = "";
@@ -177,21 +178,24 @@ namespace PowerPulse.Forms
         {
             try
             {
-                string Item = listView1.SelectedItems[0].Text;
-                BD.Open();
-                SqlCommand cmd = new SqlCommand("Select *,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome = '" + Item + "'", BD);
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                if (listView1.SelectedItems.Count > 0)
                 {
-                    if (rdr.HasRows)
+                    String Item = listView1.SelectedItems[0].Text;
+                    BD.Open();
+                    SqlCommand cmd = new SqlCommand("Select ,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome = '" + Item + "'", BD);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
                     {
-                        //inserir labels
-                        lblEstado.Text = rdr["status"].ToString();
-                        lblTipo.Text = rdr["Tipo"].ToString();
-                        lblProdM.Text = rdr["ProdMax"].ToString();
-                        lblMatUs.Text = rdr["Material"].ToString();
-                        lblGasto.Text = rdr["Gasto"].ToString();
-                        lblManutencao.Text = rdr["data_ini"].ToString();
+                        if (rdr.HasRows)
+                        {
+                            //inserir labels
+                            lblEstado.Text = rdr["status"].ToString();
+                            lblTipo.Text = rdr["Tipo"].ToString();
+                            lblProdM.Text = rdr["ProdMax"].ToString();
+                            lblMatUs.Text = rdr["Material"].ToString();
+                            lblGasto.Text = rdr["Gasto"].ToString();
+                            lblManutencao.Text = rdr["data_ini"].ToString();
+                        }
                     }
                 }
             }

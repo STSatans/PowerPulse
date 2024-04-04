@@ -114,6 +114,7 @@
             this.btnConf.TabIndex = 4;
             this.btnConf.Text = "Confirmar";
             this.btnConf.UseVisualStyleBackColor = true;
+            this.btnConf.Click += new System.EventHandler(this.btnConf_Click);
             // 
             // btnEdit
             // 

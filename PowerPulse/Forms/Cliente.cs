@@ -23,15 +23,14 @@ namespace PowerPulse.Forms
         private static readonly string con2 = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         //SqlConnection BD=new SqlConnection(con);//con casa
-        SqlConnection BD2 = new SqlConnection(con2);//con estagio
+        SqlConnection BD = new SqlConnection(con2);//con estagio
 
         private void Cliente_Load(object sender, EventArgs e)
         {
-            btnEdit.Enabled = false;
-            btnEdit.Visible = false;
+            //btnEdit.Visible = false;
 
-            BD2.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Cliente", BD2);
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Cliente", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -45,13 +44,41 @@ namespace PowerPulse.Forms
                 }
 
                 // Adicionar os valores ao ListView
-                listView1.Items.Add(new ListViewItem(row));
+                lst.Items.Add(new ListViewItem(row));
             }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
+        }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Delete from Cliente where id_cliente=@ID", BD);
+                foreach (ListViewItem selectedItem in lst.SelectedItems)
+                {
+                    cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);
+                    int rows = cmd.ExecuteNonQuery();
+                    if (rows > 0)
+                    {
+                        MessageBox.Show("Eliminados");
+                        lst.Items.Remove(selectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { BD.Close(); }
         }
     }
 }
