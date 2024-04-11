@@ -65,25 +65,33 @@ namespace PowerPulse.Forms
                 DateTime date_ini = dateTimePicker1.Value;
                 DateTime date_end = dateTimePicker2.Value;
 
-                SqlCommand cmd2 = new SqlCommand("Insert into manutencao_usina values(@ID_Usina,@data_ini,@data_fim,@tipo_manutencao,@custo_manutencao,@descricao)", BD);
+                SqlCommand cmd2 = new SqlCommand("Insert into manutencao_usina values(@ID_Usina,@data_ini,@data_fim,@tipo_manutencao,@custo_manutencao,@descricao,@estado)", BD);
                 cmd2.Parameters.AddWithValue("@ID_Usina", id[0]);
                 cmd2.Parameters.AddWithValue("@data_ini", date_ini);
                 cmd2.Parameters.AddWithValue("@data_fim", date_end);
-                cmd2.Parameters.AddWithValue("@tipo_manutencao", comboBox2.SelectedItem);
+                cmd2.Parameters.AddWithValue("@tipo_manutencao", comboBox2.SelectedItem.ToString());
                 cmd2.Parameters.AddWithValue("@custo_manutencao", txtCosts.Text);
                 cmd2.Parameters.AddWithValue("@descricao", txtDesc.Text);
+                cmd2.Parameters.AddWithValue("@estado", "online");
 
-                if (date_ini <= date_end && date_ini >= DateTime.Today && date_end >= DateTime.Today)
+                if (date_ini <= date_end)
                 {
-                    int row = cmd2.ExecuteNonQuery();
-
-                    if (row > 0)
+                    if (date_ini >= DateTime.Today && date_end >= DateTime.Today)
                     {
-                        MessageBox.Show("Inserido com sucesso");
+                        int row = cmd2.ExecuteNonQuery();
+
+                        if (row > 0)
+                        {
+                            MessageBox.Show("Inserido com sucesso");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Deu Erro");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Deu Erro");
+                        MessageBox.Show("Nenhuma data pode ser inferior a hoje");
                     }
                 }
                 else
@@ -96,7 +104,9 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { BD.Close(); }
+            { 
+                BD.Close(); 
+            }
         }
         private void btnBack_Click(object sender, EventArgs e)
         {

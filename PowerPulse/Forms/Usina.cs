@@ -13,10 +13,10 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con= ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         //SqlConnection BD = new SqlConnection(con);
-        SqlConnection BD = new SqlConnection(con2);
+        SqlConnection BD = new SqlConnection(con);
 
         private void btnDel_Click(object sender, EventArgs e)
         {
@@ -33,7 +33,6 @@ namespace PowerPulse.Forms
             finally
             { BD.Close(); }
         }
-
         private void Usina_Load(object sender, EventArgs e)
         {
             try
@@ -100,7 +99,6 @@ namespace PowerPulse.Forms
             }
 
         }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             btnCancel.Show();
@@ -130,17 +128,14 @@ namespace PowerPulse.Forms
             childForm.BringToFront();
             childForm.Show();
         }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Reset();
         }
-
         private void Reset()
         {
             try
@@ -180,15 +175,19 @@ namespace PowerPulse.Forms
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    ResetLst();
                     String Item = listView1.SelectedItems[0].Text;
                     BD.Open();
-                    SqlCommand cmd = new SqlCommand("Select ,(select data_ini from Manutencao_Usina) as Manutencao from Usina where Nome = '" + Item + "'", BD);
+                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini from Usina inner join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.Nome= '" + Item + "'", BD);
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
                         if (rdr.HasRows)
                         {
+                            string data_ini = rdr["data_ini"].ToString();
                             //inserir labels
+                            txtNome.Text = rdr["Nome"].ToString();
+                            txtLoc.Text = rdr["localizacao"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
                             lblProdM.Text = rdr["ProdMax"].ToString();
@@ -205,7 +204,22 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { BD.Close(); }
+            { 
+                BD.Close(); 
+            }
+        }
+        private void ResetLst()
+        {
+            lblEstado.Text="";
+            lblGasto.Text="";
+            lblManutencao.Text = "";
+            lblMatUs.Text = "";
+            lblProdM.Text = "";
+            lblTipo.Text = "";
+            txtCapMat.Text = "";
+            txtLoc.Text = "";
+            txtNome.Text = "";
+            dtpData.Value=DateTime.Now;
         }
     }
 }

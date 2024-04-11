@@ -26,10 +26,10 @@ namespace PowerPulse
         public int User {  get; set; }
         
         //conexoes
-        private static readonly string con2 = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         //SqlConnection BD=new SqlConnection(con);//con casa
-        SqlConnection BD2 = new SqlConnection(con2);//con estagio
+        SqlConnection BD = new SqlConnection(con);//con estagio
 
         public Main()
         {
@@ -51,8 +51,8 @@ namespace PowerPulse
         {
             try
             {
-                BD2.Open();
-                SqlCommand cmd = new SqlCommand("Select Nome,Cargo from Login where ID='"+User+"'", BD2);
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Select Nome,Cargo from Login where ID='"+User+"'", BD);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read()) 
                 {
@@ -67,7 +67,13 @@ namespace PowerPulse
                         }
                     }
                 }
-                BD2.Close();
+                BD.Close();
+                // Create a Timer instance
+                timer = new Timer();
+                // timer.Interval = 28800000; // 8 hour
+                timer.Interval = 60000;
+                timer.Tick += Timer_Tick;
+                timer.Start();
             }
             catch (Exception ex)
             {
@@ -215,6 +221,23 @@ namespace PowerPulse
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Faturas());
+        }
+
+        private Timer timer;
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select data_fim from Manutencao_Usina",BD);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                DateTime dataFim = rdr.GetDateTime(rdr.GetOrdinal("data_fim"));
+                if (dataFim<DateTime.Today)
+                {
+                    MessageBox.Show("Teste");
+                }
+            }
+            BD.Close();
         }
     }
 }

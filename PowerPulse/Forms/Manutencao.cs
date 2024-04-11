@@ -92,6 +92,9 @@ namespace PowerPulse.Forms
             dtpDataFim.Enabled = true;
             dtpDataIni.Enabled = true;
             txtCost.Enabled = true;
+            //colours
+            cmbTipoM.BackColor = Color.FromArgb(30,30,30);
+            txtCost.BackColor= Color.FromArgb(30,30,30);
 
         }
 
@@ -148,8 +151,9 @@ namespace PowerPulse.Forms
                     dtpDataIni.Value =Convert.ToDateTime( selectedItem.SubItems[1].Text);
                     dtpDataFim.Value = Convert.ToDateTime(selectedItem.SubItems[2].Text);
                     txtCost.Text = selectedItem.SubItems[4].Text;
+                    cmbTipoM.Text = selectedItem.SubItems[3].Text;
                     txtCost.ForeColor = Color.White;
-                    txtCost.BackColor= Color.Black;
+                    txtCost.BackColor= Color.FromArgb(30,30,30);
                 }
                 btnEdit.Visible = true;
             }
@@ -161,7 +165,12 @@ namespace PowerPulse.Forms
 
         private void btnConf_Click(object sender, EventArgs e)
         {
-
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select top(1) data_ini,data_fim,tipo_manutencao,custo_manutencao from Manutencao_usina where ",BD);
+            DateTime inicio = dtpDataIni.Value;
+            DateTime fim = dtpDataFim.Value;
+            string tipo=cmbTipoM.SelectedItem.ToString();
+            string custo=txtCost.Text;
         }
     }
 }
