@@ -133,7 +133,7 @@ namespace PowerPulse.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Crash");
+                MessageBox.Show(ex.Message);
             }
             finally { BD.Close(); }
         }

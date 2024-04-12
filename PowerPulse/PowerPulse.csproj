@@ -78,12 +78,6 @@
     <Compile Include="Forms\Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AdmStats.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AdmStats.Designer.cs">
-      <DependentUpon>AdmStats.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +101,12 @@
     </Compile>
     <Compile Include="Forms\Stats.Designer.cs">
       <DependentUpon>Stats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StatsAdm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatsAdm.Designer.cs">
+      <DependentUpon>StatsAdm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Usina.cs">
       <SubType>Form</SubType>
@@ -137,9 +137,6 @@
     <EmbeddedResource Include="Forms\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdmStats.resx">
-      <DependentUpon>AdmStats.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Stats.resx">
       <DependentUpon>Stats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatsAdm.resx">
+      <DependentUpon>StatsAdm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Usina.resx">
       <DependentUpon>Usina.cs</DependentUpon>

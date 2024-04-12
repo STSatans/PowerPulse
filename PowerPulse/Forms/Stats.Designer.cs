@@ -145,7 +145,7 @@
             this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Stats";
+            this.Name = "Estatisticas";
             this.Text = "Stats";
             this.Load += new System.EventHandler(this.Stats_Load);
             this.panelDesktop.ResumeLayout(false);

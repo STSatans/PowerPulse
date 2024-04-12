@@ -10,7 +10,6 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerPulse
@@ -23,8 +22,8 @@ namespace PowerPulse
         private Form currentChildForm;
 
         //Classe publica 
-        public int User {  get; set; }
-        
+        public int User { get; set; }
+
         //conexoes
         private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
@@ -52,15 +51,15 @@ namespace PowerPulse
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Select Nome,Cargo from Login where ID='"+User+"'", BD);
+                SqlCommand cmd = new SqlCommand("Select Nome,Cargo from Login where ID='" + User + "'", BD);
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read()) 
+                while (reader.Read())
                 {
                     if (reader.HasRows)
                     {
                         lblUser.Text = reader.GetString(0);
                         lblCargo.Text = reader.GetString(1);
-                        if(lblCargo.Text=="Admin")
+                        if (lblCargo.Text == "Admin")
                         {
                             //picUser.Image = Properties.Resources; importar imagens em casa
                             btnAdm.Show();
@@ -71,7 +70,7 @@ namespace PowerPulse
                 // Create a Timer instance
                 timer = new Timer();
                 // timer.Interval = 28800000; // 8 hour
-                timer.Interval = 60000;
+                timer.Interval = 30000;
                 timer.Tick += Timer_Tick;
                 timer.Start();
             }
@@ -208,7 +207,7 @@ namespace PowerPulse
             if (lblCargo.Text == "Admin")
             {
                 ActivateButton(sender, Color.FromArgb(75, 255, 87));
-                OpenChildForm(new AdmStats());
+                OpenChildForm(new StatsAdm());
             }
             else
             {
@@ -226,18 +225,25 @@ namespace PowerPulse
         private Timer timer;
         private void Timer_Tick(object sender, EventArgs e)
         {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Select data_fim from Manutencao_Usina",BD);
-            SqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            try
             {
-                DateTime dataFim = rdr.GetDateTime(rdr.GetOrdinal("data_fim"));
-                if (dataFim<DateTime.Today)
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE Manutencao_Usina SET estado = 'Concluida' WHERE data_fim < GETDATE()", BD);
+                int row = cmd.ExecuteNonQuery();
+                if (row > 0)
                 {
                     MessageBox.Show("Teste");
                 }
+                BD.Close();
             }
-            BD.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                BD.Close();
+            }
         }
     }
 }
