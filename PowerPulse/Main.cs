@@ -233,8 +233,9 @@ namespace PowerPulse
                 if (row > 0)
                 {
                     MessageBox.Show("Teste");
+                    BD.Close();
                 }
-                BD.Close();
+                
             }
             catch (Exception ex)
             {

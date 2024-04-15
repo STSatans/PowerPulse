@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -64,15 +65,35 @@ namespace PowerPulse.Forms
                 string[] id = cmbUsina.SelectedItem.ToString().Split('-');
                 DateTime date_ini = dateTimePicker1.Value;
                 DateTime date_end = dateTimePicker2.Value;
-
-                SqlCommand cmd2 = new SqlCommand("Insert into manutencao_usina values(@ID_Usina,@data_ini,@data_fim,@tipo_manutencao,@custo_manutencao,@descricao,@estado)", BD);
+                SqlCommand cmd = new SqlCommand("Select data_ini from manutencao_usina where ID_Usina=" + id[0] + "and estado !='Concluido'", BD);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr.HasRows)
+                    {
+                        DateTime date = Convert.ToDateTime(dr["data_ini"].ToString());
+                        if(date.Date==date_ini.Date)
+                        {
+                            MessageBox.Show("sad");
+                        }
+                    }
+                }
+                dr.Close();
+                SqlCommand cmd2 = new SqlCommand("Insert into manutencao_usina(ID_Usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao,estado) values(@ID_Usina,@data_ini,@data_fim,@tipo_manutencao,@custo_manutencao,@descricao,@estado)", BD);
                 cmd2.Parameters.AddWithValue("@ID_Usina", id[0]);
                 cmd2.Parameters.AddWithValue("@data_ini", date_ini);
                 cmd2.Parameters.AddWithValue("@data_fim", date_end);
                 cmd2.Parameters.AddWithValue("@tipo_manutencao", comboBox2.SelectedItem.ToString());
                 cmd2.Parameters.AddWithValue("@custo_manutencao", txtCosts.Text);
                 cmd2.Parameters.AddWithValue("@descricao", txtDesc.Text);
-                cmd2.Parameters.AddWithValue("@estado", "online");
+                if(date_ini.Date>=DateTime.Today)
+                {
+                    cmd2.Parameters.AddWithValue("@estado","Agendada");
+                }
+                else
+                {
+                    cmd2.Parameters.AddWithValue("@estado","Inicializada");
+                }
 
                 if (date_ini <= date_end)
                 {
@@ -99,13 +120,13 @@ namespace PowerPulse.Forms
                     MessageBox.Show("A data Inicial não pode ser maior que a data Fim");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
-            { 
-                BD.Close(); 
+            {
+                BD.Close();
             }
         }
         private void btnBack_Click(object sender, EventArgs e)

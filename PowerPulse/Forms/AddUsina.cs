@@ -30,30 +30,39 @@ namespace PowerPulse.Forms
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst)",BD);
-            cmd.Parameters.AddWithValue("@Nome",txtNome.Text);
-            cmd.Parameters.AddWithValue("@Tipo", cmbTipo.SelectedItem.ToString());
-            cmd.Parameters.AddWithValue("@Capacidade",txtCapacidade.Text);
-            cmd.Parameters.AddWithValue("@localizacao", txtLoc.Text);
-            cmd.Parameters.AddWithValue("@dataConst", dtpData.Value.ToString("yyyy-MM-dd"));
-
-
-            int row=cmd.ExecuteNonQuery();
-
-            if(row >0)
+            try
             {
-                MessageBox.Show("Inseridos", "Inserido",MessageBoxButtons.OK);
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao,status,prod) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst,@status)", BD);
+                cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@Tipo", cmbTipo.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@Capacidade", txtCapacidade.Text);
+                cmd.Parameters.AddWithValue("@localizacao", txtLoc.Text);
+                cmd.Parameters.AddWithValue("@dataConst", dtpData.Value.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "Online");
+
+
+                int row = cmd.ExecuteNonQuery();
+
+                if (row > 0)
+                {
+                    MessageBox.Show("Inseridos", "Inserido", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Nao Inseridos", "Inserido", MessageBoxButtons.OK);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Nao Inseridos", "Inserido", MessageBoxButtons.OK);
+
             }
+            finally { BD.Close(); }
         }
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbTipo.SelectedItem.ToString()=="Eolica"|| cmbTipo.SelectedItem.ToString() == "Solar")
+            if (cmbTipo.SelectedItem.ToString() == "Eolica" || cmbTipo.SelectedItem.ToString() == "Solar")
             {
                 panel1.Hide();
             }

@@ -14,7 +14,7 @@ namespace PowerPulse.Forms
         }
 
         //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con= ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         //SqlConnection BD = new SqlConnection(con);
         SqlConnection BD = new SqlConnection(con);
 
@@ -37,7 +37,7 @@ namespace PowerPulse.Forms
         {
             try
             {
-                dtpData.Value=DateTime.Today;
+                dtpData.Value = DateTime.Today;
                 //labels 
                 lblEstado.Text = "";
                 lblGasto.Text = "";
@@ -48,6 +48,10 @@ namespace PowerPulse.Forms
                 //listview configs
                 listView1.View = View.SmallIcon;
                 listView1.SmallImageList = ImgSm;
+                //txt
+                txtCapMat.Enabled = false;
+                txtLoc.Enabled = false;
+                txtNome.Enabled = false;
                 //Btns
                 btnCancel.Enabled = false;
                 btnCancel.Hide();
@@ -178,13 +182,16 @@ namespace PowerPulse.Forms
                     ResetLst();
                     String Item = listView1.SelectedItems[0].Text;
                     BD.Open();
-                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini from Usina inner join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.Nome= '" + Item + "'", BD);
+                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini,Manutencao_usina.estado from Usina left join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.Nome='" + Item + "'", BD);
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        if (rdr.HasRows)
+                        //DateTime data_ini = rdr.GetDateTime(rdr.GetOrdinal("data_ini"));
+                        DateTime? retrievedDate = rdr.IsDBNull(10) ? (DateTime?)null : rdr.GetDateTime(10);
+
+
+                        if (retrievedDate == null)
                         {
-                            string data_ini = rdr["data_ini"].ToString();
                             //inserir labels
                             txtNome.Text = rdr["Nome"].ToString();
                             txtLoc.Text = rdr["localizacao"].ToString();
@@ -193,7 +200,21 @@ namespace PowerPulse.Forms
                             lblProdM.Text = rdr["ProdMax"].ToString();
                             lblMatUs.Text = rdr["Material"].ToString();
                             lblGasto.Text = rdr["Gasto"].ToString();
-                            lblManutencao.Text = rdr["data_ini"].ToString();
+                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                            dtpData.Enabled = false;
+                        }
+                        else
+                        {
+                            lblManutencao.Text = retrievedDate.ToString();
+                            txtNome.Text = rdr["Nome"].ToString();
+                            txtLoc.Text = rdr["localizacao"].ToString();
+                            lblEstado.Text = rdr["status"].ToString();
+                            lblTipo.Text = rdr["Tipo"].ToString();
+                            lblProdM.Text = rdr["ProdMax"].ToString();
+                            lblMatUs.Text = rdr["Material"].ToString();
+                            lblGasto.Text = rdr["Gasto"].ToString();
+                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                            dtpData.Enabled = false;
                         }
                     }
                 }
@@ -204,14 +225,14 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { 
-                BD.Close(); 
+            {
+                BD.Close();
             }
         }
         private void ResetLst()
         {
-            lblEstado.Text="";
-            lblGasto.Text="";
+            lblEstado.Text = "";
+            lblGasto.Text = "";
             lblManutencao.Text = "";
             lblMatUs.Text = "";
             lblProdM.Text = "";
@@ -219,7 +240,7 @@ namespace PowerPulse.Forms
             txtCapMat.Text = "";
             txtLoc.Text = "";
             txtNome.Text = "";
-            dtpData.Value=DateTime.Now;
+            dtpData.Value = DateTime.Now;
         }
     }
 }
