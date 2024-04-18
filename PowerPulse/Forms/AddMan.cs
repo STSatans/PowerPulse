@@ -26,12 +26,12 @@ namespace PowerPulse.Forms
         {
 
         }
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
-        //SqlConnection BD = new SqlConnection(con);
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
         private void AddMan_Load(object sender, EventArgs e)
         {
+            
             txtCosts.Enabled = false;
             comboBox2.Enabled = false;
             dateTimePicker1.Enabled = false;

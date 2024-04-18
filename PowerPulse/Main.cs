@@ -25,9 +25,8 @@ namespace PowerPulse
         public int User { get; set; }
 
         //conexoes
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
-        //SqlConnection BD=new SqlConnection(con);//con casa
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD = new SqlConnection(con);//con estagio
 
         public Main()

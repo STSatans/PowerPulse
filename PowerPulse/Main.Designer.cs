@@ -82,7 +82,7 @@
             this.btnStats.FlatAppearance.BorderSize = 0;
             this.btnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStats.ForeColor = System.Drawing.Color.White;
-            this.btnStats.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnStats.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
             this.btnStats.IconColor = System.Drawing.Color.White;
             this.btnStats.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStats.IconSize = 32;
@@ -93,7 +93,7 @@
             this.btnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnStats.Size = new System.Drawing.Size(165, 60);
             this.btnStats.TabIndex = 10;
-            this.btnStats.Text = "Stats";
+            this.btnStats.Text = "Estatisticas";
             this.btnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStats.UseVisualStyleBackColor = true;
             this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
@@ -126,7 +126,7 @@
             this.btnCliente.FlatAppearance.BorderSize = 0;
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCliente.ForeColor = System.Drawing.Color.White;
-            this.btnCliente.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnCliente.IconChar = FontAwesome.Sharp.IconChar.Portrait;
             this.btnCliente.IconColor = System.Drawing.Color.White;
             this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCliente.IconSize = 32;
@@ -190,9 +190,10 @@
             this.btnAdm.FlatAppearance.BorderSize = 0;
             this.btnAdm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdm.ForeColor = System.Drawing.Color.Snow;
-            this.btnAdm.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnAdm.IconColor = System.Drawing.Color.BlanchedAlmond;
+            this.btnAdm.IconChar = FontAwesome.Sharp.IconChar.Portrait;
+            this.btnAdm.IconColor = System.Drawing.Color.White;
             this.btnAdm.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAdm.IconSize = 32;
             this.btnAdm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdm.Location = new System.Drawing.Point(0, 221);
             this.btnAdm.Margin = new System.Windows.Forms.Padding(2);

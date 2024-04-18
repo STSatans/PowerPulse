@@ -24,14 +24,14 @@ namespace PowerPulse.Forms
 
         }
         private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
-        //SqlConnection BD = new SqlConnection(con);
-        SqlConnection BD = new SqlConnection(con2);
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        SqlConnection BD = new SqlConnection(con);
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
             try
             {
+                
                 BD.Open();
                 SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao,status,prod) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst,@status)", BD);
                 cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
@@ -55,7 +55,7 @@ namespace PowerPulse.Forms
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
             finally { BD.Close(); }
         }

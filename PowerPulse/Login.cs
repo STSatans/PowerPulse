@@ -19,13 +19,12 @@ namespace PowerPulse
     public partial class Login : Form
     {
         //connection string
-        private readonly string con2 = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
+        //private readonly string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
         private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
 
         public Login()
         {
             InitializeComponent();
-
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -42,7 +41,7 @@ namespace PowerPulse
         //funcao para verificar os dados de Login
         private LoginResult CheckLogin(int userID, string password)
         {
-            using (SqlConnection connection = new SqlConnection(con2))
+            using (SqlConnection connection = new SqlConnection(con))
             {
                 string query = "SELECT Password FROM Login WHERE ID = @UserID";
 

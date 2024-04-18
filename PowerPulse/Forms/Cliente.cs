@@ -20,10 +20,9 @@ namespace PowerPulse.Forms
         }
 
         //conexoes
-        private static readonly string con2 = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
-        //SqlConnection BD=new SqlConnection(con);//con casa
-        SqlConnection BD = new SqlConnection(con2);//con estagio
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        SqlConnection BD = new SqlConnection(con);//con estagio
 
         private void Cliente_Load(object sender, EventArgs e)
         {
