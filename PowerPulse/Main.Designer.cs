@@ -93,7 +93,7 @@
             this.btnStats.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnStats.Size = new System.Drawing.Size(165, 60);
             this.btnStats.TabIndex = 10;
-            this.btnStats.Text = "Estatisticas";
+            this.btnStats.Text = "Estatísticas";
             this.btnStats.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStats.UseVisualStyleBackColor = true;
             this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
@@ -115,7 +115,7 @@
             this.btnFaturas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnFaturas.Size = new System.Drawing.Size(165, 60);
             this.btnFaturas.TabIndex = 9;
-            this.btnFaturas.Text = "Faturas";
+            this.btnFaturas.Text = "Faturação";
             this.btnFaturas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFaturas.UseVisualStyleBackColor = true;
             this.btnFaturas.Click += new System.EventHandler(this.btnFaturas_Click);
@@ -201,7 +201,7 @@
             this.btnAdm.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnAdm.Size = new System.Drawing.Size(165, 60);
             this.btnAdm.TabIndex = 3;
-            this.btnAdm.Text = "Admin";
+            this.btnAdm.Text = "Administrador";
             this.btnAdm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdm.UseVisualStyleBackColor = true;
             this.btnAdm.Click += new System.EventHandler(this.btnAdm_Click);
@@ -245,7 +245,7 @@
             this.btnCentrais.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnCentrais.Size = new System.Drawing.Size(165, 60);
             this.btnCentrais.TabIndex = 1;
-            this.btnCentrais.Text = "Centrais";
+            this.btnCentrais.Text = "Usinas";
             this.btnCentrais.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCentrais.UseVisualStyleBackColor = true;
             this.btnCentrais.Click += new System.EventHandler(this.btnCentrais_Click);

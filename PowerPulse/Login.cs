@@ -19,8 +19,8 @@ namespace PowerPulse
     public partial class Login : Form
     {
         //connection string
-        private readonly string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
-        //private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
+        //private readonly string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
+        private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
 
         public Login()
         {
@@ -92,7 +92,7 @@ namespace PowerPulse
                             User = userID
                         };
                         main.Show();
-                        this.Hide();
+                        this.Close();
                         
                         break;
 

@@ -29,15 +29,7 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.colNrContrato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colMorada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colPagamento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTipocontrato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTipoClient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbTipoCl = new System.Windows.Forms.ComboBox();
             this.txtMoradaCliente = new System.Windows.Forms.TextBox();
@@ -73,15 +65,7 @@
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNrContrato,
-            this.colMorada,
-            this.colTelefone,
-            this.colPagamento,
-            this.colTipocontrato,
-            this.colTipoClient,
-            this.colNome,
-            this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader1});
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(36, 245);
@@ -91,18 +75,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // colNrContrato
-            // 
-            this.colNrContrato.Text = "Contrato";
-            // 
-            // colMorada
-            // 
-            this.colMorada.Text = "Morada";
-            // 
-            // colTelefone
-            // 
-            this.colTelefone.Text = "Telefone";
             // 
             // panel1
             // 
@@ -130,22 +102,25 @@
             this.cmbTipoCl.Name = "cmbTipoCl";
             this.cmbTipoCl.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoCl.TabIndex = 10;
+            this.cmbTipoCl.SelectedIndexChanged += new System.EventHandler(this.cmbTipoCl_SelectedIndexChanged);
             // 
             // txtMoradaCliente
             // 
             this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMoradaCliente.Location = new System.Drawing.Point(90, 98);
+            this.txtMoradaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtMoradaCliente.Location = new System.Drawing.Point(100, 101);
             this.txtMoradaCliente.Name = "txtMoradaCliente";
-            this.txtMoradaCliente.Size = new System.Drawing.Size(235, 13);
+            this.txtMoradaCliente.Size = new System.Drawing.Size(235, 16);
             this.txtMoradaCliente.TabIndex = 8;
+            this.txtMoradaCliente.TextChanged += new System.EventHandler(this.txtMoradaCliente_TextChanged);
             // 
             // txtContato
             // 
             this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtContato.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtContato.Location = new System.Drawing.Point(70, 69);
+            this.txtContato.Location = new System.Drawing.Point(87, 73);
             this.txtContato.Name = "txtContato";
             this.txtContato.Size = new System.Drawing.Size(123, 16);
             this.txtContato.TabIndex = 7;
@@ -156,7 +131,7 @@
             this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
-            this.txtNome.Location = new System.Drawing.Point(58, 42);
+            this.txtNome.Location = new System.Drawing.Point(64, 45);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(267, 16);
             this.txtNome.TabIndex = 6;
@@ -199,9 +174,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(3, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 20);
+            this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Contato:";
+            this.label2.Text = "Contacto:";
             // 
             // label1
             // 
@@ -246,7 +221,7 @@
             this.cmbTipoCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbTipoCon.ForeColor = System.Drawing.Color.White;
             this.cmbTipoCon.FormattingEnabled = true;
-            this.cmbTipoCon.Location = new System.Drawing.Point(140, 147);
+            this.cmbTipoCon.Location = new System.Drawing.Point(161, 144);
             this.cmbTipoCon.Name = "cmbTipoCon";
             this.cmbTipoCon.Size = new System.Drawing.Size(121, 21);
             this.cmbTipoCon.TabIndex = 11;
@@ -266,7 +241,7 @@
             this.txtMoradaCont.BackColor = System.Drawing.Color.White;
             this.txtMoradaCont.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMoradaCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtMoradaCont.Location = new System.Drawing.Point(84, 42);
+            this.txtMoradaCont.Location = new System.Drawing.Point(76, 31);
             this.txtMoradaCont.Name = "txtMoradaCont";
             this.txtMoradaCont.Size = new System.Drawing.Size(209, 16);
             this.txtMoradaCont.TabIndex = 12;
@@ -277,9 +252,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label8.Location = new System.Drawing.Point(3, 145);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(131, 20);
+            this.label8.Size = new System.Drawing.Size(159, 20);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Tipo de Contrato:";
+            this.label8.Text = "Potencia Contratada:";
             // 
             // label7
             // 
@@ -296,7 +271,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label9.Location = new System.Drawing.Point(3, 106);
+            this.label9.Location = new System.Drawing.Point(3, 109);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(175, 20);
             this.label9.TabIndex = 9;
@@ -316,7 +291,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(3, 38);
+            this.label11.Location = new System.Drawing.Point(3, 27);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(67, 20);
             this.label11.TabIndex = 7;
@@ -433,17 +408,9 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.TextBox txtMoradaCont;
-        private System.Windows.Forms.ColumnHeader colNrContrato;
-        private System.Windows.Forms.ColumnHeader colMorada;
-        private System.Windows.Forms.ColumnHeader colTelefone;
-        private System.Windows.Forms.ColumnHeader colPagamento;
-        private System.Windows.Forms.ColumnHeader colTipocontrato;
-        private System.Windows.Forms.ColumnHeader colTipoClient;
-        private System.Windows.Forms.ColumnHeader colNome;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ComboBox cmbTipoCl;
         private System.Windows.Forms.ComboBox cmbTipoCon;
         private System.Windows.Forms.ComboBox cmbMet;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

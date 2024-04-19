@@ -89,7 +89,7 @@
             this.label5.Padding = new System.Windows.Forms.Padding(5);
             this.label5.Size = new System.Drawing.Size(107, 30);
             this.label5.TabIndex = 18;
-            this.label5.Text = "Localizacao:";
+            this.label5.Text = "Localização:";
             // 
             // dtpData
             // 
@@ -133,7 +133,7 @@
             this.label7.Padding = new System.Windows.Forms.Padding(5);
             this.label7.Size = new System.Drawing.Size(149, 30);
             this.label7.TabIndex = 8;
-            this.label7.Text = "Producao Máxima:";
+            this.label7.Text = "Produção Máxima:";
             // 
             // label6
             // 
@@ -144,7 +144,7 @@
             this.label6.Padding = new System.Windows.Forms.Padding(5);
             this.label6.Size = new System.Drawing.Size(166, 30);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Data de Construcao:";
+            this.label6.Text = "Data de Construção:";
             // 
             // cmbTipo
             // 
