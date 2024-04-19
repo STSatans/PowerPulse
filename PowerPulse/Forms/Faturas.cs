@@ -22,32 +22,32 @@ namespace PowerPulse
             btnCanc.Visible = false;
         }
 
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD = new SqlConnection(con);//con casa
 
         private void Faturas_Load(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Fatura",BD);
-            SqlDataReader rdr=cmd.ExecuteReader();
+            //SqlCommand cmd = new SqlCommand("Select * from Fatura",BD);
+            //SqlDataReader rdr=cmd.ExecuteReader();
 
-            if (rdr.HasRows) 
-            {
-                while (rdr.Read())
-                {
-                    string[] row = new string[rdr.FieldCount];
+            //if (rdr.HasRows) 
+            //{
+            //    while (rdr.Read())
+            //    {
+            //        string[] row = new string[rdr.FieldCount];
 
-                    // Preencher o array com os valores das colunas
-                    for (int i = 0; i < rdr.FieldCount; i++)
-                    {
-                        row[i] = rdr[i].ToString();
-                    }
+            //        // Preencher o array com os valores das colunas
+            //        for (int i = 0; i < rdr.FieldCount; i++)
+            //        {
+            //            row[i] = rdr[i].ToString();
+            //        }
 
-                    // Adicionar os valores ao ListView
-                    listView1.Items.Add(new ListViewItem(row));
-                }
-            }
+            //        // Adicionar os valores ao ListView
+            //        listView1.Items.Add(new ListViewItem(row));
+            //    }
+            //}
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

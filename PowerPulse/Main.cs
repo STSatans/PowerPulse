@@ -25,8 +25,8 @@ namespace PowerPulse
         public int User { get; set; }
 
         //conexoes
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD = new SqlConnection(con);//con estagio
 
         public Main()
@@ -82,20 +82,20 @@ namespace PowerPulse
         private void btnCentrais_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Usina());
+            OpenChildForm(new Usina(), sender);
         }
 
         private void btnContratos_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Contratos());
+            OpenChildForm(new Contratos(), sender);
         }
 
         private void btnAdm_Click(object sender, EventArgs e)
         {
             //apenas visivel para adm
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Admin());
+            OpenChildForm(new Admin(), sender);
         }
 
         //drag form
@@ -137,7 +137,7 @@ namespace PowerPulse
                 leftBorderBtn.BringToFront();
                 //Current Child Form Icon
                 iconCurrentChildForm.IconChar = currentBtn.IconChar;
-                iconCurrentChildForm.IconColor = Color.FromArgb(16, 17, 61);
+                iconCurrentChildForm.IconColor = Color.FromArgb(0, 0, 200);
             }
         }
 
@@ -153,7 +153,7 @@ namespace PowerPulse
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
-        private void OpenChildForm(Form childForm)
+        private void OpenChildForm(Form childForm, object senderbtn)
         {
             //open only form
             if (currentChildForm != null)
@@ -169,7 +169,8 @@ namespace PowerPulse
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            lblForm.Text = childForm.Text;
+            currentBtn = (IconButton)senderbtn;
+            lblForm.Text = currentBtn.Text;
         }
 
         private void Reset()
@@ -177,7 +178,7 @@ namespace PowerPulse
             DisableButton();
             leftBorderBtn.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
-            iconCurrentChildForm.IconColor = Color.FromArgb(16, 17, 61);
+            iconCurrentChildForm.IconColor = Color.FromArgb(0, 0, 200);
             lblForm.Text = "Home";
         }
 
@@ -192,13 +193,13 @@ namespace PowerPulse
         private void btnMant_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Manutencao());
+            OpenChildForm(new Manutencao(),sender);
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Cliente());
+            OpenChildForm(new Cliente(), sender);
         }
 
         private void btnStats_Click(object sender, EventArgs e)
@@ -206,19 +207,19 @@ namespace PowerPulse
             if (lblCargo.Text == "Admin")
             {
                 ActivateButton(sender, Color.FromArgb(75, 255, 87));
-                OpenChildForm(new StatsAdm());
+                OpenChildForm(new StatsAdm(), sender);
             }
             else
             {
                 ActivateButton(sender, Color.FromArgb(75, 255, 87));
-                OpenChildForm(new Stats());
+                OpenChildForm(new Stats(), sender);
             }
         }
 
         private void btnFaturas_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Faturas());
+            OpenChildForm(new Faturas(), sender);
         }
 
         private Timer timer;

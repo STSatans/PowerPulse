@@ -19,8 +19,8 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
         //conexoes
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD=new SqlConnection(con);//con casa
         private void StatsAdm_Load(object sender, EventArgs e)
         {

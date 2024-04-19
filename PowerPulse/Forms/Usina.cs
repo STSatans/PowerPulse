@@ -13,8 +13,8 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -109,6 +109,9 @@ namespace PowerPulse.Forms
             btnEditar.Hide();
             btnUpdate.Enabled = true;
             btnCancel.Enabled = true;
+            txtCapMat.Enabled = true;
+            txtLoc.Enabled = true;
+            txtNome.Enabled = true;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -144,22 +147,26 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Select * from Usina where ID_Usina=" + listView1.SelectedItems.ToString() + "", BD);
+                string nome = listView1.SelectedItems[0].Text;
+                SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,tipo,data_construcao from Usina where Nome='" + nome + "'", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.HasRows)
+                if (rdr.HasRows)
                 {
-                    if (rdr.Read())
+                    while (rdr.Read())
                     {
-                        txtNome.Text = rdr["Nome"].ToString();
-                        txtLoc.Text = rdr["localizacao"].ToString();
-                        txtCapMat.Text = rdr["Capacidade"].ToString();
-                        lblTipo.Text = rdr["Tipo"].ToString();
-                        dtpData.Text = rdr["data_construcao"].ToString();
+                            txtNome.Text = rdr["Nome"].ToString();
+                            txtLoc.Text = rdr["localizacao"].ToString();
+                            txtCapMat.Text = rdr["Capacidade"].ToString();
+                            lblTipo.Text = rdr["Tipo"].ToString();
+                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
                     }
                 }
                 btnCancel.Enabled = false;
                 btnUpdate.Enabled = false;
                 btnEditar.Enabled = true;
+                txtCapMat.Enabled = false;
+                txtLoc.Enabled = false;
+                txtNome.Enabled = false;
                 btnCancel.Hide();
                 btnUpdate.Hide();
                 btnEditar.Show();
@@ -170,7 +177,9 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { BD.Close(); }
+            { 
+                BD.Close();
+            }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
