@@ -185,6 +185,7 @@
             // ColData
             // 
             this.ColData.Text = "Data Emissao";
+            this.ColData.Width = 86;
             // 
             // ColLeitura
             // 
@@ -193,6 +194,7 @@
             // ColPagamento
             // 
             this.ColPagamento.Text = "Pagamento";
+            this.ColPagamento.Width = 99;
             // 
             // columnHeader1
             // 
@@ -239,7 +241,7 @@
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 5;
-            this.btnDel.Text = "eliminar";
+            this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
             // 
             // btnConf

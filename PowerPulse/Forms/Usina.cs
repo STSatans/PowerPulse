@@ -13,8 +13,8 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -22,7 +22,7 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems.ToString() + "");
+                SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems[0].Text + "");
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -30,7 +30,9 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { BD.Close(); }
+            { 
+                BD.Close();
+            }
         }
         private void Usina_Load(object sender, EventArgs e)
         {

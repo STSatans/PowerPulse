@@ -19,8 +19,8 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
+        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD = new SqlConnection(con);
 
         private void Admin_Load(object sender, EventArgs e)
@@ -33,6 +33,11 @@ namespace PowerPulse.Forms
 
                 listBox1.Items.Add(rd[0].ToString()+" - " + rd[1].ToString()+" - " + rd[2].ToString());
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

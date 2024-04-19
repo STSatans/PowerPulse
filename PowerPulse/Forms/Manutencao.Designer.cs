@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIns = new FontAwesome.Sharp.IconButton();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelDesktop.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -140,7 +141,8 @@
             this.colDataFim,
             this.colTipoM,
             this.colCost,
-            this.colDesc});
+            this.colDesc,
+            this.columnHeader1});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(29, 218);
             this.listView1.Name = "listView1";
@@ -177,7 +179,7 @@
             // colDesc
             // 
             this.colDesc.Text = "Descrição";
-            this.colDesc.Width = 340;
+            this.colDesc.Width = 345;
             // 
             // groupBox1
             // 
@@ -309,6 +311,10 @@
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Estado";
+            // 
             // Manutencao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,5 +359,6 @@
         private System.Windows.Forms.ComboBox cmbTipoM;
         private System.Windows.Forms.TextBox txtCost;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

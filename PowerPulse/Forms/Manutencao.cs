@@ -16,8 +16,8 @@ namespace PowerPulse.Forms
     {
         private Form currentChildForm;
 
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
         public Manutencao()
         {
@@ -39,7 +39,7 @@ namespace PowerPulse.Forms
             dtpDataFim.Enabled = false;
 
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao from Manutencao_Usina", BD);
+            SqlCommand cmd = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao,estado from Manutencao_Usina", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
