@@ -33,12 +33,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtProd = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtGasto = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtCapacidade = new System.Windows.Forms.TextBox();
             this.txtMaterial = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,7 +63,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dtpData);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.txtProd);
             this.groupBox1.Controls.Add(this.txtNome);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -75,7 +79,7 @@
             // 
             // txtLoc
             // 
-            this.txtLoc.Location = new System.Drawing.Point(112, 211);
+            this.txtLoc.Location = new System.Drawing.Point(105, 239);
             this.txtLoc.Name = "txtLoc";
             this.txtLoc.Size = new System.Drawing.Size(172, 20);
             this.txtLoc.TabIndex = 19;
@@ -84,7 +88,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(3, 205);
+            this.label5.Location = new System.Drawing.Point(3, 236);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(5);
             this.label5.Size = new System.Drawing.Size(107, 30);
@@ -94,7 +98,7 @@
             // dtpData
             // 
             this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpData.Location = new System.Drawing.Point(174, 151);
+            this.dtpData.Location = new System.Drawing.Point(164, 182);
             this.dtpData.Name = "dtpData";
             this.dtpData.Size = new System.Drawing.Size(91, 20);
             this.dtpData.TabIndex = 15;
@@ -102,24 +106,24 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(336, 183);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label8.Location = new System.Drawing.Point(328, 206);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(5);
-            this.label8.Size = new System.Drawing.Size(60, 30);
+            this.label8.Size = new System.Drawing.Size(54, 27);
             this.label8.TabIndex = 14;
             this.label8.Text = "KW/H";
             // 
-            // textBox5
+            // txtProd
             // 
-            this.textBox5.Location = new System.Drawing.Point(158, 185);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(172, 20);
-            this.textBox5.TabIndex = 13;
+            this.txtProd.Location = new System.Drawing.Point(150, 209);
+            this.txtProd.Name = "txtProd";
+            this.txtProd.Size = new System.Drawing.Size(172, 20);
+            this.txtProd.TabIndex = 13;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(69, 21);
+            this.txtNome.Location = new System.Drawing.Point(63, 22);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(148, 20);
             this.txtNome.TabIndex = 9;
@@ -128,7 +132,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(3, 175);
+            this.label7.Location = new System.Drawing.Point(3, 206);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(5);
             this.label7.Size = new System.Drawing.Size(149, 30);
@@ -139,7 +143,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(3, 145);
+            this.label6.Location = new System.Drawing.Point(3, 176);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(5);
             this.label6.Size = new System.Drawing.Size(166, 30);
@@ -156,32 +160,77 @@
             "Nuclear"});
             this.cmbTipo.Location = new System.Drawing.Point(53, 51);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(183, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(99, 21);
             this.cmbTipo.TabIndex = 5;
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.txtGasto);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtCapacidade);
             this.panel1.Controls.Add(this.txtMaterial);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 76);
+            this.panel1.Location = new System.Drawing.Point(3, 79);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(518, 69);
+            this.panel1.Size = new System.Drawing.Size(385, 94);
             this.panel1.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label11.Location = new System.Drawing.Point(168, 63);
+            this.label11.Name = "label11";
+            this.label11.Padding = new System.Windows.Forms.Padding(5);
+            this.label11.Size = new System.Drawing.Size(54, 27);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "KW/H";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label10.Location = new System.Drawing.Point(208, 33);
+            this.label10.Name = "label10";
+            this.label10.Padding = new System.Windows.Forms.Padding(5);
+            this.label10.Size = new System.Drawing.Size(43, 27);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Ton";
+            // 
+            // txtGasto
+            // 
+            this.txtGasto.Location = new System.Drawing.Point(63, 65);
+            this.txtGasto.Name = "txtGasto";
+            this.txtGasto.Size = new System.Drawing.Size(100, 20);
+            this.txtGasto.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label9.Location = new System.Drawing.Point(0, 60);
+            this.label9.Name = "label9";
+            this.label9.Padding = new System.Windows.Forms.Padding(5);
+            this.label9.Size = new System.Drawing.Size(67, 30);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Gasto:";
             // 
             // txtCapacidade
             // 
-            this.txtCapacidade.Location = new System.Drawing.Point(114, 35);
+            this.txtCapacidade.Location = new System.Drawing.Point(102, 36);
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(100, 20);
             this.txtCapacidade.TabIndex = 11;
             // 
             // txtMaterial
             // 
-            this.txtMaterial.Location = new System.Drawing.Point(133, 6);
+            this.txtMaterial.Location = new System.Drawing.Point(123, 6);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(100, 20);
             this.txtMaterial.TabIndex = 10;
@@ -248,16 +297,18 @@
             this.iconButton2.TabIndex = 17;
             this.iconButton2.Text = "Voltar";
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // iconButton1
             // 
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(357, 326);
+            this.iconButton1.Location = new System.Drawing.Point(311, 326);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(75, 23);
+            this.iconButton1.Size = new System.Drawing.Size(156, 30);
             this.iconButton1.TabIndex = 16;
             this.iconButton1.Text = "Inserir";
             this.iconButton1.UseVisualStyleBackColor = true;
@@ -273,6 +324,7 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(816, 489);
             this.panelDesktop.TabIndex = 12;
+            this.panelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDesktop_Paint);
             // 
             // AddUsina
             // 
@@ -307,7 +359,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtProd;
         private System.Windows.Forms.TextBox txtCapacidade;
         private System.Windows.Forms.TextBox txtMaterial;
         private System.Windows.Forms.DateTimePicker dtpData;
@@ -317,5 +369,9 @@
         private System.Windows.Forms.TextBox txtLoc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelDesktop;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtGasto;
+        private System.Windows.Forms.Label label9;
     }
 }

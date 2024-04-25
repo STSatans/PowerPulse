@@ -16,7 +16,8 @@ namespace PowerPulse.Forms
     {
         private Form currentChildForm;
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
         //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
         public Manutencao()

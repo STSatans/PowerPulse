@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usina));
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImgSm = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblManutencao = new System.Windows.Forms.Label();
@@ -90,8 +89,6 @@
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader7});
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
@@ -100,14 +97,9 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(355, 406);
-            this.listView1.SmallImageList = this.ImgSm;
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "ID";
             // 
             // ImgSm
             // 
@@ -517,6 +509,5 @@
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblManutencao;
         private System.Windows.Forms.ImageList ImgSm;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

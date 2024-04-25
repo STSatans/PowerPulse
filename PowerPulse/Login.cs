@@ -20,7 +20,8 @@ namespace PowerPulse
     {
         //connection string
         //private readonly string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
-        private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
+        //private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
 
         public Login()
         {
@@ -92,7 +93,7 @@ namespace PowerPulse
                             User = userID
                         };
                         main.Show();
-                        this.Close();
+                        this.Hide();
                         
                         break;
 

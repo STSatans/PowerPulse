@@ -23,7 +23,8 @@ namespace PowerPulse
         }
 
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+       // private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con casa
 
         private void Faturas_Load(object sender, EventArgs e)

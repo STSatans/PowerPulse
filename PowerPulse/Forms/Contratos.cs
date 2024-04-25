@@ -19,7 +19,8 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
+        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD=new SqlConnection(con);//con casa
 
         private void Contratos_Load(object sender, EventArgs e)
@@ -74,15 +75,15 @@ namespace PowerPulse.Forms
         private void btnDel_Click(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Delete from ", BD);
+            SqlCommand cmd = new SqlCommand("Delete from Contratos where ID=" + listView1.SelectedItems[0].Text);
             int rows = cmd.ExecuteNonQuery();
             if (rows > 0)
             {
-                MessageBox.Show("");
+                MessageBox.Show("Eliminados","",MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("");
+                MessageBox.Show("Erro");
             }
         }
 
@@ -125,6 +126,17 @@ namespace PowerPulse.Forms
         private void txtMoradaCliente_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select Cliente.nome,Cliente.endereco,Contrato. from Cliente left join Cliente.Contrato=Contrato.id_contrato where id_cliente="+cmbNIF.SelectedItem.ToString(),BD);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+
+            }
         }
     }
 }

@@ -13,8 +13,9 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
+        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
         //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -22,8 +23,21 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Delete from Usina where ID=" + listView1.SelectedItems[0].Text + "");
-                cmd.ExecuteNonQuery();
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+
+                // Extract the index part from the ListViewItem's Text property
+                string itemText = selectedItem.Text;
+
+                // Split the text to extract just the index part
+                string[] Item = itemText.Split('-');
+                SqlCommand cmd = new SqlCommand("Delete from Usina where ID_Usina=" + Item[0] ,BD);
+                int row=cmd.ExecuteNonQuery();
+                if(row>0)
+                {
+                    MessageBox.Show("Eliminado");
+                    selectedItem.Remove();
+                    ResetLst();
+                }
             }
             catch (Exception ex)
             {
@@ -69,7 +83,7 @@ namespace PowerPulse.Forms
                 {
                     if (rdr.HasRows)
                     {
-                        ListViewItem lvi = new ListViewItem(rdr["Nome"].ToString());
+                        ListViewItem lvi = new ListViewItem(rdr["ID_Usina"].ToString()+"-"+rdr["Nome"].ToString());
                         listView1.Items.Add(lvi);
                         if (rdr["Tipo"].ToString() == "Solar")
                         {
@@ -150,6 +164,7 @@ namespace PowerPulse.Forms
             {
                 BD.Open();
                 string nome = listView1.SelectedItems[0].Text;
+
                 SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,tipo,data_construcao from Usina where Nome='" + nome + "'", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
@@ -190,9 +205,15 @@ namespace PowerPulse.Forms
                 if (listView1.SelectedItems.Count > 0)
                 {
                     ResetLst();
-                    String Item = listView1.SelectedItems[0].Text;
+                    ListViewItem selectedItem = listView1.SelectedItems[0];
+
+                    // Extract the index part from the ListViewItem's Text property
+                    string itemText = selectedItem.Text;
+
+                    // Split the text to extract just the index part
+                    string[] Item = itemText.Split('-');
                     BD.Open();
-                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini,Manutencao_usina.estado from Usina left join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.Nome='" + Item + "'", BD);
+                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini,Manutencao_usina.estado from Usina left join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.ID_Usina=" + Item[0] , BD);
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
@@ -205,6 +226,7 @@ namespace PowerPulse.Forms
                             //inserir labels
                             txtNome.Text = rdr["Nome"].ToString();
                             txtLoc.Text = rdr["localizacao"].ToString();
+                            txtCapMat.Text = rdr["Capacidade"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
                             lblProdM.Text = rdr["ProdMax"].ToString();
