@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -21,7 +14,7 @@ namespace PowerPulse.Forms
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
-        SqlConnection BD=new SqlConnection(con);//con casa
+        SqlConnection BD = new SqlConnection(con);//con casa
 
         private void Contratos_Load(object sender, EventArgs e)
         {
@@ -31,7 +24,7 @@ namespace PowerPulse.Forms
             btnEdit.Hide();
             EditOFF();
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Contrato",BD);
+            SqlCommand cmd = new SqlCommand("Select * from Contrato", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -79,7 +72,7 @@ namespace PowerPulse.Forms
             int rows = cmd.ExecuteNonQuery();
             if (rows > 0)
             {
-                MessageBox.Show("Eliminados","",MessageBoxButtons.OK);
+                MessageBox.Show("Eliminados", "", MessageBoxButtons.OK);
             }
             else
             {
@@ -90,7 +83,7 @@ namespace PowerPulse.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
-        } 
+        }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnEdit.Show();
@@ -131,9 +124,9 @@ namespace PowerPulse.Forms
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select Cliente.nome,Cliente.endereco,Contrato. from Cliente left join Cliente.Contrato=Contrato.id_contrato where id_cliente="+cmbNIF.SelectedItem.ToString(),BD);
+            SqlCommand cmd = new SqlCommand("Select Cliente.nome,Cliente.endereco,Contrato. from Cliente left join Cliente.Contrato=Contrato.id_contrato where id_cliente=" + cmbNIF.SelectedItem.ToString(), BD);
             SqlDataReader reader = cmd.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
 
             }

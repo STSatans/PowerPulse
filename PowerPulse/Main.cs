@@ -1,15 +1,10 @@
 ﻿using FontAwesome.Sharp;
 using PowerPulse.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace PowerPulse
@@ -25,8 +20,6 @@ namespace PowerPulse
         public int User { get; set; }
 
         //conexoes
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con estagio
 
@@ -194,7 +187,7 @@ namespace PowerPulse
         private void btnMant_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
-            OpenChildForm(new Manutencao(),sender);
+            OpenChildForm(new Manutencao(), sender);
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
@@ -236,7 +229,7 @@ namespace PowerPulse
                     MessageBox.Show("Teste");
                     BD.Close();
                 }
-                
+
             }
             catch (Exception ex)
             {

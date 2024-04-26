@@ -284,7 +284,7 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlConnection BD2= new SqlConnection(con);
+                SqlConnection BD2 = new SqlConnection(con);
                 ListViewItem selectedItem = listView1.SelectedItems[0];
 
                 // Extract the index part from the ListViewItem's Text property
@@ -298,28 +298,28 @@ namespace PowerPulse.Forms
                 {
                     while (rdr.Read())
                     {
-                        if (txtNome.Text == rdr["Nome"].ToString() && txtCapMat.Text == rdr["Capacidade"].ToString() && txtLoc.Text == rdr["localizacao"].ToString() && dtpData.Value==Convert.ToDateTime( rdr["data_construcao"].ToString()))
+                        if (txtNome.Text == rdr["Nome"].ToString() && txtCapMat.Text == rdr["Capacidade"].ToString() && txtLoc.Text == rdr["localizacao"].ToString() && dtpData.Value == Convert.ToDateTime(rdr["data_construcao"].ToString()))
                         {
-                            MessageBox.Show("Não existe alterações nos registos","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                            MessageBox.Show("Não existe alterações nos registos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
                             BD2.Open();
-                            SqlCommand cmd2 = new SqlCommand("Update Usina set Nome=@Nome,localizacao=@loc,capacidade=@cap,data_construcao=@data where ID_Usina=" + Item[0],BD2);
-                            cmd2.Parameters.AddWithValue("@Nome",txtNome.Text);
+                            SqlCommand cmd2 = new SqlCommand("Update Usina set Nome=@Nome,localizacao=@loc,capacidade=@cap,data_construcao=@data where ID_Usina=" + Item[0], BD2);
+                            cmd2.Parameters.AddWithValue("@Nome", txtNome.Text);
                             cmd2.Parameters.AddWithValue("@loc", txtLoc.Text);
                             cmd2.Parameters.AddWithValue("@cap", txtCapMat.Text);
-                            cmd2.Parameters.AddWithValue("@data",dtpData.Value);
+                            cmd2.Parameters.AddWithValue("@data", dtpData.Value);
                             int row = cmd2.ExecuteNonQuery();
                             if (row > 0)
                             {
                                 MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
-                                Reset();  
+                                Reset();
                             }
                             else
                             {
                                 MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
-                                
+
                             }
                             BD2.Close();
                         }

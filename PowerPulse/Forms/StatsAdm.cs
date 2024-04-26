@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -22,15 +15,15 @@ namespace PowerPulse.Forms
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        SqlConnection BD=new SqlConnection(con);//con casa
+        SqlConnection BD = new SqlConnection(con);//con casa
         private void StatsAdm_Load(object sender, EventArgs e)
         {
-           BD.Open();
-            SqlCommand cmd = new SqlCommand("Select Count(ID_Usina) from Usina",BD);
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select Count(ID_Usina) from Usina", BD);
             SqlDataReader rd = cmd.ExecuteReader();
             if (rd != null)
             {
-                while (rd.Read()) 
+                while (rd.Read())
                 {
                     lblUsinas.Text = rd[0].ToString();
                     //lblTUsinas.Text =;
@@ -47,7 +40,7 @@ namespace PowerPulse.Forms
                 {
                     if (lblTUsinas != null)
                     {
-                       // lblTUsinas.Text = rd2[i].ToString() + ": " + rd2[i+1].ToString();
+                        // lblTUsinas.Text = rd2[i].ToString() + ": " + rd2[i+1].ToString();
                     }
                 }
                 row++; // Increment row counter for next row

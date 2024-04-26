@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -33,7 +26,7 @@ namespace PowerPulse.Forms
         SqlConnection BD = new SqlConnection(con);
         private void AddMan_Load(object sender, EventArgs e)
         {
-            
+
             txtCosts.Enabled = false;
             comboBox2.Enabled = false;
             dateTimePicker1.Enabled = false;
@@ -74,7 +67,7 @@ namespace PowerPulse.Forms
                     if (dr.HasRows)
                     {
                         DateTime date = Convert.ToDateTime(dr["data_ini"].ToString());
-                        if(date.Date==date_ini.Date)
+                        if (date.Date == date_ini.Date)
                         {
                             MessageBox.Show("sad");
                         }
@@ -88,13 +81,13 @@ namespace PowerPulse.Forms
                 cmd2.Parameters.AddWithValue("@tipo_manutencao", comboBox2.SelectedItem.ToString());
                 cmd2.Parameters.AddWithValue("@custo_manutencao", txtCosts.Text);
                 cmd2.Parameters.AddWithValue("@descricao", txtDesc.Text);
-                if(date_ini.Date>=DateTime.Today)
+                if (date_ini.Date >= DateTime.Today)
                 {
-                    cmd2.Parameters.AddWithValue("@estado","Agendada");
+                    cmd2.Parameters.AddWithValue("@estado", "Agendada");
                 }
                 else
                 {
-                    cmd2.Parameters.AddWithValue("@estado","Inicializada");
+                    cmd2.Parameters.AddWithValue("@estado", "Inicializada");
                 }
 
                 if (date_ini <= date_end)
