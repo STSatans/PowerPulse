@@ -75,6 +75,7 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(165, 627);
             this.panelMenu.TabIndex = 0;
+            this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
             // btnStats
             // 
@@ -104,7 +105,7 @@
             this.btnFaturas.FlatAppearance.BorderSize = 0;
             this.btnFaturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFaturas.ForeColor = System.Drawing.Color.White;
-            this.btnFaturas.IconChar = FontAwesome.Sharp.IconChar.Wrench;
+            this.btnFaturas.IconChar = FontAwesome.Sharp.IconChar.Receipt;
             this.btnFaturas.IconColor = System.Drawing.Color.White;
             this.btnFaturas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnFaturas.IconSize = 32;
@@ -190,7 +191,7 @@
             this.btnAdm.FlatAppearance.BorderSize = 0;
             this.btnAdm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdm.ForeColor = System.Drawing.Color.Snow;
-            this.btnAdm.IconChar = FontAwesome.Sharp.IconChar.Portrait;
+            this.btnAdm.IconChar = FontAwesome.Sharp.IconChar.Tools;
             this.btnAdm.IconColor = System.Drawing.Color.White;
             this.btnAdm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdm.IconSize = 32;

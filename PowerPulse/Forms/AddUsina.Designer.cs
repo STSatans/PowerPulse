@@ -50,7 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnIns = new FontAwesome.Sharp.IconButton();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -81,8 +81,9 @@
             // 
             this.txtLoc.Location = new System.Drawing.Point(105, 239);
             this.txtLoc.Name = "txtLoc";
-            this.txtLoc.Size = new System.Drawing.Size(172, 20);
+            this.txtLoc.Size = new System.Drawing.Size(100, 20);
             this.txtLoc.TabIndex = 19;
+            this.txtLoc.TextChanged += new System.EventHandler(this.txtLoc_TextChanged);
             // 
             // label5
             // 
@@ -120,13 +121,17 @@
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(172, 20);
             this.txtProd.TabIndex = 13;
+            this.txtProd.TextChanged += new System.EventHandler(this.txtProd_TextChanged_1);
+            this.txtProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProd_KeyPress);
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(63, 22);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(148, 20);
+            this.txtNome.Size = new System.Drawing.Size(214, 20);
             this.txtNome.TabIndex = 9;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label7
             // 
@@ -155,12 +160,17 @@
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
             "Solar",
-            "Eolica",
-            "Geotermica",
-            "Nuclear"});
+            "Eólica",
+            "Geotérmica",
+            "Nuclear",
+            "Hidroeletrica",
+            "Hidrogénio",
+            "Hidráulica",
+            "Biomassa",
+            "Fóssil"});
             this.cmbTipo.Location = new System.Drawing.Point(53, 51);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(99, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(152, 21);
             this.cmbTipo.TabIndex = 5;
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
@@ -208,6 +218,7 @@
             this.txtGasto.Name = "txtGasto";
             this.txtGasto.Size = new System.Drawing.Size(100, 20);
             this.txtGasto.TabIndex = 13;
+            this.txtGasto.TextChanged += new System.EventHandler(this.txtGasto_TextChanged);
             // 
             // label9
             // 
@@ -227,13 +238,17 @@
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(100, 20);
             this.txtCapacidade.TabIndex = 11;
+            this.txtCapacidade.TextChanged += new System.EventHandler(this.txtCapacidade_TextChanged);
+            this.txtCapacidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacidade_KeyPress);
             // 
             // txtMaterial
             // 
             this.txtMaterial.Location = new System.Drawing.Point(123, 6);
             this.txtMaterial.Name = "txtMaterial";
-            this.txtMaterial.Size = new System.Drawing.Size(100, 20);
+            this.txtMaterial.Size = new System.Drawing.Size(129, 20);
             this.txtMaterial.TabIndex = 10;
+            this.txtMaterial.TextChanged += new System.EventHandler(this.txtMaterial_TextChanged);
+            this.txtMaterial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaterial_KeyPress);
             // 
             // label3
             // 
@@ -299,32 +314,31 @@
             this.iconButton2.UseVisualStyleBackColor = true;
             this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
-            // iconButton1
+            // btnIns
             // 
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(311, 326);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(156, 30);
-            this.iconButton1.TabIndex = 16;
-            this.iconButton1.Text = "Inserir";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIns.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnIns.IconColor = System.Drawing.Color.Black;
+            this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnIns.Location = new System.Drawing.Point(311, 326);
+            this.btnIns.Name = "btnIns";
+            this.btnIns.Size = new System.Drawing.Size(156, 30);
+            this.btnIns.TabIndex = 16;
+            this.btnIns.Text = "Inserir";
+            this.btnIns.UseVisualStyleBackColor = true;
+            this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
             // panelDesktop
             // 
             this.panelDesktop.Controls.Add(this.groupBox1);
-            this.panelDesktop.Controls.Add(this.iconButton1);
+            this.panelDesktop.Controls.Add(this.btnIns);
             this.panelDesktop.Controls.Add(this.iconButton2);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(816, 489);
             this.panelDesktop.TabIndex = 12;
-            this.panelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDesktop_Paint);
             // 
             // AddUsina
             // 
@@ -364,7 +378,7 @@
         private System.Windows.Forms.TextBox txtMaterial;
         private System.Windows.Forms.DateTimePicker dtpData;
         private System.Windows.Forms.Label label8;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnIns;
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.TextBox txtLoc;
         private System.Windows.Forms.Label label5;

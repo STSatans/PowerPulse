@@ -35,7 +35,6 @@
             this.ImgSm = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblManutencao = new System.Windows.Forms.Label();
-            this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.txtLoc = new System.Windows.Forms.TextBox();
             this.txtCapMat = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -61,6 +60,7 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
+            this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -139,15 +139,6 @@
             this.lblManutencao.Size = new System.Drawing.Size(137, 20);
             this.lblManutencao.TabIndex = 14;
             this.lblManutencao.Text = "Data Manutencao";
-            // 
-            // dtpData
-            // 
-            this.dtpData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpData.Location = new System.Drawing.Point(163, 144);
-            this.dtpData.Name = "dtpData";
-            this.dtpData.Size = new System.Drawing.Size(120, 26);
-            this.dtpData.TabIndex = 13;
             // 
             // txtLoc
             // 
@@ -380,6 +371,7 @@
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnCancel
             // 
@@ -454,6 +446,15 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // dtpData
+            // 
+            this.dtpData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpData.Location = new System.Drawing.Point(163, 144);
+            this.dtpData.Name = "dtpData";
+            this.dtpData.Size = new System.Drawing.Size(120, 26);
+            this.dtpData.TabIndex = 13;
+            // 
             // Usina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,7 +499,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpData;
         private System.Windows.Forms.TextBox txtLoc;
         private System.Windows.Forms.TextBox txtCapMat;
         private System.Windows.Forms.TextBox txtNome;
@@ -509,5 +509,6 @@
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblManutencao;
         private System.Windows.Forms.ImageList ImgSm;
+        private System.Windows.Forms.DateTimePicker dtpData;
     }
 }

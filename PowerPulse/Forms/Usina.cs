@@ -30,9 +30,9 @@ namespace PowerPulse.Forms
 
                 // Split the text to extract just the index part
                 string[] Item = itemText.Split('-');
-                SqlCommand cmd = new SqlCommand("Delete from Usina where ID_Usina=" + Item[0] ,BD);
-                int row=cmd.ExecuteNonQuery();
-                if(row>0)
+                SqlCommand cmd = new SqlCommand("Delete from Usina where ID_Usina=" + Item[0], BD);
+                int row = cmd.ExecuteNonQuery();
+                if (row > 0)
                 {
                     MessageBox.Show("Eliminado");
                     selectedItem.Remove();
@@ -44,7 +44,7 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally
-            { 
+            {
                 BD.Close();
             }
         }
@@ -53,6 +53,7 @@ namespace PowerPulse.Forms
             try
             {
                 dtpData.Value = DateTime.Today;
+                dtpData.Enabled = false;
                 //labels 
                 lblEstado.Text = "";
                 lblGasto.Text = "";
@@ -68,10 +69,10 @@ namespace PowerPulse.Forms
                 txtLoc.Enabled = false;
                 txtNome.Enabled = false;
                 //Btns
-                btnCancel.Enabled = false;
                 btnCancel.Hide();
-                btnUpdate.Enabled = false;
                 btnUpdate.Hide();
+                btnEditar.Hide();
+                btnDel.Hide();
                 //con
 
                 BD.Open();
@@ -83,13 +84,13 @@ namespace PowerPulse.Forms
                 {
                     if (rdr.HasRows)
                     {
-                        ListViewItem lvi = new ListViewItem(rdr["ID_Usina"].ToString()+"-"+rdr["Nome"].ToString());
+                        ListViewItem lvi = new ListViewItem(rdr["ID_Usina"].ToString() + "-" + rdr["Nome"].ToString());
                         listView1.Items.Add(lvi);
                         if (rdr["Tipo"].ToString() == "Solar")
                         {
                             lvi.ImageIndex = 0;
                         }
-                        else if (rdr["Tipo"].ToString() == "Eolica")
+                        else if (rdr["Tipo"].ToString() == "Eólica")
                         {
                             lvi.ImageIndex = 1;
                         }
@@ -97,7 +98,7 @@ namespace PowerPulse.Forms
                         {
                             lvi.ImageIndex = 2;
                         }
-                        else if (rdr["Tipo"].ToString() == "Geotermica")
+                        else if (rdr["Tipo"].ToString() == "Geotérmica")
                         {
                             lvi.ImageIndex = 3;
                         }
@@ -132,6 +133,7 @@ namespace PowerPulse.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OpenChildForm(new AddUsina());
+
         }
         private void OpenChildForm(Form childForm)
         {
@@ -149,6 +151,8 @@ namespace PowerPulse.Forms
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+
+
         }
         private void label5_Click(object sender, EventArgs e)
         {
@@ -163,38 +167,39 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                string nome = listView1.SelectedItems[0].Text;
+                ListViewItem selectedItem = listView1.SelectedItems[0];
 
-                SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,tipo,data_construcao from Usina where Nome='" + nome + "'", BD);
+                // Extract the index part from the ListViewItem's Text property
+                string itemText = selectedItem.Text;
+
+                // Split the text to extract just the index part
+                string[] Item = itemText.Split('-');
+                SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,tipo,data_construcao from Usina where ID_Usina='" + Item[0] + "'", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
                 {
                     while (rdr.Read())
                     {
-                            txtNome.Text = rdr["Nome"].ToString();
-                            txtLoc.Text = rdr["localizacao"].ToString();
-                            txtCapMat.Text = rdr["Capacidade"].ToString();
-                            lblTipo.Text = rdr["Tipo"].ToString();
-                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                        txtNome.Text = rdr["Nome"].ToString();
+                        txtLoc.Text = rdr["localizacao"].ToString();
+                        txtCapMat.Text = rdr["Capacidade"].ToString();
+                        lblTipo.Text = rdr["Tipo"].ToString();
+                        dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
                     }
                 }
-                btnCancel.Enabled = false;
-                btnUpdate.Enabled = false;
-                btnEditar.Enabled = true;
                 txtCapMat.Enabled = false;
                 txtLoc.Enabled = false;
                 txtNome.Enabled = false;
                 btnCancel.Hide();
                 btnUpdate.Hide();
-                btnEditar.Show();
-                //Reset txt com dados BD
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
-            { 
+            {
                 BD.Close();
             }
         }
@@ -204,6 +209,8 @@ namespace PowerPulse.Forms
             {
                 if (listView1.SelectedItems.Count > 0)
                 {
+                    btnDel.Show();
+                    btnEditar.Show();
                     ResetLst();
                     ListViewItem selectedItem = listView1.SelectedItems[0];
 
@@ -213,11 +220,10 @@ namespace PowerPulse.Forms
                     // Split the text to extract just the index part
                     string[] Item = itemText.Split('-');
                     BD.Open();
-                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini,Manutencao_usina.estado from Usina left join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.ID_Usina=" + Item[0] , BD);
+                    SqlCommand cmd = new SqlCommand("Select Usina.*, Manutencao_Usina.data_ini,Manutencao_usina.estado from Usina left join Manutencao_Usina on Usina.ID_Usina=Manutencao_Usina.id_usina where Usina.ID_Usina=" + Item[0], BD);
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        //DateTime data_ini = rdr.GetDateTime(rdr.GetOrdinal("data_ini"));
                         DateTime? retrievedDate = rdr.IsDBNull(10) ? (DateTime?)null : rdr.GetDateTime(10);
 
 
@@ -233,7 +239,6 @@ namespace PowerPulse.Forms
                             lblMatUs.Text = rdr["Material"].ToString();
                             lblGasto.Text = rdr["Gasto"].ToString();
                             dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
-                            dtpData.Enabled = false;
                         }
                         else
                         {
@@ -246,7 +251,6 @@ namespace PowerPulse.Forms
                             lblMatUs.Text = rdr["Material"].ToString();
                             lblGasto.Text = rdr["Gasto"].ToString();
                             dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
-                            dtpData.Enabled = false;
                         }
                     }
                 }
@@ -273,6 +277,59 @@ namespace PowerPulse.Forms
             txtLoc.Text = "";
             txtNome.Text = "";
             dtpData.Value = DateTime.Now;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BD.Open();
+                SqlConnection BD2= new SqlConnection(con);
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+
+                // Extract the index part from the ListViewItem's Text property
+                string itemText = selectedItem.Text;
+
+                // Split the text to extract just the index part
+                string[] Item = itemText.Split('-');
+                SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,data_construcao from Usina where ID_Usina='" + Item[0] + "'", BD);
+                SqlDataReader rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        if (txtNome.Text == rdr["Nome"].ToString() && txtCapMat.Text == rdr["Capacidade"].ToString() && txtLoc.Text == rdr["localizacao"].ToString() && dtpData.Value==Convert.ToDateTime( rdr["data_construcao"].ToString()))
+                        {
+                            MessageBox.Show("Não existe alterações nos registos","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            BD2.Open();
+                            SqlCommand cmd2 = new SqlCommand("Update Usina set Nome=@Nome,localizacao=@loc,capacidade=@cap,data_construcao=@data where ID_Usina=" + Item[0],BD2);
+                            cmd2.Parameters.AddWithValue("@Nome",txtNome.Text);
+                            cmd2.Parameters.AddWithValue("@loc", txtLoc.Text);
+                            cmd2.Parameters.AddWithValue("@cap", txtCapMat.Text);
+                            cmd2.Parameters.AddWithValue("@data",dtpData.Value);
+                            int row = cmd2.ExecuteNonQuery();
+                            if (row > 0)
+                            {
+                                MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
+                                Reset();  
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
+                                
+                            }
+                            BD2.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

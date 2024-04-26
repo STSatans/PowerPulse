@@ -1,0 +1,4 @@
+﻿Links
+
+https://stackoverflow.com/questions/8321871/how-to-make-a-textbox-accept-only-alphabetic-characters
+https://en.wikipedia.org/wiki/Energy_development

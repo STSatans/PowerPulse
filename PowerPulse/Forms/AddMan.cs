@@ -38,7 +38,7 @@ namespace PowerPulse.Forms
             comboBox2.Enabled = false;
             dateTimePicker1.Enabled = false;
             dateTimePicker2.Enabled = false;
-
+            btnIns.Enabled = false;
             BD.Open();
 
             SqlCommand cmd = new SqlCommand("Select ID_Usina,Nome from Usina", BD);

@@ -21,7 +21,7 @@ namespace PowerPulse
         //connection string
         //private readonly string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;// con estagio
         //private readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con Casa
-        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
+        private readonly string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
 
         public Login()
         {
@@ -188,5 +188,16 @@ namespace PowerPulse
             { }
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlConnection BD = new SqlConnection(con);
+            BD.Open();
+            System.Windows.MessageBox.Show(BD.State.ToString(),"");
+        }
     }
 }
