@@ -26,28 +26,6 @@ namespace PowerPulse.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BEELZEBUB\\SQLEXPRESS;Initial Catalog=PowerPulse;Integrated Security=T" +
-            "rue;Encrypt=False")]
-        public string PowerPulseConnectionString {
-            get {
-                return ((string)(this["PowerPulseConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=dados.fcsh.unl.pt;Initial Catalog=PowerPulse;User ID=drpinto;Password" +
-            "=2b1a4e662bd7;Encrypt=False")]
-        public string PowerPulseConnectionString1 {
-            get {
-                return ((string)(this["PowerPulseConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=141.98.157.118\\SQLEXPRESS;Initial Catalog=PowerPulse;Persist Security" +
             " Info=True;User ID=sa;Password=TesteBD;Encrypt=False")]
         public string PowerPulseConnectionString2 {

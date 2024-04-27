@@ -251,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PowerPulseLogofundo.ico" />
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="PowerPulseLogofundo.ico">
