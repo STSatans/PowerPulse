@@ -1,11 +1,12 @@
-﻿using SharpCompress.Archives;
-using SharpCompress.Common;
+﻿using Newtonsoft.Json;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -20,6 +21,57 @@ namespace PowerPulse
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void CheckForUpdates()
+        {
+            try
+            {
+                string owner = "STSatans";
+                string repo = "PowerPulse";
+
+                // Fetch the latest release from GitHub
+                string apiUrl = $"https://api.github.com/repos/{owner}/{repo}/releases/latest";
+                string json;
+                using (WebClient client = new WebClient())
+                {
+                    client.Headers.Add("User-Agent", "request");
+                    json = client.DownloadString(apiUrl);
+                }
+                string PowerPulseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+                // Navigate to the "App" folder relative to the PowerPulse.exe directory
+                string appDirectory = Path.Combine(PowerPulseDirectory, "Updater");
+
+                dynamic release = JsonConvert.DeserializeObject(json);
+                string latestVersion = release.tag_name;
+
+                // Compare versions
+                Version currentVersion = new Version(Application.ProductVersion);
+                Version latest = new Version(latestVersion);
+
+                string updaterPath = Path.Combine(appDirectory, "PowerPulseUpdater.exe");
+
+                if (latest > currentVersion)
+                {
+                    DialogResult result = MessageBox.Show("An update is available. Do you want to update now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        // Close the current application
+                        Close();
+                        // Run the updater
+                        Process.Start(updaterPath);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No updates available.", "No Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //enumerador para definir os estados de Login
@@ -139,64 +191,8 @@ namespace PowerPulse
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //string owner = "STSatans";
-            //string repoName = "PowerPulse";
-            //string latestReleaseUrl = $"https://api.github.com/repos/{owner}/{repoName}/releases/latest";
-
-            //string appDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-            //string updateDirectory = Path.Combine(appDirectory, "Release");
-
-            //using (var client = new WebClient())
-            //{
-            //    client.Headers.Add("User-Agent", "request");
-
-            //    // Get the latest release information
-            //    string json = client.DownloadString(latestReleaseUrl);
-            //    dynamic latestRelease = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-
-            //    // Get the latest version
-            //    string latestVersion = latestRelease.tag_name;
-
-            //    // Check if the latest version is different from the current version
-            //    string currentVersion = Properties.Settings.Default.version;
-            //    if (latestVersion != currentVersion)
-            //    {
-            //        MessageBox.Show($"New version available: {latestVersion}", "Update Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        // Download the release RAR file
-            //        string downloadUrl = latestRelease.assets[0].browser_download_url;
-            //        string rarFile = Path.Combine(appDirectory, "Release.rar");
-            //        client.DownloadFile(downloadUrl, rarFile);
-
-            //        using (var archive = ArchiveFactory.Open(rarFile))
-            //        {
-            //            foreach (var entry in archive.Entries)
-            //            {
-            //                if (!entry.IsDirectory)
-            //                {
-            //                    entry.WriteToDirectory(updateDirectory, new ExtractionOptions()
-            //                    {
-            //                        ExtractFullPath = true,
-            //                        Overwrite = true
-            //                    });
-            //                }
-            //            }
-            //        }
-
-            //        // Restart the application
-            //        MessageBox.Show("Restarting the application...", "Restarting", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        Properties.Settings.Default.version = "1.2";
-            //        Properties.Settings.Default.Save(); // Save changes
-            //        Application.Restart();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Application is up to date.", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
+            CheckForUpdates();
         }
-
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
         }

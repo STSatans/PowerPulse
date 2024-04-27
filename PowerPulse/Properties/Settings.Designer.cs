@@ -26,11 +26,11 @@ namespace PowerPulse.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=141.98.157.118\\1433 ;Initial Catalog=PowerPulse;Persist Security Info" +
-            "=True;User ID=sa;Password=TesteBD;Encrypt=False")]
-        public string Powerpulse {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=141.98.157.118\\SQLEXPRESS;Initial Catalog=PowerPulse;Persist Security" +
+            " Info=True;User ID=sa;Password=TesteBD;Encrypt=False")]
+        public string PowerPulseConnectionString2 {
             get {
-                return ((string)(this["Powerpulse"]));
+                return ((string)(this["PowerPulseConnectionString2"]));
             }
         }
         
