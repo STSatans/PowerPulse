@@ -20,6 +20,13 @@ namespace PowerPulse
         public Login()
         {
             InitializeComponent();
+
+            // Initialize GitHubAutoUpdater with your credentials
+            string accessToken = Environment.GetEnvironmentVariable("Token");
+            string owner = "STSatans";
+            string repoName = "PowerPulse";
+            //string secretValue = await GetSecretFromGitHub(repositoryOwner, repositoryName, secretName, accessToken);
+            _updater = new GitHubAutoUpdater(accessToken, owner, repoName);
         }
 
         //enumerador para definir os estados de Login
