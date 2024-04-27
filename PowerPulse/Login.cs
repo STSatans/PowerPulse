@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SharpCompress.Archives;
+using SharpCompress.Common;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Threading.Tasks;
+using System.Net;
 using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -12,21 +14,12 @@ namespace PowerPulse
 {
     public partial class Login : Form
     {
-        private readonly GitHubAutoUpdater _updater;
-
         //connection string
         private readonly string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
 
         public Login()
         {
             InitializeComponent();
-
-            // Initialize GitHubAutoUpdater with your credentials
-            string accessToken = "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";
-            string owner = "STSatans";
-            string repoName = "PowerPulse";
-
-            _updater = new GitHubAutoUpdater(accessToken, owner, repoName);
         }
 
         //enumerador para definir os estados de Login
@@ -108,44 +101,6 @@ namespace PowerPulse
             else
                 WindowState = FormWindowState.Normal;
         }
-        private async Task CheckAndUpdate()
-        {
-            string currentVersion = "1.0"; // Replace with actual current version
-            bool hasUpdates = await _updater.CheckForUpdates(currentVersion);
-
-            if (hasUpdates)
-            {
-                // Inform the user about available updates
-                var result = MessageBox.Show("An update is available. Do you want to download and install it?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
-                {
-                    // Download update
-                    string downloadPath = Path.Combine(Path.GetTempPath(), "update.zip");
-                    string releaseTag = "latest"; // Replace with the release tag of the update
-                    bool downloadSuccess = await _updater.DownloadUpdate(releaseTag, downloadPath);
-
-                    if (downloadSuccess)
-                    {
-                        // Extract and apply the update
-                        _updater.ExtractUpdate(downloadPath, Application.StartupPath);
-
-                        // Inform the user about successful update
-                        MessageBox.Show("Update installed successfully. Please restart the application.", "Update Installed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Close the application to apply the update
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to download the update. Please try again later.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No updates available.", "No Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
 
         //funcao para verificar os dados de Login
         private LoginResult CheckLogin(int userID, string password)
@@ -182,11 +137,65 @@ namespace PowerPulse
             }
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            // Check for updates when the form loads
-            await CheckAndUpdate();
+            //string owner = "STSatans";
+            //string repoName = "PowerPulse";
+            //string latestReleaseUrl = $"https://api.github.com/repos/{owner}/{repoName}/releases/latest";
+
+            //string appDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            //string updateDirectory = Path.Combine(appDirectory, "Release");
+
+            //using (var client = new WebClient())
+            //{
+            //    client.Headers.Add("User-Agent", "request");
+
+            //    // Get the latest release information
+            //    string json = client.DownloadString(latestReleaseUrl);
+            //    dynamic latestRelease = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+            //    // Get the latest version
+            //    string latestVersion = latestRelease.tag_name;
+
+            //    // Check if the latest version is different from the current version
+            //    string currentVersion = Properties.Settings.Default.version;
+            //    if (latestVersion != currentVersion)
+            //    {
+            //        MessageBox.Show($"New version available: {latestVersion}", "Update Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //        // Download the release RAR file
+            //        string downloadUrl = latestRelease.assets[0].browser_download_url;
+            //        string rarFile = Path.Combine(appDirectory, "Release.rar");
+            //        client.DownloadFile(downloadUrl, rarFile);
+
+            //        using (var archive = ArchiveFactory.Open(rarFile))
+            //        {
+            //            foreach (var entry in archive.Entries)
+            //            {
+            //                if (!entry.IsDirectory)
+            //                {
+            //                    entry.WriteToDirectory(updateDirectory, new ExtractionOptions()
+            //                    {
+            //                        ExtractFullPath = true,
+            //                        Overwrite = true
+            //                    });
+            //                }
+            //            }
+            //        }
+
+            //        // Restart the application
+            //        MessageBox.Show("Restarting the application...", "Restarting", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        Properties.Settings.Default.version = "1.2";
+            //        Properties.Settings.Default.Save(); // Save changes
+            //        Application.Restart();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Application is up to date.", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
         }
+
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {

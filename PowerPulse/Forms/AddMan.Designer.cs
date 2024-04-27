@@ -186,6 +186,7 @@
             // comboBox2
             // 
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.ForeColor = System.Drawing.Color.White;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
@@ -241,6 +242,7 @@
             // cmbUsina
             // 
             this.cmbUsina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cmbUsina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsina.ForeColor = System.Drawing.Color.White;
             this.cmbUsina.FormattingEnabled = true;
             this.cmbUsina.Location = new System.Drawing.Point(78, 18);
