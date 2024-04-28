@@ -35,7 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblUsinas = new System.Windows.Forms.Label();
             this.lblTUsinas = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblFun = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -109,15 +109,15 @@
             this.lblTUsinas.TabIndex = 6;
             this.lblTUsinas.Text = "Nº Usinas";
             // 
-            // label6
+            // lblFun
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(71, 359);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 17);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Nº Usinas";
+            this.lblFun.AutoSize = true;
+            this.lblFun.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblFun.Location = new System.Drawing.Point(71, 359);
+            this.lblFun.Name = "lblFun";
+            this.lblFun.Size = new System.Drawing.Size(70, 17);
+            this.lblFun.TabIndex = 7;
+            this.lblFun.Text = "Nº Usinas";
             // 
             // label7
             // 
@@ -136,7 +136,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblFun);
             this.Controls.Add(this.lblTUsinas);
             this.Controls.Add(this.lblUsinas);
             this.Controls.Add(this.label5);
@@ -163,7 +163,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblUsinas;
         private System.Windows.Forms.Label lblTUsinas;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblFun;
         private System.Windows.Forms.Label label7;
     }
 }

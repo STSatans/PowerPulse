@@ -29,8 +29,18 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbNIF = new System.Windows.Forms.ComboBox();
             this.txtMoradaCliente = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtContato = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -38,8 +48,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmbNIF = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtMoradaCont = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,16 +62,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +90,45 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Nr. Contrato";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "NIF";
+            this.columnHeader2.Width = 106;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Nome";
+            this.columnHeader3.Width = 84;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Morada";
+            this.columnHeader4.Width = 96;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Telefone";
+            this.columnHeader5.Width = 93;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Potencia";
+            this.columnHeader6.Width = 111;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Metodo de Pagamento";
+            this.columnHeader7.Width = 130;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Estado Pagamento";
+            this.columnHeader10.Width = 127;
+            // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -107,6 +146,18 @@
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
             // 
+            // cmbNIF
+            // 
+            this.cmbNIF.BackColor = System.Drawing.Color.White;
+            this.cmbNIF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNIF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbNIF.FormattingEnabled = true;
+            this.cmbNIF.Location = new System.Drawing.Point(48, 26);
+            this.cmbNIF.Name = "cmbNIF";
+            this.cmbNIF.Size = new System.Drawing.Size(141, 21);
+            this.cmbNIF.TabIndex = 17;
+            this.cmbNIF.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // txtMoradaCliente
             // 
             this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -117,6 +168,16 @@
             this.txtMoradaCliente.Size = new System.Drawing.Size(235, 16);
             this.txtMoradaCliente.TabIndex = 8;
             this.txtMoradaCliente.TextChanged += new System.EventHandler(this.txtMoradaCliente_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(3, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 20);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "NIF:";
             // 
             // txtContato
             // 
@@ -198,26 +259,42 @@
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
             // 
-            // cmbNIF
+            // comboBox2
             // 
-            this.cmbNIF.BackColor = System.Drawing.Color.White;
-            this.cmbNIF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbNIF.FormattingEnabled = true;
-            this.cmbNIF.Location = new System.Drawing.Point(48, 26);
-            this.cmbNIF.Name = "cmbNIF";
-            this.cmbNIF.Size = new System.Drawing.Size(141, 21);
-            this.cmbNIF.TabIndex = 17;
-            this.cmbNIF.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox2.BackColor = System.Drawing.Color.White;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1.15",
+            "2.3",
+            "3.45",
+            "4.6",
+            "5.75",
+            "6.9",
+            "10.35",
+            "13.8",
+            "17.25",
+            "20.7"});
+            this.comboBox2.Location = new System.Drawing.Point(168, 152);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(141, 21);
+            this.comboBox2.TabIndex = 19;
             // 
-            // label4
+            // comboBox1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(3, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 20);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "NIF:";
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Debito Direto",
+            "Bi-Mestral",
+            "Tri-Mestral"});
+            this.comboBox1.Location = new System.Drawing.Point(184, 111);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(141, 21);
+            this.comboBox1.TabIndex = 18;
             // 
             // txtTel
             // 
@@ -349,80 +426,6 @@
             this.btnIns.Text = "Inserir";
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "NIF";
-            this.columnHeader2.Width = 106;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Nome";
-            this.columnHeader3.Width = 84;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Morada";
-            this.columnHeader4.Width = 96;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Telefone";
-            this.columnHeader5.Width = 93;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Potencia";
-            this.columnHeader6.Width = 111;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Metodo de Pagamento";
-            this.columnHeader7.Width = 130;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Estado Pagamento";
-            this.columnHeader10.Width = 127;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Debito Direto",
-            "Bi-Mestral",
-            "Tri-Mestral"});
-            this.comboBox1.Location = new System.Drawing.Point(184, 111);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 21);
-            this.comboBox1.TabIndex = 18;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.BackColor = System.Drawing.Color.White;
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "1.15",
-            "2.3",
-            "3.45",
-            "4.6",
-            "5.75",
-            "6.9",
-            "10.35",
-            "13.8",
-            "17.25",
-            "20.7"});
-            this.comboBox2.Location = new System.Drawing.Point(168, 152);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(141, 21);
-            this.comboBox2.TabIndex = 19;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Nr. Contrato";
             // 
             // Contratos
             // 

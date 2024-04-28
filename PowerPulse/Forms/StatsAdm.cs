@@ -45,8 +45,20 @@ namespace PowerPulse.Forms
                 }
                 row++; // Increment row counter for next row
             }
-
             rd2.Close();
+            BD.Close();
+            BD.Open();
+            SqlCommand cmd3 = new SqlCommand("Select Count(ID) from Login", BD);
+            SqlDataReader rd3 = cmd3.ExecuteReader();
+            if(rd3 !=null)
+            {
+                while (rd3.Read())
+                {
+                    lblFun.Text = rd3[0].ToString();
+                }
+            }
+            rd3.Close();
+            BD.Close();
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 
 class Program
@@ -12,36 +14,32 @@ class Program
         string owner = "STSatans";
         string repo = "PowerPulse";
         string downloadPath = "../PowerPulse.rar"; // Path to download the release archive in the parent folder
+        string logFilePath = "updater_log.txt";
 
         try
         {
-            Console.WriteLine($"Downloading the latest release of PowerPulse from GitHub...");
-            await DownloadLatestReleaseAsync(owner, repo, downloadPath);
-
-            // Get the directory containing PowerPulseUpdater.exe
-            string updaterDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            // Get the parent directory of the updater directory (where PowerPulse.exe is located)
-            string powerPulseDirectory = Directory.GetParent(updaterDirectory).FullName;
-
-            // Extract files from PowerPulse.rar
-            Console.WriteLine($"Extracting files from the downloaded archive...");
-            List<string> extractedFiles = await ExtractRarArchiveAsync(downloadPath, powerPulseDirectory);
-            await ExtractRarArchiveAsync(downloadPath, powerPulseDirectory);
-            foreach (var file in extractedFiles)
+            using (StreamWriter writer = File.AppendText(logFilePath))
             {
-                Console.WriteLine(file);
+                writer.WriteLine($"Log started at: {DateTime.Now}");
+
+                // Terminate PowerPulse.exe process if running
+                TerminatePowerPulseProcess(writer);
+
+                Console.WriteLine($"Downloading the latest release of PowerPulse from GitHub...");
+                await DownloadLatestReleaseAsync(owner, repo, downloadPath, writer);
+
+                string updaterDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string powerPulseDirectory = Directory.GetParent(updaterDirectory).FullName;
+
+                Console.WriteLine($"Extracting files from the downloaded archive...");
+                List<string> extractedFiles = await ExtractRarArchiveAsync(downloadPath, powerPulseDirectory, writer);
+
+                Console.WriteLine($"PowerPulse has been successfully updated.");
+                Process.Start(Path.Combine(powerPulseDirectory, "PowerPulse.exe"));
+
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadKey();
             }
-
-            Console.WriteLine($"PowerPulse has been successfully updated.");
-
-            string powerPulseExePath = Path.Combine(powerPulseDirectory, "PowerPulse.exe");
-            Process.Start(powerPulseExePath);
-
-
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
         catch (Exception ex)
         {
@@ -51,7 +49,17 @@ class Program
         }
     }
 
-    static async Task DownloadLatestReleaseAsync(string owner, string repo, string downloadPath)
+    static void TerminatePowerPulseProcess(StreamWriter writer)
+    {
+        Process[] processes = Process.GetProcessesByName("PowerPulse");
+        foreach (Process process in processes)
+        {
+            process.Kill();
+            writer.WriteLine($"Terminated PowerPulse.exe process (PID: {process.Id}).");
+        }
+    }
+
+    static async Task DownloadLatestReleaseAsync(string owner, string repo, string downloadPath, StreamWriter writer)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -71,39 +79,31 @@ class Program
         }
     }
 
-    static async Task<List<string>> ExtractRarArchiveAsync(string archivePath, string extractDirectory)
+    static async Task<List<string>> ExtractRarArchiveAsync(string archivePath, string extractDirectory, StreamWriter writer)
     {
         List<string> extractedFiles = new List<string>();
 
-        try
+        using (var archive = RarArchive.Open(archivePath))
         {
-            using (var archive = RarArchive.Open(archivePath))
+            foreach (var entry in archive.Entries)
             {
-                foreach (var entry in archive.Entries)
+                string entryPath = Path.Combine(extractDirectory, entry.Key.Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+                if (entryPath.StartsWith(Path.Combine(extractDirectory, "Updater"), StringComparison.OrdinalIgnoreCase) && Directory.Exists(Path.Combine(extractDirectory, "Updater")))
                 {
-                    string entryPath = Path.Combine(extractDirectory, entry.Key.Replace("/", Path.DirectorySeparatorChar.ToString()));
+                    // Skip extraction if the "Updater" folder already exists
+                    continue;
+                }
 
-                    if (entryPath.StartsWith(Path.Combine(extractDirectory, "Updater"), StringComparison.OrdinalIgnoreCase) && Directory.Exists(Path.Combine(extractDirectory, "Updater")))
-                    {
-                        // Skip extraction if the "Updater" folder already exists
-                        continue;
-                    }
+                Directory.CreateDirectory(Path.GetDirectoryName(entryPath));
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(entryPath));
-
-                    using (Stream entryStream = entry.OpenEntryStream())
-                    using (FileStream fileStream = File.Create(entryPath))
-                    {
-                        await entryStream.CopyToAsync(fileStream);
-                        extractedFiles.Add(entryPath);
-                    }
+                using (Stream entryStream = entry.OpenEntryStream())
+                using (FileStream fileStream = File.Create(entryPath))
+                {
+                    await entryStream.CopyToAsync(fileStream);
+                    extractedFiles.Add(entryPath);
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error during extraction: {ex.Message}");
-            throw;
         }
 
         return extractedFiles;
