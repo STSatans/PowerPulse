@@ -85,6 +85,7 @@
             this.iconButton1.TabIndex = 11;
             this.iconButton1.Text = "Cancelar";
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // iconButton2
             // 
@@ -99,6 +100,7 @@
             this.iconButton2.TabIndex = 10;
             this.iconButton2.Text = "Atualizar";
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // iconButton3
             // 
@@ -113,6 +115,7 @@
             this.iconButton3.TabIndex = 9;
             this.iconButton3.Text = "Editar";
             this.iconButton3.UseVisualStyleBackColor = true;
+            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // iconButton4
             // 
@@ -127,6 +130,7 @@
             this.iconButton4.TabIndex = 8;
             this.iconButton4.Text = "Inserir";
             this.iconButton4.UseVisualStyleBackColor = true;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
             // panel2
             // 

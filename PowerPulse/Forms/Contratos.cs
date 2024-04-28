@@ -124,7 +124,7 @@ namespace PowerPulse.Forms
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select Cliente.nome,Cliente.endereco,Contrato. from Cliente left join Cliente.Contrato=Contrato.id_contrato where id_cliente=" + cmbNIF.SelectedItem.ToString(), BD);
+            SqlCommand cmd = new SqlCommand("Select Cliente.nome,Cliente.endereco,Contrato.* from Cliente left join Cliente.Contrato=Contrato.id_contrato where id_cliente=" + cmbNIF.SelectedItem.ToString(), BD);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {

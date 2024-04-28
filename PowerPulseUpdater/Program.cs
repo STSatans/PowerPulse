@@ -9,13 +9,13 @@ using SharpCompress.Archives.Rar;
 
 class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
         string owner = "STSatans";
         string repo = "PowerPulse";
         string downloadPath = "../PowerPulse.rar"; // Path to download the release archive in the parent folder
         string logFilePath = "updater_log.txt";
-
+             
         try
         {
             using (StreamWriter writer = File.AppendText(logFilePath))

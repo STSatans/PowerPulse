@@ -11,9 +11,8 @@ namespace PowerPulse.Forms
         private Form currentChildForm;
 
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
+
         public Manutencao()
         {
             InitializeComponent();
@@ -109,7 +108,7 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Delete Top(1) from Manutencao_Usina where id_usina=@ID", BD);
+                SqlCommand cmd = new SqlCommand("Delete from Manutencao_Usina where id_usina=@ID", BD);
                 foreach (ListViewItem selectedItem in listView1.SelectedItems)
                 {
                     cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);

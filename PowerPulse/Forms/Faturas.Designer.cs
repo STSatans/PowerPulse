@@ -214,6 +214,7 @@
             this.btnInserir.TabIndex = 3;
             this.btnInserir.Text = "inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEdit
             // 
@@ -243,6 +244,7 @@
             this.btnDel.TabIndex = 5;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnConf
             // 
@@ -257,6 +259,7 @@
             this.btnConf.TabIndex = 6;
             this.btnConf.Text = "Confirmar";
             this.btnConf.UseVisualStyleBackColor = true;
+            this.btnConf.Click += new System.EventHandler(this.btnConf_Click);
             // 
             // btnCanc
             // 
@@ -271,6 +274,7 @@
             this.btnCanc.TabIndex = 7;
             this.btnCanc.Text = "Cancelar";
             this.btnCanc.UseVisualStyleBackColor = true;
+            this.btnCanc.Click += new System.EventHandler(this.btnCanc_Click);
             // 
             // Faturas
             // 

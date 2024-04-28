@@ -13,9 +13,7 @@ namespace PowerPulse.Forms
         }
 
         //conexoes
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         SqlConnection BD = new SqlConnection(con);//con estagio
 
         private void Cliente_Load(object sender, EventArgs e)
@@ -72,6 +70,26 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally { BD.Close(); }
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
