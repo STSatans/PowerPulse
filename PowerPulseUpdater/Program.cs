@@ -9,36 +9,44 @@ using SharpCompress.Archives.Rar;
 
 class Program
 {
-    static async Task Main()
+    static async Task Main(string[] args)
     {
+        // Check if running with elevated privileges
+        if (!IsAdmin())
+        {
+            // Restart with elevated privileges
+            RestartWithAdminPrivileges();
+            return;
+        }
+
         string owner = "STSatans";
         string repo = "PowerPulse";
         string downloadPath = "../PowerPulse.rar"; // Path to download the release archive in the parent folder
         string logFilePath = "updater_log.txt";
-             
+
         try
         {
-            using (StreamWriter writer = File.AppendText(logFilePath))
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
             {
                 writer.WriteLine($"Log started at: {DateTime.Now}");
 
-                // Terminate PowerPulse.exe process if running
+                // Check if PowerPulse.exe is running and terminate the process
                 TerminatePowerPulseProcess(writer);
 
-                Console.WriteLine($"Downloading the latest release of PowerPulse from GitHub...");
+                writer.WriteLine($"Downloading the latest release of PowerPulse from GitHub...");
                 await DownloadLatestReleaseAsync(owner, repo, downloadPath, writer);
 
                 string updaterDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string powerPulseDirectory = Directory.GetParent(updaterDirectory).FullName;
 
-                Console.WriteLine($"Extracting files from the downloaded archive...");
+                writer.WriteLine($"Extracting files from the downloaded archive...");
                 List<string> extractedFiles = await ExtractRarArchiveAsync(downloadPath, powerPulseDirectory, writer);
 
-                Console.WriteLine($"PowerPulse has been successfully updated.");
+                writer.WriteLine($"PowerPulse has been successfully updated.");
                 Process.Start(Path.Combine(powerPulseDirectory, "PowerPulse.exe"));
 
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
+                writer.WriteLine("Press any key to exit...");
+                writer.Flush();
             }
         }
         catch (Exception ex)
@@ -49,6 +57,31 @@ class Program
         }
     }
 
+    static bool IsAdmin()
+    {
+        using (var identity = System.Security.Principal.WindowsIdentity.GetCurrent())
+        {
+            var principal = new System.Security.Principal.WindowsPrincipal(identity);
+            return principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
+        }
+    }
+
+    static void RestartWithAdminPrivileges()
+    {
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.FileName = System.Reflection.Assembly.GetExecutingAssembly().Location;
+        startInfo.Verb = "runas"; // Run as administrator
+        try
+        {
+            Process.Start(startInfo);
+        }
+        catch (System.ComponentModel.Win32Exception)
+        {
+            // User canceled the UAC prompt or it failed for some reason
+        }
+        Environment.Exit(0);
+    }
+
     static void TerminatePowerPulseProcess(StreamWriter writer)
     {
         Process[] processes = Process.GetProcessesByName("PowerPulse");
@@ -57,6 +90,7 @@ class Program
             process.Kill();
             writer.WriteLine($"Terminated PowerPulse.exe process (PID: {process.Id}).");
         }
+        writer.Flush();
     }
 
     static async Task DownloadLatestReleaseAsync(string owner, string repo, string downloadPath, StreamWriter writer)
@@ -65,8 +99,25 @@ class Program
         {
             client.DefaultRequestHeaders.Add("User-Agent", "request");
 
-            HttpResponseMessage response = await client.GetAsync($"https://api.github.com/repos/{owner}/{repo}/releases/latest");
-            response.EnsureSuccessStatusCode(); // Throw on error status code
+            HttpResponseMessage response;
+            try
+            {
+                response = await client.GetAsync($"https://api.github.com/repos/{owner}/{repo}/releases/latest");
+                response.EnsureSuccessStatusCode(); // Throw on error status code
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.Message.Contains("404"))
+                {
+                    writer.WriteLine($"Error: The specified repository or release does not exist.");
+                    return;
+                }
+                else
+                {
+                    writer.WriteLine($"Error: {ex.Message}");
+                    return;
+                }
+            }
 
             dynamic release = Newtonsoft.Json.JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
             string downloadUrl = release.assets[0].browser_download_url;
@@ -76,8 +127,10 @@ class Program
             {
                 await contentStream.CopyToAsync(fileStream);
             }
+            writer.Flush();
         }
     }
+
 
     static async Task<List<string>> ExtractRarArchiveAsync(string archivePath, string extractDirectory, StreamWriter writer)
     {
@@ -104,6 +157,7 @@ class Program
                     extractedFiles.Add(entryPath);
                 }
             }
+            writer.Flush();
         }
 
         return extractedFiles;

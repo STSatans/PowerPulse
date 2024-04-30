@@ -27,22 +27,29 @@ namespace PowerPulse
         {
             try
             {
+                // GitHub repository information
                 string owner = "STSatans";
                 string repo = "PowerPulse";
 
                 // Fetch the latest release from GitHub
                 string apiUrl = $"https://api.github.com/repos/{owner}/{repo}/releases/latest";
                 string json;
+
+                // Download release information from GitHub
                 using (WebClient client = new WebClient())
                 {
                     client.Headers.Add("User-Agent", "request");
                     json = client.DownloadString(apiUrl);
                 }
-                string PowerPulseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-                // Navigate to the "App" folder relative to the PowerPulse.exe directory
-                string appDirectory = Path.Combine(PowerPulseDirectory, "Updater");
+                // Get the directory of PowerPulse.exe
+                string powerPulseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+                // Navigate to the "Updater" folder relative to PowerPulse.exe
+                string updaterDirectory = Path.Combine(powerPulseDirectory, "Updater");
+                string updaterPath = Path.Combine(updaterDirectory, "PowerPulseUpdater.exe");
+
+                // Deserialize the JSON response from GitHub
                 dynamic release = JsonConvert.DeserializeObject(json);
                 string latestVersion = release.tag_name;
 
@@ -50,29 +57,39 @@ namespace PowerPulse
                 Version currentVersion = new Version(Application.ProductVersion);
                 Version latest = new Version(latestVersion);
 
-                string updaterPath = Path.Combine(appDirectory, "PowerPulseUpdater.exe");
-
                 if (latest > currentVersion)
                 {
+                    // Prompt user to update
                     DialogResult result = MessageBox.Show("An update is available. Do you want to update now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
                         // Close the current application
                         Close();
+
                         // Run the updater
                         Process.Start(updaterPath);
                     }
                 }
                 else
                 {
+                    // No updates available
                     MessageBox.Show("No updates available.", "No Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+            catch (WebException ex)
+            {
+                MessageBox.Show($"Error accessing GitHub API: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (JsonException ex)
+            {
+                MessageBox.Show($"Error parsing JSON response: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //enumerador para definir os estados de Login
         private enum LoginResult

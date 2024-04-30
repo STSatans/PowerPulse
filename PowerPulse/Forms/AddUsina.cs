@@ -116,7 +116,7 @@ namespace PowerPulse.Forms
 
         private void txtCapacidade_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+            e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
 
         private void txtProd_KeyPress(object sender, KeyPressEventArgs e)
@@ -212,6 +212,13 @@ namespace PowerPulse.Forms
                 if (row > 0)
                 {
                     MessageBox.Show("Inseridos", "Inserido", MessageBoxButtons.OK);
+                    txtCapacidade.Clear();
+                    txtGasto.Clear();
+                    txtLoc.Clear();
+                    txtMaterial.Clear();
+                    txtNome.Clear();
+                    dtpData.Value = DateTime.Today;
+                    btnIns.Enabled = false;
                 }
                 else
                 {
@@ -226,6 +233,11 @@ namespace PowerPulse.Forms
             {
                 BD.Close();
             }
+        }
+
+        private void txtGasto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
     }
 }

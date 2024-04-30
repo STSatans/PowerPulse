@@ -220,6 +220,7 @@
             this.txtGasto.Size = new System.Drawing.Size(100, 20);
             this.txtGasto.TabIndex = 13;
             this.txtGasto.TextChanged += new System.EventHandler(this.txtGasto_TextChanged);
+            this.txtGasto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGasto_KeyPress);
             // 
             // label9
             // 
