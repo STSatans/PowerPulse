@@ -79,6 +79,7 @@
             // 
             // txtLoc
             // 
+            this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtLoc.Location = new System.Drawing.Point(105, 239);
             this.txtLoc.Name = "txtLoc";
             this.txtLoc.Size = new System.Drawing.Size(100, 20);
@@ -117,6 +118,7 @@
             // 
             // txtProd
             // 
+            this.txtProd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtProd.Location = new System.Drawing.Point(150, 209);
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(172, 20);
@@ -126,6 +128,7 @@
             // 
             // txtNome
             // 
+            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.Location = new System.Drawing.Point(63, 22);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(214, 20);
@@ -157,6 +160,7 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Items.AddRange(new object[] {
@@ -215,6 +219,7 @@
             // 
             // txtGasto
             // 
+            this.txtGasto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtGasto.Location = new System.Drawing.Point(63, 65);
             this.txtGasto.Name = "txtGasto";
             this.txtGasto.Size = new System.Drawing.Size(100, 20);
@@ -236,6 +241,7 @@
             // 
             // txtCapacidade
             // 
+            this.txtCapacidade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCapacidade.Location = new System.Drawing.Point(102, 36);
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(100, 20);
@@ -245,6 +251,7 @@
             // 
             // txtMaterial
             // 
+            this.txtMaterial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMaterial.Location = new System.Drawing.Point(123, 6);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(129, 20);

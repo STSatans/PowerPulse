@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.btnCanc = new FontAwesome.Sharp.IconButton();
+            this.btnUpdate = new FontAwesome.Sharp.IconButton();
+            this.btnEdit = new FontAwesome.Sharp.IconButton();
+            this.btnIns = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.txtMorada = new System.Windows.Forms.TextBox();
             this.txtTelefone = new System.Windows.Forms.TextBox();
             this.txtCodP2 = new System.Windows.Forms.TextBox();
@@ -59,10 +59,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.iconButton1);
-            this.panel1.Controls.Add(this.iconButton2);
-            this.panel1.Controls.Add(this.iconButton3);
-            this.panel1.Controls.Add(this.iconButton4);
+            this.panel1.Controls.Add(this.btnCanc);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.btnEdit);
+            this.panel1.Controls.Add(this.btnIns);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnDel);
             this.panel1.Controls.Add(this.lst);
@@ -72,71 +72,71 @@
             this.panel1.Size = new System.Drawing.Size(816, 489);
             this.panel1.TabIndex = 0;
             // 
-            // iconButton1
+            // btnCanc
             // 
-            this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(701, 120);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(92, 22);
-            this.iconButton1.TabIndex = 11;
-            this.iconButton1.Text = "Cancelar";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnCanc.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCanc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCanc.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnCanc.IconColor = System.Drawing.Color.Black;
+            this.btnCanc.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCanc.Location = new System.Drawing.Point(701, 120);
+            this.btnCanc.Name = "btnCanc";
+            this.btnCanc.Size = new System.Drawing.Size(92, 22);
+            this.btnCanc.TabIndex = 11;
+            this.btnCanc.Text = "Cancelar";
+            this.btnCanc.UseVisualStyleBackColor = true;
+            this.btnCanc.Click += new System.EventHandler(this.btnCanc_Click);
             // 
-            // iconButton2
+            // btnUpdate
             // 
-            this.iconButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(701, 92);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(92, 22);
-            this.iconButton2.TabIndex = 10;
-            this.iconButton2.Text = "Atualizar";
-            this.iconButton2.UseVisualStyleBackColor = true;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnUpdate.IconColor = System.Drawing.Color.Black;
+            this.btnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUpdate.Location = new System.Drawing.Point(701, 92);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(92, 22);
+            this.btnUpdate.TabIndex = 10;
+            this.btnUpdate.Text = "Atualizar";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // iconButton3
+            // btnEdit
             // 
-            this.iconButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.Location = new System.Drawing.Point(701, 64);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(92, 22);
-            this.iconButton3.TabIndex = 9;
-            this.iconButton3.Text = "Editar";
-            this.iconButton3.UseVisualStyleBackColor = true;
-            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
+            this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEdit.IconColor = System.Drawing.Color.Black;
+            this.btnEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEdit.Location = new System.Drawing.Point(701, 64);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(92, 22);
+            this.btnEdit.TabIndex = 9;
+            this.btnEdit.Text = "Editar";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // iconButton4
+            // btnIns
             // 
-            this.iconButton4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.Location = new System.Drawing.Point(701, 22);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(92, 22);
-            this.iconButton4.TabIndex = 8;
-            this.iconButton4.Text = "Inserir";
-            this.iconButton4.UseVisualStyleBackColor = true;
-            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
+            this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnIns.IconColor = System.Drawing.Color.Black;
+            this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnIns.Location = new System.Drawing.Point(701, 22);
+            this.btnIns.Name = "btnIns";
+            this.btnIns.Size = new System.Drawing.Size(92, 22);
+            this.btnIns.TabIndex = 8;
+            this.btnIns.Text = "Inserir";
+            this.btnIns.UseVisualStyleBackColor = true;
+            this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtNome);
             this.panel2.Controls.Add(this.txtMorada);
             this.panel2.Controls.Add(this.txtTelefone);
             this.panel2.Controls.Add(this.txtCodP2);
@@ -162,33 +162,46 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Nome Completo:";
             // 
-            // textBox1
+            // txtNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(148, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 20);
-            this.textBox1.TabIndex = 10;
+            this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtNome.Location = new System.Drawing.Point(148, 59);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(240, 20);
+            this.txtNome.TabIndex = 10;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // txtMorada
             // 
+            this.txtMorada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMorada.Location = new System.Drawing.Point(88, 136);
             this.txtMorada.Name = "txtMorada";
             this.txtMorada.Size = new System.Drawing.Size(240, 20);
             this.txtMorada.TabIndex = 9;
+            this.txtMorada.TextChanged += new System.EventHandler(this.txtMorada_TextChanged);
             // 
             // txtTelefone
             // 
+            this.txtTelefone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtTelefone.Location = new System.Drawing.Point(88, 94);
+            this.txtTelefone.MaxLength = 9;
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(240, 20);
+            this.txtTelefone.Size = new System.Drawing.Size(95, 20);
             this.txtTelefone.TabIndex = 8;
+            this.txtTelefone.TextChanged += new System.EventHandler(this.txtTelefone_TextChanged);
+            this.txtTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefone_KeyPress);
             // 
             // txtCodP2
             // 
+            this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP2.Location = new System.Drawing.Point(208, 176);
+            this.txtCodP2.MaxLength = 3;
             this.txtCodP2.Name = "txtCodP2";
             this.txtCodP2.Size = new System.Drawing.Size(52, 20);
             this.txtCodP2.TabIndex = 7;
+            this.txtCodP2.TextChanged += new System.EventHandler(this.txtCodP2_TextChanged);
+            this.txtCodP2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodP2_KeyPress);
             // 
             // label5
             // 
@@ -202,10 +215,14 @@
             // 
             // txtCodP1
             // 
+            this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP1.Location = new System.Drawing.Point(131, 176);
+            this.txtCodP1.MaxLength = 4;
             this.txtCodP1.Name = "txtCodP1";
             this.txtCodP1.Size = new System.Drawing.Size(52, 20);
             this.txtCodP1.TabIndex = 5;
+            this.txtCodP1.TextChanged += new System.EventHandler(this.txtCodP1_TextChanged);
+            this.txtCodP1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodP1_KeyPress);
             // 
             // label4
             // 
@@ -249,10 +266,14 @@
             // 
             // txtNIF
             // 
+            this.txtNIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNIF.Location = new System.Drawing.Point(60, 24);
+            this.txtNIF.MaxLength = 9;
             this.txtNIF.Name = "txtNIF";
-            this.txtNIF.Size = new System.Drawing.Size(240, 20);
+            this.txtNIF.Size = new System.Drawing.Size(123, 20);
             this.txtNIF.TabIndex = 0;
+            this.txtNIF.TextChanged += new System.EventHandler(this.txtNIF_TextChanged);
+            this.txtNIF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNIF_KeyPress);
             // 
             // btnDel
             // 
@@ -280,6 +301,7 @@
             this.colTelefone,
             this.colMorada,
             this.colCodP});
+            this.lst.ForeColor = System.Drawing.Color.White;
             this.lst.HideSelection = false;
             this.lst.Location = new System.Drawing.Point(12, 246);
             this.lst.Name = "lst";
@@ -354,13 +376,13 @@
         private System.Windows.Forms.TextBox txtCodP1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtMorada;
         private System.Windows.Forms.TextBox txtTelefone;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton4;
+        private FontAwesome.Sharp.IconButton btnCanc;
+        private FontAwesome.Sharp.IconButton btnUpdate;
+        private FontAwesome.Sharp.IconButton btnEdit;
+        private FontAwesome.Sharp.IconButton btnIns;
         private System.Windows.Forms.ColumnHeader colCodP;
     }
 }
