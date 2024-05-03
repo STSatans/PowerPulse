@@ -22,37 +22,5 @@ namespace PowerPulse.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=141.98.157.118\\SQLEXPRESS;Initial Catalog=PowerPulse;Persist Security" +
-            " Info=True;User ID=sa;Password=TesteBD;Encrypt=False")]
-        public string PowerPulseConnectionString2
-        {
-            get
-            {
-                return ((string)(this["PowerPulseConnectionString2"]));
-            }
-        }
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=141.98.157.118\\1433 ;Initial Catalog=PowerPulse;Persist Security Info" +
-            "=True;User ID=sa;Password=TesteBD;Encrypt=False")]
-        public string Powerpulse {
-            get {
-                return ((string)(this["Powerpulse"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
-        public string version {
-            get {
-                return ((string)(this["version"]));
-            }
-            set {
-                this["version"] = value;
-            }
-        }
     }
 }

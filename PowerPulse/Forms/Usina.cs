@@ -13,8 +13,6 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
 
@@ -38,6 +36,7 @@ namespace PowerPulse.Forms
                     selectedItem.Remove();
                     ResetLst();
                 }
+                BD.Close();
             }
             catch (Exception ex)
             {
@@ -108,6 +107,7 @@ namespace PowerPulse.Forms
                         }
                     }
                 }
+                BD.Close();
             }
             catch (Exception ex)
             {
@@ -192,7 +192,7 @@ namespace PowerPulse.Forms
                 txtNome.Enabled = false;
                 btnCancel.Hide();
                 btnUpdate.Hide();
-
+                BD.Close();
             }
             catch (Exception ex)
             {
@@ -253,6 +253,7 @@ namespace PowerPulse.Forms
                             dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
                         }
                     }
+                    BD.Close();
                 }
             }
 
@@ -278,7 +279,6 @@ namespace PowerPulse.Forms
             txtNome.Text = "";
             dtpData.Value = DateTime.Now;
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -319,16 +319,21 @@ namespace PowerPulse.Forms
                             else
                             {
                                 MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
-
+                                BD2.Close();
                             }
-                            BD2.Close();
+                           
                         }
                     }
+                    BD.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                BD.Close();
             }
         }
     }

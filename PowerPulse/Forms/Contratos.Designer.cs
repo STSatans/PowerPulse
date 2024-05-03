@@ -62,6 +62,10 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
+            this.txtCodP1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCodP2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -132,6 +136,10 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.txtCodP2);
+            this.panel1.Controls.Add(this.txtCodP1);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cmbNIF);
             this.panel1.Controls.Add(this.txtMoradaCliente);
             this.panel1.Controls.Add(this.label4);
@@ -145,6 +153,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // cmbNIF
             // 
@@ -161,11 +170,10 @@
             // txtMoradaCliente
             // 
             this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtMoradaCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMoradaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtMoradaCliente.Location = new System.Drawing.Point(93, 153);
+            this.txtMoradaCliente.Location = new System.Drawing.Point(93, 134);
             this.txtMoradaCliente.Name = "txtMoradaCliente";
-            this.txtMoradaCliente.Size = new System.Drawing.Size(235, 16);
+            this.txtMoradaCliente.Size = new System.Drawing.Size(235, 23);
             this.txtMoradaCliente.TabIndex = 8;
             this.txtMoradaCliente.TextChanged += new System.EventHandler(this.txtMoradaCliente_TextChanged);
             // 
@@ -182,22 +190,20 @@
             // txtContato
             // 
             this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtContato.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtContato.Location = new System.Drawing.Point(87, 112);
+            this.txtContato.Location = new System.Drawing.Point(87, 93);
             this.txtContato.Name = "txtContato";
-            this.txtContato.Size = new System.Drawing.Size(123, 16);
+            this.txtContato.Size = new System.Drawing.Size(123, 23);
             this.txtContato.TabIndex = 7;
             // 
             // txtNome
             // 
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
-            this.txtNome.Location = new System.Drawing.Point(61, 68);
+            this.txtNome.Location = new System.Drawing.Point(61, 63);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(267, 16);
+            this.txtNome.Size = new System.Drawing.Size(267, 23);
             this.txtNome.TabIndex = 6;
             // 
             // label6
@@ -216,7 +222,7 @@
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(3, 149);
+            this.label3.Location = new System.Drawing.Point(3, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.TabIndex = 2;
@@ -226,7 +232,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(3, 109);
+            this.label2.Location = new System.Drawing.Point(3, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 1;
@@ -427,6 +433,46 @@
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
+            // txtCodP1
+            // 
+            this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP1.Location = new System.Drawing.Point(114, 165);
+            this.txtCodP1.Name = "txtCodP1";
+            this.txtCodP1.Size = new System.Drawing.Size(45, 23);
+            this.txtCodP1.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(3, 165);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 20);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Codigo Postal:";
+            // 
+            // txtCodP2
+            // 
+            this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP2.Location = new System.Drawing.Point(185, 165);
+            this.txtCodP2.Name = "txtCodP2";
+            this.txtCodP2.Size = new System.Drawing.Size(45, 23);
+            this.txtCodP2.TabIndex = 20;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label12.Location = new System.Drawing.Point(165, 168);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 20);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "-";
+            // 
             // Contratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,5 +548,9 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.TextBox txtCodP1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtCodP2;
     }
 }

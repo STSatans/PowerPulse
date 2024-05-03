@@ -1,4 +1,6 @@
-﻿namespace PowerPulse.Forms
+﻿using System;
+
+namespace PowerPulse.Forms
 {
     partial class Cliente
     {
@@ -29,6 +31,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClear = new FontAwesome.Sharp.IconButton();
             this.btnCanc = new FontAwesome.Sharp.IconButton();
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
             this.btnEdit = new FontAwesome.Sharp.IconButton();
@@ -50,8 +53,8 @@
             this.lst = new System.Windows.Forms.ListView();
             this.ColID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMorada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCodP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,6 +62,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnCanc);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.btnEdit);
@@ -71,6 +75,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 489);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnClear.IconColor = System.Drawing.Color.Black;
+            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClear.Location = new System.Drawing.Point(25, 207);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(92, 22);
+            this.btnClear.TabIndex = 12;
+            this.btnClear.Text = "Limpar Seleção";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCanc
             // 
@@ -165,6 +185,7 @@
             // txtNome
             // 
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtNome.ForeColor = System.Drawing.Color.White;
             this.txtNome.Location = new System.Drawing.Point(148, 59);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(240, 20);
@@ -175,6 +196,7 @@
             // txtMorada
             // 
             this.txtMorada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtMorada.ForeColor = System.Drawing.Color.White;
             this.txtMorada.Location = new System.Drawing.Point(88, 136);
             this.txtMorada.Name = "txtMorada";
             this.txtMorada.Size = new System.Drawing.Size(240, 20);
@@ -184,6 +206,7 @@
             // txtTelefone
             // 
             this.txtTelefone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtTelefone.ForeColor = System.Drawing.Color.White;
             this.txtTelefone.Location = new System.Drawing.Point(88, 94);
             this.txtTelefone.MaxLength = 9;
             this.txtTelefone.Name = "txtTelefone";
@@ -195,6 +218,7 @@
             // txtCodP2
             // 
             this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP2.ForeColor = System.Drawing.Color.White;
             this.txtCodP2.Location = new System.Drawing.Point(208, 176);
             this.txtCodP2.MaxLength = 3;
             this.txtCodP2.Name = "txtCodP2";
@@ -216,6 +240,7 @@
             // txtCodP1
             // 
             this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP1.ForeColor = System.Drawing.Color.White;
             this.txtCodP1.Location = new System.Drawing.Point(131, 176);
             this.txtCodP1.MaxLength = 4;
             this.txtCodP1.Name = "txtCodP1";
@@ -267,6 +292,7 @@
             // txtNIF
             // 
             this.txtNIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtNIF.ForeColor = System.Drawing.Color.White;
             this.txtNIF.Location = new System.Drawing.Point(60, 24);
             this.txtNIF.MaxLength = 9;
             this.txtNIF.Name = "txtNIF";
@@ -298,8 +324,8 @@
             this.lst.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColID,
             this.colNome,
-            this.colTelefone,
             this.colMorada,
+            this.colTelefone,
             this.colCodP});
             this.lst.ForeColor = System.Drawing.Color.White;
             this.lst.HideSelection = false;
@@ -319,23 +345,21 @@
             // colNome
             // 
             this.colNome.Text = "Nome";
-            this.colNome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.colNome.Width = 214;
+            this.colNome.Width = 71;
+            // 
+            // colMorada
+            // 
+            this.colMorada.Text = "Endereco";
+            this.colMorada.Width = 115;
             // 
             // colTelefone
             // 
             this.colTelefone.Text = "Telefone";
-            this.colTelefone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // colMorada
-            // 
-            this.colMorada.Text = "Morada";
-            this.colMorada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colTelefone.Width = 134;
             // 
             // colCodP
             // 
             this.colCodP.Text = "Código Postal";
-            this.colCodP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.colCodP.Width = 103;
             // 
             // Cliente
@@ -356,7 +380,6 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
 
         private System.Windows.Forms.Panel panel1;
@@ -365,8 +388,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ColumnHeader ColID;
         private System.Windows.Forms.ColumnHeader colNome;
-        private System.Windows.Forms.ColumnHeader colTelefone;
         private System.Windows.Forms.ColumnHeader colMorada;
+        private System.Windows.Forms.ColumnHeader colTelefone;
         private System.Windows.Forms.TextBox txtNIF;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -384,5 +407,6 @@
         private FontAwesome.Sharp.IconButton btnEdit;
         private FontAwesome.Sharp.IconButton btnIns;
         private System.Windows.Forms.ColumnHeader colCodP;
+        private FontAwesome.Sharp.IconButton btnClear;
     }
 }
