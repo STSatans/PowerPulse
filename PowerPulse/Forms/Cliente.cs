@@ -182,52 +182,14 @@ namespace PowerPulse.Forms
         }
         private void Reset()
         {
-            try
-            {
-                BD.Open();
-
-                if (lst.SelectedItems.Count > 0)
-                {
-                    // Get the selected item
-                    ListViewItem selectedItem = lst.SelectedItems[0];
-                    string Item = selectedItem.SubItems[0].Text;
-
-                    SqlCommand cmd = new SqlCommand("Select Id_cliente,nome,endereco,contato,codPostal from Cliente where id_cliente=" + Item, BD);
-                    SqlDataReader rdr = cmd.ExecuteReader();
-                    if (rdr.HasRows)
-                    {
-                        while (rdr.Read())
-                        {
-                            txtNIF.Text = rdr["Id_cliente"].ToString();
-                            txtNome.Text = rdr["nome"].ToString();
-                            txtTelefone.Text = rdr["contato"].ToString();
-                            txtMorada.Text = rdr["endereco"].ToString();
-                            string[] cod = rdr["codPostal"].ToString().Split('-');
-                            txtCodP1.Text = cod[0];
-                            txtCodP2.Text = cod[1];
-                            txtCodP1.Enabled = false;
-                            txtCodP2.Enabled = false;
-                            txtNIF.Enabled = false;
-                            txtNome.Enabled = false;
-                            txtTelefone.Enabled = false;
-                            txtMorada.Enabled = false;
-                            btnUpdate.Hide();
-                            btnCanc.Hide();
-                        }
-                    }
-                    rdr.Close();
-                }
-                BD.Close();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                BD.Close();
-            }
+            txtNIF.Text = "";
+            txtNome.Text = "";
+            txtMorada.Text = "";
+            txtTelefone.Text = "";
+            txtCodP1.Text = "";
+            txtCodP2.Text = "";
+            lst.SelectedItems.Clear();
+            btnEdit.Hide()
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -374,7 +336,7 @@ namespace PowerPulse.Forms
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtNIF.Text = " ";
+            txtNIF.Text = "";
             txtNome.Text = "";
             txtMorada.Text = "";
             txtTelefone.Text = "";

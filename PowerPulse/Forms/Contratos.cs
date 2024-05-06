@@ -75,6 +75,7 @@ namespace PowerPulse.Forms
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnEdit.Show();
+            btnDel.Enabled = true;
         }
         //Métodos
 
@@ -88,10 +89,11 @@ namespace PowerPulse.Forms
         }
         private void EditOn()
         {
-            txtNome.Enabled = false;
-            txtMoradaCliente.Enabled = false;
-            txtContato.Enabled = false;
-            //cmbTipoCl.Enabled = false;
+            txtNome.Enabled = true;
+            txtMoradaCliente.Enabled = true;
+            txtContato.Enabled = true;
+            txtCodP1.Enabled = true;
+            txtCodP2.Enabled = true;
         }
 
         private void btnIns_Click(object sender, EventArgs e)
