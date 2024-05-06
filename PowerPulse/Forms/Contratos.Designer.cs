@@ -36,8 +36,11 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtCodP2 = new System.Windows.Forms.TextBox();
+            this.txtCodP1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.cmbNIF = new System.Windows.Forms.ComboBox();
             this.txtMoradaCliente = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,8 +51,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbPot = new System.Windows.Forms.ComboBox();
+            this.cmbMet = new System.Windows.Forms.ComboBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtMoradaCont = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,10 +65,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
-            this.txtCodP1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtCodP2 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,8 +81,7 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader10});
+            this.columnHeader7});
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(33, 245);
@@ -126,12 +124,7 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Metodo de Pagamento";
-            this.columnHeader7.Width = 130;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Estado Pagamento";
-            this.columnHeader10.Width = 127;
+            this.columnHeader7.Width = 127;
             // 
             // panel1
             // 
@@ -154,6 +147,46 @@
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label12.Location = new System.Drawing.Point(165, 168);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 20);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "-";
+            // 
+            // txtCodP2
+            // 
+            this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP2.Location = new System.Drawing.Point(185, 165);
+            this.txtCodP2.Name = "txtCodP2";
+            this.txtCodP2.Size = new System.Drawing.Size(45, 23);
+            this.txtCodP2.TabIndex = 20;
+            // 
+            // txtCodP1
+            // 
+            this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCodP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP1.Location = new System.Drawing.Point(114, 165);
+            this.txtCodP1.Name = "txtCodP1";
+            this.txtCodP1.Size = new System.Drawing.Size(45, 23);
+            this.txtCodP1.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(3, 165);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 20);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Codigo Postal:";
             // 
             // cmbNIF
             // 
@@ -251,8 +284,8 @@
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.Controls.Add(this.comboBox2);
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.cmbPot);
+            this.panel2.Controls.Add(this.cmbMet);
             this.panel2.Controls.Add(this.txtTel);
             this.panel2.Controls.Add(this.txtMoradaCont);
             this.panel2.Controls.Add(this.label8);
@@ -265,13 +298,13 @@
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
             // 
-            // comboBox2
+            // cmbPot
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.White;
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbPot.BackColor = System.Drawing.Color.White;
+            this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPot.FormattingEnabled = true;
+            this.cmbPot.Items.AddRange(new object[] {
             "1.15",
             "2.3",
             "3.45",
@@ -282,25 +315,25 @@
             "13.8",
             "17.25",
             "20.7"});
-            this.comboBox2.Location = new System.Drawing.Point(168, 152);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(141, 21);
-            this.comboBox2.TabIndex = 19;
+            this.cmbPot.Location = new System.Drawing.Point(168, 152);
+            this.cmbPot.Name = "cmbPot";
+            this.cmbPot.Size = new System.Drawing.Size(141, 21);
+            this.cmbPot.TabIndex = 19;
             // 
-            // comboBox1
+            // cmbMet
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbMet.BackColor = System.Drawing.Color.White;
+            this.cmbMet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbMet.FormattingEnabled = true;
+            this.cmbMet.Items.AddRange(new object[] {
             "Debito Direto",
             "Bi-Mestral",
             "Tri-Mestral"});
-            this.comboBox1.Location = new System.Drawing.Point(184, 111);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 21);
-            this.comboBox1.TabIndex = 18;
+            this.cmbMet.Location = new System.Drawing.Point(184, 111);
+            this.cmbMet.Name = "cmbMet";
+            this.cmbMet.Size = new System.Drawing.Size(141, 21);
+            this.cmbMet.TabIndex = 18;
             // 
             // txtTel
             // 
@@ -433,46 +466,6 @@
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
-            // txtCodP1
-            // 
-            this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtCodP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtCodP1.Location = new System.Drawing.Point(114, 165);
-            this.txtCodP1.Name = "txtCodP1";
-            this.txtCodP1.Size = new System.Drawing.Size(45, 23);
-            this.txtCodP1.TabIndex = 19;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(3, 165);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 20);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Codigo Postal:";
-            // 
-            // txtCodP2
-            // 
-            this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtCodP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtCodP2.Location = new System.Drawing.Point(185, 165);
-            this.txtCodP2.Name = "txtCodP2";
-            this.txtCodP2.Size = new System.Drawing.Size(45, 23);
-            this.txtCodP2.TabIndex = 20;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label12.Location = new System.Drawing.Point(165, 168);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(14, 20);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "-";
-            // 
             // Contratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,7 +525,6 @@
         private System.Windows.Forms.ColumnHeader colNome;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ComboBox cmbMet;
         private System.Windows.Forms.ComboBox cmbNIF;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbTipoCl;
@@ -544,9 +536,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbPot;
+        private System.Windows.Forms.ComboBox cmbMet;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.TextBox txtCodP1;
         private System.Windows.Forms.Label label5;

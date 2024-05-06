@@ -83,10 +83,6 @@ namespace PowerPulse.Forms
                     btnEdit.Visible = true;
                     btnDel.Enabled = true;
                 }
-                else
-                {
-
-                }
             }
             catch (Exception ex)
             {
@@ -189,7 +185,7 @@ namespace PowerPulse.Forms
             txtCodP1.Text = "";
             txtCodP2.Text = "";
             lst.SelectedItems.Clear();
-            btnEdit.Hide()
+            btnEdit.Hide();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
