@@ -23,41 +23,6 @@ namespace PowerPulse.Forms
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                BD.Open();
-                SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao,status,prodMax,Material,Gasto) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst,@status,@prodMax,@Material,@Gasto)", BD);
-                cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
-                cmd.Parameters.AddWithValue("@Tipo", cmbTipo.SelectedItem.ToString());
-                cmd.Parameters.AddWithValue("@Capacidade", txtCapacidade.Text);
-                cmd.Parameters.AddWithValue("@localizacao", txtLoc.Text);
-                cmd.Parameters.AddWithValue("@dataConst", dtpData.Value.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@status", "Online");
-                cmd.Parameters.AddWithValue("@prodMax", txtProd.Text);
-                cmd.Parameters.AddWithValue("@Material", txtMaterial.Text);
-                cmd.Parameters.AddWithValue("@Gasto", txtGasto.Text);
-
-                int row = cmd.ExecuteNonQuery();
-
-                if (row > 0)
-                {
-                    MessageBox.Show("Inseridos", "Inserido", MessageBoxButtons.OK);
-                }
-                else
-                {
-                    MessageBox.Show("Nao Inseridos", "Inserido", MessageBoxButtons.OK);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { BD.Close(); }
-        }
-
         private void OpenChildForm(Form childForm)
         {
             //open only form
@@ -97,11 +62,6 @@ namespace PowerPulse.Forms
         private void iconButton2_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Usina());
-        }
-
-        private void panelDesktop_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,6 +65,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +76,7 @@
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
+            this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -92,39 +93,33 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // columnHeader11
+            // columnHeader1
             // 
-            this.columnHeader11.Text = "Nr. Contrato";
+            this.columnHeader1.Text = "Nr.Contrato";
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "NIF";
-            this.columnHeader2.Width = 106;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Nome";
-            this.columnHeader3.Width = 84;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Morada";
-            this.columnHeader4.Width = 96;
+            this.columnHeader4.Text = "Telefone";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Telefone";
-            this.columnHeader5.Width = 93;
+            this.columnHeader5.Text = "Morada";
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Potencia";
-            this.columnHeader6.Width = 111;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Metodo de Pagamento";
-            this.columnHeader7.Width = 127;
+            this.columnHeader7.Text = "Metodo Pagamento";
             // 
             // panel1
             // 
@@ -167,6 +162,7 @@
             this.txtCodP2.Name = "txtCodP2";
             this.txtCodP2.Size = new System.Drawing.Size(45, 23);
             this.txtCodP2.TabIndex = 20;
+            this.txtCodP2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodP2_KeyPress);
             // 
             // txtCodP1
             // 
@@ -176,13 +172,14 @@
             this.txtCodP1.Name = "txtCodP1";
             this.txtCodP1.Size = new System.Drawing.Size(45, 23);
             this.txtCodP1.TabIndex = 19;
+            this.txtCodP1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodP1_KeyPress);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(3, 165);
+            this.label5.Location = new System.Drawing.Point(3, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 20);
             this.label5.TabIndex = 18;
@@ -190,15 +187,16 @@
             // 
             // cmbNIF
             // 
-            this.cmbNIF.BackColor = System.Drawing.Color.White;
+            this.cmbNIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbNIF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNIF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbNIF.ForeColor = System.Drawing.Color.White;
             this.cmbNIF.FormattingEnabled = true;
             this.cmbNIF.Location = new System.Drawing.Point(48, 26);
             this.cmbNIF.Name = "cmbNIF";
             this.cmbNIF.Size = new System.Drawing.Size(141, 21);
             this.cmbNIF.TabIndex = 17;
-            this.cmbNIF.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbNIF.SelectedIndexChanged += new System.EventHandler(this.cmbNIF_SelectedIndexChanged);
             // 
             // txtMoradaCliente
             // 
@@ -225,19 +223,22 @@
             this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtContato.Location = new System.Drawing.Point(87, 93);
+            this.txtContato.MaxLength = 9;
             this.txtContato.Name = "txtContato";
             this.txtContato.Size = new System.Drawing.Size(123, 23);
             this.txtContato.TabIndex = 7;
+            this.txtContato.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContato_KeyPress);
             // 
             // txtNome
             // 
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
-            this.txtNome.Location = new System.Drawing.Point(61, 63);
+            this.txtNome.Location = new System.Drawing.Point(61, 60);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(267, 23);
             this.txtNome.TabIndex = 6;
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label6
             // 
@@ -255,7 +256,7 @@
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(3, 130);
+            this.label3.Location = new System.Drawing.Point(3, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.TabIndex = 2;
@@ -265,7 +266,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(3, 90);
+            this.label2.Location = new System.Drawing.Point(3, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 20);
             this.label2.TabIndex = 1;
@@ -275,7 +276,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(3, 63);
+            this.label1.Location = new System.Drawing.Point(3, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
@@ -300,9 +301,10 @@
             // 
             // cmbPot
             // 
-            this.cmbPot.BackColor = System.Drawing.Color.White;
+            this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPot.ForeColor = System.Drawing.Color.White;
             this.cmbPot.FormattingEnabled = true;
             this.cmbPot.Items.AddRange(new object[] {
             "1.15",
@@ -317,14 +319,16 @@
             "20.7"});
             this.cmbPot.Location = new System.Drawing.Point(168, 152);
             this.cmbPot.Name = "cmbPot";
-            this.cmbPot.Size = new System.Drawing.Size(141, 21);
+            this.cmbPot.Size = new System.Drawing.Size(63, 21);
             this.cmbPot.TabIndex = 19;
+            this.cmbPot.SelectedIndexChanged += new System.EventHandler(this.cmbPot_SelectedIndexChanged);
             // 
             // cmbMet
             // 
-            this.cmbMet.BackColor = System.Drawing.Color.White;
+            this.cmbMet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbMet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbMet.ForeColor = System.Drawing.Color.White;
             this.cmbMet.FormattingEnabled = true;
             this.cmbMet.Items.AddRange(new object[] {
             "Debito Direto",
@@ -332,28 +336,33 @@
             "Tri-Mestral"});
             this.cmbMet.Location = new System.Drawing.Point(184, 111);
             this.cmbMet.Name = "cmbMet";
-            this.cmbMet.Size = new System.Drawing.Size(141, 21);
+            this.cmbMet.Size = new System.Drawing.Size(101, 21);
             this.cmbMet.TabIndex = 18;
+            this.cmbMet.SelectedIndexChanged += new System.EventHandler(this.cmbMet_SelectedIndexChanged);
             // 
             // txtTel
             // 
-            this.txtTel.BackColor = System.Drawing.Color.White;
-            this.txtTel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtTel.ForeColor = System.Drawing.Color.White;
             this.txtTel.Location = new System.Drawing.Point(84, 68);
+            this.txtTel.MaxLength = 9;
             this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(125, 16);
+            this.txtTel.Size = new System.Drawing.Size(125, 23);
             this.txtTel.TabIndex = 13;
+            this.txtTel.TextChanged += new System.EventHandler(this.txtTel_TextChanged);
+            this.txtTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTel_KeyPress);
             // 
             // txtMoradaCont
             // 
-            this.txtMoradaCont.BackColor = System.Drawing.Color.White;
-            this.txtMoradaCont.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMoradaCont.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtMoradaCont.ForeColor = System.Drawing.Color.White;
             this.txtMoradaCont.Location = new System.Drawing.Point(76, 31);
             this.txtMoradaCont.Name = "txtMoradaCont";
-            this.txtMoradaCont.Size = new System.Drawing.Size(209, 16);
+            this.txtMoradaCont.Size = new System.Drawing.Size(209, 23);
             this.txtMoradaCont.TabIndex = 12;
+            this.txtMoradaCont.TextChanged += new System.EventHandler(this.txtMoradaCont_TextChanged);
             // 
             // label8
             // 
@@ -390,7 +399,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label10.Location = new System.Drawing.Point(3, 64);
+            this.label10.Location = new System.Drawing.Point(3, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 20);
             this.label10.TabIndex = 8;
@@ -466,12 +475,25 @@
             this.btnIns.UseVisualStyleBackColor = true;
             this.btnIns.Click += new System.EventHandler(this.btnIns_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(393, 214);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 25);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Limpar";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Contratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(846, 477);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnIns);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUpdate);
@@ -516,19 +538,14 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.TextBox txtMoradaCont;
-        private System.Windows.Forms.ColumnHeader colNrContrato;
-        private System.Windows.Forms.ColumnHeader colMorada;
-        private System.Windows.Forms.ColumnHeader colTelefone;
-        private System.Windows.Forms.ColumnHeader colPagamento;
-        private System.Windows.Forms.ColumnHeader colTipocontrato;
-        private System.Windows.Forms.ColumnHeader colTipoClient;
-        private System.Windows.Forms.ColumnHeader colNome;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ComboBox cmbNIF;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbTipoCl;
-        private System.Windows.Forms.ComboBox cmbTipoCon;
+        private System.Windows.Forms.ComboBox cmbPot;
+        private System.Windows.Forms.ComboBox cmbMet;
+        private System.Windows.Forms.TextBox txtCodP1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtCodP2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -536,12 +553,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ComboBox cmbPot;
-        private System.Windows.Forms.ComboBox cmbMet;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.TextBox txtCodP1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCodP2;
+        private System.Windows.Forms.Button btnClear;
     }
 }
