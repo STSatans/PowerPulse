@@ -211,7 +211,7 @@ namespace PowerPulse.Forms
                     cmbNIF.SelectedItem = nif;
 
                     // Preencha os outros campos com base no item selecionado
-                    cmbPot.SelectedItem = selectedItem.SubItems[5].Text.ToString();
+                    cmbPot.SelectedValue = selectedItem.SubItems[5].Text;
                     cmbMet.SelectedItem = selectedItem.SubItems[6].Text;
                     txtMoradaCont.Text = selectedItem.SubItems[4].Text;
                     txtTel.Text = selectedItem.SubItems[3].Text;
@@ -240,6 +240,10 @@ namespace PowerPulse.Forms
             txtContato.Enabled = false;
             txtCodP1.Enabled = false;
             txtCodP2.Enabled = false;
+            txtMoradaCont.Enabled = false;
+            cmbPot.Enabled = false;
+            cmbMet.Enabled = false;
+            txtTel.Enabled = false;
         }
         private void EditOn()
         {
@@ -248,6 +252,10 @@ namespace PowerPulse.Forms
             txtContato.Enabled = true;
             txtCodP1.Enabled = true;
             txtCodP2.Enabled = true;
+            txtMoradaCont.Enabled = true;
+            cmbPot.Enabled = true;
+            cmbMet.Enabled = true;
+            txtTel.Enabled = true;
         }
         private void Reset()
         {
@@ -410,6 +418,7 @@ namespace PowerPulse.Forms
                         }
                     }
                 }
+                BD.Close();
 
             }
         }

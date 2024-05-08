@@ -21,7 +21,7 @@ namespace PowerPulse
         private void Faturas_Load(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Fatura", BD);
+            SqlCommand cmd = new SqlCommand("Select Fatura.*,Cliente.ID_cliente from Fatura inner join Cliente on Fatura.ID_Cliente=Cliente_Id_cliente", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             
             btnEdit.Visible = false;
@@ -97,6 +97,11 @@ namespace PowerPulse
         }
 
         private void btnDel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -51,7 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmbPot = new System.Windows.Forms.ComboBox();
             this.cmbMet = new System.Windows.Forms.ComboBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtMoradaCont = new System.Windows.Forms.TextBox();
@@ -66,6 +65,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.cmbPot = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -299,30 +299,6 @@
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
             // 
-            // cmbPot
-            // 
-            this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbPot.ForeColor = System.Drawing.Color.White;
-            this.cmbPot.FormattingEnabled = true;
-            this.cmbPot.Items.AddRange(new object[] {
-            "1.15",
-            "2.3",
-            "3.45",
-            "4.6",
-            "5.75",
-            "6.9",
-            "10.35",
-            "13.8",
-            "17.25",
-            "20.7"});
-            this.cmbPot.Location = new System.Drawing.Point(168, 152);
-            this.cmbPot.Name = "cmbPot";
-            this.cmbPot.Size = new System.Drawing.Size(63, 21);
-            this.cmbPot.TabIndex = 19;
-            this.cmbPot.SelectedIndexChanged += new System.EventHandler(this.cmbPot_SelectedIndexChanged);
-            // 
             // cmbMet
             // 
             this.cmbMet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -487,6 +463,29 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // cmbPot
+            // 
+            this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPot.ForeColor = System.Drawing.Color.White;
+            this.cmbPot.FormattingEnabled = true;
+            this.cmbPot.Items.AddRange(new object[] {
+            "1.15",
+            "2.3",
+            "3.45",
+            "4.6",
+            "5.75",
+            "6.9",
+            "10.35",
+            "13.8",
+            "17.25",
+            "20.7"});
+            this.cmbPot.Location = new System.Drawing.Point(164, 153);
+            this.cmbPot.Name = "cmbPot";
+            this.cmbPot.Size = new System.Drawing.Size(121, 21);
+            this.cmbPot.TabIndex = 19;
+            // 
             // Contratos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -540,7 +539,6 @@
         private System.Windows.Forms.TextBox txtMoradaCont;
         private System.Windows.Forms.ComboBox cmbNIF;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbPot;
         private System.Windows.Forms.ComboBox cmbMet;
         private System.Windows.Forms.TextBox txtCodP1;
         private System.Windows.Forms.Label label5;
@@ -554,5 +552,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ComboBox cmbPot;
     }
 }
