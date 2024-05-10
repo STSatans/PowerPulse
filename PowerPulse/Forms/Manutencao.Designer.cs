@@ -135,6 +135,8 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colUsina,
             this.colDataIni,
@@ -143,6 +145,7 @@
             this.colCost,
             this.colDesc,
             this.columnHeader1});
+            this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(29, 218);
             this.listView1.Name = "listView1";
@@ -179,7 +182,7 @@
             // colDesc
             // 
             this.colDesc.Text = "Descrição";
-            this.colDesc.Width = 345;
+            this.colDesc.Width = 343;
             // 
             // columnHeader1
             // 

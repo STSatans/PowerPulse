@@ -26,26 +26,24 @@ namespace PowerPulse.Forms
                 while (rd.Read())
                 {
                     lblUsinas.Text = rd[0].ToString();
-                    //lblTUsinas.Text =;
                 }
             }
             BD.Close();
             BD.Open();
             SqlCommand cmd2 = new SqlCommand("Select Count(ID_Usina),tipo from Usina group by tipo", BD);
             SqlDataReader rd2 = cmd2.ExecuteReader();
-            int row = 0;
+            string labelText = ""; // Initialize an empty string to store label text
             while (rd2.Read())
             {
-                for (int i = 0; i < rd2.FieldCount; i++)
-                {
-                    if (lblTUsinas != null)
-                    {
-                        // lblTUsinas.Text = rd2[i].ToString() + ": " + rd2[i+1].ToString();
-                    }
-                }
-                row++; // Increment row counter for next row
+                labelText += rd2[0].ToString() + ": " + rd2[1].ToString() + "\r\n"; // Concatenate text for each row
             }
             rd2.Close();
+
+            // Assign the concatenated text to the label after the loop
+            if (lblTUsinas != null)
+            {
+                lblTUsinas.Text = labelText;
+            }
             BD.Close();
             BD.Open();
             SqlCommand cmd3 = new SqlCommand("Select Count(ID) from Login", BD);
@@ -58,6 +56,22 @@ namespace PowerPulse.Forms
                 }
             }
             rd3.Close();
+            BD.Close();
+            BD.Open();
+            SqlCommand cmd4 = new SqlCommand("Select Count(ID),cargo from Login group by cargo", BD);
+            SqlDataReader rd4 = cmd4.ExecuteReader();
+            string labelText2 = ""; // Initialize an empty string to store label text
+            while (rd4.Read())
+            {
+                labelText2 += rd4[0].ToString() + ": " + rd4[1].ToString() + "\r\n"; // Concatenate text for each row
+            }
+            rd4.Close();
+
+            // Assign the concatenated text to the label after the loop
+            if (lblTUsinas != null)
+            {
+                lblCargos.Text = labelText2;
+            }
             BD.Close();
         }
     }
