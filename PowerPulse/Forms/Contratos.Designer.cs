@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbPot = new System.Windows.Forms.ComboBox();
             this.cmbMet = new System.Windows.Forms.ComboBox();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.txtMoradaCont = new System.Windows.Forms.TextBox();
@@ -65,7 +66,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIns = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.cmbPot = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -141,7 +141,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label12
             // 
@@ -158,6 +157,7 @@
             // 
             this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP2.ForeColor = System.Drawing.Color.White;
             this.txtCodP2.Location = new System.Drawing.Point(185, 165);
             this.txtCodP2.Name = "txtCodP2";
             this.txtCodP2.Size = new System.Drawing.Size(45, 23);
@@ -168,6 +168,7 @@
             // 
             this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtCodP1.ForeColor = System.Drawing.Color.White;
             this.txtCodP1.Location = new System.Drawing.Point(114, 165);
             this.txtCodP1.Name = "txtCodP1";
             this.txtCodP1.Size = new System.Drawing.Size(45, 23);
@@ -202,6 +203,7 @@
             // 
             this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtMoradaCliente.ForeColor = System.Drawing.Color.White;
             this.txtMoradaCliente.Location = new System.Drawing.Point(93, 134);
             this.txtMoradaCliente.Name = "txtMoradaCliente";
             this.txtMoradaCliente.Size = new System.Drawing.Size(235, 23);
@@ -222,6 +224,7 @@
             // 
             this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtContato.ForeColor = System.Drawing.Color.White;
             this.txtContato.Location = new System.Drawing.Point(87, 93);
             this.txtContato.MaxLength = 9;
             this.txtContato.Name = "txtContato";
@@ -298,6 +301,30 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
+            // 
+            // cmbPot
+            // 
+            this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbPot.ForeColor = System.Drawing.Color.White;
+            this.cmbPot.FormattingEnabled = true;
+            this.cmbPot.Items.AddRange(new object[] {
+            "1.15",
+            "2.3",
+            "3.45",
+            "4.6",
+            "5.75",
+            "6.9",
+            "10.35",
+            "13.8",
+            "17.25",
+            "20.7"});
+            this.cmbPot.Location = new System.Drawing.Point(164, 153);
+            this.cmbPot.Name = "cmbPot";
+            this.cmbPot.Size = new System.Drawing.Size(121, 21);
+            this.cmbPot.TabIndex = 19;
+            this.cmbPot.SelectedIndexChanged += new System.EventHandler(this.cmbPot_SelectedIndexChanged);
             // 
             // cmbMet
             // 
@@ -462,29 +489,6 @@
             this.btnClear.Text = "Limpar";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // cmbPot
-            // 
-            this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbPot.ForeColor = System.Drawing.Color.White;
-            this.cmbPot.FormattingEnabled = true;
-            this.cmbPot.Items.AddRange(new object[] {
-            "1.15",
-            "2.3",
-            "3.45",
-            "4.6",
-            "5.75",
-            "6.9",
-            "10.35",
-            "13.8",
-            "17.25",
-            "20.7"});
-            this.cmbPot.Location = new System.Drawing.Point(164, 153);
-            this.cmbPot.Name = "cmbPot";
-            this.cmbPot.Size = new System.Drawing.Size(121, 21);
-            this.cmbPot.TabIndex = 19;
             // 
             // Contratos
             // 

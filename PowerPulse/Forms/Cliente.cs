@@ -16,7 +16,7 @@ namespace PowerPulse.Forms
         //conexoes
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con estagio
-
+        bool isEditing = false;
         private void Cliente_Load(object sender, EventArgs e)
         {
             btnEdit.Visible = false;
@@ -50,7 +50,7 @@ namespace PowerPulse.Forms
                 MessageBox.Show(ex.Message);
             }
             finally { BD.Close(); }
-        } 
+        }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -113,14 +113,14 @@ namespace PowerPulse.Forms
                         txtTelefone.Text = "";
                         txtCodP1.Text = "";
                         txtCodP2.Text = "";
-                        btnDel.Enabled=false;
+                        btnDel.Enabled = false;
                     }
                     else
                     {
                         MessageBox.Show("Erro");
                     }
                 }
-                BD.Close() ;
+                BD.Close();
             }
             catch (Exception ex)
             {
@@ -167,7 +167,7 @@ namespace PowerPulse.Forms
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -230,24 +230,26 @@ namespace PowerPulse.Forms
                 // If alterations are found, proceed with the update operation
                 if (alterationsFound)
                 {
-                        BD.Open();
-                        SqlCommand cmd2 = new SqlCommand("UPDATE Cliente SET Id_cliente=@Id_cliente , nome=@nome , endereco=@endereco , contato=@contato , codPostal=@codPostal WHERE Id_cliente=@selectedId", BD);
-                        cmd2.Parameters.AddWithValue("@Id_cliente", txtNIF.Text);
-                        cmd2.Parameters.AddWithValue("@nome", txtNome.Text);
-                        cmd2.Parameters.AddWithValue("@endereco", txtMorada.Text);
-                        cmd2.Parameters.AddWithValue("@contato", txtTelefone.Text);
-                        cmd2.Parameters.AddWithValue("@codPostal", txtCodP1.Text + "-" + txtCodP2.Text);
-                        cmd2.Parameters.AddWithValue("@selectedId", lst.SelectedItems[0].SubItems[0].Text); // Assuming only one item is selected
+                    BD.Open();
+                    SqlCommand cmd2 = new SqlCommand("UPDATE Cliente SET Id_cliente=@Id_cliente , nome=@nome , endereco=@endereco , contato=@contato , codPostal=@codPostal WHERE Id_cliente=@selectedId", BD);
+                    cmd2.Parameters.AddWithValue("@Id_cliente", txtNIF.Text);
+                    cmd2.Parameters.AddWithValue("@nome", txtNome.Text);
+                    cmd2.Parameters.AddWithValue("@endereco", txtMorada.Text);
+                    cmd2.Parameters.AddWithValue("@contato", txtTelefone.Text);
+                    cmd2.Parameters.AddWithValue("@codPostal", txtCodP1.Text + "-" + txtCodP2.Text);
+                    cmd2.Parameters.AddWithValue("@selectedId", lst.SelectedItems[0].SubItems[0].Text); // Assuming only one item is selected
 
-                        int row = cmd2.ExecuteNonQuery();
-                        if (row > 0)
-                        {
-                            MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
-                        }
+                    int row = cmd2.ExecuteNonQuery();
+                    if (row > 0)
+                    {
+                        MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
+                        isEditing = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
+                        isEditing = false;
+                    }
                 }
                 else
                 {
@@ -275,7 +277,78 @@ namespace PowerPulse.Forms
         }
         private void btnCanc_Click(object sender, EventArgs e)
         {
-            Reset();
+            try
+            {
+                // Open the main database connection
+                BD.Open();
+
+                // Initialize a flag to track if any alterations are found
+                bool alterationsFound = false;
+
+                // Iterate through each selected item in the ListView
+                foreach (ListViewItem selectedItem in lst.SelectedItems)
+                {
+                    // Prepare a SQL query to retrieve the record for the selected item
+                    SqlCommand cmd = new SqlCommand("SELECT Id_cliente, nome, endereco, Contato, codPostal FROM Cliente WHERE Id_cliente=@selectedId", BD);
+                    cmd.Parameters.AddWithValue("@selectedId", selectedItem.SubItems[0].Text);
+
+                    // Execute the query to retrieve the record
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    // Check if any alterations are found for the current item
+                    while (rdr.Read())
+                    {
+                        string CodPostal = txtCodP1.Text + "-" + txtCodP2.Text;
+                        if (txtNIF.Text != rdr["Id_cliente"].ToString() ||
+                            txtNome.Text != rdr["nome"].ToString() ||
+                            txtMorada.Text != rdr["endereco"].ToString() ||
+                            txtTelefone.Text != rdr["Contato"].ToString() ||
+                            CodPostal != rdr["codPostal"].ToString())
+                        {
+                            alterationsFound = true;
+                            break; // Exit the loop since alterations are found
+                        }
+                    }
+
+                    // Close the SqlDataReader after use
+                    rdr.Close();
+                    BD.Close();
+                }
+
+                // If alterations are found, proceed with the update operation
+                if (alterationsFound)
+                {
+                    DialogResult result = MessageBox.Show("Existem alterações não salvas. Deseja cancelar mesmo assim?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        isEditing = false;
+                        Reset();
+                        btnIns.Enabled = false;
+                        lst.SelectedItems.Clear();
+                        btnCanc.Hide();
+                        btnClear.Enabled = false;
+                        btnEdit.Hide();
+                        btnUpdate.Hide();
+                        txtCodP1.Enabled = false;
+                        txtCodP2.Enabled = false;
+                        txtTelefone.Enabled = false;
+                        txtMorada.Enabled = false;
+                        txtNIF.Enabled = false;
+                        txtNome.Enabled =false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Close the main database connection after use
+                BD.Close();
+            }
+
         }
         private void txtCodP1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -283,12 +356,15 @@ namespace PowerPulse.Forms
         }
         private void VerifyTxt()
         {
-            if (txtNIF.Text != "" && txtMorada.Text != "" && txtCodP2.Text != "" && txtCodP1.Text != "" && txtTelefone.Text != "")
+            if (!isEditing)
             {
-                btnIns.Enabled = true;
+                if (txtNIF.Text != "" && txtMorada.Text != "" && txtCodP2.Text != "" && txtCodP1.Text != "" && txtTelefone.Text != "")
+                {
+                    btnIns.Enabled = true;
+                }
+                else
+                { btnIns.Enabled = false; }
             }
-            else
-            { btnIns.Enabled = false; }
         }
         private void txtCodP1_TextChanged(object sender, EventArgs e)
         {
@@ -343,6 +419,7 @@ namespace PowerPulse.Forms
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            isEditing = true;
             btnCanc.Show();
             btnUpdate.Show();
             btnEdit.Hide();

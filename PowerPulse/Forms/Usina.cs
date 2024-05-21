@@ -15,7 +15,7 @@ namespace PowerPulse.Forms
 
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
-
+        bool isEditing=false;
         private void btnDel_Click(object sender, EventArgs e)
         {
             try
@@ -121,6 +121,7 @@ namespace PowerPulse.Forms
         }
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            isEditing = true;
             btnCancel.Show();
             btnUpdate.Show();
             btnEditar.Hide();
@@ -160,6 +161,7 @@ namespace PowerPulse.Forms
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            isEditing=false;
             Reset();
         }
         private void Reset()
@@ -300,7 +302,12 @@ namespace PowerPulse.Forms
                     {
                         if (txtNome.Text == rdr["Nome"].ToString() && txtCapMat.Text == rdr["Capacidade"].ToString() && txtLoc.Text == rdr["localizacao"].ToString() && dtpData.Value == Convert.ToDateTime(rdr["data_construcao"].ToString()))
                         {
-                            MessageBox.Show("Não existe alterações nos registos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                           DialogResult result= MessageBox.Show("Não existe alterações nos registos. Deseja continuar a editar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if(result == DialogResult.No) 
+                            {
+                                isEditing = false;
+                                Reset();
+                            }
                         }
                         else
                         {
@@ -315,6 +322,7 @@ namespace PowerPulse.Forms
                             {
                                 MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
                                 Reset();
+                                isEditing = false;
                             }
                             else
                             {

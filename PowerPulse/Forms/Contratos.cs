@@ -15,7 +15,7 @@ namespace PowerPulse.Forms
         }
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con casa
-
+        bool isEditing=false;
         private void Contratos_Load(object sender, EventArgs e)
         {
             // Ocultar botões e desativar o botão de inserção
@@ -63,7 +63,9 @@ namespace PowerPulse.Forms
         {
             btnUpdate.Show();
             btnCancel.Show();
+            btnEdit.Hide();
             EditOn();
+            isEditing = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -110,46 +112,49 @@ namespace PowerPulse.Forms
 
                         if (row + row2 > 1)
                         {
-                            MessageBox.Show("Cliente e Contrato Atualizados");
-                        }
-                    }
-                    else if (updateContrato && !updateCliente)
-                    {
-                        updateContratoCmd.Parameters.Clear();
-
-                        updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
-                        updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
-                        updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
-                        updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem.ToString());
-                        updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem.ToString());
-                        int row = updateContratoCmd.ExecuteNonQuery();
-                        if (row > 0)
-                        {
-                            MessageBox.Show("Contrato Atualizado");
-                        }
-
-                    }
-                    else if (!updateContrato && updateCliente)
-                    {
-                        DialogResult result = MessageBox.Show("Não é possível atualizar apenas o cliente.\r\nPara concluir a atualização necessita de alterar o contrato.\r\nDeseja continuar?", "Confirmação", MessageBoxButtons.YesNo);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            updateClienteCmd.Parameters.Clear();
-
-                            string Postal = txtCodP1.Text + "-" + txtCodP2.Text;
-                            updateClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
-                            updateClienteCmd.Parameters.AddWithValue("@endereco", txtMoradaCliente.Text);
-                            updateClienteCmd.Parameters.AddWithValue("@Cont", txtContato.Text);
-                            updateClienteCmd.Parameters.AddWithValue("@codPostal", Postal);
-                            updateClienteCmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                            int row2 = updateClienteCmd.ExecuteNonQuery();
-
-                            if (row2 > 0)
+                            // Verificar se existem alterações nos registros
+                            if (cmbNIF.SelectedItem.ToString() != rdr["Id_cliente"].ToString() ||
+                                txtMoradaCont.Text != rdr["Morada"].ToString() ||
+                                txtTel.Text != rdr["Telefone"].ToString() ||
+                                cmbPot.SelectedItem.ToString() != rdr["Tarifa"].ToString() ||
+                                cmbMet.SelectedItem.ToString() != rdr["Metodo_Pagamento"].ToString())
                             {
-                                MessageBox.Show("Cliente Atualizado");
+                                alterationsFound = true;
+                                break; // Exit the loop since alterations are found
                             }
                         }
+                    }
+                }
+
+                // Se foram encontradas alterações, proceda com a operação de atualização
+                if (alterationsFound)
+                {
+                    updateCmd.Parameters["@Id_cliente"].Value = cmbNIF.SelectedItem;
+                    updateCmd.Parameters["@Morada"].Value = txtMoradaCont.Text;
+                    updateCmd.Parameters["@Telefone"].Value = txtTel.Text;
+                    updateCmd.Parameters["@Tarifa"].Value = cmbPot.SelectedItem;
+                    updateCmd.Parameters["@Metodo"].Value = cmbMet.SelectedItem;
+                    updateCmd.Parameters["@selectedId"].Value = listView1.SelectedItems[0].SubItems[0].Text; // Assuming only one item is selected
+
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
+                        Reset();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    // Nenhuma alteração encontrada, pergunte ao usuário
+                    if (MessageBox.Show("Não foram encontradas alterações nos registros.\r\nDeseja continuar em modo de edição?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    {
+                        // O usuário opta por não continuar editando, redefina os campos e saia do manipulador de eventos
+                        Reset();
+                        return;
                     }
                 }
             }
@@ -163,7 +168,6 @@ namespace PowerPulse.Forms
                 BD.Close();
             }
         }
-
         private void btnDel_Click(object sender, EventArgs e)
         {
             try
@@ -195,112 +199,10 @@ namespace PowerPulse.Forms
             }
             finally { BD.Close(); }
         }
-        private bool CheckContratoChanges(string contratoId)
-        {
-            bool updateContrato = false;
-
-            // Prepare o comando SQL para recuperar os registros para o item selecionado
-            using (SqlCommand selectContratoCmd = new SqlCommand("SELECT Morada, Telefone, Potencia, Metodo_Pagamento FROM Contrato WHERE ID_Contrato=@selectedId", BD))
-            {
-                selectContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
-
-                using (SqlDataReader rdr = selectContratoCmd.ExecuteReader())
-                {
-                    if (rdr.Read())
-                    {
-                        if (txtMoradaCont.Text != rdr["Morada"].ToString() ||
-                            txtTel.Text != rdr["Telefone"].ToString() ||
-                            cmbMet.Text != rdr["Metodo_Pagamento"].ToString() ||
-                            cmbPot.Text != rdr["Potencia"].ToString())
-                        {
-                            updateContrato = true;
-                        }
-                    }
-                }
-            }
-
-            return updateContrato;
-        }
-
-        private bool CheckClienteChanges(string clienteId)
-        {
-            bool updateCliente = false;
-
-            // Prepare o comando SQL para recuperar as informações do cliente
-            using (SqlCommand selectClienteCmd = new SqlCommand("SELECT endereco, contato, codPostal, nome FROM Cliente WHERE Id_cliente=@Id_cliente", BD))
-            {
-                selectClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
-
-                using (SqlDataReader rdr = selectClienteCmd.ExecuteReader())
-                {
-                    if (rdr.Read())
-                    {
-                        string[] cod = rdr["codPostal"].ToString().Split('-');
-                        if (txtNome.Text != rdr["nome"].ToString() ||
-                            txtContato.Text != rdr["contato"].ToString() ||
-                            txtMoradaCliente.Text != rdr["endereco"].ToString() ||
-                            txtCodP1.Text != cod[0] || txtCodP2.Text != cod[1])
-                        {
-                            updateCliente = true;
-                        }
-                    }
-                }
-            }
-
-            return updateCliente;
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Abra a conexão com o banco de dados
-                BD.Open();
 
-                bool updateContrato = false;
-                bool updateCliente = false;
-
-                // Iterar por cada item selecionado na ListView
-                foreach (ListViewItem selectedItem in listView1.SelectedItems)
-                {
-                    string contratoId = selectedItem.SubItems[0].Text;
-                    string clienteId = selectedItem.SubItems[1].Text;
-
-                    updateContrato = CheckContratoChanges(contratoId);
-                    updateCliente = CheckClienteChanges(clienteId);
-
-                    // Verificar se houve alterações
-                    if (updateContrato || updateCliente)
-                    {
-                        DialogResult result = MessageBox.Show("Existem alterações não salvas. Deseja cancelar mesmo assim?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            // Se o usuário escolher "Sim", fechar o formulário ou realizar qualquer ação de cancelamento
-                            // ; // Por exemplo, fechando o formulário
-                        }
-                        else
-                        {
-                            // Se o usuário escolher "Não", cancelar a operação de fechamento
-                            return; // Apenas retornar para sair do método
-                        }
-                    }
-                    else
-                    {
-                        // Se não houver alterações, simplesmente fechar o formulário
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                // Feche a conexão com o banco de dados após o uso
-                BD.Close();
-            }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -319,7 +221,7 @@ namespace PowerPulse.Forms
                     cmbNIF.SelectedItem = nif;
 
                     // Preencha os outros campos com base no item selecionado
-                    cmbPot.SelectedValue = selectedItem.SubItems[5].Text;
+                    cmbPot.SelectedItem = selectedItem.SubItems[5].Text;
                     cmbMet.SelectedItem = selectedItem.SubItems[6].Text;
                     txtMoradaCont.Text = selectedItem.SubItems[4].Text;
                     txtTel.Text = selectedItem.SubItems[3].Text;
@@ -419,20 +321,10 @@ namespace PowerPulse.Forms
 
         }
 
-        private void cmbTipoCl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtMoradaCliente_TextChanged(object sender, EventArgs e)
         {
 
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void txtTel_TextChanged(object sender, EventArgs e)
         {
             VerifyTxT();
@@ -464,13 +356,16 @@ namespace PowerPulse.Forms
         }
         private void VerifyTxT()
         {
-            if (cmbNIF.SelectedItem != null && txtMoradaCont.Text != "" && txtTel.Text != "" && cmbMet.SelectedItem != null && cmbPot.SelectedItem != null)
+            if (!isEditing)
             {
-                btnIns.Enabled = true;
-            }
-            else
-            {
-                btnIns.Enabled = false;
+                if (cmbNIF.SelectedItem != null && txtMoradaCont.Text != "" && txtTel.Text != "" && cmbMet.SelectedItem != null && cmbPot.SelectedItem != null)
+                {
+                    btnIns.Enabled = true;
+                }
+                else
+                {
+                    btnIns.Enabled = false;
+                }
             }
         }
 
