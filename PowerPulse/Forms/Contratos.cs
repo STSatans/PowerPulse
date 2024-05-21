@@ -73,76 +73,83 @@ namespace PowerPulse.Forms
                 // Abra a conexão com o banco de dados
                 BD.Open();
 
-                // Prepare o comando SQL para recuperar os registros para o item selecionado
-                SqlCommand selectCmd = new SqlCommand("SELECT Id_cliente, Morada, Telefone, Tarifa, Metodo_Pagamento FROM Cliente WHERE ID_Contrato=@selectedId", BD);
-                selectCmd.Parameters.Add("@selectedId", SqlDbType.VarChar);
+                // Prepare o comando SQL para atualizar os registros do contrato
+                SqlCommand updateContratoCmd = new SqlCommand("UPDATE Contrato SET Morada=@Morada, Telefone=@Telefone, Potencia=@Potencia, Metodo_Pagamento=@Metodo WHERE ID_Contrato=@selectedId", BD);
 
-                // Prepare o comando SQL para atualizar os registros
-                SqlCommand updateCmd = new SqlCommand("UPDATE Contratos SET Morada=@Morada , Telefone=@Telefone , Tarifa=@Tarifa , Metodo_Pagamento=@Metodo , Id_cliente=@Id_cliente WHERE ID_Contrato=@selectedId", BD);
-                updateCmd.Parameters.Add("@Id_cliente", SqlDbType.VarChar);
-                updateCmd.Parameters.Add("@Morada", SqlDbType.VarChar);
-                updateCmd.Parameters.Add("@Telefone", SqlDbType.VarChar);
-                updateCmd.Parameters.Add("@Tarifa", SqlDbType.VarChar);
-                updateCmd.Parameters.Add("@Metodo", SqlDbType.VarChar);
-                updateCmd.Parameters.Add("@selectedId", SqlDbType.VarChar);
-
-                // Inicialize uma flag para rastrear se foram encontradas alterações
-                bool alterationsFound = false;
+                // Prepare o comando SQL para atualizar os registros do cliente
+                SqlCommand updateClienteCmd = new SqlCommand("UPDATE Cliente SET nome=@nome,endereco=@endereco, Contato=@Cont,codPostal=@codPostal WHERE Id_cliente=@Id_cliente", BD);
 
                 // Iterar por cada item selecionado na ListView
                 foreach (ListViewItem selectedItem in listView1.SelectedItems)
                 {
-                    // Definir o ID do item selecionado
-                    selectCmd.Parameters["@selectedId"].Value = selectedItem.SubItems[0].Text;
+                    string contratoId = selectedItem.SubItems[0].Text;
+                    string clienteId = selectedItem.SubItems[1].Text;
 
-                    // Executar a consulta para recuperar o registro
-                    using (SqlDataReader rdr = selectCmd.ExecuteReader())
+                    bool updateContrato = CheckContratoChanges(contratoId);
+                    bool updateCliente = CheckClienteChanges(clienteId);
+
+                    if (updateContrato && updateCliente)
                     {
-                        if (rdr.Read())
+                        updateContratoCmd.Parameters.Clear();
+                        updateClienteCmd.Parameters.Clear();
+
+                        updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
+                        updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
+                        updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
+                        updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem.ToString());
+                        updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem.ToString());
+                        int row = updateContratoCmd.ExecuteNonQuery();
+
+                        string Postal = txtCodP1.Text + "-" + txtCodP2.Text;
+                        updateClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
+                        updateClienteCmd.Parameters.AddWithValue("@endereco", txtMoradaCliente.Text);
+                        updateClienteCmd.Parameters.AddWithValue("@Cont", txtContato.Text);
+                        updateClienteCmd.Parameters.AddWithValue("@codPostal", Postal);
+                        updateClienteCmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                        int row2 = updateClienteCmd.ExecuteNonQuery();
+
+                        if (row + row2 > 1)
                         {
-                            // Verificar se existem alterações nos registros
-                            if (cmbNIF.SelectedItem.ToString() != rdr["Id_cliente"].ToString() ||
-                                txtMoradaCont.Text != rdr["Morada"].ToString() ||
-                                txtTel.Text != rdr["Telefone"].ToString() ||
-                                cmbPot.SelectedItem.ToString() != rdr["Tarifa"].ToString() ||
-                                cmbMet.SelectedItem.ToString() != rdr["Metodo_Pagamento"].ToString())
-                            {
-                                alterationsFound = true;
-                                break; // Exit the loop since alterations are found
-                            }
+                            MessageBox.Show("Cliente e Contrato Atualizados");
                         }
                     }
-                }
+                    else if (updateContrato && !updateCliente)
+                    {
+                        updateContratoCmd.Parameters.Clear();
 
-                // Se foram encontradas alterações, proceda com a operação de atualização
-                if (alterationsFound)
-                {
-                    updateCmd.Parameters["@Id_cliente"].Value = cmbNIF.SelectedItem;
-                    updateCmd.Parameters["@Morada"].Value = txtMoradaCont.Text;
-                    updateCmd.Parameters["@Telefone"].Value = txtTel.Text;
-                    updateCmd.Parameters["@Tarifa"].Value = cmbPot.SelectedItem;
-                    updateCmd.Parameters["@Metodo"].Value = cmbMet.SelectedItem;
-                    updateCmd.Parameters["@selectedId"].Value = listView1.SelectedItems[0].SubItems[0].Text; // Assuming only one item is selected
+                        updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
+                        updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
+                        updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
+                        updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem.ToString());
+                        updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem.ToString());
+                        int row = updateContratoCmd.ExecuteNonQuery();
+                        if (row > 0)
+                        {
+                            MessageBox.Show("Contrato Atualizado");
+                        }
 
-                    int rowsAffected = updateCmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
-                        Reset();
                     }
-                    else
+                    else if (!updateContrato && updateCliente)
                     {
-                        MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
-                    }
-                }
-                else
-                {
-                    // Nenhuma alteração encontrada, pergunte ao usuário
-                    if (MessageBox.Show("Não foram encontradas alterações nos registros.\r\nDeseja continuar em modo de edição?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                    {
-                        // O usuário opta por não continuar editando, redefina os campos e saia do manipulador de eventos
-                        Reset();
-                        return;
+                        DialogResult result = MessageBox.Show("Não é possível atualizar apenas o cliente.\r\nPara concluir a atualização necessita de alterar o contrato.\r\nDeseja continuar?", "Confirmação", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            updateClienteCmd.Parameters.Clear();
+
+                            string Postal = txtCodP1.Text + "-" + txtCodP2.Text;
+                            updateClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
+                            updateClienteCmd.Parameters.AddWithValue("@endereco", txtMoradaCliente.Text);
+                            updateClienteCmd.Parameters.AddWithValue("@Cont", txtContato.Text);
+                            updateClienteCmd.Parameters.AddWithValue("@codPostal", Postal);
+                            updateClienteCmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                            int row2 = updateClienteCmd.ExecuteNonQuery();
+
+                            if (row2 > 0)
+                            {
+                                MessageBox.Show("Cliente Atualizado");
+                            }
+                        }
                     }
                 }
             }
@@ -155,7 +162,6 @@ namespace PowerPulse.Forms
                 // Feche a conexão com o banco de dados após o uso
                 BD.Close();
             }
-
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -189,10 +195,112 @@ namespace PowerPulse.Forms
             }
             finally { BD.Close(); }
         }
+        private bool CheckContratoChanges(string contratoId)
+        {
+            bool updateContrato = false;
+
+            // Prepare o comando SQL para recuperar os registros para o item selecionado
+            using (SqlCommand selectContratoCmd = new SqlCommand("SELECT Morada, Telefone, Potencia, Metodo_Pagamento FROM Contrato WHERE ID_Contrato=@selectedId", BD))
+            {
+                selectContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
+
+                using (SqlDataReader rdr = selectContratoCmd.ExecuteReader())
+                {
+                    if (rdr.Read())
+                    {
+                        if (txtMoradaCont.Text != rdr["Morada"].ToString() ||
+                            txtTel.Text != rdr["Telefone"].ToString() ||
+                            cmbMet.Text != rdr["Metodo_Pagamento"].ToString() ||
+                            cmbPot.Text != rdr["Potencia"].ToString())
+                        {
+                            updateContrato = true;
+                        }
+                    }
+                }
+            }
+
+            return updateContrato;
+        }
+
+        private bool CheckClienteChanges(string clienteId)
+        {
+            bool updateCliente = false;
+
+            // Prepare o comando SQL para recuperar as informações do cliente
+            using (SqlCommand selectClienteCmd = new SqlCommand("SELECT endereco, contato, codPostal, nome FROM Cliente WHERE Id_cliente=@Id_cliente", BD))
+            {
+                selectClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
+
+                using (SqlDataReader rdr = selectClienteCmd.ExecuteReader())
+                {
+                    if (rdr.Read())
+                    {
+                        string[] cod = rdr["codPostal"].ToString().Split('-');
+                        if (txtNome.Text != rdr["nome"].ToString() ||
+                            txtContato.Text != rdr["contato"].ToString() ||
+                            txtMoradaCliente.Text != rdr["endereco"].ToString() ||
+                            txtCodP1.Text != cod[0] || txtCodP2.Text != cod[1])
+                        {
+                            updateCliente = true;
+                        }
+                    }
+                }
+            }
+
+            return updateCliente;
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Abra a conexão com o banco de dados
+                BD.Open();
 
+                bool updateContrato = false;
+                bool updateCliente = false;
+
+                // Iterar por cada item selecionado na ListView
+                foreach (ListViewItem selectedItem in listView1.SelectedItems)
+                {
+                    string contratoId = selectedItem.SubItems[0].Text;
+                    string clienteId = selectedItem.SubItems[1].Text;
+
+                    updateContrato = CheckContratoChanges(contratoId);
+                    updateCliente = CheckClienteChanges(clienteId);
+
+                    // Verificar se houve alterações
+                    if (updateContrato || updateCliente)
+                    {
+                        DialogResult result = MessageBox.Show("Existem alterações não salvas. Deseja cancelar mesmo assim?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            // Se o usuário escolher "Sim", fechar o formulário ou realizar qualquer ação de cancelamento
+                            // ; // Por exemplo, fechando o formulário
+                        }
+                        else
+                        {
+                            // Se o usuário escolher "Não", cancelar a operação de fechamento
+                            return; // Apenas retornar para sair do método
+                        }
+                    }
+                    else
+                    {
+                        // Se não houver alterações, simplesmente fechar o formulário
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Feche a conexão com o banco de dados após o uso
+                BD.Close();
+            }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
