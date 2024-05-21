@@ -49,7 +49,7 @@ namespace PowerPulse.Forms
                     }
 
                     // Adicionar os valores ao ListView
-                    listView1.Items.Add(new ListViewItem(row));
+                    lstMan.Items.Add(new ListViewItem(row));
                 }
             }
             BD.Close();
@@ -109,14 +109,14 @@ namespace PowerPulse.Forms
             {
                 BD.Open();
                 SqlCommand cmd = new SqlCommand("Delete from Manutencao_Usina where id_usina=@ID", BD);
-                foreach (ListViewItem selectedItem in listView1.SelectedItems)
+                foreach (ListViewItem selectedItem in lstMan.SelectedItems)
                 {
                     cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);
                     int rows = cmd.ExecuteNonQuery();
                     if (rows > 0)
                     {
                         MessageBox.Show("Eliminados");
-                        listView1.Items.Remove(selectedItem);
+                        lstMan.Items.Remove(selectedItem);
                     }
                     else
                     {
@@ -133,10 +133,10 @@ namespace PowerPulse.Forms
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (lstMan.SelectedItems.Count > 0)
             {
                 // Get the selected item
-                ListViewItem selectedItem = listView1.SelectedItems[0];
+                ListViewItem selectedItem = lstMan.SelectedItems[0];
 
                 // Display subitems in separate labels
                 for (int i = 0; i < selectedItem.SubItems.Count; i++)

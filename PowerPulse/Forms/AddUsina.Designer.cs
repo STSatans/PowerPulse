@@ -59,6 +59,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.txtLoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dtpData);
@@ -79,7 +80,9 @@
             // 
             // txtLoc
             // 
+            this.txtLoc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtLoc.ForeColor = System.Drawing.Color.White;
             this.txtLoc.Location = new System.Drawing.Point(105, 239);
             this.txtLoc.Name = "txtLoc";
             this.txtLoc.Size = new System.Drawing.Size(100, 20);
@@ -88,6 +91,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.Location = new System.Drawing.Point(3, 236);
@@ -99,6 +103,7 @@
             // 
             // dtpData
             // 
+            this.dtpData.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpData.Location = new System.Drawing.Point(164, 182);
             this.dtpData.Name = "dtpData";
@@ -107,6 +112,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label8.Location = new System.Drawing.Point(328, 206);
@@ -118,7 +124,9 @@
             // 
             // txtProd
             // 
+            this.txtProd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtProd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtProd.ForeColor = System.Drawing.Color.White;
             this.txtProd.Location = new System.Drawing.Point(150, 209);
             this.txtProd.Name = "txtProd";
             this.txtProd.Size = new System.Drawing.Size(172, 20);
@@ -128,7 +136,9 @@
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtNome.ForeColor = System.Drawing.Color.White;
             this.txtNome.Location = new System.Drawing.Point(63, 22);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(214, 20);
@@ -138,6 +148,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label7.Location = new System.Drawing.Point(3, 206);
@@ -149,6 +160,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.Location = new System.Drawing.Point(3, 176);
@@ -160,6 +172,7 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -183,6 +196,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txtGasto);
@@ -198,6 +212,7 @@
             // 
             // label11
             // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -210,6 +225,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label10.Location = new System.Drawing.Point(208, 33);
@@ -221,7 +237,9 @@
             // 
             // txtGasto
             // 
+            this.txtGasto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtGasto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtGasto.ForeColor = System.Drawing.Color.White;
             this.txtGasto.Location = new System.Drawing.Point(63, 65);
             this.txtGasto.Name = "txtGasto";
             this.txtGasto.Size = new System.Drawing.Size(100, 20);
@@ -231,8 +249,8 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Top;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label9.Location = new System.Drawing.Point(0, 60);
             this.label9.Name = "label9";
@@ -243,7 +261,9 @@
             // 
             // txtCapacidade
             // 
+            this.txtCapacidade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCapacidade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtCapacidade.ForeColor = System.Drawing.Color.White;
             this.txtCapacidade.Location = new System.Drawing.Point(102, 36);
             this.txtCapacidade.Name = "txtCapacidade";
             this.txtCapacidade.Size = new System.Drawing.Size(100, 20);
@@ -253,7 +273,9 @@
             // 
             // txtMaterial
             // 
+            this.txtMaterial.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMaterial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtMaterial.ForeColor = System.Drawing.Color.White;
             this.txtMaterial.Location = new System.Drawing.Point(123, 6);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(129, 20);
@@ -263,8 +285,8 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.Location = new System.Drawing.Point(0, 30);
             this.label3.Name = "label3";
@@ -275,8 +297,8 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
@@ -287,8 +309,8 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(3, 46);
             this.label2.Name = "label2";
@@ -299,8 +321,8 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(3, 16);
@@ -313,6 +335,7 @@
             // 
             // iconButton2
             // 
+            this.iconButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton2.IconColor = System.Drawing.Color.Black;
@@ -327,6 +350,7 @@
             // 
             // btnIns
             // 
+            this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIns.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
@@ -342,10 +366,10 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnIns);
             this.panelDesktop.Controls.Add(this.iconButton2);
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(816, 489);

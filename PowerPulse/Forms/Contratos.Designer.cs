@@ -144,6 +144,7 @@
             // 
             // label12
             // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -155,6 +156,7 @@
             // 
             // txtCodP2
             // 
+            this.txtCodP2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtCodP2.ForeColor = System.Drawing.Color.White;
@@ -166,6 +168,7 @@
             // 
             // txtCodP1
             // 
+            this.txtCodP1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtCodP1.ForeColor = System.Drawing.Color.White;
@@ -177,6 +180,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -188,6 +192,7 @@
             // 
             // cmbNIF
             // 
+            this.cmbNIF.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbNIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbNIF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNIF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -201,6 +206,7 @@
             // 
             // txtMoradaCliente
             // 
+            this.txtMoradaCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMoradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMoradaCliente.ForeColor = System.Drawing.Color.White;
@@ -212,6 +218,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.Location = new System.Drawing.Point(3, 24);
@@ -222,6 +229,7 @@
             // 
             // txtContato
             // 
+            this.txtContato.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtContato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtContato.ForeColor = System.Drawing.Color.White;
@@ -234,6 +242,7 @@
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
@@ -245,6 +254,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -256,6 +266,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -267,6 +278,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(3, 96);
@@ -277,6 +289,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(3, 60);
@@ -304,6 +317,7 @@
             // 
             // cmbPot
             // 
+            this.cmbPot.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbPot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -328,6 +342,7 @@
             // 
             // cmbMet
             // 
+            this.cmbMet.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbMet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbMet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -345,6 +360,7 @@
             // 
             // txtTel
             // 
+            this.txtTel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtTel.ForeColor = System.Drawing.Color.White;
@@ -358,6 +374,7 @@
             // 
             // txtMoradaCont
             // 
+            this.txtMoradaCont.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMoradaCont.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMoradaCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMoradaCont.ForeColor = System.Drawing.Color.White;
@@ -369,6 +386,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label8.Location = new System.Drawing.Point(3, 153);
@@ -379,6 +397,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -390,6 +409,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label9.Location = new System.Drawing.Point(3, 112);
@@ -400,6 +420,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label10.Location = new System.Drawing.Point(3, 71);
@@ -410,6 +431,7 @@
             // 
             // label11
             // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label11.Location = new System.Drawing.Point(3, 27);

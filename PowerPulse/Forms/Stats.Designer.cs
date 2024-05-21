@@ -42,6 +42,7 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.Controls.Add(this.lblClientes);
             this.panelDesktop.Controls.Add(this.lblContratos);
             this.panelDesktop.Controls.Add(this.lblligadas);
@@ -50,7 +51,6 @@
             this.panelDesktop.Controls.Add(this.label3);
             this.panelDesktop.Controls.Add(this.label2);
             this.panelDesktop.Controls.Add(this.label1);
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(800, 450);
@@ -58,6 +58,7 @@
             // 
             // lblClientes
             // 
+            this.lblClientes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblClientes.AutoSize = true;
             this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblClientes.Location = new System.Drawing.Point(608, 89);
@@ -68,6 +69,7 @@
             // 
             // lblContratos
             // 
+            this.lblContratos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblContratos.AutoSize = true;
             this.lblContratos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblContratos.Location = new System.Drawing.Point(438, 89);
@@ -78,6 +80,7 @@
             // 
             // lblligadas
             // 
+            this.lblligadas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblligadas.AutoSize = true;
             this.lblligadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblligadas.Location = new System.Drawing.Point(273, 89);
@@ -88,6 +91,7 @@
             // 
             // lblUsinas
             // 
+            this.lblUsinas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblUsinas.AutoSize = true;
             this.lblUsinas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblUsinas.Location = new System.Drawing.Point(86, 89);
@@ -98,6 +102,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label4.Location = new System.Drawing.Point(583, 28);
@@ -108,6 +113,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label3.Location = new System.Drawing.Point(409, 28);
@@ -118,6 +124,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label2.Location = new System.Drawing.Point(235, 28);
@@ -128,6 +135,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label1.Location = new System.Drawing.Point(35, 28);
@@ -145,7 +153,7 @@
             this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Estatisticas";
+            this.Name = "Stats";
             this.Text = "Stats";
             this.Load += new System.EventHandler(this.Stats_Load);
             this.panelDesktop.ResumeLayout(false);

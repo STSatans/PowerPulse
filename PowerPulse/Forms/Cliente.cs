@@ -80,8 +80,9 @@ namespace PowerPulse.Forms
                         btnIns.Enabled = false;
 
                     }
-                    btnEdit.Visible = true;
+                    btnEdit.Show();
                     btnDel.Enabled = true;
+                    btnClear.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -244,6 +245,9 @@ namespace PowerPulse.Forms
                     {
                         MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
                         isEditing = false;
+                        Reset();
+                        btnUpdate.Hide();
+                        btnCanc.Hide();
                     }
                     else
                     {
@@ -257,8 +261,9 @@ namespace PowerPulse.Forms
                     if (MessageBox.Show("Não foram encontradas alterações nos registos.\r\nDeseja continuar em modo de edição?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {
                         BD.Close();
-                        // User chooses not to continue editing, reset fields, and exit the event handler
                         Reset();
+                        btnUpdate.Hide();
+                        btnCanc.Hide();
                         return;
                     }
                 }
@@ -363,7 +368,9 @@ namespace PowerPulse.Forms
                     btnIns.Enabled = true;
                 }
                 else
-                { btnIns.Enabled = false; }
+                { 
+                    btnIns.Enabled = false;
+                }
             }
         }
         private void txtCodP1_TextChanged(object sender, EventArgs e)
@@ -404,7 +411,7 @@ namespace PowerPulse.Forms
         }
         private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+            e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -416,6 +423,7 @@ namespace PowerPulse.Forms
             txtCodP2.Text = "";
             lst.SelectedItems.Clear();
             btnEdit.Hide();
+            
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -429,11 +437,6 @@ namespace PowerPulse.Forms
             txtMorada.Enabled = true;
             txtNIF.Enabled = true;
             txtNome.Enabled = true;
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

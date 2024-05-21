@@ -30,20 +30,16 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCosts = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbMan = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFim = new System.Windows.Forms.DateTimePicker();
+            this.dtpIni = new System.Windows.Forms.DateTimePicker();
             this.cmbUsina = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new FontAwesome.Sharp.IconButton();
@@ -57,20 +53,16 @@
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.txtDesc);
-            this.groupBox1.Controls.Add(this.panel4);
-            this.groupBox1.Controls.Add(this.panel3);
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtCosts);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cmbMan);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtpFim);
+            this.groupBox1.Controls.Add(this.dtpIni);
             this.groupBox1.Controls.Add(this.cmbUsina);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(93, 12);
@@ -83,52 +75,17 @@
             // 
             this.txtDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDesc.ForeColor = System.Drawing.Color.White;
-            this.txtDesc.Location = new System.Drawing.Point(93, 165);
+            this.txtDesc.Location = new System.Drawing.Point(96, 160);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(589, 222);
+            this.txtDesc.Size = new System.Drawing.Size(554, 222);
             this.txtDesc.TabIndex = 17;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(90, 389);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(595, 1);
-            this.panel4.TabIndex = 16;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(90, 162);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(595, 1);
-            this.panel3.TabIndex = 15;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(684, 162);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1, 228);
-            this.panel2.TabIndex = 14;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(90, 162);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 228);
-            this.panel1.TabIndex = 13;
+            this.txtDesc.TextChanged += new System.EventHandler(this.txtDesc_TextChanged);
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label7.Location = new System.Drawing.Point(6, 160);
@@ -140,9 +97,10 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(629, 72);
+            this.label6.Location = new System.Drawing.Point(605, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 20);
             this.label6.TabIndex = 11;
@@ -151,21 +109,23 @@
             // 
             // txtCosts
             // 
+            this.txtCosts.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtCosts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCosts.ForeColor = System.Drawing.Color.White;
-            this.txtCosts.Location = new System.Drawing.Point(466, 73);
+            this.txtCosts.Location = new System.Drawing.Point(442, 69);
             this.txtCosts.Name = "txtCosts";
-            this.txtCosts.Size = new System.Drawing.Size(157, 19);
+            this.txtCosts.Size = new System.Drawing.Size(157, 26);
             this.txtCosts.TabIndex = 10;
             this.txtCosts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCosts.TextChanged += new System.EventHandler(this.txtCosts_TextChanged);
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(394, 72);
+            this.label5.Location = new System.Drawing.Point(373, 76);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 9;
@@ -174,36 +134,40 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(6, 71);
+            this.label4.Location = new System.Drawing.Point(6, 76);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Tipo de Manutenção:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox2
+            // cmbMan
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.ForeColor = System.Drawing.Color.White;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbMan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbMan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cmbMan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbMan.ForeColor = System.Drawing.Color.White;
+            this.cmbMan.FormattingEnabled = true;
+            this.cmbMan.Items.AddRange(new object[] {
             "Simples",
             "Geral",
             "Especifica"});
-            this.comboBox2.Location = new System.Drawing.Point(170, 71);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 7;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cmbMan.Location = new System.Drawing.Point(170, 76);
+            this.cmbMan.Name = "cmbMan";
+            this.cmbMan.Size = new System.Drawing.Size(121, 21);
+            this.cmbMan.TabIndex = 7;
+            this.cmbMan.SelectedIndexChanged += new System.EventHandler(this.cmbMan_SelectedIndexChanged);
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(394, 41);
+            this.label3.Location = new System.Drawing.Point(373, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 6;
@@ -222,27 +186,32 @@
             this.label2.Text = "Data Inicio";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker2
+            // dtpFim
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(474, 40);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(103, 20);
-            this.dateTimePicker2.TabIndex = 4;
+            this.dtpFim.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFim.Location = new System.Drawing.Point(457, 41);
+            this.dtpFim.Name = "dtpFim";
+            this.dtpFim.Size = new System.Drawing.Size(103, 20);
+            this.dtpFim.TabIndex = 4;
+            this.dtpFim.ValueChanged += new System.EventHandler(this.dtpFim_ValueChanged);
             // 
-            // dateTimePicker1
+            // dtpIni
             // 
-            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(485, 14);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(119, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.dtpIni.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpIni.Location = new System.Drawing.Point(485, 14);
+            this.dtpIni.Name = "dtpIni";
+            this.dtpIni.Size = new System.Drawing.Size(119, 20);
+            this.dtpIni.TabIndex = 3;
+            this.dtpIni.ValueChanged += new System.EventHandler(this.dtpIni_ValueChanged);
             // 
             // cmbUsina
             // 
+            this.cmbUsina.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbUsina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbUsina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUsina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbUsina.ForeColor = System.Drawing.Color.White;
             this.cmbUsina.FormattingEnabled = true;
             this.cmbUsina.Location = new System.Drawing.Point(78, 18);
@@ -255,6 +224,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(6, 19);
             this.label1.Name = "label1";
@@ -285,7 +255,7 @@
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(440, 415);
+            this.btnIns.Location = new System.Drawing.Point(399, 415);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
             this.btnIns.TabIndex = 1;
@@ -295,10 +265,10 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.Controls.Add(this.btnIns);
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnBack);
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(800, 450);
@@ -326,8 +296,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFim;
+        private System.Windows.Forms.DateTimePicker dtpIni;
         private System.Windows.Forms.ComboBox cmbUsina;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton btnBack;
@@ -336,14 +306,10 @@
         private System.Windows.Forms.TextBox txtCosts;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbMan;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnIns;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Panel panelDesktop;
     }

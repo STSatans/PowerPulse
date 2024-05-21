@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbCont = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtLeit = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -38,20 +41,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.btnInserir = new FontAwesome.Sharp.IconButton();
-            this.btnEdit = new FontAwesome.Sharp.IconButton();
-            this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.btnConf = new FontAwesome.Sharp.IconButton();
-            this.btnCanc = new FontAwesome.Sharp.IconButton();
-            this.cmbCont = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnInserir = new FontAwesome.Sharp.IconButton();
+            this.btnEdit = new FontAwesome.Sharp.IconButton();
+            this.btnDel = new FontAwesome.Sharp.IconButton();
+            this.btnConf = new FontAwesome.Sharp.IconButton();
+            this.btnCanc = new FontAwesome.Sharp.IconButton();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,11 +76,49 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblPrice.Location = new System.Drawing.Point(108, 181);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(50, 20);
+            this.lblPrice.TabIndex = 11;
+            this.lblPrice.Text = "KW/H";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.Location = new System.Drawing.Point(6, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 20);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "N.º Contrato:";
+            // 
+            // cmbCont
+            // 
+            this.cmbCont.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbCont.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cmbCont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cmbCont.ForeColor = System.Drawing.Color.White;
+            this.cmbCont.FormattingEnabled = true;
+            this.cmbCont.Location = new System.Drawing.Point(112, 61);
+            this.cmbCont.Name = "cmbCont";
+            this.cmbCont.Size = new System.Drawing.Size(119, 24);
+            this.cmbCont.TabIndex = 9;
+            this.cmbCont.SelectedIndexChanged += new System.EventHandler(this.cmbCont_SelectedIndexChanged);
+            // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(180, 141);
+            this.label5.Location = new System.Drawing.Point(181, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 20);
             this.label5.TabIndex = 8;
@@ -88,15 +126,20 @@
             // 
             // txtLeit
             // 
+            this.txtLeit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLeit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtLeit.ForeColor = System.Drawing.Color.White;
             this.txtLeit.Location = new System.Drawing.Point(74, 142);
+            this.txtLeit.MaxLength = 6;
             this.txtLeit.Name = "txtLeit";
             this.txtLeit.Size = new System.Drawing.Size(100, 20);
             this.txtLeit.TabIndex = 6;
+            this.txtLeit.TextChanged += new System.EventHandler(this.txtLeit_TextChanged);
+            this.txtLeit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLeit_KeyPress);
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(125, 95);
@@ -106,6 +149,7 @@
             // 
             // cmbNif
             // 
+            this.cmbNif.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbNif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbNif.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNif.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -120,6 +164,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.Location = new System.Drawing.Point(6, 181);
@@ -130,6 +175,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.Location = new System.Drawing.Point(6, 142);
@@ -140,6 +186,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(6, 99);
@@ -150,6 +197,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(6, 19);
@@ -179,6 +227,31 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "N.º Fatura";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "NIF";
+            this.columnHeader3.Width = 110;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "N.º Contrato";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Data Emissao";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Leitura";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Pagamento";
+            // 
             // btnInserir
             // 
             this.btnInserir.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -190,7 +263,7 @@
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
             this.btnInserir.TabIndex = 3;
-            this.btnInserir.Text = "inserir";
+            this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
@@ -211,7 +284,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;
@@ -253,64 +326,6 @@
             this.btnCanc.Text = "Cancelar";
             this.btnCanc.UseVisualStyleBackColor = true;
             this.btnCanc.Click += new System.EventHandler(this.btnCanc_Click);
-            // 
-            // cmbCont
-            // 
-            this.cmbCont.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.cmbCont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cmbCont.ForeColor = System.Drawing.Color.White;
-            this.cmbCont.FormattingEnabled = true;
-            this.cmbCont.Location = new System.Drawing.Point(112, 61);
-            this.cmbCont.Name = "cmbCont";
-            this.cmbCont.Size = new System.Drawing.Size(119, 24);
-            this.cmbCont.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(6, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 20);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "N.º Contrato:";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblPrice.Location = new System.Drawing.Point(111, 181);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(50, 20);
-            this.lblPrice.TabIndex = 11;
-            this.lblPrice.Text = "KW/H";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "N.º Fatura";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "NIF";
-            this.columnHeader3.Width = 110;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "N.º Contrato";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Data Emissao";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Leitura";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Pagamento";
             // 
             // Faturas
             // 

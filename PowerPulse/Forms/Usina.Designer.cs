@@ -35,6 +35,7 @@
             this.ImgSm = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblManutencao = new System.Windows.Forms.Label();
+            this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.txtLoc = new System.Windows.Forms.TextBox();
             this.txtCapMat = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -60,7 +61,6 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -131,6 +131,7 @@
             // 
             // lblManutencao
             // 
+            this.lblManutencao.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblManutencao.AutoSize = true;
             this.lblManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblManutencao.ForeColor = System.Drawing.Color.White;
@@ -140,8 +141,19 @@
             this.lblManutencao.TabIndex = 14;
             this.lblManutencao.Text = "Data Manutencao";
             // 
+            // dtpData
+            // 
+            this.dtpData.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpData.Location = new System.Drawing.Point(163, 144);
+            this.dtpData.Name = "dtpData";
+            this.dtpData.Size = new System.Drawing.Size(120, 26);
+            this.dtpData.TabIndex = 13;
+            // 
             // txtLoc
             // 
+            this.txtLoc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtLoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -153,6 +165,7 @@
             // 
             // txtCapMat
             // 
+            this.txtCapMat.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCapMat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCapMat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCapMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -164,6 +177,7 @@
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -175,6 +189,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label10.ForeColor = System.Drawing.Color.White;
@@ -186,6 +201,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label9.ForeColor = System.Drawing.Color.White;
@@ -197,6 +213,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label8.ForeColor = System.Drawing.Color.White;
@@ -208,6 +225,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label7.ForeColor = System.Drawing.Color.White;
@@ -219,6 +237,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.ForeColor = System.Drawing.Color.White;
@@ -248,6 +267,7 @@
             // 
             // lblGasto
             // 
+            this.lblGasto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblGasto.AutoSize = true;
             this.lblGasto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblGasto.ForeColor = System.Drawing.Color.White;
@@ -259,6 +279,7 @@
             // 
             // lblMatUs
             // 
+            this.lblMatUs.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblMatUs.AutoSize = true;
             this.lblMatUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblMatUs.ForeColor = System.Drawing.Color.White;
@@ -270,6 +291,7 @@
             // 
             // lblProdM
             // 
+            this.lblProdM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblProdM.AutoSize = true;
             this.lblProdM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblProdM.ForeColor = System.Drawing.Color.White;
@@ -281,6 +303,7 @@
             // 
             // lblTipo
             // 
+            this.lblTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTipo.AutoSize = true;
             this.lblTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTipo.ForeColor = System.Drawing.Color.White;
@@ -292,6 +315,7 @@
             // 
             // lblEstado
             // 
+            this.lblEstado.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEstado.AutoSize = true;
             this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblEstado.ForeColor = System.Drawing.Color.White;
@@ -303,6 +327,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.Color.White;
@@ -315,6 +340,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.ForeColor = System.Drawing.Color.White;
@@ -326,6 +352,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.ForeColor = System.Drawing.Color.White;
@@ -337,6 +364,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.Color.White;
@@ -348,6 +376,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -445,15 +474,6 @@
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // dtpData
-            // 
-            this.dtpData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpData.Location = new System.Drawing.Point(163, 144);
-            this.dtpData.Name = "dtpData";
-            this.dtpData.Size = new System.Drawing.Size(120, 26);
-            this.dtpData.TabIndex = 13;
             // 
             // Usina
             // 

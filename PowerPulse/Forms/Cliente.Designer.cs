@@ -62,6 +62,7 @@ namespace PowerPulse.Forms
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnCanc);
             this.panel1.Controls.Add(this.btnUpdate);
@@ -70,12 +71,10 @@ namespace PowerPulse.Forms
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnDel);
             this.panel1.Controls.Add(this.lst);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 489);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnClear
             // 
@@ -174,6 +173,7 @@ namespace PowerPulse.Forms
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label6.Location = new System.Drawing.Point(15, 59);
@@ -184,6 +184,7 @@ namespace PowerPulse.Forms
             // 
             // txtNome
             // 
+            this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.ForeColor = System.Drawing.Color.White;
             this.txtNome.Location = new System.Drawing.Point(148, 59);
@@ -195,6 +196,7 @@ namespace PowerPulse.Forms
             // 
             // txtMorada
             // 
+            this.txtMorada.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMorada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMorada.ForeColor = System.Drawing.Color.White;
             this.txtMorada.Location = new System.Drawing.Point(88, 136);
@@ -205,6 +207,7 @@ namespace PowerPulse.Forms
             // 
             // txtTelefone
             // 
+            this.txtTelefone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTelefone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtTelefone.ForeColor = System.Drawing.Color.White;
             this.txtTelefone.Location = new System.Drawing.Point(88, 94);
@@ -217,6 +220,7 @@ namespace PowerPulse.Forms
             // 
             // txtCodP2
             // 
+            this.txtCodP2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCodP2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP2.ForeColor = System.Drawing.Color.White;
             this.txtCodP2.Location = new System.Drawing.Point(208, 176);
@@ -229,6 +233,7 @@ namespace PowerPulse.Forms
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.Location = new System.Drawing.Point(189, 176);
@@ -239,6 +244,7 @@ namespace PowerPulse.Forms
             // 
             // txtCodP1
             // 
+            this.txtCodP1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCodP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCodP1.ForeColor = System.Drawing.Color.White;
             this.txtCodP1.Location = new System.Drawing.Point(131, 176);
@@ -251,6 +257,7 @@ namespace PowerPulse.Forms
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.Location = new System.Drawing.Point(15, 176);
@@ -261,6 +268,7 @@ namespace PowerPulse.Forms
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.Location = new System.Drawing.Point(15, 134);
@@ -271,6 +279,7 @@ namespace PowerPulse.Forms
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(15, 94);
@@ -281,6 +290,7 @@ namespace PowerPulse.Forms
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(15, 24);
@@ -291,6 +301,7 @@ namespace PowerPulse.Forms
             // 
             // txtNIF
             // 
+            this.txtNIF.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNIF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNIF.ForeColor = System.Drawing.Color.White;
             this.txtNIF.Location = new System.Drawing.Point(60, 24);
@@ -303,6 +314,7 @@ namespace PowerPulse.Forms
             // 
             // btnDel
             // 
+            this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;

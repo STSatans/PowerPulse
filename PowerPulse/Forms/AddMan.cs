@@ -15,11 +15,6 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
 
         SqlConnection BD = new SqlConnection(con);
@@ -27,9 +22,9 @@ namespace PowerPulse.Forms
         {
 
             txtCosts.Enabled = false;
-            comboBox2.Enabled = false;
-            dateTimePicker1.Enabled = false;
-            dateTimePicker2.Enabled = false;
+            cmbMan.Enabled = false;
+            dtpIni.Enabled = false;
+            dtpFim.Enabled = false;
             btnIns.Enabled = false;
             BD.Open();
 
@@ -45,20 +40,14 @@ namespace PowerPulse.Forms
             BD.Close();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtCosts.BackColor = Color.White;
-            txtCosts.ForeColor = Color.Black;
-        }
-
         private void btnIns_Click(object sender, EventArgs e)
         {
             try
             {
                 BD.Open();
                 string[] id = cmbUsina.SelectedItem.ToString().Split('-');
-                DateTime date_ini = dateTimePicker1.Value;
-                DateTime date_end = dateTimePicker2.Value;
+                DateTime date_ini = dtpIni.Value;
+                DateTime date_end = dtpFim.Value;
                 SqlCommand cmd = new SqlCommand("Select data_ini from manutencao_usina where ID_Usina=" + id[0] + "and estado !='Concluido'", BD);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -77,7 +66,7 @@ namespace PowerPulse.Forms
                 cmd2.Parameters.AddWithValue("@ID_Usina", id[0]);
                 cmd2.Parameters.AddWithValue("@data_ini", date_ini);
                 cmd2.Parameters.AddWithValue("@data_fim", date_end);
-                cmd2.Parameters.AddWithValue("@tipo_manutencao", comboBox2.SelectedItem.ToString());
+                cmd2.Parameters.AddWithValue("@tipo_manutencao", cmbMan.SelectedItem.ToString());
                 cmd2.Parameters.AddWithValue("@custo_manutencao", txtCosts.Text);
                 cmd2.Parameters.AddWithValue("@descricao", txtDesc.Text);
                 if (date_ini.Date >= DateTime.Today)
@@ -146,10 +135,44 @@ namespace PowerPulse.Forms
         }
         private void cmbUsina_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtDesc.Enabled = true;
             txtCosts.Enabled = true;
-            comboBox2.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            dateTimePicker2.Enabled = true;
+            cmbMan.Enabled = true;
+            dtpIni.Enabled = true;
+            dtpFim.Enabled = true;
+        }
+
+        private void verify()
+        {
+            if(cmbUsina.SelectedItem!=null && cmbMan.SelectedItem!=null && dtpIni.Value!=null && dtpFim.Value!=null && txtCosts.Text!=null && txtDesc.Text!=null)
+            {
+                btnIns.Enabled = true;
+            }
+        }
+
+        private void cmbMan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verify();
+        }
+
+        private void txtCosts_TextChanged(object sender, EventArgs e)
+        {
+            verify();
+        }
+
+        private void dtpFim_ValueChanged(object sender, EventArgs e)
+        {
+            verify();
+        }
+
+        private void dtpIni_ValueChanged(object sender, EventArgs e)
+        {
+            verify();
+        }
+
+        private void txtDesc_TextChanged(object sender, EventArgs e)
+        {
+            verify();
         }
     }
 }

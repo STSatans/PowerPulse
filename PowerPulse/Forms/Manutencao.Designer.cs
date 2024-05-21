@@ -33,7 +33,7 @@
             this.btnCanc = new FontAwesome.Sharp.IconButton();
             this.btnConf = new FontAwesome.Sharp.IconButton();
             this.btnEdit = new FontAwesome.Sharp.IconButton();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstMan = new System.Windows.Forms.ListView();
             this.colUsina = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDataIni = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDataFim = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,15 +58,15 @@
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.panelDesktop.Controls.Add(this.btnDel);
             this.panelDesktop.Controls.Add(this.btnCanc);
             this.panelDesktop.Controls.Add(this.btnConf);
             this.panelDesktop.Controls.Add(this.btnEdit);
-            this.panelDesktop.Controls.Add(this.listView1);
+            this.panelDesktop.Controls.Add(this.lstMan);
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnIns);
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(891, 542);
@@ -132,12 +132,12 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // listView1
+            // lstMan
             // 
-            this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstMan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lstMan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.lstMan.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstMan.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colUsina,
             this.colDataIni,
             this.colDataFim,
@@ -145,15 +145,15 @@
             this.colCost,
             this.colDesc,
             this.columnHeader1});
-            this.listView1.ForeColor = System.Drawing.Color.White;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(29, 218);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(834, 268);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.lstMan.ForeColor = System.Drawing.Color.White;
+            this.lstMan.HideSelection = false;
+            this.lstMan.Location = new System.Drawing.Point(29, 228);
+            this.lstMan.Name = "lstMan";
+            this.lstMan.Size = new System.Drawing.Size(834, 258);
+            this.lstMan.TabIndex = 2;
+            this.lstMan.UseCompatibleStateImageBehavior = false;
+            this.lstMan.View = System.Windows.Forms.View.Details;
+            this.lstMan.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // colUsina
             // 
@@ -202,12 +202,13 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(196, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 189);
+            this.groupBox1.Size = new System.Drawing.Size(471, 192);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.Location = new System.Drawing.Point(320, 153);
@@ -218,6 +219,7 @@
             // 
             // cmbTipoM
             // 
+            this.cmbTipoM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbTipoM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.cmbTipoM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -235,6 +237,7 @@
             // 
             // txtCost
             // 
+            this.txtCost.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -247,6 +250,7 @@
             // 
             // dtpDataFim
             // 
+            this.dtpDataFim.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpDataFim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.dtpDataFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataFim.Location = new System.Drawing.Point(90, 59);
@@ -256,6 +260,7 @@
             // 
             // dtpDataIni
             // 
+            this.dtpDataIni.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpDataIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.dtpDataIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataIni.Location = new System.Drawing.Point(101, 19);
@@ -265,6 +270,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.Location = new System.Drawing.Point(6, 152);
@@ -275,6 +281,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.Location = new System.Drawing.Point(6, 104);
@@ -285,6 +292,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(6, 60);
@@ -295,6 +303,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -311,7 +320,7 @@
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(29, 30);
+            this.btnIns.Location = new System.Drawing.Point(100, 33);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
             this.btnIns.TabIndex = 0;
@@ -345,7 +354,7 @@
         private FontAwesome.Sharp.IconButton btnCanc;
         private FontAwesome.Sharp.IconButton btnConf;
         private FontAwesome.Sharp.IconButton btnEdit;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstMan;
         private System.Windows.Forms.GroupBox groupBox1;
         private FontAwesome.Sharp.IconButton btnIns;
         private System.Windows.Forms.ColumnHeader colUsina;

@@ -134,7 +134,6 @@ namespace PowerPulse.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OpenChildForm(new AddUsina());
-
         }
         private void OpenChildForm(Form childForm)
         {
@@ -152,8 +151,6 @@ namespace PowerPulse.Forms
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-
-
         }
         private void label5_Click(object sender, EventArgs e)
         {
