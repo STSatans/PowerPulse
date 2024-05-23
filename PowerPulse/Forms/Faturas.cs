@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace PowerPulse
 {
@@ -18,7 +19,7 @@ namespace PowerPulse
         private void Faturas_Load(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select Fatura.*, Contrato.Id_cliente,Contrato.ID_Contrato from Fatura right join Contrato on Contrato.ID_Contrato = Fatura.ID_Contrato", BD);
+            SqlCommand cmd = new SqlCommand("Select * from Fatura", BD);
             SqlDataReader rdr = cmd.ExecuteReader();
             lblPrice.Text = "";
             btnEdit.Visible = false;
@@ -43,7 +44,6 @@ namespace PowerPulse
             }
             BD.Close();
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             btnCanc.Visible = true;
@@ -51,12 +51,15 @@ namespace PowerPulse
             btnEdit.Visible = false;
             isEditing = true;
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verifique se algum item está selecionado
-            if (listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count == 0)
             {
+                Reset();
+            }
+            else
+            { 
                 try
                 {
                     // Obtenha o primeiro item selecionado
@@ -85,7 +88,6 @@ namespace PowerPulse
                 }
             }
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
             BD.Open();
@@ -100,6 +102,7 @@ namespace PowerPulse
             if (row > 0)
             {
                 MessageBox.Show("Inseridos com Sucesso", "Sucesso");
+                Reset();
                 SqlCommand cmd2 = new SqlCommand("Select * from Fatura");
                 SqlDataReader rdr = cmd2.ExecuteReader();
                 if (rdr.HasRows)
@@ -122,7 +125,6 @@ namespace PowerPulse
             }
             BD.Close();
         }
-
         private void btnConf_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listView1.Items)
@@ -147,7 +149,7 @@ namespace PowerPulse
                             {
                                 MessageBox.Show("Registo Alterado com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 isEditing = false;
-                                ResetText();
+                                Reset();
                             }
                             else
                             {
@@ -160,7 +162,7 @@ namespace PowerPulse
                             if(result==DialogResult.No)
                             {
                                 isEditing=false;
-                                ResetText();
+                                Reset();
                             }
                         }
                     }
@@ -168,7 +170,6 @@ namespace PowerPulse
             }
         
         }
-
         private void btnCanc_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listView1.Items)
@@ -187,15 +188,13 @@ namespace PowerPulse
                             if(result==DialogResult.Yes)
                             {
                                 isEditing = false;
-                                ResetText();
+                                Reset();
                             }
                         }
                     }
                 }
             }
         }
-                        
-
         private void btnDel_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listView1.Items)
@@ -208,7 +207,7 @@ namespace PowerPulse
                 {
                     MessageBox.Show("Registo Eliminado com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     isEditing = false;
-                    ResetText();
+                    Reset();
                 }
                 else
                 {
@@ -216,23 +215,6 @@ namespace PowerPulse
                 }
             }
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Select ID_Contrato from Contrato where Id_cliente="+cmbNif.SelectedItem,BD);
-            SqlDataReader rd = cmd.ExecuteReader();
-            if (rd.HasRows)
-            {
-                while (rd.Read())
-                {
-                    cmbCont.Items.Add(rd[0].ToString());
-                    cmbCont.Enabled = true;
-                }
-            }
-            BD.Close();
-        }
-
         private void Verifytxt()
         {
             try
@@ -254,27 +236,48 @@ namespace PowerPulse
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
+        private void Reset()
         {
-
+            listView1.SelectedItems.Clear();
+            txtLeit.Text = "";
+            cmbCont.SelectedItem=null;
+            cmbNif.SelectedItem = null;
+            dateTimePicker1.Value=DateTime.Today;
         }
-
         private void cmbCont_SelectedIndexChanged(object sender, EventArgs e)
         {
             Verifytxt();
         }
-
         private void txtLeit_TextChanged(object sender, EventArgs e)
         {
             Verifytxt();
-            int preco = Convert.ToInt32(txtLeit.Text) * 50;
-            lblPrice.Text = preco.ToString()+" €";
+            if (txtLeit.Text != "")
+            {
+                int preco = Convert.ToInt32(txtLeit.Text) * 50;
+                lblPrice.Text = preco.ToString() + " €";
+            }
         }
-
         private void txtLeit_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+        private void cmbNif_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbNif.SelectedItem != null)
+            {
+                BD.Open();
+                SqlCommand cmd = new SqlCommand("Select ID_Contrato from Contrato where Id_cliente=" + cmbNif.SelectedItem, BD);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    while (rd.Read())
+                    {
+                        cmbCont.Items.Add(rd[0].ToString());
+                        cmbCont.Enabled = true;
+                    }
+                }
+                BD.Close();
+            }
         }
     }
 }

@@ -133,8 +133,9 @@ namespace PowerPulse.Forms
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstMan.SelectedItems.Count > 0)
-            {
+            if (lstMan.SelectedItems.Count == 0)
+            { }
+            else { 
                 // Get the selected item
                 ListViewItem selectedItem = lstMan.SelectedItems[0];
 
@@ -149,10 +150,6 @@ namespace PowerPulse.Forms
                     txtCost.BackColor = Color.FromArgb(30, 30, 30);
                 }
                 btnEdit.Visible = true;
-            }
-            else
-            {
-
             }
         }
 

@@ -85,7 +85,7 @@
             this.columnHeader7});
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(33, 245);
+            this.listView1.Location = new System.Drawing.Point(47, 266);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(776, 191);
             this.listView1.TabIndex = 0;
@@ -137,7 +137,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(36, 35);
+            this.panel1.Location = new System.Drawing.Point(50, 56);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(339, 204);
             this.panel1.TabIndex = 1;
@@ -214,7 +214,6 @@
             this.txtMoradaCliente.Name = "txtMoradaCliente";
             this.txtMoradaCliente.Size = new System.Drawing.Size(235, 23);
             this.txtMoradaCliente.TabIndex = 8;
-            this.txtMoradaCliente.TextChanged += new System.EventHandler(this.txtMoradaCliente_TextChanged);
             // 
             // label4
             // 
@@ -310,7 +309,7 @@
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Location = new System.Drawing.Point(484, 35);
+            this.panel2.Location = new System.Drawing.Point(498, 56);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(328, 204);
             this.panel2.TabIndex = 2;
@@ -382,7 +381,7 @@
             this.txtMoradaCont.Name = "txtMoradaCont";
             this.txtMoradaCont.Size = new System.Drawing.Size(209, 23);
             this.txtMoradaCont.TabIndex = 12;
-            this.txtMoradaCont.TextChanged += new System.EventHandler(this.txtMoradaCont_TextChanged);
+            this.txtMoradaCont.TextChanged += new System.EventHandler(this.txtMoradaCont_TextChanged_1);
             // 
             // label8
             // 
@@ -444,7 +443,7 @@
             // 
             this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Location = new System.Drawing.Point(367, 442);
+            this.btnDel.Location = new System.Drawing.Point(381, 463);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(133, 23);
             this.btnDel.TabIndex = 3;
@@ -456,7 +455,7 @@
             // 
             this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Location = new System.Drawing.Point(393, 95);
+            this.btnEdit.Location = new System.Drawing.Point(407, 116);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 4;
@@ -468,7 +467,7 @@
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Location = new System.Drawing.Point(393, 122);
+            this.btnUpdate.Location = new System.Drawing.Point(407, 143);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 5;
@@ -480,7 +479,7 @@
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(393, 149);
+            this.btnCancel.Location = new System.Drawing.Point(407, 170);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 6;
@@ -492,7 +491,7 @@
             // 
             this.btnIns.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIns.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIns.Location = new System.Drawing.Point(393, 45);
+            this.btnIns.Location = new System.Drawing.Point(407, 66);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
             this.btnIns.TabIndex = 7;
@@ -504,7 +503,7 @@
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Location = new System.Drawing.Point(393, 214);
+            this.btnClear.Location = new System.Drawing.Point(407, 235);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 25);
             this.btnClear.TabIndex = 8;
@@ -517,7 +516,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(846, 477);
+            this.ClientSize = new System.Drawing.Size(875, 518);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnIns);
             this.Controls.Add(this.btnCancel);

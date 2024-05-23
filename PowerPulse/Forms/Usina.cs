@@ -15,7 +15,7 @@ namespace PowerPulse.Forms
 
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);
-        bool isEditing=false;
+        bool isEditing = false;
         private void btnDel_Click(object sender, EventArgs e)
         {
             try
@@ -152,61 +152,100 @@ namespace PowerPulse.Forms
             childForm.BringToFront();
             childForm.Show();
         }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            isEditing=false;
-            Reset();
+            isEditing = false;
+            try
+            {
+                using (SqlConnection BD = new SqlConnection(con))
+                {
+                    BD.Open();
+                    ListViewItem selectedItem = listView1.SelectedItems[0];
+                    string itemText = selectedItem.Text;
+                    string[] Item = itemText.Split('-');
+
+                    string selectQuery = "SELECT Nome, localizacao, capacidade, tipo, data_construcao FROM Usina WHERE ID_Usina = @UsinaID";
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, BD))
+                    {
+                        cmd.Parameters.AddWithValue("@UsinaID", Item[0]);
+
+                        using (SqlDataReader rd = cmd.ExecuteReader())
+                        {
+                            if (rd.HasRows && rd.Read())
+                            {
+                                txtNome.Text = rd["Nome"].ToString();
+                                txtLoc.Text = rd["localizacao"].ToString();
+                                txtCapMat.Text = rd["capacidade"].ToString();
+                                lblTipo.Text = rd["tipo"].ToString();
+                                dtpData.Value = Convert.ToDateTime(rd["data_construcao"]);
+                            }
+                        }
+                    }
+                    Reset();
+                    txtCapMat.Enabled = false;
+                    txtLoc.Enabled = false;
+                    txtNome.Enabled = false;
+                    btnCancel.Hide();
+                    btnUpdate.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         private void Reset()
         {
             try
             {
-                BD.Open();
-                ListViewItem selectedItem = listView1.SelectedItems[0];
-
-                // Extract the index part from the ListViewItem's Text property
-                string itemText = selectedItem.Text;
-
-                // Split the text to extract just the index part
-                string[] Item = itemText.Split('-');
-                SqlCommand cmd = new SqlCommand("Select Nome,localizacao,capacidade,tipo,data_construcao from Usina where ID_Usina='" + Item[0] + "'", BD);
-                SqlDataReader rdr = cmd.ExecuteReader();
-                if (rdr.HasRows)
+                using (SqlConnection BD = new SqlConnection(con))
                 {
-                    while (rdr.Read())
+                    BD.Open();
+                    ListViewItem selectedItem = listView1.SelectedItems[0];
+                    string itemText = selectedItem.Text;
+                    string[] Item = itemText.Split('-');
+
+                    string selectQuery = "SELECT Nome, localizacao, capacidade, tipo, data_construcao FROM Usina WHERE ID_Usina = @UsinaID";
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, BD))
                     {
-                        txtNome.Text = rdr["Nome"].ToString();
-                        txtLoc.Text = rdr["localizacao"].ToString();
-                        txtCapMat.Text = rdr["Capacidade"].ToString();
-                        lblTipo.Text = rdr["Tipo"].ToString();
-                        dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                        cmd.Parameters.AddWithValue("@UsinaID", Item[0]);
+
+                        using (SqlDataReader rd = cmd.ExecuteReader())
+                        {
+                            if (rd.HasRows && rd.Read())
+                            {
+                                txtNome.Text = rd["Nome"].ToString();
+                                txtLoc.Text = rd["localizacao"].ToString();
+                                txtCapMat.Text = rd["capacidade"].ToString();
+                                lblTipo.Text = rd["tipo"].ToString();
+                                dtpData.Value = Convert.ToDateTime(rd["data_construcao"]);
+                            }
+                        }
                     }
+
+                    txtCapMat.Enabled = false;
+                    txtLoc.Enabled = false;
+                    txtNome.Enabled = false;
+                    btnCancel.Hide();
+                    btnUpdate.Hide();
                 }
-                txtCapMat.Enabled = false;
-                txtLoc.Enabled = false;
-                txtNome.Enabled = false;
-                btnCancel.Hide();
-                btnUpdate.Hide();
-                BD.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                BD.Close();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (listView1.SelectedItems.Count > 0)
+                if (listView1.SelectedItems.Count == 0)
+                {
+                    ResetLst();
+                    btnEditar.Hide();
+                }
+                else
                 {
                     btnDel.Show();
                     btnEditar.Show();
@@ -299,8 +338,8 @@ namespace PowerPulse.Forms
                     {
                         if (txtNome.Text == rdr["Nome"].ToString() && txtCapMat.Text == rdr["Capacidade"].ToString() && txtLoc.Text == rdr["localizacao"].ToString() && dtpData.Value == Convert.ToDateTime(rdr["data_construcao"].ToString()))
                         {
-                           DialogResult result= MessageBox.Show("Não existe alterações nos registos. Deseja continuar a editar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                            if(result == DialogResult.No) 
+                            DialogResult result = MessageBox.Show("Não existe alterações nos registos. Deseja continuar a editar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (result == DialogResult.No)
                             {
                                 isEditing = false;
                                 Reset();
@@ -318,6 +357,7 @@ namespace PowerPulse.Forms
                             if (row > 0)
                             {
                                 MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
+                                BD2.Close();
                                 Reset();
                                 isEditing = false;
                             }
@@ -326,7 +366,6 @@ namespace PowerPulse.Forms
                                 MessageBox.Show("Erro ao atualizar registos", "Atualizacao", MessageBoxButtons.OK);
                                 BD2.Close();
                             }
-                           
                         }
                     }
                     BD.Close();

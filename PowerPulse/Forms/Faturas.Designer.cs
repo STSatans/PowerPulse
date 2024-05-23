@@ -69,12 +69,11 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(156, 12);
+            this.groupBox2.Location = new System.Drawing.Point(201, 65);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(458, 215);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // lblPrice
             // 
@@ -160,7 +159,7 @@
             this.cmbNif.Name = "cmbNif";
             this.cmbNif.Size = new System.Drawing.Size(191, 24);
             this.cmbNif.TabIndex = 4;
-            this.cmbNif.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbNif.SelectedIndexChanged += new System.EventHandler(this.cmbNif_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -210,6 +209,7 @@
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2,
             this.columnHeader3,
@@ -219,7 +219,7 @@
             this.columnHeader7});
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 233);
+            this.listView1.Location = new System.Drawing.Point(57, 286);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(776, 179);
             this.listView1.TabIndex = 2;
@@ -259,7 +259,7 @@
             this.btnInserir.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnInserir.IconColor = System.Drawing.Color.Black;
             this.btnInserir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInserir.Location = new System.Drawing.Point(40, 28);
+            this.btnInserir.Location = new System.Drawing.Point(85, 81);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
             this.btnInserir.TabIndex = 3;
@@ -274,7 +274,7 @@
             this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEdit.IconColor = System.Drawing.Color.Black;
             this.btnEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEdit.Location = new System.Drawing.Point(40, 70);
+            this.btnEdit.Location = new System.Drawing.Point(85, 123);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 4;
@@ -289,7 +289,7 @@
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;
             this.btnDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDel.Location = new System.Drawing.Point(340, 418);
+            this.btnDel.Location = new System.Drawing.Point(385, 471);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 5;
@@ -304,7 +304,7 @@
             this.btnConf.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnConf.IconColor = System.Drawing.Color.Black;
             this.btnConf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnConf.Location = new System.Drawing.Point(630, 28);
+            this.btnConf.Location = new System.Drawing.Point(675, 81);
             this.btnConf.Name = "btnConf";
             this.btnConf.Size = new System.Drawing.Size(75, 23);
             this.btnConf.TabIndex = 6;
@@ -319,7 +319,7 @@
             this.btnCanc.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCanc.IconColor = System.Drawing.Color.Black;
             this.btnCanc.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCanc.Location = new System.Drawing.Point(630, 67);
+            this.btnCanc.Location = new System.Drawing.Point(675, 120);
             this.btnCanc.Name = "btnCanc";
             this.btnCanc.Size = new System.Drawing.Size(75, 23);
             this.btnCanc.TabIndex = 7;
@@ -332,7 +332,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(891, 557);
             this.Controls.Add(this.btnCanc);
             this.Controls.Add(this.btnConf);
             this.Controls.Add(this.btnDel);

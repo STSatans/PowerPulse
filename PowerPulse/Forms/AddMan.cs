@@ -14,13 +14,10 @@ namespace PowerPulse.Forms
         {
             InitializeComponent();
         }
-
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-
         SqlConnection BD = new SqlConnection(con);
         private void AddMan_Load(object sender, EventArgs e)
         {
-
             txtCosts.Enabled = false;
             cmbMan.Enabled = false;
             dtpIni.Enabled = false;
@@ -39,7 +36,6 @@ namespace PowerPulse.Forms
             }
             BD.Close();
         }
-
         private void btnIns_Click(object sender, EventArgs e)
         {
             try
@@ -48,20 +44,6 @@ namespace PowerPulse.Forms
                 string[] id = cmbUsina.SelectedItem.ToString().Split('-');
                 DateTime date_ini = dtpIni.Value;
                 DateTime date_end = dtpFim.Value;
-                SqlCommand cmd = new SqlCommand("Select data_ini from manutencao_usina where ID_Usina=" + id[0] + "and estado !='Concluido'", BD);
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    if (dr.HasRows)
-                    {
-                        DateTime date = Convert.ToDateTime(dr["data_ini"].ToString());
-                        if (date.Date == date_ini.Date)
-                        {
-                            MessageBox.Show("sad");
-                        }
-                    }
-                }
-                dr.Close();
                 SqlCommand cmd2 = new SqlCommand("Insert into manutencao_usina(ID_Usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao,estado) values(@ID_Usina,@data_ini,@data_fim,@tipo_manutencao,@custo_manutencao,@descricao,@estado)", BD);
                 cmd2.Parameters.AddWithValue("@ID_Usina", id[0]);
                 cmd2.Parameters.AddWithValue("@data_ini", date_ini);
@@ -141,7 +123,6 @@ namespace PowerPulse.Forms
             dtpIni.Enabled = true;
             dtpFim.Enabled = true;
         }
-
         private void verify()
         {
             if(cmbUsina.SelectedItem!=null && cmbMan.SelectedItem!=null && dtpIni.Value!=null && dtpFim.Value!=null && txtCosts.Text!=null && txtDesc.Text!=null)
@@ -149,27 +130,22 @@ namespace PowerPulse.Forms
                 btnIns.Enabled = true;
             }
         }
-
         private void cmbMan_SelectedIndexChanged(object sender, EventArgs e)
         {
             verify();
         }
-
         private void txtCosts_TextChanged(object sender, EventArgs e)
         {
             verify();
         }
-
         private void dtpFim_ValueChanged(object sender, EventArgs e)
         {
             verify();
         }
-
         private void dtpIni_ValueChanged(object sender, EventArgs e)
         {
             verify();
         }
-
         private void txtDesc_TextChanged(object sender, EventArgs e)
         {
             verify();

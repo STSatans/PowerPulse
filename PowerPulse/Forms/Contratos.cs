@@ -15,7 +15,7 @@ namespace PowerPulse.Forms
         }
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con casa
-        bool isEditing=false;
+        bool isEditing = false;
         private void Contratos_Load(object sender, EventArgs e)
         {
             // Ocultar botões e desativar o botão de inserção
@@ -58,7 +58,6 @@ namespace PowerPulse.Forms
             rd.Close();
             BD.Close();
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             btnUpdate.Show();
@@ -94,7 +93,6 @@ namespace PowerPulse.Forms
 
             return updateContrato;
         }
-
         private bool CheckClienteChanges(string clienteId)
         {
             bool updateCliente = false;
@@ -122,7 +120,6 @@ namespace PowerPulse.Forms
 
             return updateCliente;
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -208,7 +205,7 @@ namespace PowerPulse.Forms
 
                         if (result == DialogResult.No)
                         {
-                            isEditing= false;
+                            isEditing = false;
                             Reset();
                             btnIns.Enabled = false;
                             listView1.SelectedItems.Clear();
@@ -216,6 +213,10 @@ namespace PowerPulse.Forms
                             btnClear.Enabled = false;
                             btnEdit.Hide();
                             btnUpdate.Hide();
+                        }
+                        else
+                        {
+                            isEditing = true;
                         }
                     }
                 }
@@ -261,14 +262,99 @@ namespace PowerPulse.Forms
             }
             finally { BD.Close(); }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            try
+            {
+                BD.Open();
 
-                        if (result == DialogResult.Yes)
+                bool UpdateContrato = false;
+                bool UpdateCliente = false;
+
+                foreach (ListViewItem selectedItem in listView1.SelectedItems)
+                {
+                    string contratoId = selectedItem.SubItems[0].Text;
+                    string clienteId = selectedItem.SubItems[1].Text;
+
+                    UpdateContrato = CheckContratoChanges(contratoId);
+                    UpdateCliente = CheckClienteChanges(clienteId);
+
+                    if (UpdateContrato && UpdateCliente)
+                    {
+                        using (SqlCommand updateContratoCmd = new SqlCommand("UPDATE Contrato SET Morada=@Morada, Telefone=@Telefone, Potencia=@Potencia, Metodo_Pagamento=@Metodo WHERE ID_Contrato=@selectedId", BD))
                         {
-                            isEditing = false;
+                            updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
+                            updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
+                            updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
+                            updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem);
+                            updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem);
+                            updateContratoCmd.ExecuteNonQuery();
+                        }
+
+                        using (SqlCommand updateClienteCmd = new SqlCommand("UPDATE Cliente SET nome=@nome,endereco=@endereco, Contato=@Cont,codPostal=@codPostal WHERE Id_cliente=@Id_cliente", BD))
+                        {
+                            string Postal = txtCodP1.Text + "-" + txtCodP2.Text;
+                            updateClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
+                            updateClienteCmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                            updateClienteCmd.Parameters.AddWithValue("@endereco", txtMoradaCliente.Text);
+                            updateClienteCmd.Parameters.AddWithValue("@Cont", txtContato.Text);
+                            updateClienteCmd.Parameters.AddWithValue("@codPostal", Postal);
+                            updateClienteCmd.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Cliente e Contrato Atualizados");
+                        Reset();
+                        btnIns.Enabled = false;
+                        listView1.SelectedItems.Clear();
+                        btnCancel.Hide();
+                        btnClear.Enabled = false;
+                        btnEdit.Hide();
+                        btnUpdate.Hide();
+                    }
+                    else if (UpdateContrato && !UpdateCliente)
+                    {
+                        using (SqlCommand updateContratoCmd = new SqlCommand("UPDATE Contrato SET Morada=@Morada, Telefone=@Telefone, Potencia=@Potencia, Metodo_Pagamento=@Metodo WHERE ID_Contrato=@selectedId", BD))
+                        {
+                            updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
+                            updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
+                            updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
+                            updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem);
+                            updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem);
+                            updateContratoCmd.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Contrato Atualizado");
+                        Reset();
+                        btnIns.Enabled = false;
+                        listView1.SelectedItems.Clear();
+                        btnCancel.Hide();
+                        btnClear.Enabled = false;
+                        btnEdit.Hide();
+                        btnUpdate.Hide();
+                    }
+                    else if (UpdateCliente)
+                    {
+                        DialogResult result = MessageBox.Show("Não é possível atualizar apenas o cliente.\r\nPara concluir a atualização necessita de alterar o contrato.\r\nDeseja continuar?", "Confirmação", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.No)
+                        {
                             Reset();
+                            btnIns.Enabled = false;
+                            listView1.SelectedItems.Clear();
+                            btnCancel.Hide();
+                            btnClear.Enabled = false;
+                            btnEdit.Hide();
+                            btnUpdate.Hide();
+                        }
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Não existe alterações. Deseja continuar mesmo assim?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.No)
+                        {
+                            Reset();
+                            isEditing = false;
                             btnIns.Enabled = false;
                             listView1.SelectedItems.Clear();
                             btnCancel.Hide();
@@ -285,14 +371,24 @@ namespace PowerPulse.Forms
             }
             finally
             {
-                // Feche a conexão com o banco de dados após o uso
                 BD.Close();
             }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verifique se algum item está selecionado
-            if (listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count == 0)
+            {
+                Reset();
+                btnIns.Enabled = false;
+                listView1.SelectedItems.Clear();
+                btnCancel.Hide();
+                btnClear.Enabled = false;
+                btnEdit.Hide();
+                btnUpdate.Hide();
+                EditOn();
+            }
+            else
             {
                 try
                 {
@@ -327,7 +423,6 @@ namespace PowerPulse.Forms
             }
 
         }
-
         private void EditOFF()
         {
             txtNome.Enabled = false;
@@ -370,7 +465,6 @@ namespace PowerPulse.Forms
             txtNome.Text = "";
 
         }
-
         private void btnIns_Click(object sender, EventArgs e)
         {
             BD.Open();
@@ -408,36 +502,26 @@ namespace PowerPulse.Forms
             }
 
         }
-
-        private void txtMoradaCliente_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void txtTel_TextChanged(object sender, EventArgs e)
         {
             VerifyTxT();
         }
-
         private void txtTel_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtCodP1_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtCodP2_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtContato_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
@@ -456,22 +540,14 @@ namespace PowerPulse.Forms
                 }
             }
         }
-
-        private void txtMoradaCont_TextChanged(object sender, EventArgs e)
-        {
-            VerifyTxT();
-        }
-
         private void cmbMet_SelectedIndexChanged(object sender, EventArgs e)
         {
             VerifyTxT();
         }
-
         private void cmbPot_SelectedIndexChanged(object sender, EventArgs e)
         {
             VerifyTxT();
         }
-
         private void cmbNIF_SelectedIndexChanged(object sender, EventArgs e)
         {
             VerifyTxT();
@@ -513,11 +589,16 @@ namespace PowerPulse.Forms
 
             }
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             Reset();
+            btnEdit.Hide();
             listView1.SelectedItems.Clear();
+            EditOn();
+        }
+        private void txtMoradaCont_TextChanged_1(object sender, EventArgs e)
+        {
+            VerifyTxT();
         }
     }
 }

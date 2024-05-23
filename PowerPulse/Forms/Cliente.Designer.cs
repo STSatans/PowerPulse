@@ -62,7 +62,6 @@ namespace PowerPulse.Forms
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnCanc);
             this.panel1.Controls.Add(this.btnUpdate);
@@ -71,9 +70,10 @@ namespace PowerPulse.Forms
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnDel);
             this.panel1.Controls.Add(this.lst);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(816, 489);
+            this.panel1.Size = new System.Drawing.Size(891, 557);
             this.panel1.TabIndex = 0;
             // 
             // btnClear
@@ -83,7 +83,7 @@ namespace PowerPulse.Forms
             this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnClear.IconColor = System.Drawing.Color.Black;
             this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClear.Location = new System.Drawing.Point(25, 207);
+            this.btnClear.Location = new System.Drawing.Point(62, 241);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(92, 22);
             this.btnClear.TabIndex = 12;
@@ -98,7 +98,7 @@ namespace PowerPulse.Forms
             this.btnCanc.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCanc.IconColor = System.Drawing.Color.Black;
             this.btnCanc.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCanc.Location = new System.Drawing.Point(701, 120);
+            this.btnCanc.Location = new System.Drawing.Point(738, 154);
             this.btnCanc.Name = "btnCanc";
             this.btnCanc.Size = new System.Drawing.Size(92, 22);
             this.btnCanc.TabIndex = 11;
@@ -113,7 +113,7 @@ namespace PowerPulse.Forms
             this.btnUpdate.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnUpdate.IconColor = System.Drawing.Color.Black;
             this.btnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnUpdate.Location = new System.Drawing.Point(701, 92);
+            this.btnUpdate.Location = new System.Drawing.Point(738, 126);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(92, 22);
             this.btnUpdate.TabIndex = 10;
@@ -128,7 +128,7 @@ namespace PowerPulse.Forms
             this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEdit.IconColor = System.Drawing.Color.Black;
             this.btnEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEdit.Location = new System.Drawing.Point(701, 64);
+            this.btnEdit.Location = new System.Drawing.Point(738, 98);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(92, 22);
             this.btnEdit.TabIndex = 9;
@@ -143,7 +143,7 @@ namespace PowerPulse.Forms
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(701, 22);
+            this.btnIns.Location = new System.Drawing.Point(738, 56);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(92, 22);
             this.btnIns.TabIndex = 8;
@@ -166,7 +166,7 @@ namespace PowerPulse.Forms
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.txtNIF);
-            this.panel2.Location = new System.Drawing.Point(154, 3);
+            this.panel2.Location = new System.Drawing.Point(191, 37);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(510, 226);
             this.panel2.TabIndex = 2;
@@ -319,7 +319,7 @@ namespace PowerPulse.Forms
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;
             this.btnDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDel.Location = new System.Drawing.Point(361, 455);
+            this.btnDel.Location = new System.Drawing.Point(398, 489);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(92, 22);
             this.btnDel.TabIndex = 1;
@@ -341,7 +341,7 @@ namespace PowerPulse.Forms
             this.colCodP});
             this.lst.ForeColor = System.Drawing.Color.White;
             this.lst.HideSelection = false;
-            this.lst.Location = new System.Drawing.Point(12, 246);
+            this.lst.Location = new System.Drawing.Point(49, 280);
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(792, 203);
             this.lst.TabIndex = 0;
@@ -379,7 +379,7 @@ namespace PowerPulse.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(816, 489);
+            this.ClientSize = new System.Drawing.Size(891, 557);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

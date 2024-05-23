@@ -72,7 +72,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(137, 12);
+            this.groupBox1.Location = new System.Drawing.Point(200, 80);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(524, 308);
             this.groupBox1.TabIndex = 0;
@@ -340,7 +340,7 @@
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(56, 18);
+            this.iconButton2.Location = new System.Drawing.Point(119, 86);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(75, 23);
             this.iconButton2.TabIndex = 17;
@@ -356,7 +356,7 @@
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(311, 326);
+            this.btnIns.Location = new System.Drawing.Point(374, 394);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(156, 30);
             this.btnIns.TabIndex = 16;
@@ -366,13 +366,13 @@
             // 
             // panelDesktop
             // 
-            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnIns);
             this.panelDesktop.Controls.Add(this.iconButton2);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(816, 489);
+            this.panelDesktop.Size = new System.Drawing.Size(891, 557);
             this.panelDesktop.TabIndex = 12;
             // 
             // AddUsina
@@ -380,7 +380,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(816, 489);
+            this.ClientSize = new System.Drawing.Size(891, 557);
             this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

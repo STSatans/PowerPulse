@@ -58,7 +58,6 @@
             // 
             // panelDesktop
             // 
-            this.panelDesktop.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.panelDesktop.Controls.Add(this.btnDel);
             this.panelDesktop.Controls.Add(this.btnCanc);
@@ -67,9 +66,10 @@
             this.panelDesktop.Controls.Add(this.lstMan);
             this.panelDesktop.Controls.Add(this.groupBox1);
             this.panelDesktop.Controls.Add(this.btnIns);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(891, 542);
+            this.panelDesktop.Size = new System.Drawing.Size(891, 557);
             this.panelDesktop.TabIndex = 0;
             // 
             // btnDel
@@ -79,9 +79,9 @@
             this.btnDel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnDel.IconColor = System.Drawing.Color.Black;
             this.btnDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDel.Location = new System.Drawing.Point(416, 492);
+            this.btnDel.Location = new System.Drawing.Point(383, 499);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.Size = new System.Drawing.Size(127, 23);
             this.btnDel.TabIndex = 6;
             this.btnDel.Text = "Eliminar";
             this.btnDel.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.btnCanc.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCanc.IconColor = System.Drawing.Color.Black;
             this.btnCanc.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCanc.Location = new System.Drawing.Point(695, 164);
+            this.btnCanc.Location = new System.Drawing.Point(695, 171);
             this.btnCanc.Name = "btnCanc";
             this.btnCanc.Size = new System.Drawing.Size(75, 23);
             this.btnCanc.TabIndex = 5;
@@ -109,7 +109,7 @@
             this.btnConf.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnConf.IconColor = System.Drawing.Color.Black;
             this.btnConf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnConf.Location = new System.Drawing.Point(695, 98);
+            this.btnConf.Location = new System.Drawing.Point(695, 105);
             this.btnConf.Name = "btnConf";
             this.btnConf.Size = new System.Drawing.Size(75, 23);
             this.btnConf.TabIndex = 4;
@@ -124,7 +124,7 @@
             this.btnEdit.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEdit.IconColor = System.Drawing.Color.Black;
             this.btnEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEdit.Location = new System.Drawing.Point(695, 33);
+            this.btnEdit.Location = new System.Drawing.Point(695, 40);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 3;
@@ -147,7 +147,7 @@
             this.columnHeader1});
             this.lstMan.ForeColor = System.Drawing.Color.White;
             this.lstMan.HideSelection = false;
-            this.lstMan.Location = new System.Drawing.Point(29, 228);
+            this.lstMan.Location = new System.Drawing.Point(29, 235);
             this.lstMan.Name = "lstMan";
             this.lstMan.Size = new System.Drawing.Size(834, 258);
             this.lstMan.TabIndex = 2;
@@ -200,7 +200,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(196, 14);
+            this.groupBox1.Location = new System.Drawing.Point(196, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(471, 192);
             this.groupBox1.TabIndex = 1;
@@ -320,7 +320,7 @@
             this.btnIns.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnIns.IconColor = System.Drawing.Color.Black;
             this.btnIns.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIns.Location = new System.Drawing.Point(100, 33);
+            this.btnIns.Location = new System.Drawing.Point(100, 40);
             this.btnIns.Name = "btnIns";
             this.btnIns.Size = new System.Drawing.Size(75, 23);
             this.btnIns.TabIndex = 0;
@@ -332,8 +332,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(891, 542);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ClientSize = new System.Drawing.Size(891, 557);
             this.Controls.Add(this.panelDesktop);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

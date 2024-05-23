@@ -55,7 +55,18 @@ namespace PowerPulse.Forms
         {
             try
             {
-                if (lst.SelectedItems.Count > 0)
+                if (lst.SelectedItems.Count == 0)
+                {
+                    txtNIF.Enabled = true;
+                    txtNome.Enabled = true;
+                    txtTelefone.Enabled = true;
+                    txtMorada.Enabled = true;
+                    txtCodP1.Enabled = true;
+                    txtCodP2.Enabled = true;
+                    btnIns.Enabled = true;
+                    Reset();
+                }
+                else
                 {
                     // Get the selected item
                     ListViewItem selectedItem = lst.SelectedItems[0];

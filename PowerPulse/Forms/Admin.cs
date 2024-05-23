@@ -31,7 +31,14 @@ namespace PowerPulse.Forms
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBox1.SelectedIndex == 0)
+            {
 
+            }
+            else
+            {
+
+            }
         }
     }
 }
