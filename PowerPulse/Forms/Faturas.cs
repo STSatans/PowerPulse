@@ -144,6 +144,7 @@ namespace PowerPulse
                             cmd2.Parameters.AddWithValue("leitura",txtLeit.Text);
                             cmd2.Parameters.AddWithValue("Preco",lblPrice.Text);
                             cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
+                            rd.Close();
                             int row=cmd2.ExecuteNonQuery();
                             if(row >0)
                             {
@@ -167,8 +168,8 @@ namespace PowerPulse
                         }
                     }
                 }
+
             }
-        
         }
         private void btnCanc_Click(object sender, EventArgs e)
         {
@@ -193,6 +194,8 @@ namespace PowerPulse
                         }
                     }
                 }
+                rd.Close();
+                BD.Close();
             }
         }
         private void btnDel_Click(object sender, EventArgs e)

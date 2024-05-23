@@ -161,6 +161,7 @@
             this.txtLoc.Name = "txtLoc";
             this.txtLoc.Size = new System.Drawing.Size(309, 26);
             this.txtLoc.TabIndex = 10;
+            this.txtLoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoc_KeyPress);
             // 
             // txtCapMat
             // 
@@ -172,6 +173,7 @@
             this.txtCapMat.Name = "txtCapMat";
             this.txtCapMat.Size = new System.Drawing.Size(195, 26);
             this.txtCapMat.TabIndex = 9;
+            this.txtCapMat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapMat_KeyPress);
             // 
             // txtNome
             // 
@@ -183,6 +185,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(357, 26);
             this.txtNome.TabIndex = 8;
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label10
             // 

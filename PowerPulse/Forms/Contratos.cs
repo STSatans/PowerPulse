@@ -339,6 +339,7 @@ namespace PowerPulse.Forms
                         if (result == DialogResult.No)
                         {
                             Reset();
+                            isEditing = false;
                             btnIns.Enabled = false;
                             listView1.SelectedItems.Clear();
                             btnCancel.Hide();

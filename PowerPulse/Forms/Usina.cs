@@ -34,7 +34,8 @@ namespace PowerPulse.Forms
                 {
                     MessageBox.Show("Eliminado");
                     selectedItem.Remove();
-                    ResetLst();
+                    ResetTxt();
+
                 }
                 BD.Close();
             }
@@ -72,17 +73,33 @@ namespace PowerPulse.Forms
                 btnUpdate.Hide();
                 btnEditar.Hide();
                 btnDel.Hide();
-                //con
+                //Reload
+                Reload();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                BD.Close();
+            }
 
+        }
+        private void Reload()
+        {
+            try
+            {
                 BD.Open();
 
-                SqlCommand cmd = new SqlCommand("Select * from Usina", BD);
+                SqlCommand cmd = new SqlCommand("Select ID_Usina,Nome,Tipo from Usina", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
-
+                listView1.Items.Clear();
                 while (rdr.Read())
                 {
                     if (rdr.HasRows)
                     {
+
                         ListViewItem lvi = new ListViewItem(rdr["ID_Usina"].ToString() + "-" + rdr["Nome"].ToString());
                         listView1.Items.Add(lvi);
                         if (rdr["Tipo"].ToString() == "Solar")
@@ -113,11 +130,6 @@ namespace PowerPulse.Forms
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                BD.Close();
-            }
-
         }
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -249,7 +261,7 @@ namespace PowerPulse.Forms
                 {
                     btnDel.Show();
                     btnEditar.Show();
-                    ResetLst();
+                    ResetTxt();
                     ListViewItem selectedItem = listView1.SelectedItems[0];
 
                     // Extract the index part from the ListViewItem's Text property
@@ -294,7 +306,6 @@ namespace PowerPulse.Forms
                     BD.Close();
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -304,7 +315,7 @@ namespace PowerPulse.Forms
                 BD.Close();
             }
         }
-        private void ResetLst()
+        private void ResetTxt()
         {
             lblEstado.Text = "";
             lblGasto.Text = "";
@@ -342,6 +353,7 @@ namespace PowerPulse.Forms
                             if (result == DialogResult.No)
                             {
                                 isEditing = false;
+                                Reload();
                                 Reset();
                             }
                         }
@@ -359,6 +371,7 @@ namespace PowerPulse.Forms
                                 MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
                                 BD2.Close();
                                 Reset();
+                                Reload();
                                 isEditing = false;
                             }
                             else
@@ -379,6 +392,21 @@ namespace PowerPulse.Forms
             {
                 BD.Close();
             }
+        }
+
+        private void txtCapMat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void txtLoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
     }
 }
