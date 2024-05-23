@@ -15,7 +15,7 @@ namespace PowerPulse
 
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
         SqlConnection BD = new SqlConnection(con);//con casa
-        bool isEditing=false;
+        bool isEditing = false;
         private void Faturas_Load(object sender, EventArgs e)
         {
             BD.Open();
@@ -32,16 +32,26 @@ namespace PowerPulse
             {
                 while (rdr.Read())
                 {
-                        ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
-                        item.SubItems.Add(rdr["Id_Cliente"].ToString());
-                        item.SubItems.Add(rdr["ID_Contrato"].ToString());
-                        item.SubItems.Add(rdr["Data_Emissao"].ToString());
-                        item.SubItems.Add(rdr["Leitura"].ToString());
-                        item.SubItems.Add(rdr["Preco"].ToString());
+                    ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
+                    item.SubItems.Add(rdr["Id_Cliente"].ToString());
+                    item.SubItems.Add(rdr["ID_Contrato"].ToString());
+                    item.SubItems.Add(rdr["Data_Emissao"].ToString());
+                    item.SubItems.Add(rdr["Leitura"].ToString());
+                    item.SubItems.Add(rdr["Preco"].ToString());
                     listView1.Items.Add(item);
-                    cmbNif.Items.Add(rdr["Id_Cliente"].ToString());
                 }
             }
+            rdr.Close();
+            SqlCommand cmd2 = new SqlCommand("Select Id_cliente from Cliente", BD);
+            SqlDataReader rdr2 = cmd2.ExecuteReader();
+            if (rdr2.HasRows)
+            {
+                while (rdr2.Read())
+                {
+                    cmbNif.Items.Add(rdr2["Id_Cliente"].ToString());
+                }
+            }
+            rdr2.Close();
             BD.Close();
         }
         private void btnEdit_Click(object sender, EventArgs e)
@@ -59,7 +69,7 @@ namespace PowerPulse
                 Reset();
             }
             else
-            { 
+            {
                 try
                 {
                     // Obtenha o primeiro item selecionado
@@ -73,7 +83,7 @@ namespace PowerPulse
 
                     // Preencha os outros campos com base no item selecionado
                     cmbCont.SelectedItem = selectedItem.SubItems[2].Text;
-                    dateTimePicker1.Value =Convert.ToDateTime(selectedItem.SubItems[3].Text);
+                    dateTimePicker1.Value = Convert.ToDateTime(selectedItem.SubItems[3].Text);
                     txtLeit.Text = selectedItem.SubItems[4].Text;
                     lblPrice.Text = selectedItem.SubItems[5].Text;
                     // Desative os controles conforme necessário
@@ -90,40 +100,48 @@ namespace PowerPulse
         }
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            BD.Open();
-            string[] preco=lblPrice.Text.Split(' ');
-            SqlCommand cmd = new SqlCommand("Insert into Fatura(ID_Cliente,Data_Emissao,Leitura,Preco,ID_Contrato) values(@ID_Cliente,@Data_Emissao,@Leitura,@Preco,@ID_Contrato)", BD);
-            cmd.Parameters.AddWithValue("@ID_Cliente",cmbNif.SelectedItem);
-            cmd.Parameters.AddWithValue("@Data_Emissao", dateTimePicker1.Value);
-            cmd.Parameters.AddWithValue("@Leitura", txtLeit.Text);
-            cmd.Parameters.AddWithValue("@Preco", preco[0].Trim());
-            cmd.Parameters.AddWithValue("@ID_Contrato", cmbCont.SelectedItem);
-            int row = cmd.ExecuteNonQuery();
-            if (row > 0)
+            try
             {
-                MessageBox.Show("Inseridos com Sucesso", "Sucesso");
-                Reset();
-                SqlCommand cmd2 = new SqlCommand("Select * from Fatura");
-                SqlDataReader rdr = cmd2.ExecuteReader();
-                if (rdr.HasRows)
+
+                BD.Open();
+                string[] preco = lblPrice.Text.Split(' ');
+                SqlCommand cmd = new SqlCommand("Insert into Fatura(ID_Cliente,Data_Emissao,Leitura,Preco,ID_Contrato) values(@ID_Cliente,@Data_Emissao,@Leitura,@Preco,@ID_Contrato)", BD);
+                cmd.Parameters.AddWithValue("@ID_Cliente", cmbNif.SelectedItem);
+                cmd.Parameters.AddWithValue("@Data_Emissao", dateTimePicker1.Value);
+                cmd.Parameters.AddWithValue("@Leitura", txtLeit.Text);
+                cmd.Parameters.AddWithValue("@Preco", preco[0].Trim());
+                cmd.Parameters.AddWithValue("@ID_Contrato", cmbCont.SelectedItem);
+                int row = cmd.ExecuteNonQuery();
+                if (row > 0)
                 {
-                    while(rdr.Read())
+                    MessageBox.Show("Inseridos com Sucesso", "Sucesso");
+                    Reset();
+                    SqlCommand cmd2 = new SqlCommand("Select * from Fatura");
+                    SqlDataReader rdr = cmd2.ExecuteReader();
+                    if (rdr.HasRows)
                     {
-                        ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
-                        item.SubItems.Add(rdr["Id_Cliente"].ToString());
-                        item.SubItems.Add(rdr["ID_Contrato"].ToString());
-                        item.SubItems.Add(rdr["Data_Emissao"].ToString());
-                        item.SubItems.Add(rdr["Leitura"].ToString());
-                        item.SubItems.Add(rdr["Preco"].ToString());
-                        listView1.Items.Add(item);
+                        while (rdr.Read())
+                        {
+                            ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
+                            item.SubItems.Add(rdr["Id_Cliente"].ToString());
+                            item.SubItems.Add(rdr["ID_Contrato"].ToString());
+                            item.SubItems.Add(rdr["Data_Emissao"].ToString());
+                            item.SubItems.Add(rdr["Leitura"].ToString());
+                            item.SubItems.Add(rdr["Preco"].ToString());
+                            listView1.Items.Add(item);
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Erro ao inserir registos", "Warning");
+                }
+                BD.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao inserir registos","Warning");
+                MessageBox.Show(ex.Message);
             }
-            BD.Close();
         }
         private void btnConf_Click(object sender, EventArgs e)
         {
@@ -137,14 +155,13 @@ namespace PowerPulse
                 {
                     while (rd.Read())
                     {
-                        if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString()|| lblPrice.Text != rd[2].ToString())
+                        if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
                         {
                             SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
-                            cmd2.Parameters.AddWithValue("Data",dateTimePicker1.Value);
-                            cmd2.Parameters.AddWithValue("leitura",txtLeit.Text);
-                            cmd2.Parameters.AddWithValue("Preco",lblPrice.Text);
+                            cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
+                            cmd2.Parameters.AddWithValue("leitura", txtLeit.Text);
+                            cmd2.Parameters.AddWithValue("Preco", lblPrice.Text);
                             cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
-                            rd.Close();
                             int row=cmd2.ExecuteNonQuery();
                             if(row >0)
                             {
@@ -154,21 +171,21 @@ namespace PowerPulse
                             }
                             else
                             {
-                                MessageBox.Show("Erro ao Atualizar o registo","Erro",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                                MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             DialogResult result = MessageBox.Show("Nao existem alteracoes. Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if(result==DialogResult.No)
+                            if (result == DialogResult.No)
                             {
-                                isEditing=false;
+                                isEditing = false;
                                 Reset();
+                                return;
                             }
                         }
                     }
                 }
-
             }
         }
         private void btnCanc_Click(object sender, EventArgs e)
@@ -185,11 +202,12 @@ namespace PowerPulse
                     {
                         if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
                         {
-                            DialogResult result = MessageBox.Show("Existem Alterações por guardar. Deseja Sair do Modo de Edicao?","Aviso",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-                            if(result==DialogResult.Yes)
+                            DialogResult result = MessageBox.Show("Existem Alterações por guardar. Deseja Sair do Modo de Edicao?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (result == DialogResult.Yes)
                             {
                                 isEditing = false;
                                 Reset();
+                                return;
                             }
                         }
                     }
@@ -216,6 +234,7 @@ namespace PowerPulse
                 {
                     MessageBox.Show("Erro ao Eliminar o Registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                BD.Close();
             }
         }
         private void Verifytxt()
@@ -234,7 +253,7 @@ namespace PowerPulse
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -243,12 +262,24 @@ namespace PowerPulse
         {
             listView1.SelectedItems.Clear();
             txtLeit.Text = "";
-            cmbCont.SelectedItem=null;
+            cmbCont.SelectedItem = null;
             cmbNif.SelectedItem = null;
-            dateTimePicker1.Value=DateTime.Today;
+            dateTimePicker1.Value = DateTime.Today;
         }
         private void cmbCont_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select ID_Contrato from Fatura where NIF=@ID", BD);
+            cmd.Parameters.AddWithValue("@ID", cmbNif.SelectedItem);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                if (rdr.HasRows)
+                {
+                    cmbCont.Items.Clear();
+                    cmbCont.Items.Add(rdr.GetString(0));
+                }
+            }
             Verifytxt();
         }
         private void txtLeit_TextChanged(object sender, EventArgs e)
@@ -275,6 +306,7 @@ namespace PowerPulse
                 {
                     while (rd.Read())
                     {
+                        cmbCont.Items.Clear();
                         cmbCont.Items.Add(rd[0].ToString());
                         cmbCont.Enabled = true;
                     }

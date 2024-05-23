@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,7 +25,7 @@ namespace PowerPulse.Forms
             btnIns.Enabled = false;
             btnDel.Enabled = false;
             btnEdit.Hide();
-            EditOn();
+            EditOFF();
             btnClear.Hide();
             BD.Open();
 
@@ -236,31 +237,69 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Delete from Copntrato where ID_Contrato=@ID", BD);
+                SqlCommand checkInvoicesCmd = new SqlCommand("SELECT Id_fatura FROM Fatura WHERE Id_contrato = @ContractId", BD);
+                SqlCommand deleteInvoiceCmd = new SqlCommand("DELETE FROM Fatura WHERE Id_fatura = @InvoiceId", BD);
+                SqlCommand deleteContractCmd = new SqlCommand("DELETE FROM Contrato WHERE Id_contrato = @ContractId", BD);
+
                 foreach (ListViewItem selectedItem in listView1.SelectedItems)
                 {
-                    cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows > 0)
+                    string contractId = selectedItem.SubItems[0].Text;
+
+                    // Perguntar ao usuário se deseja eliminar o contrato e todas as faturas associadas
+                    DialogResult result = MessageBox.Show("Tem certeza que deseja eliminar o contrato e todas as faturas associadas?", "Confirmação de Eliminação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Eliminados");
-                        listView1.Items.Remove(selectedItem);
-                        Reset();
-                        listView1.SelectedItems.Clear();
-                        btnDel.Enabled = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro");
+                        // Verificar se existem faturas associadas ao contrato
+                        checkInvoicesCmd.Parameters.Clear();
+                        checkInvoicesCmd.Parameters.AddWithValue("@ContractId", contractId);
+                        SqlDataReader invoicesReader = checkInvoicesCmd.ExecuteReader();
+
+                        // Lista para armazenar os IDs das faturas a serem excluídas
+                        List<int> invoiceIds = new List<int>();
+
+                        while (invoicesReader.Read())
+                        {
+                            invoiceIds.Add(invoicesReader.GetInt32(0));
+                        }
+                        invoicesReader.Close();
+
+                        // Excluir as faturas associadas ao contrato
+                        foreach (int invoiceId in invoiceIds)
+                        {
+                            deleteInvoiceCmd.Parameters.Clear();
+                            deleteInvoiceCmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                            deleteInvoiceCmd.ExecuteNonQuery();
+                        }
+
+                        // Excluir o contrato
+                        deleteContractCmd.Parameters.Clear();
+                        deleteContractCmd.Parameters.AddWithValue("@ContractId", contractId);
+                        int rows = deleteContractCmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("Contrato e faturas associados eliminados");
+                            listView1.Items.Remove(selectedItem);
+                            Reset();
+                            listView1.SelectedItems.Clear();
+                            btnDel.Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao eliminar contrato");
+                        }
                     }
                 }
-                BD.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { BD.Close(); }
+            finally
+            {
+                BD.Close();
+            }
+
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -279,62 +318,9 @@ namespace PowerPulse.Forms
                     UpdateContrato = CheckContratoChanges(contratoId);
                     UpdateCliente = CheckClienteChanges(clienteId);
 
-                    if (UpdateContrato && UpdateCliente)
+                    if (UpdateContrato && UpdateCliente || !UpdateContrato && UpdateCliente || UpdateContrato && !UpdateCliente)
                     {
-                        using (SqlCommand updateContratoCmd = new SqlCommand("UPDATE Contrato SET Morada=@Morada, Telefone=@Telefone, Potencia=@Potencia, Metodo_Pagamento=@Metodo WHERE ID_Contrato=@selectedId", BD))
-                        {
-                            updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
-                            updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
-                            updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
-                            updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem);
-                            updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem);
-                            updateContratoCmd.ExecuteNonQuery();
-                        }
-
-                        using (SqlCommand updateClienteCmd = new SqlCommand("UPDATE Cliente SET nome=@nome,endereco=@endereco, Contato=@Cont,codPostal=@codPostal WHERE Id_cliente=@Id_cliente", BD))
-                        {
-                            string Postal = txtCodP1.Text + "-" + txtCodP2.Text;
-                            updateClienteCmd.Parameters.AddWithValue("@Id_cliente", clienteId);
-                            updateClienteCmd.Parameters.AddWithValue("@nome", txtNome.Text);
-                            updateClienteCmd.Parameters.AddWithValue("@endereco", txtMoradaCliente.Text);
-                            updateClienteCmd.Parameters.AddWithValue("@Cont", txtContato.Text);
-                            updateClienteCmd.Parameters.AddWithValue("@codPostal", Postal);
-                            updateClienteCmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Cliente e Contrato Atualizados");
-                        Reset();
-                        btnIns.Enabled = false;
-                        listView1.SelectedItems.Clear();
-                        btnCancel.Hide();
-                        btnClear.Enabled = false;
-                        btnEdit.Hide();
-                        btnUpdate.Hide();
-                    }
-                    else if (UpdateContrato && !UpdateCliente)
-                    {
-                        using (SqlCommand updateContratoCmd = new SqlCommand("UPDATE Contrato SET Morada=@Morada, Telefone=@Telefone, Potencia=@Potencia, Metodo_Pagamento=@Metodo WHERE ID_Contrato=@selectedId", BD))
-                        {
-                            updateContratoCmd.Parameters.AddWithValue("@selectedId", contratoId);
-                            updateContratoCmd.Parameters.AddWithValue("@Morada", txtMoradaCont.Text);
-                            updateContratoCmd.Parameters.AddWithValue("@Telefone", txtTel.Text);
-                            updateContratoCmd.Parameters.AddWithValue("@Metodo", cmbMet.SelectedItem);
-                            updateContratoCmd.Parameters.AddWithValue("@Potencia", cmbPot.SelectedItem);
-                            updateContratoCmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Contrato Atualizado");
-                        Reset();
-                        btnIns.Enabled = false;
-                        listView1.SelectedItems.Clear();
-                        btnCancel.Hide();
-                        btnClear.Enabled = false;
-                        btnEdit.Hide();
-                        btnUpdate.Hide();
-                    }
-                    else if (UpdateCliente)
-                    {
-                        DialogResult result = MessageBox.Show("Não é possível atualizar apenas o cliente.\r\nPara concluir a atualização necessita de alterar o contrato.\r\nDeseja continuar?", "Confirmação", MessageBoxButtons.YesNo);
+                        DialogResult result = MessageBox.Show("Existe alterações. Deseja continuar mesmo assim?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                         if (result == DialogResult.No)
                         {
@@ -343,6 +329,7 @@ namespace PowerPulse.Forms
                             btnIns.Enabled = false;
                             listView1.SelectedItems.Clear();
                             btnCancel.Hide();
+                            btnDel.Enabled = false;
                             btnClear.Enabled = false;
                             btnEdit.Hide();
                             btnUpdate.Hide();
@@ -359,6 +346,7 @@ namespace PowerPulse.Forms
                             btnIns.Enabled = false;
                             listView1.SelectedItems.Clear();
                             btnCancel.Hide();
+                            btnDel.Enabled = false;
                             btnClear.Enabled = false;
                             btnEdit.Hide();
                             btnUpdate.Hide();
@@ -388,6 +376,7 @@ namespace PowerPulse.Forms
                 btnEdit.Hide();
                 btnUpdate.Hide();
                 EditOn();
+                cmbNIF.Show();
             }
             else
             {
@@ -413,6 +402,7 @@ namespace PowerPulse.Forms
                     btnEdit.Show();
                     btnDel.Enabled = true;
                     btnClear.Show();
+                    cmbNIF.Enabled=false;
                     btnClear.Enabled = true;
                     EditOFF();
                 }
@@ -422,7 +412,6 @@ namespace PowerPulse.Forms
                     MessageBox.Show("Ocorreu um erro ao selecionar o item: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
         private void EditOFF()
         {
@@ -555,7 +544,7 @@ namespace PowerPulse.Forms
             if (cmbNIF.SelectedItem != null)
             {
                 BD.Open();
-
+                EditOn();
                 // Prepare o comando SQL para selecionar os dados do cliente com base no NIF selecionado
                 SqlCommand cmd = new SqlCommand("SELECT nome, endereco, Contato, codPostal FROM Cliente WHERE id_cliente=@NIF", BD);
                 cmd.Parameters.AddWithValue("@NIF", cmbNIF.SelectedItem.ToString());
@@ -593,7 +582,9 @@ namespace PowerPulse.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             Reset();
+            cmbNIF.Enabled=true;
             btnEdit.Hide();
+            btnDel.Enabled = false;
             listView1.SelectedItems.Clear();
             EditOn();
         }

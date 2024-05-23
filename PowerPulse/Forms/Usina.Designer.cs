@@ -104,12 +104,16 @@
             // ImgSm
             // 
             this.ImgSm.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSm.ImageStream")));
-            this.ImgSm.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSm.TransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ImgSm.Images.SetKeyName(0, "solar-cell.png");
             this.ImgSm.Images.SetKeyName(1, "eolic-energy.png");
             this.ImgSm.Images.SetKeyName(2, "fossil-fuel.png");
             this.ImgSm.Images.SetKeyName(3, "geothermal.png");
-            this.ImgSm.Images.SetKeyName(4, "nuclear-plant.png");
+            this.ImgSm.Images.SetKeyName(4, "nuclear-plant (1).png");
+            this.ImgSm.Images.SetKeyName(5, "biomass.png");
+            this.ImgSm.Images.SetKeyName(6, "energy-station.png");
+            this.ImgSm.Images.SetKeyName(7, "dam.png");
+            this.ImgSm.Images.SetKeyName(8, "wave.png");
             // 
             // panel2
             // 

@@ -211,7 +211,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(320, 153);
+            this.label5.Location = new System.Drawing.Point(296, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 20);
             this.label5.TabIndex = 8;
@@ -244,7 +244,7 @@
             this.txtCost.ForeColor = System.Drawing.Color.White;
             this.txtCost.Location = new System.Drawing.Point(182, 153);
             this.txtCost.Name = "txtCost";
-            this.txtCost.Size = new System.Drawing.Size(132, 19);
+            this.txtCost.Size = new System.Drawing.Size(101, 19);
             this.txtCost.TabIndex = 6;
             this.txtCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
