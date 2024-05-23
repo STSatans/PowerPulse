@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -110,35 +111,91 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-                SqlCommand cmd = new SqlCommand("Delete from Cliente where id_cliente=@ID", BD);
                 foreach (ListViewItem selectedItem in lst.SelectedItems)
                 {
-                    cmd.Parameters.AddWithValue("@ID", selectedItem.SubItems[0].Text);
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows > 0)
+                    string clienteId = selectedItem.SubItems[0].Text;
+
+                    // Perguntar ao usuário se deseja eliminar o cliente e todos os dados associados
+                    DialogResult result = MessageBox.Show("Existem contratos criados e Faturas com este cliente. Deseja eliminar?", "Confirmação de Eliminação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Eliminados");
-                        lst.Items.Remove(selectedItem);
-                        txtNIF.Text = " ";
-                        txtNome.Text = "";
-                        txtMorada.Text = "";
-                        txtTelefone.Text = "";
-                        txtCodP1.Text = "";
-                        txtCodP2.Text = "";
-                        btnDel.Enabled = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro");
+                        // Verificar se existem contratos associados ao cliente
+                        SqlCommand checkContractsCmd = new SqlCommand("SELECT Id_contrato FROM Contrato WHERE Id_cliente = @ClienteId", BD);
+                        checkContractsCmd.Parameters.AddWithValue("@ClienteId", clienteId);
+                        SqlDataReader contractsReader = checkContractsCmd.ExecuteReader();
+
+                        // Lista para armazenar os IDs dos contratos a serem excluídos
+                        List<int> contractIds = new List<int>();
+
+                        while (contractsReader.Read())
+                        {
+                            contractIds.Add(contractsReader.GetInt32(0));
+                        }
+                        contractsReader.Close();
+
+                        foreach (int contractId in contractIds)
+                        {
+                            // Verificar se existem faturas associadas ao contrato
+                            SqlCommand checkInvoicesCmd = new SqlCommand("SELECT ID_Fatura FROM Fatura WHERE ID_Contrato = @ContractId", BD);
+                            checkInvoicesCmd.Parameters.AddWithValue("@ContractId", contractId);
+                            SqlDataReader invoicesReader = checkInvoicesCmd.ExecuteReader();
+
+                            // Lista para armazenar os IDs das faturas a serem excluídas
+                            List<int> invoiceIds = new List<int>();
+
+                            while (invoicesReader.Read())
+                            {
+                                invoiceIds.Add(invoicesReader.GetInt32(0));
+                            }
+                            invoicesReader.Close();
+
+                            // Excluir as faturas associadas ao contrato
+                            foreach (int invoiceId in invoiceIds)
+                            {
+                                SqlCommand deleteInvoiceCmd = new SqlCommand("DELETE FROM Fatura WHERE ID_Fatura = @InvoiceId", BD);
+                                deleteInvoiceCmd.Parameters.AddWithValue("@InvoiceId", invoiceId);
+                                deleteInvoiceCmd.ExecuteNonQuery();
+                            }
+
+                            // Excluir o contrato
+                            SqlCommand deleteContractCmd = new SqlCommand("DELETE FROM Contrato WHERE ID_Contrato = @ContractId", BD);
+                            deleteContractCmd.Parameters.AddWithValue("@ContractId", contractId);
+                            deleteContractCmd.ExecuteNonQuery();
+                        }
+
+                        // Excluir o cliente
+                        SqlCommand deleteClientCmd = new SqlCommand("DELETE FROM Cliente WHERE Id_cliente = @ClienteId", BD);
+                        deleteClientCmd.Parameters.AddWithValue("@ClienteId", clienteId);
+                        int rows = deleteClientCmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("Todos os registos foram eliminados");
+                            lst.Items.Remove(selectedItem);
+                            txtNIF.Text = " ";
+                            txtNome.Text = "";
+                            txtMorada.Text = "";
+                            txtTelefone.Text = "";
+                            txtCodP1.Text = "";
+                            txtCodP2.Text = "";
+                            btnDel.Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao eliminar cliente");
+                        }
                     }
                 }
-                BD.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { BD.Close(); }
+            finally
+            {
+                BD.Close();
+            }
+
         }
         private void btnIns_Click(object sender, EventArgs e)
         {
@@ -157,6 +214,7 @@ namespace PowerPulse.Forms
                     MessageBox.Show("Inseridos com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SqlCommand cmd2 = new SqlCommand("select Id_cliente,nome,endereco,contato,codPostal from Cliente", BD);
                     SqlDataReader rdr = cmd2.ExecuteReader();
+                    lst.Items.Clear();
                     while (rdr.Read())
                     {
                         // Criar um array de strings para armazenar os dados de uma linha
@@ -288,8 +346,6 @@ namespace PowerPulse.Forms
                 // Close the main database connection after use
                 BD.Close();
             }
-
-
         }
         private void btnCanc_Click(object sender, EventArgs e)
         {
@@ -346,13 +402,30 @@ namespace PowerPulse.Forms
                         btnClear.Enabled = false;
                         btnEdit.Hide();
                         btnUpdate.Hide();
-                        txtCodP1.Enabled = false;
-                        txtCodP2.Enabled = false;
-                        txtTelefone.Enabled = false;
-                        txtMorada.Enabled = false;
-                        txtNIF.Enabled = false;
-                        txtNome.Enabled =false;
+                        txtCodP1.Enabled = true;
+                        txtCodP2.Enabled = true;
+                        txtTelefone.Enabled = true;
+                        txtMorada.Enabled = true;
+                        txtNIF.Enabled = true;
+                        txtNome.Enabled =true;
                     }
+                }
+                else
+                {
+                    isEditing = false;
+                    Reset();
+                    btnIns.Enabled = false;
+                    lst.SelectedItems.Clear();
+                    btnCanc.Hide();
+                    btnClear.Enabled = false;
+                    btnEdit.Hide();
+                    btnUpdate.Hide();
+                    txtCodP1.Enabled = true;
+                    txtCodP2.Enabled = true;
+                    txtTelefone.Enabled = true;
+                    txtMorada.Enabled = true;
+                    txtNIF.Enabled = true;
+                    txtNome.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -434,6 +507,9 @@ namespace PowerPulse.Forms
             txtCodP2.Text = "";
             lst.SelectedItems.Clear();
             btnEdit.Hide();
+            btnIns.Enabled=false;
+            btnDel.Enabled=false;
+            isEditing = false;
             
         }
         private void btnEdit_Click(object sender, EventArgs e)

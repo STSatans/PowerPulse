@@ -166,16 +166,6 @@ namespace PowerPulse
             currentBtn = (IconButton)senderbtn;
             lblForm.Text = currentBtn.Text;
         }
-
-        private void Reset()
-        {
-            DisableButton();
-            leftBorderBtn.Visible = false;
-            iconCurrentChildForm.IconChar = IconChar.Home;
-            iconCurrentChildForm.IconColor = Color.FromArgb(0, 0, 200);
-            lblForm.Text = "Home";
-        }
-
         private void Main_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized)
@@ -189,13 +179,11 @@ namespace PowerPulse
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Manutencao(), sender);
         }
-
         private void btnCliente_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Cliente(), sender);
         }
-
         private void btnStats_Click(object sender, EventArgs e)
         {
             if (lblCargo.Text == "Admin")
@@ -209,13 +197,11 @@ namespace PowerPulse
                 OpenChildForm(new Stats(), sender);
             }
         }
-
         private void btnFaturas_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Faturas(), sender);
         }
-
         private Timer timer;
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -226,7 +212,7 @@ namespace PowerPulse
                 int row = cmd.ExecuteNonQuery();
                 if (row > 0)
                 {
-                    MessageBox.Show("Teste");
+
                     BD.Close();
                 }
 
@@ -240,7 +226,6 @@ namespace PowerPulse
                 BD.Close();
             }
         }
-
         private void panelMenu_Paint(object sender, PaintEventArgs e)
         {
 

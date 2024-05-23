@@ -317,9 +317,9 @@
             this.lblForm.Location = new System.Drawing.Point(48, 28);
             this.lblForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForm.Name = "lblForm";
-            this.lblForm.Size = new System.Drawing.Size(46, 17);
+            this.lblForm.Size = new System.Drawing.Size(45, 17);
             this.lblForm.TabIndex = 3;
-            this.lblForm.Text = "label1";
+            this.lblForm.Text = "Home";
             // 
             // iconCurrentChildForm
             // 

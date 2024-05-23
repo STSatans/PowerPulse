@@ -61,6 +61,7 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,16 +105,21 @@
             // ImgSm
             // 
             this.ImgSm.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSm.ImageStream")));
-            this.ImgSm.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSm.TransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ImgSm.Images.SetKeyName(0, "solar-cell.png");
             this.ImgSm.Images.SetKeyName(1, "eolic-energy.png");
             this.ImgSm.Images.SetKeyName(2, "fossil-fuel.png");
             this.ImgSm.Images.SetKeyName(3, "geothermal.png");
-            this.ImgSm.Images.SetKeyName(4, "nuclear-plant.png");
+            this.ImgSm.Images.SetKeyName(4, "nuclear-plant (1).png");
+            this.ImgSm.Images.SetKeyName(5, "biomass.png");
+            this.ImgSm.Images.SetKeyName(6, "energy-station.png");
+            this.ImgSm.Images.SetKeyName(7, "dam.png");
+            this.ImgSm.Images.SetKeyName(8, "wave.png");
             // 
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.lblManutencao);
             this.panel2.Controls.Add(this.dtpData);
             this.panel2.Controls.Add(this.txtLoc);
@@ -135,7 +141,7 @@
             this.lblManutencao.AutoSize = true;
             this.lblManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblManutencao.ForeColor = System.Drawing.Color.White;
-            this.lblManutencao.Location = new System.Drawing.Point(150, 193);
+            this.lblManutencao.Location = new System.Drawing.Point(146, 193);
             this.lblManutencao.Name = "lblManutencao";
             this.lblManutencao.Size = new System.Drawing.Size(137, 20);
             this.lblManutencao.TabIndex = 14;
@@ -157,9 +163,9 @@
             this.txtLoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtLoc.ForeColor = System.Drawing.Color.White;
-            this.txtLoc.Location = new System.Drawing.Point(106, 101);
+            this.txtLoc.Location = new System.Drawing.Point(106, 97);
             this.txtLoc.Name = "txtLoc";
-            this.txtLoc.Size = new System.Drawing.Size(309, 26);
+            this.txtLoc.Size = new System.Drawing.Size(177, 26);
             this.txtLoc.TabIndex = 10;
             this.txtLoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoc_KeyPress);
             // 
@@ -169,9 +175,9 @@
             this.txtCapMat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtCapMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCapMat.ForeColor = System.Drawing.Color.White;
-            this.txtCapMat.Location = new System.Drawing.Point(163, 58);
+            this.txtCapMat.Location = new System.Drawing.Point(163, 54);
             this.txtCapMat.Name = "txtCapMat";
-            this.txtCapMat.Size = new System.Drawing.Size(195, 26);
+            this.txtCapMat.Size = new System.Drawing.Size(59, 26);
             this.txtCapMat.TabIndex = 9;
             this.txtCapMat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapMat_KeyPress);
             // 
@@ -181,9 +187,9 @@
             this.txtNome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtNome.ForeColor = System.Drawing.Color.White;
-            this.txtNome.Location = new System.Drawing.Point(58, 14);
+            this.txtNome.Location = new System.Drawing.Point(64, 10);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(357, 26);
+            this.txtNome.Size = new System.Drawing.Size(229, 26);
             this.txtNome.TabIndex = 8;
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
@@ -474,6 +480,18 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(228, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Ton";
+            // 
             // Usina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -529,5 +547,6 @@
         private System.Windows.Forms.Label lblManutencao;
         private System.Windows.Forms.ImageList ImgSm;
         private System.Windows.Forms.DateTimePicker dtpData;
+        private System.Windows.Forms.Label label11;
     }
 }
