@@ -70,7 +70,7 @@ namespace PowerPulse.Forms
                 lblCargos.Text = labelText2;
             }
 
-            SqlCommand cmd5 = new SqlCommand("Select Count(id_manutencao)from manutencao_usina where estado= 'Concluida'", BD);
+            SqlCommand cmd5 = new SqlCommand("Select Count(id_manutencao)from manutencao_usina where estado= 'Inicializada'", BD);
             SqlDataReader rd5 = cmd5.ExecuteReader();
             while (rd5.Read())
             {

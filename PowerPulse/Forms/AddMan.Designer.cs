@@ -114,11 +114,13 @@
             this.txtCosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtCosts.ForeColor = System.Drawing.Color.White;
             this.txtCosts.Location = new System.Drawing.Point(442, 69);
+            this.txtCosts.MaxLength = 10;
             this.txtCosts.Name = "txtCosts";
             this.txtCosts.Size = new System.Drawing.Size(157, 26);
             this.txtCosts.TabIndex = 10;
             this.txtCosts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCosts.TextChanged += new System.EventHandler(this.txtCosts_TextChanged);
+            this.txtCosts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCosts_KeyPress);
             // 
             // label5
             // 

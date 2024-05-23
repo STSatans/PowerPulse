@@ -42,20 +42,23 @@ namespace PowerPulse.Forms
         }
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidráulica")
+            if (cmbTipo.SelectedItem != null)
             {
-                panel1.Hide();
-                txtCapacidade.Clear();
-                txtGasto.Clear();
-                txtMaterial.Clear();
-            }
-            else
-            {
-                panel1.Show();
-                txtCapacidade.Enabled = true;
-                txtGasto.Enabled = true;
-                txtMaterial.Enabled = true;
-                VerifyTxt();
+                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidráulica")
+                {
+                    panel1.Hide();
+                    txtCapacidade.Clear();
+                    txtGasto.Clear();
+                    txtMaterial.Clear();
+                }
+                else
+                {
+                    panel1.Show();
+                    txtCapacidade.Enabled = true;
+                    txtGasto.Enabled = true;
+                    txtMaterial.Enabled = true;
+                    VerifyTxt();
+                }
             }
         }
 
@@ -166,13 +169,14 @@ namespace PowerPulse.Forms
                 cmd.Parameters.AddWithValue("@prodMax", txtProd.Text);
                 cmd.Parameters.AddWithValue("@Material", txtMaterial.Text);
                 cmd.Parameters.AddWithValue("@Gasto", txtGasto.Text);
-
                 int row = cmd.ExecuteNonQuery();
 
                 if (row > 0)
                 {
                     MessageBox.Show("Inseridos", "Inserido", MessageBoxButtons.OK);
+                    cmbTipo.SelectedItem = null;
                     txtCapacidade.Clear();
+                    txtProd.Clear();
                     txtGasto.Clear();
                     txtLoc.Clear();
                     txtMaterial.Clear();
