@@ -140,7 +140,6 @@ namespace PowerPulse.Forms
                     LoadListBox();
                     return;
                 }
-                BD.Close() ;
             }
             catch (Exception ex)
             {
