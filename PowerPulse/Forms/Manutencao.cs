@@ -220,8 +220,8 @@ namespace PowerPulse.Forms
         {
             lstMan.SelectedItems.Clear();
 
-            dtpDataFim.Value =DateTime.Now;
-            dtpDataIni.Value =DateTime.Today;
+            dtpDataFim.Value = DateTime.Now;
+            dtpDataIni.Value = DateTime.Today;
             cmbTipoM.SelectedItem = null;
             txtCost.Text = "";
 

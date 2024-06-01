@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -425,7 +424,7 @@ namespace PowerPulse.Forms
                         txtTelefone.Enabled = true;
                         txtMorada.Enabled = true;
                         txtNIF.Enabled = true;
-                        txtNome.Enabled =true;
+                        txtNome.Enabled = true;
                     }
                 }
                 else
@@ -470,7 +469,7 @@ namespace PowerPulse.Forms
                     btnIns.Enabled = true;
                 }
                 else
-                { 
+                {
                     btnIns.Enabled = false;
                 }
             }
@@ -525,10 +524,10 @@ namespace PowerPulse.Forms
             txtCodP2.Text = "";
             lst.SelectedItems.Clear();
             btnEdit.Hide();
-            btnIns.Enabled=false;
-            btnDel.Enabled=false;
+            btnIns.Enabled = false;
+            btnDel.Enabled = false;
             isEditing = false;
-            
+
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {

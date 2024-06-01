@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 
 namespace PowerPulse
 {

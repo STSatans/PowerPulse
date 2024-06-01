@@ -43,6 +43,7 @@ namespace PowerPulse
         {
             try
             {
+                lblversion.Text="v"+Application.ProductVersion;
                 BD.Open();
                 SqlCommand cmd = new SqlCommand("Select Nome,Cargo from Login where ID='" + User + "'", BD);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -54,8 +55,13 @@ namespace PowerPulse
                         lblCargo.Text = reader.GetString(1);
                         if (lblCargo.Text == "Admin")
                         {
-                            //picUser.Image = Properties.Resources; importar imagens em casa
+                            picUser.Image = Properties.Resources.icons8_admin_55;
                             btnAdm.Show();
+                        }
+                        else
+                        {
+                            btnAdm.Hide();
+                            picUser.Image = Properties.Resources.icons8_user_55;
                         }
                     }
                 }
@@ -91,26 +97,22 @@ namespace PowerPulse
             ActivateButton(sender, Color.FromArgb(75, 255, 87));
             OpenChildForm(new Admin(), sender);
         }
-
         //drag form
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int IParam);
-
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Quer mesmo sair?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             { Application.Exit(); }
         }
-
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
@@ -172,7 +174,6 @@ namespace PowerPulse
             else
                 FormBorderStyle = FormBorderStyle.Sizable;
         }
-
         private void btnMant_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(75, 255, 87));

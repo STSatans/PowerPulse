@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
@@ -396,7 +394,7 @@ namespace PowerPulse.Forms
                     btnEdit.Show();
                     btnDel.Enabled = true;
                     btnClear.Show();
-                    cmbNIF.Enabled=false;
+                    cmbNIF.Enabled = false;
                     btnClear.Enabled = true;
                     EditOFF();
                 }
@@ -576,7 +574,7 @@ namespace PowerPulse.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             Reset();
-            cmbNIF.Enabled=true;
+            cmbNIF.Enabled = true;
             btnEdit.Hide();
             btnDel.Enabled = false;
             listView1.SelectedItems.Clear();

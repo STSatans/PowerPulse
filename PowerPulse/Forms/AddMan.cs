@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -69,8 +68,8 @@ namespace PowerPulse.Forms
                         if (row > 0)
                         {
                             MessageBox.Show("Inserido com sucesso");
-                            cmbMan.SelectedItem=null;
-                            cmbUsina.SelectedItem=null;
+                            cmbMan.SelectedItem = null;
+                            cmbUsina.SelectedItem = null;
                             txtCosts.Clear();
                             dtpIni.Value = DateTime.Now;
                             dtpFim.Value = DateTime.Now;
@@ -139,7 +138,7 @@ namespace PowerPulse.Forms
         }
         private void verify()
         {
-            if(cmbUsina.SelectedItem !=null && cmbMan.SelectedItem!=null && dtpIni.Value!=null && dtpFim.Value!=null && txtCosts.Text!="" && txtDesc.Text!="")
+            if (cmbUsina.SelectedItem != null && cmbMan.SelectedItem != null && dtpIni.Value != null && dtpFim.Value != null && txtCosts.Text != "" && txtDesc.Text != "")
             {
                 btnIns.Enabled = true;
             }

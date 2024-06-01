@@ -196,7 +196,7 @@ namespace PowerPulse.Forms
 
             txtLoc.Enabled = true;
             txtNome.Enabled = true;
-            if (lblTipo.Text == "Geotérmica" || lblTipo.Text == "Eólica" || lblTipo.Text == "Hidroelétrica" || lblTipo.Text == "Solar"|| lblTipo.Text == "Hidráulica")
+            if (lblTipo.Text == "Geotérmica" || lblTipo.Text == "Eólica" || lblTipo.Text == "Hidroelétrica" || lblTipo.Text == "Solar" || lblTipo.Text == "Hidráulica")
             {
                 txtCapMat.Enabled = false;
             }
@@ -360,7 +360,7 @@ namespace PowerPulse.Forms
                     btnCancel.Hide();
                     btnEditar.Hide();
                     btnUpdate.Hide();
-                    imgUsina.Image= null;
+                    imgUsina.Image = null;
                 }
                 else
                 {

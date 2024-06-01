@@ -46,7 +46,7 @@ namespace PowerPulse.Forms
             if (cmbTipo.SelectedItem != null)
             {
                 string selectedTipo = cmbTipo.SelectedItem.ToString();
-                if (selectedTipo == "Eólica" || selectedTipo == "Solar" ||selectedTipo == "Hidroeletrica" || selectedTipo == "Geotérmica" || selectedTipo == "Hidráulica")
+                if (selectedTipo == "Eólica" || selectedTipo == "Solar" || selectedTipo == "Hidroeletrica" || selectedTipo == "Geotérmica" || selectedTipo == "Hidráulica")
                 {
                     panel1.Hide();
                     txtCapacidade.Clear();
@@ -55,32 +55,13 @@ namespace PowerPulse.Forms
                 }
                 else
                 {
-                    switch (selectedTipo)
-                    {
-                        case "Hidrogénio":
-                            txtMaterial.Text = "Hidrogénio";
-                            txtMaterial.Enabled = false;
-                            break;
-                        case "Nuclear":
-                            txtMaterial.Text = "Uranio-235";
-                            txtMaterial.Enabled = false;
-                            break;
-                        case "Biomassa":
-                            txtMaterial.Text = "Residos";
-                            txtMaterial.Enabled = false;
-                            break;
-                        case "Fóssil":
-                            txtMaterial.Text = "Carvão";
-                            txtMaterial.Enabled = false;
-                            break;
-                    }
                     panel1.Show();
                     txtCapacidade.Enabled = true;
                     txtGasto.Enabled = true;
-                    txtMaterial.Enabled = true;
+
                 }
-              VerifyTxt(); 
-            }    
+                VerifyTxt();
+            }
         }
         private void iconButton2_Click(object sender, EventArgs e)
         {
@@ -106,7 +87,7 @@ namespace PowerPulse.Forms
         {
             if (cmbTipo.SelectedIndex > -1)
             {
-                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidraulica")
+                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidraulica")
                 {
                     if (txtNome.TextLength > 0 && txtProd.TextLength > 0 && txtLoc.TextLength > 0)
                     {
