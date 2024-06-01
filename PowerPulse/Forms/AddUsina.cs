@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -44,7 +45,8 @@ namespace PowerPulse.Forms
         {
             if (cmbTipo.SelectedItem != null)
             {
-                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidráulica")
+                string selectedTipo = cmbTipo.SelectedItem.ToString();
+                if (selectedTipo == "Eólica" || selectedTipo == "Solar" ||selectedTipo == "Hidroeletrica" || selectedTipo == "Geotérmica" || selectedTipo == "Hidráulica")
                 {
                     panel1.Hide();
                     txtCapacidade.Clear();
@@ -53,35 +55,49 @@ namespace PowerPulse.Forms
                 }
                 else
                 {
+                    switch (selectedTipo)
+                    {
+                        case "Hidrogénio":
+                            txtMaterial.Text = "Hidrogénio";
+                            txtMaterial.Enabled = false;
+                            break;
+                        case "Nuclear":
+                            txtMaterial.Text = "Uranio-235";
+                            txtMaterial.Enabled = false;
+                            break;
+                        case "Biomassa":
+                            txtMaterial.Text = "Residos";
+                            txtMaterial.Enabled = false;
+                            break;
+                        case "Fóssil":
+                            txtMaterial.Text = "Carvão";
+                            txtMaterial.Enabled = false;
+                            break;
+                    }
                     panel1.Show();
                     txtCapacidade.Enabled = true;
                     txtGasto.Enabled = true;
                     txtMaterial.Enabled = true;
-                    VerifyTxt();
                 }
-            }
+              VerifyTxt(); 
+            }    
         }
-
         private void iconButton2_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Usina());
         }
-
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtMaterial_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtCapacidade_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtProd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
@@ -117,47 +133,39 @@ namespace PowerPulse.Forms
             }
 
         }
-
         private void txtLoc_TextChanged(object sender, EventArgs e)
         {
             VerifyTxt();
         }
-
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             VerifyTxt();
         }
-
         private void txtMaterial_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtCapacidade_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtGasto_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtProd_TextChanged_1(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void btnIns_Click(object sender, EventArgs e)
         {
 
             try
             {
-
                 BD.Open();
                 SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao,status,prodMax,Material,Gasto) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst,@status,@prodMax,@Material,@Gasto)", BD);
                 cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
@@ -198,7 +206,6 @@ namespace PowerPulse.Forms
                 BD.Close();
             }
         }
-
         private void txtGasto_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);

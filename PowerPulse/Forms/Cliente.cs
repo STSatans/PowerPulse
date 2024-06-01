@@ -314,6 +314,24 @@ namespace PowerPulse.Forms
                     {
                         MessageBox.Show("Atualizados com Sucesso", "Atualizacao", MessageBoxButtons.OK);
                         isEditing = false;
+                        SqlCommand refresh = new SqlCommand("select Id_cliente,nome,endereco,contato,codPostal from Cliente", BD);
+                        SqlDataReader rdr = refresh.ExecuteReader();
+                        lst.Items.Clear();
+                        while (rdr.Read())
+                        {
+                            // Criar um array de strings para armazenar os dados de uma linha
+                            string[] field = new string[rdr.FieldCount];
+
+                            // Preencher o array com os valores das colunas
+                            for (int i = 0; i < rdr.FieldCount; i++)
+                            {
+                                field[i] = rdr[i].ToString();
+                            }
+
+                            // Adicionar os valores ao ListView
+                            lst.Items.Add(new ListViewItem(field));
+                        }
+                        BD.Close();
                         Reset();
                         btnUpdate.Hide();
                         btnCanc.Hide();
@@ -524,6 +542,11 @@ namespace PowerPulse.Forms
             txtMorada.Enabled = true;
             txtNIF.Enabled = true;
             txtNome.Enabled = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

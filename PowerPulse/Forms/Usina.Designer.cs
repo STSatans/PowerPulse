@@ -34,6 +34,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.ImgSm = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.lblManutencao = new System.Windows.Forms.Label();
             this.dtpData = new System.Windows.Forms.DateTimePicker();
             this.txtLoc = new System.Windows.Forms.TextBox();
@@ -61,7 +62,6 @@
             this.imgUsina = new System.Windows.Forms.PictureBox();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDel = new FontAwesome.Sharp.IconButton();
-            this.label11 = new System.Windows.Forms.Label();
             this.panelDesktop.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -112,8 +112,8 @@
             this.ImgSm.Images.SetKeyName(3, "geothermal.png");
             this.ImgSm.Images.SetKeyName(4, "nuclear-plant (1).png");
             this.ImgSm.Images.SetKeyName(5, "biomass.png");
-            this.ImgSm.Images.SetKeyName(6, "energy-station.png");
-            this.ImgSm.Images.SetKeyName(7, "dam.png");
+            this.ImgSm.Images.SetKeyName(6, "dam.png");
+            this.ImgSm.Images.SetKeyName(7, "energy-station.png");
             this.ImgSm.Images.SetKeyName(8, "wave.png");
             // 
             // panel2
@@ -134,6 +134,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(424, 226);
             this.panel2.TabIndex = 8;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(228, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Ton";
             // 
             // lblManutencao
             // 
@@ -445,6 +457,7 @@
             this.imgUsina.Location = new System.Drawing.Point(418, 56);
             this.imgUsina.Name = "imgUsina";
             this.imgUsina.Size = new System.Drawing.Size(97, 87);
+            this.imgUsina.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imgUsina.TabIndex = 3;
             this.imgUsina.TabStop = false;
             // 
@@ -480,18 +493,6 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(228, 57);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 20);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Ton";
-            // 
             // Usina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,6 +506,7 @@
             this.Text = "Usina";
             this.Load += new System.EventHandler(this.Usina_Load);
             this.panelDesktop.ResumeLayout(false);
+            this.panelDesktop.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);

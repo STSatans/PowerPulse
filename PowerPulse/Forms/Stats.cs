@@ -12,8 +12,7 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;
-        //private readonly static string con = ConfigurationManager.ConnectionStrings["BDEst"].ConnectionString;
+
         SqlConnection BD = new SqlConnection(con);
         private void Stats_Load(object sender, EventArgs e)
         {
@@ -27,6 +26,11 @@ namespace PowerPulse.Forms
                 lblClientes.Text = reader[2].ToString();
                 lblligadas.Text = reader[3].ToString();
             }
+        }
+
+        private void panelDesktop_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

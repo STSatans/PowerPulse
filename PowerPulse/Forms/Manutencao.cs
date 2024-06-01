@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -102,14 +103,13 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-
                 DateTime inicio = dtpDataIni.Value;
                 DateTime fim = dtpDataFim.Value;
-                string tipo = cmbTipoM.Text;
+                string tipo = cmbTipoM.SelectedItem.ToString();
                 string custo = txtCost.Text;
                 string selectedItem = lstMan.SelectedItems[0].Text;
 
-                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_manutencao=@id_usina";
+                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_usina = @id_usina";
                 SqlCommand cmd = new SqlCommand(query, BD);
                 cmd.Parameters.AddWithValue("@id_usina", selectedItem);
 
@@ -128,9 +128,7 @@ namespace PowerPulse.Forms
                         hasChanges = inicio != dbInicio || fim != dbFim || tipo != dbTipo || custo != dbCusto;
                     }
                 }
-
                 rd.Close();
-
                 if (hasChanges)
                 {
                     DialogResult result = MessageBox.Show("Existem alterações nos registros. Deseja Cancelar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -245,7 +243,7 @@ namespace PowerPulse.Forms
                 string custo = txtCost.Text;
                 string selectedItem = lstMan.SelectedItems[0].Text;
 
-                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_usina=@id_usina";
+                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_usina = @id_usina";
                 SqlCommand cmd = new SqlCommand(query, BD);
                 cmd.Parameters.AddWithValue("@id_usina", selectedItem);
 
@@ -265,34 +263,60 @@ namespace PowerPulse.Forms
                     }
                 }
                 rd.Close();
+
                 if (hasChanges)
                 {
-                        string update= "Update Manutencao_usina SET data_ini=@data_ini,data_fim=@data_fim,tipo_manutencao=@tipo_manutencao,custo_manutencao=@custo_manutencao where id_usina=@id_usina";
-                        SqlCommand updateCMD = new SqlCommand(update, BD);
-                        updateCMD.Parameters.AddWithValue("@id_usina", selectedItem);
-                        updateCMD.Parameters.AddWithValue("@data_ini", inicio);
-                        updateCMD.Parameters.AddWithValue("@data_fim", fim);
-                        updateCMD.Parameters.AddWithValue("@tipo_manutencao", tipo);
-                        updateCMD.Parameters.AddWithValue("@custo_manutencao", custo);
-                        int row=(int)updateCMD.ExecuteScalar();
-                    if (row > 0)
-                    {   
-                        MessageBox.Show("Dados inseridos com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string update = "UPDATE Manutencao_usina SET data_ini = @data_ini, data_fim = @data_fim, tipo_manutencao = @tipo_manutencao, custo_manutencao = @custo_manutencao WHERE id_usina = @id_usina";
+                    SqlCommand updateCMD = new SqlCommand(update, BD);
+                    updateCMD.Parameters.AddWithValue("@id_usina", selectedItem);
+                    updateCMD.Parameters.AddWithValue("@data_ini", inicio);
+                    updateCMD.Parameters.AddWithValue("@data_fim", fim);
+                    updateCMD.Parameters.AddWithValue("@tipo_manutencao", tipo);
+                    updateCMD.Parameters.AddWithValue("@custo_manutencao", custo);
+
+                    int rowsAffected = updateCMD.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Dados atualizados com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Reset();
+                        SqlCommand refresh = new SqlCommand("Select id_usina,data_ini,data_fim,tipo_manutencao,custo_manutencao,descricao,estado from Manutencao_Usina", BD);
+                        SqlDataReader rdr = refresh.ExecuteReader();
+                        lstMan.Items.Clear();
+                        while (rdr.Read())
+                        {
+                            if (rdr.HasRows)
+                            {
+                                // Criar um array de strings para armazenar os valores das colunas
+                                string[] row = new string[]
+                                {
+                                    rdr["id_usina"].ToString(),
+                                    Convert.ToDateTime(rdr["data_ini"]).ToString("dd/MM/yyyy"), // Formatar data_ini
+                                    Convert.ToDateTime(rdr["data_fim"]).ToString("dd/MM/yyyy"), // Formatar data_fim
+                                    rdr["tipo_manutencao"].ToString(),
+                                    rdr["custo_manutencao"].ToString(),
+                                    rdr["descricao"].ToString(),
+                                    rdr["estado"].ToString()
+                                };
+                                // Criar um novo ListViewItem com os valores das colunas
+                                ListViewItem listViewItem = new ListViewItem(row);
+                                // Adicionar o ListViewItem à ListView
+                                lstMan.Items.Add(listViewItem);
+                            }
+                        }
+                        BD.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Nenhum registro foi atualizado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show("Não Existem alterações nos registros. Deseja cancelar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show("Não existem alterações nos registros. Deseja cancelar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         Reset();
                     }
-                    
                 }
             }
             catch (Exception ex)
@@ -306,7 +330,6 @@ namespace PowerPulse.Forms
                     BD.Close();
                 }
             }
-
         }
     }
 }

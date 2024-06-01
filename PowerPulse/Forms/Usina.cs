@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -12,6 +13,7 @@ namespace PowerPulse.Forms
         public Usina()
         {
             InitializeComponent();
+
         }
 
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
@@ -136,7 +138,6 @@ namespace PowerPulse.Forms
                 {
                     if (rdr.HasRows)
                     {
-
                         ListViewItem lvi = new ListViewItem(rdr["ID_Usina"].ToString() + "-" + rdr["Nome"].ToString());
                         listView1.Items.Add(lvi);
                         if (rdr["Tipo"].ToString() == "Solar")
@@ -192,10 +193,10 @@ namespace PowerPulse.Forms
             btnEditar.Hide();
             btnUpdate.Enabled = true;
             btnCancel.Enabled = true;
-            
+
             txtLoc.Enabled = true;
             txtNome.Enabled = true;
-            if (lblTipo.Text=="Geotérmica" || lblTipo.Text == "Eólica"|| lblTipo.Text == "Hidroelétricas")
+            if (lblTipo.Text == "Geotérmica" || lblTipo.Text == "Eólica" || lblTipo.Text == "Hidroelétrica" || lblTipo.Text == "Solar"|| lblTipo.Text == "Hidráulica")
             {
                 txtCapMat.Enabled = false;
             }
@@ -310,34 +311,33 @@ namespace PowerPulse.Forms
         {
             try
             {
-                    BD.Open();
-                    ListViewItem selectedItem = listView1.SelectedItems[0];
-                    string itemText = selectedItem.Text;
-                    string[] Item = itemText.Split('-');
+                BD.Open();
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                string itemText = selectedItem.Text;
+                string[] Item = itemText.Split('-');
+                string selectQuery = "SELECT Nome, localizacao, capacidade, tipo, data_construcao FROM Usina WHERE ID_Usina = @UsinaID";
+                using (SqlCommand cmd = new SqlCommand(selectQuery, BD))
+                {
+                    cmd.Parameters.AddWithValue("@UsinaID", Item[0]);
 
-                    string selectQuery = "SELECT Nome, localizacao, capacidade, tipo, data_construcao FROM Usina WHERE ID_Usina = @UsinaID";
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, BD))
+                    using (SqlDataReader rd = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@UsinaID", Item[0]);
-
-                        using (SqlDataReader rd = cmd.ExecuteReader())
+                        if (rd.HasRows && rd.Read())
                         {
-                            if (rd.HasRows && rd.Read())
-                            {
-                                txtNome.Text = rd["Nome"].ToString();
-                                txtLoc.Text = rd["localizacao"].ToString();
-                                txtCapMat.Text = rd["capacidade"].ToString();
-                                lblTipo.Text = rd["tipo"].ToString();
-                                dtpData.Value = Convert.ToDateTime(rd["data_construcao"]);
-                            }
+                            txtNome.Text = rd["Nome"].ToString();
+                            txtLoc.Text = rd["localizacao"].ToString();
+                            txtCapMat.Text = rd["capacidade"].ToString();
+                            lblTipo.Text = rd["tipo"].ToString();
+                            dtpData.Value = Convert.ToDateTime(rd["data_construcao"]);
                         }
                     }
+                }
 
-                    txtCapMat.Enabled = false;
-                    txtLoc.Enabled = false;
-                    txtNome.Enabled = false;
-                    btnCancel.Hide();
-                    btnUpdate.Hide();
+                txtCapMat.Enabled = false;
+                txtLoc.Enabled = false;
+                txtNome.Enabled = false;
+                btnCancel.Hide();
+                btnUpdate.Hide();
                 BD.Close();
             }
             catch (Exception ex)
@@ -360,6 +360,7 @@ namespace PowerPulse.Forms
                     btnCancel.Hide();
                     btnEditar.Hide();
                     btnUpdate.Hide();
+                    imgUsina.Image= null;
                 }
                 else
                 {
@@ -379,32 +380,37 @@ namespace PowerPulse.Forms
                     while (rdr.Read())
                     {
                         DateTime? retrievedDate = rdr.IsDBNull(10) ? (DateTime?)null : rdr.GetDateTime(10);
-
+                        DateTime date = Convert.ToDateTime(rdr["data_construcao"].ToString());
 
                         if (retrievedDate == null)
                         {
                             //inserir labels
+                            Image originalImage = selectedItem.ImageList.Images[selectedItem.ImageIndex];
+                            imgUsina.Image = new Bitmap(originalImage, 97, 87);
                             txtNome.Text = rdr["Nome"].ToString();
                             txtLoc.Text = rdr["localizacao"].ToString();
                             txtCapMat.Text = rdr["Capacidade"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
-                            lblProdM.Text = rdr["ProdMax"].ToString()+" KW/H";
+                            lblProdM.Text = rdr["ProdMax"].ToString() + " KW/H";
                             lblMatUs.Text = rdr["Material"].ToString();
                             lblGasto.Text = rdr["Gasto"].ToString() + " KW/H";
-                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"]);
                         }
                         else
                         {
+                            Image originalImage = selectedItem.ImageList.Images[selectedItem.ImageIndex];
+                            imgUsina.Image = new Bitmap(originalImage, 97, 87);
                             lblManutencao.Text = retrievedDate.ToString();
                             txtNome.Text = rdr["Nome"].ToString();
+                            txtLoc.Text = rdr["Capacidade"].ToString();
                             txtLoc.Text = rdr["localizacao"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
                             lblProdM.Text = rdr["ProdMax"].ToString() + " KW/H";
                             lblMatUs.Text = rdr["Material"].ToString();
                             lblGasto.Text = rdr["Gasto"].ToString() + " KW/H";
-                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
+                            dtpData.Value = Convert.ToDateTime(rdr["data_construcao"]);
                         }
                     }
                     BD.Close();

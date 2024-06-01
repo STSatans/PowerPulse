@@ -134,7 +134,6 @@ namespace PowerPulse
                 iconCurrentChildForm.IconColor = Color.FromArgb(0, 0, 200);
             }
         }
-
         private void DisableButton()
         {
             if (currentBtn != null)

@@ -11,16 +11,15 @@ namespace PowerPulse
         public Faturas()
         {
             InitializeComponent();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy";
         }
-
-        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        SqlConnection BD = new SqlConnection(con);//con casa
         bool isEditing = false;
+        private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
+        SqlConnection BD = new SqlConnection(con);
         private void Faturas_Load(object sender, EventArgs e)
         {
             BD.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Fatura", BD);
-            SqlDataReader rdr = cmd.ExecuteReader();
             lblPrice.Text = "";
             btnEdit.Visible = false;
             btnCanc.Hide();
@@ -28,20 +27,7 @@ namespace PowerPulse
             btnDel.Enabled = false;
             btnInserir.Enabled = false;
             cmbCont.Enabled = false;
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
-                    item.SubItems.Add(rdr["Id_Cliente"].ToString());
-                    item.SubItems.Add(rdr["ID_Contrato"].ToString());
-                    item.SubItems.Add(rdr["Data_Emissao"].ToString());
-                    item.SubItems.Add(rdr["Leitura"].ToString());
-                    item.SubItems.Add(rdr["Preco"].ToString());
-                    listView1.Items.Add(item);
-                }
-            }
-            rdr.Close();
+            RefreshListView();
             SqlCommand cmd2 = new SqlCommand("Select Id_cliente from Cliente", BD);
             SqlDataReader rdr2 = cmd2.ExecuteReader();
             if (rdr2.HasRows)
@@ -121,21 +107,7 @@ namespace PowerPulse
                 {
                     MessageBox.Show("Inseridos com Sucesso", "Sucesso");
                     Reset();
-                    SqlCommand cmd2 = new SqlCommand("Select * from Fatura",BD);
-                    SqlDataReader rdr = cmd2.ExecuteReader();
-                    if (rdr.HasRows)
-                    {
-                        while (rdr.Read())
-                        {
-                            ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
-                            item.SubItems.Add(rdr["Id_Cliente"].ToString());
-                            item.SubItems.Add(rdr["ID_Contrato"].ToString());
-                            item.SubItems.Add(rdr["Data_Emissao"].ToString());
-                            item.SubItems.Add(rdr["Leitura"].ToString());
-                            item.SubItems.Add(rdr["Preco"].ToString());
-                            listView1.Items.Add(item);
-                        }
-                    }
+                    RefreshListView();
                 }
                 else
                 {
@@ -154,41 +126,59 @@ namespace PowerPulse
             {
                 foreach (ListViewItem item in listView1.SelectedItems)
                 {
-                    BD.Open();
-                    SqlCommand cmd = new SqlCommand("Select Data_Emissao,Leitura,Preco from Fatura where ID_Fatura=@Fatura", BD);
-                    cmd.Parameters.AddWithValue("@Fatura", item.SubItems[0].Text);
-                    SqlDataReader rd = cmd.ExecuteReader();
-                    if (rd.HasRows)
+                    using (SqlConnection BD = new SqlConnection(con))
                     {
-                        while (rd.Read())
+                        BD.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT Data_Emissao, Leitura, Preco FROM Fatura WHERE ID_Fatura = @Fatura", BD);
+                        cmd.Parameters.AddWithValue("@Fatura", item.SubItems[0].Text);
+                        SqlDataReader rd = cmd.ExecuteReader();
+                        string[] price = lblPrice.Text.Split(' ');
+
+                        if (rd.HasRows)
                         {
-                            if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
+                            while (rd.Read())
                             {
-                                SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
-                                cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
-                                cmd2.Parameters.AddWithValue("leitura", txtLeit.Text);
-                                cmd2.Parameters.AddWithValue("Preco", lblPrice.Text);
-                                cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
-                                int row = cmd2.ExecuteNonQuery();
-                                if (row > 0)
+                                if (dateTimePicker1.Value != Convert.ToDateTime(rd["Data_Emissao"]) || txtLeit.Text != rd["Leitura"].ToString() || price[0] != rd["Preco"].ToString())
                                 {
-                                    MessageBox.Show("Registo Alterado com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    isEditing = false;
-                                    Reset();
+
+                                    using (SqlConnection BD2 = new SqlConnection(con))
+                                    {
+                                        BD2.Open();
+                                        SqlCommand cmd2 = new SqlCommand("UPDATE Fatura SET Data_Emissao = @Data, Leitura = @Leitura, Preco = @Preco WHERE ID_Fatura = @Fatura", BD2);
+                                        cmd2.Parameters.AddWithValue("@Data", dateTimePicker1.Value);
+                                        cmd2.Parameters.AddWithValue("@Leitura", txtLeit.Text);
+                                        cmd2.Parameters.AddWithValue("@Preco", price[0]);
+                                        cmd2.Parameters.AddWithValue("@Fatura", item.SubItems[0].Text);
+                                        int row = cmd2.ExecuteNonQuery();
+
+                                        if (row > 0)
+                                        {
+                                            MessageBox.Show("Registo Alterado com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            isEditing = false;
+                                            Reset();
+                                            btnCanc.Hide();
+                                            btnConf.Hide();
+                                            RefreshListView();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                DialogResult result = MessageBox.Show("Nao existem alteracoes. Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result == DialogResult.No)
-                                {
-                                    isEditing = false;
-                                    Reset();
-                                    return;
+                                    DialogResult result = MessageBox.Show("Não existem alterações. Deseja continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (result == DialogResult.No)
+                                    {
+                                        isEditing = false;
+                                        btnCanc.Hide();
+                                        btnConf.Hide();
+                                        Reset();
+                                        rd.Close();
+                                        BD.Close();
+                                        return;
+                                    }
                                 }
                             }
                         }
@@ -196,17 +186,47 @@ namespace PowerPulse
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void RefreshListView()
+        {
+            listView1.Items.Clear();
+            using (SqlConnection BD = new SqlConnection(con))
+            {
+                try
+                {
+                    BD.Open();
+                    SqlCommand refreshCmd = new SqlCommand("SELECT * FROM Fatura", BD);
+                    SqlDataReader rdr = refreshCmd.ExecuteReader();
+
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            ListViewItem lst = new ListViewItem(rdr["ID_Fatura"].ToString());
+                            lst.SubItems.Add(rdr["Id_Cliente"].ToString());
+                            lst.SubItems.Add(rdr["ID_Contrato"].ToString());
+                            lst.SubItems.Add(Convert.ToDateTime(rdr["Data_Emissao"]).ToString("dd/MM/yyyy"));
+                            lst.SubItems.Add(rdr["Leitura"].ToString());
+                            lst.SubItems.Add(rdr["Preco"].ToString());
+                            listView1.Items.Add(lst);
+                        }
+                    }
+                    rdr.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao carregar os dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void btnCanc_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 foreach (ListViewItem selectedItem in listView1.SelectedItems)
                 {
                     BD.Open();
@@ -223,6 +243,8 @@ namespace PowerPulse
                                 if (result == DialogResult.Yes)
                                 {
                                     isEditing = false;
+                                    btnCanc.Hide();
+                                    btnConf.Hide();
                                     Reset();
                                     return;
                                 }

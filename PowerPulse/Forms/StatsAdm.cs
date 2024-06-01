@@ -13,120 +13,133 @@ namespace PowerPulse.Forms
             InitializeComponent();
         }
         //conexoes
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BDest"].ConnectionString;//con estagio
-        //private static readonly string con = ConfigurationManager.ConnectionStrings["BD"].ConnectionString;//con casa
         private readonly static string con = ConfigurationManager.ConnectionStrings["PowerPulse"].ConnectionString;
-        SqlConnection BD = new SqlConnection(con);//con casa
         private void StatsAdm_Load(object sender, EventArgs e)
         {
-            BD.Open();
-            SqlCommand cmd = new SqlCommand("Select Count(ID_Usina) from Usina", BD);
-            SqlDataReader rd = cmd.ExecuteReader();
-            if (rd != null)
+            using (SqlConnection BD = new SqlConnection(con))
             {
-                while (rd.Read())
+                BD.Open();
+
+                AtualizarContagens(BD);
+                AtualizarLucros(BD);
+            }
+        }
+        private void AtualizarContagens(SqlConnection BD)
+        {
+            AtualizarContagemUsinas(BD);
+            AtualizarContagemUsinasPorTipo(BD);
+            AtualizarContagemFuncionarios(BD);
+            AtualizarContagemFuncionariosPorCargo(BD);
+            AtualizarContagemManutencoesInicializadas(BD);
+            AtualizarContagemClientes(BD);
+            AtualizarContagemContratos(BD);
+        }
+
+        private void AtualizarContagemUsinas(SqlConnection BD)
+        {
+            using (SqlCommand cmd = new SqlCommand("Select Count(ID_Usina) from Usina", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                if (rd.Read())
                 {
                     lblUsinas.Text = rd[0].ToString();
                 }
             }
-            rd.Close();
-            SqlCommand cmd2 = new SqlCommand("Select Count(ID_Usina),tipo from Usina group by tipo", BD);
-            SqlDataReader rd2 = cmd2.ExecuteReader();
-            string labelText = ""; // Initialize an empty string to store label text
-            while (rd2.Read())
-            {
-                labelText += rd2[1].ToString() + ": " + rd2[0].ToString() + "\r\n"; // Concatenate text for each row
-            }
-            rd2.Close();
+        }
 
-            // Assign the concatenated text to the label after the loop
-            if (lblTUsinas != null)
+        private void AtualizarContagemUsinasPorTipo(SqlConnection BD)
+        {
+            using (SqlCommand cmd = new SqlCommand("Select Count(ID_Usina), tipo from Usina group by tipo", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
             {
+                string labelText = "";
+                while (rd.Read())
+                {
+                    labelText += rd["tipo"].ToString() + ": " + rd[0].ToString() + "\r\n";
+                }
                 lblTUsinas.Text = labelText;
             }
-            SqlCommand cmd3 = new SqlCommand("Select Count(ID) from Login", BD);
-            SqlDataReader rd3 = cmd3.ExecuteReader();
-            if (rd3 != null)
+        }
+
+        private void AtualizarContagemFuncionarios(SqlConnection BD)
+        {
+            using (SqlCommand cmd = new SqlCommand("Select Count(ID) from Login", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
             {
-                while (rd3.Read())
+                if (rd.Read())
                 {
-                    lblFun.Text = rd3[0].ToString();
+                    lblFun.Text = rd[0].ToString();
                 }
             }
-            rd3.Close();
+        }
 
-            SqlCommand cmd4 = new SqlCommand("Select Count(ID),cargo from Login group by cargo", BD);
-            SqlDataReader rd4 = cmd4.ExecuteReader();
-            string labelText2 = ""; // Initialize an empty string to store label text
-            while (rd4.Read())
+        private void AtualizarContagemFuncionariosPorCargo(SqlConnection BD)
+        {
+            using (SqlCommand cmd = new SqlCommand("Select Count(ID), cargo from Login group by cargo", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
             {
-                labelText2 += rd4[1].ToString() + "-" + rd4[0].ToString() + "\r\n"; // Concatenate text for each row
-            }
-            rd4.Close();
-
-            // Assign the concatenated text to the label after the loop
-            if (lblTUsinas != null)
-            {
+                string labelText2 = "";
+                while (rd.Read())
+                {
+                    labelText2 += rd["cargo"].ToString() + ": " + rd[0].ToString() + "\r\n";
+                }
                 lblCargos.Text = labelText2;
             }
+        }
 
-            SqlCommand cmd5 = new SqlCommand("Select Count(id_manutencao)from manutencao_usina where estado= 'Inicializada'", BD);
-            SqlDataReader rd5 = cmd5.ExecuteReader();
-            while (rd5.Read())
+        private void AtualizarContagemManutencoesInicializadas(SqlConnection BD)
+        {
+            using (SqlCommand cmd = new SqlCommand("Select Count(id_manutencao) from manutencao_usina where estado = 'Inicializada'", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
             {
-                label11.Text = rd5[0].ToString();
+                if (rd.Read())
+                {
+                    label11.Text = rd[0].ToString();
+                }
             }
-            rd5.Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void AtualizarContagemClientes(SqlConnection BD)
         {
-
+            using (SqlCommand cmd = new SqlCommand("Select Count(Id_cliente) from Cliente", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                if (rd.Read())
+                {
+                    lblClientes.Text = rd[0].ToString();
+                }
+            }
         }
 
-        private void lblUsinas_Click(object sender, EventArgs e)
+        private void AtualizarContagemContratos(SqlConnection BD)
         {
-
+            using (SqlCommand cmd = new SqlCommand("Select Count(ID_Contrato) from Contrato", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                if (rd.Read())
+                {
+                    lblContratos.Text = rd[0].ToString();
+                }
+            }
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void AtualizarLucros(SqlConnection BD)
         {
+            decimal totalGanhos = 0;
+            decimal totalDespesas = 0;
 
-        }
+            using (SqlCommand cmd = new SqlCommand("SELECT (SELECT SUM(Preco) FROM Fatura) AS TotalGanhos, (SELECT SUM(custo_manutencao) FROM Manutencao_Usina) AS TotalDespesas", BD))
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                if (rd.Read())
+                {
+                    totalGanhos = rd["TotalGanhos"] != DBNull.Value ? Convert.ToDecimal(rd["TotalGanhos"]) : 0;
+                    totalDespesas = rd["TotalDespesas"] != DBNull.Value ? Convert.ToDecimal(rd["TotalDespesas"]) : 0;
+                }
+            }
 
-        private void lblTUsinas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            decimal lucro = totalGanhos - totalDespesas;
+            lblLucro.Text = lucro.ToString("C"); // Formatar como moeda
         }
     }
 }
