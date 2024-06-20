@@ -238,7 +238,7 @@ namespace PowerPulse.Forms
             {
                 BD.Open();
                 SqlCommand checkInvoicesCmd = new SqlCommand("SELECT Id_fatura FROM Fatura WHERE Id_contrato = @ContractId", BD);
-                SqlCommand deleteInvoiceCmd = new SqlCommand("DELETE FROM Fatura WHERE Id_fatura = @InvoiceId", BD);
+                SqlCommand deleteInvoiceCmd = new SqlCommand("DELETE FROM Fatura WHERE ID_Contrato=@ContractId", BD);
                 SqlCommand deleteContractCmd = new SqlCommand("DELETE FROM Contrato WHERE Id_contrato = @ContractId", BD);
 
                 foreach (ListViewItem selectedItem in listView1.SelectedItems)
@@ -264,7 +264,7 @@ namespace PowerPulse.Forms
 
                     // Excluir as faturas associadas ao contrato
                     deleteInvoiceCmd.Parameters.Clear();
-                    deleteInvoiceCmd.Parameters.AddWithValue("@ContractId", contractId);
+                    deleteInvoiceCmd.Parameters.AddWithValue("@ContractID", contractId);
                     deleteInvoiceCmd.ExecuteNonQuery();
 
                     // Excluir o contrato
