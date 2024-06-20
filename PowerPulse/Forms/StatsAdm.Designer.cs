@@ -44,7 +44,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblLucro = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblClientes = new System.Windows.Forms.Label();
+            this.lblContratos = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +72,6 @@
             this.label2.Size = new System.Drawing.Size(98, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nº Usinas";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -80,19 +83,17 @@
             this.label3.Size = new System.Drawing.Size(72, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Usinas";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(672, 328);
+            this.label4.Location = new System.Drawing.Point(662, 324);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 20);
+            this.label4.Size = new System.Drawing.Size(79, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.label4.Text = "Contratos";
             // 
             // label5
             // 
@@ -104,7 +105,6 @@
             this.label5.Size = new System.Drawing.Size(140, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "Tipo de usinas";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // lblUsinas
             // 
@@ -117,20 +117,18 @@
             this.lblUsinas.TabIndex = 5;
             this.lblUsinas.Text = "Nº Usinas";
             this.lblUsinas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblUsinas.Click += new System.EventHandler(this.lblUsinas_Click);
             // 
             // lblTUsinas
             // 
             this.lblTUsinas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTUsinas.AutoSize = true;
             this.lblTUsinas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblTUsinas.Location = new System.Drawing.Point(236, 98);
+            this.lblTUsinas.Location = new System.Drawing.Point(233, 98);
             this.lblTUsinas.Name = "lblTUsinas";
             this.lblTUsinas.Size = new System.Drawing.Size(70, 17);
             this.lblTUsinas.TabIndex = 6;
             this.lblTUsinas.Text = "Nº Usinas";
             this.lblTUsinas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTUsinas.Click += new System.EventHandler(this.lblTUsinas_Click);
             // 
             // lblFun
             // 
@@ -148,11 +146,11 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(673, 437);
+            this.label7.Location = new System.Drawing.Point(728, 372);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 17);
+            this.label7.Size = new System.Drawing.Size(88, 17);
             this.label7.TabIndex = 8;
-            this.label7.Text = "Nº Usinas";
+            this.label7.Text = "Nº Contratos";
             // 
             // label6
             // 
@@ -206,19 +204,17 @@
             this.label8.Size = new System.Drawing.Size(220, 25);
             this.label8.TabIndex = 13;
             this.label8.Text = "Usinas Em Manutencao";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label10.Location = new System.Drawing.Point(661, 64);
+            this.label10.Location = new System.Drawing.Point(732, 64);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(155, 25);
+            this.label10.Size = new System.Drawing.Size(61, 25);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Lucro/Despesas";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
+            this.label10.Text = "Lucro";
             // 
             // label11
             // 
@@ -231,20 +227,60 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "Nº Usinas";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // label12
+            // lblLucro
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label12.Location = new System.Drawing.Point(700, 98);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 17);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "Nº Usinas";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label12.Click += new System.EventHandler(this.label12_Click);
+            this.lblLucro.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLucro.AutoSize = true;
+            this.lblLucro.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblLucro.Location = new System.Drawing.Point(728, 98);
+            this.lblLucro.Name = "lblLucro";
+            this.lblLucro.Size = new System.Drawing.Size(0, 17);
+            this.lblLucro.TabIndex = 16;
+            this.lblLucro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label13.Location = new System.Drawing.Point(587, 372);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 17);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Nº Clientes";
+            // 
+            // lblClientes
+            // 
+            this.lblClientes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblClientes.AutoSize = true;
+            this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblClientes.Location = new System.Drawing.Point(588, 405);
+            this.lblClientes.Name = "lblClientes";
+            this.lblClientes.Size = new System.Drawing.Size(0, 17);
+            this.lblClientes.TabIndex = 18;
+            // 
+            // lblContratos
+            // 
+            this.lblContratos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblContratos.AutoSize = true;
+            this.lblContratos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblContratos.Location = new System.Drawing.Point(734, 405);
+            this.lblContratos.Name = "lblContratos";
+            this.lblContratos.Size = new System.Drawing.Size(0, 17);
+            this.lblContratos.TabIndex = 19;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label14.Location = new System.Drawing.Point(700, 205);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(175, 51);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "Lucro é calculado atraves \r\nda diferenca dos ganhos\r\ncom as despesas\r\n";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StatsAdm
             // 
@@ -252,7 +288,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(891, 557);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblContratos);
+            this.Controls.Add(this.lblClientes);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.lblLucro);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
@@ -297,6 +337,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblLucro;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblClientes;
+        private System.Windows.Forms.Label lblContratos;
+        private System.Windows.Forms.Label label14;
     }
 }

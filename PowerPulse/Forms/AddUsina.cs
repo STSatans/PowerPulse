@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms
@@ -66,22 +67,18 @@ namespace PowerPulse.Forms
         {
             OpenChildForm(new Usina());
         }
-
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtMaterial_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtCapacidade_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtProd_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
@@ -90,7 +87,7 @@ namespace PowerPulse.Forms
         {
             if (cmbTipo.SelectedIndex > -1)
             {
-                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidraulica")
+                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidraulica")
                 {
                     if (txtNome.TextLength > 0 && txtProd.TextLength > 0 && txtLoc.TextLength > 0)
                     {
@@ -117,47 +114,39 @@ namespace PowerPulse.Forms
             }
 
         }
-
         private void txtLoc_TextChanged(object sender, EventArgs e)
         {
             VerifyTxt();
         }
-
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
             VerifyTxt();
         }
-
         private void txtMaterial_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtCapacidade_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtGasto_TextChanged(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void txtProd_TextChanged_1(object sender, EventArgs e)
         {
 
             VerifyTxt();
         }
-
         private void btnIns_Click(object sender, EventArgs e)
         {
 
             try
             {
-
                 BD.Open();
                 SqlCommand cmd = new SqlCommand("Insert into Usina(Nome,Tipo,capacidade,localizacao,data_construcao,status,prodMax,Material,Gasto) values(@Nome,@Tipo,@Capacidade,@localizacao,@dataConst,@status,@prodMax,@Material,@Gasto)", BD);
                 cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
@@ -198,7 +187,6 @@ namespace PowerPulse.Forms
                 BD.Close();
             }
         }
-
         private void txtGasto_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
