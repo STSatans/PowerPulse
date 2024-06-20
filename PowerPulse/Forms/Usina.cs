@@ -26,14 +26,50 @@ namespace PowerPulse.Forms
                 ListViewItem selectedItem = listView1.SelectedItems[0];
                 string itemText = selectedItem.Text;
                 string[] Item = itemText.Split('-');
-                SqlCommand cmd = new SqlCommand("Delete from Usina where ID_Usina=" + Item[0], BD);
-                int row = cmd.ExecuteNonQuery();
-                if (row > 0)
-                {
-                    MessageBox.Show("Eliminado");
-                    selectedItem.Remove();
-                    ResetTxt();
+                string usinaId = Item[0];
+                // Check for associated maintenances
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM Manutencao_usina WHERE ID_Usina = @ID_Usina", BD);
+                checkCmd.Parameters.AddWithValue("@ID_Usina", usinaId);
+                int maintenanceCount = (int)checkCmd.ExecuteScalar();
 
+                bool deleteAll = true;
+
+                if (maintenanceCount > 0)
+                {
+                    DialogResult result = MessageBox.Show("Existem manutenções associadas a esta usina. Deseja eliminar todas as manutenções associadas?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.No)
+                    {
+                        deleteAll = false;
+                    }
+                }
+                if (deleteAll)
+                {
+                    // Delete associated maintenances if any
+                    if (maintenanceCount > 0)
+                    {
+                        SqlCommand deleteMaintenanceCmd = new SqlCommand("DELETE FROM Manutencao_usina WHERE ID_Usina = @ID_Usina", BD);
+                        deleteMaintenanceCmd.Parameters.AddWithValue("@ID_Usina", usinaId);
+                        deleteMaintenanceCmd.ExecuteNonQuery();
+                    }
+
+                    // Delete the usina
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Usina WHERE ID_Usina = @ID_Usina", BD);
+                    cmd.Parameters.AddWithValue("@ID_Usina", usinaId);
+                    int row = cmd.ExecuteNonQuery();
+                    if (row > 0)
+                    {
+                        MessageBox.Show("Eliminado");
+                        selectedItem.Remove();
+                        ResetTxt();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found to delete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("A usina não foi eliminada porque existem manutenções associadas.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 BD.Close();
             }
@@ -94,7 +130,6 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-
                 SqlCommand cmd = new SqlCommand("Select ID_Usina,Nome,Tipo from Usina", BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 listView1.Items.Clear();
@@ -158,9 +193,17 @@ namespace PowerPulse.Forms
             btnEditar.Hide();
             btnUpdate.Enabled = true;
             btnCancel.Enabled = true;
-            txtCapMat.Enabled = true;
+            
             txtLoc.Enabled = true;
             txtNome.Enabled = true;
+            if (lblTipo.Text=="Geotérmica" || lblTipo.Text == "Eólica"|| lblTipo.Text == "Hidroelétricas")
+            {
+                txtCapMat.Enabled = false;
+            }
+            else
+            {
+                txtCapMat.Enabled = true;
+            }
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -347,9 +390,9 @@ namespace PowerPulse.Forms
                             txtCapMat.Text = rdr["Capacidade"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
-                            lblProdM.Text = rdr["ProdMax"].ToString();
+                            lblProdM.Text = rdr["ProdMax"].ToString()+" KW/H";
                             lblMatUs.Text = rdr["Material"].ToString();
-                            lblGasto.Text = rdr["Gasto"].ToString();
+                            lblGasto.Text = rdr["Gasto"].ToString() + " KW/H";
                             dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
                         }
                         else
@@ -359,9 +402,9 @@ namespace PowerPulse.Forms
                             txtLoc.Text = rdr["localizacao"].ToString();
                             lblEstado.Text = rdr["status"].ToString();
                             lblTipo.Text = rdr["Tipo"].ToString();
-                            lblProdM.Text = rdr["ProdMax"].ToString();
+                            lblProdM.Text = rdr["ProdMax"].ToString() + " KW/H";
                             lblMatUs.Text = rdr["Material"].ToString();
-                            lblGasto.Text = rdr["Gasto"].ToString();
+                            lblGasto.Text = rdr["Gasto"].ToString() + " KW/H";
                             dtpData.Value = Convert.ToDateTime(rdr["data_construcao"].ToString());
                         }
                     }
@@ -396,10 +439,8 @@ namespace PowerPulse.Forms
             {
                 BD.Open();
                 ListViewItem selectedItem = listView1.SelectedItems[0];
-
                 // Extract the index part from the ListViewItem's Text property
                 string itemText = selectedItem.Text;
-
                 // Split the text to extract just the index part
                 string[] Item = itemText.Split('-');
                 string query = "SELECT Nome, localizacao, capacidade, data_construcao FROM Usina WHERE ID_Usina = @ID_Usina";
@@ -411,7 +452,7 @@ namespace PowerPulse.Forms
                 {
                     while (rdr.Read())
                     {
-  
+
                         bool hasChanges = (txtNome.Text != rdr["Nome"].ToString() ||
                                             txtLoc.Text != rdr["localizacao"].ToString() ||
                                             txtCapMat.Text != rdr["capacidade"].ToString() ||
@@ -423,7 +464,7 @@ namespace PowerPulse.Forms
                             if (result == DialogResult.No)
                             {
                                 isEditing = false;
-                                Reload();
+                                BD.Close();
                                 Reset();
                                 ResetText();
                                 return; // Exit the method to avoid further execution
@@ -455,29 +496,27 @@ namespace PowerPulse.Forms
                             }
                             return; // Exit the method after the update
                         }
+
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                BD.Close();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (BD.State == ConnectionState.Open)
+                {
+                    BD.Close();
+                }
             }
         }
-
         private void txtCapMat_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
-
         private void txtLoc_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
         }
-
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);

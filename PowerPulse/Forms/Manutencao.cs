@@ -20,7 +20,6 @@ namespace PowerPulse.Forms
         {
             InitializeComponent();
         }
-
         private void Manutencao_Load(object sender, EventArgs e)
         {
             //BTN
@@ -86,12 +85,13 @@ namespace PowerPulse.Forms
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            btnCanc.Visible = true;
-            btnConf.Visible = true;
+            btnCanc.Show();
+            btnConf.Show();
             cmbTipoM.Enabled = true;
             dtpDataFim.Enabled = true;
             dtpDataIni.Enabled = true;
             txtCost.Enabled = true;
+            btnEdit.Hide();
             //colours
             cmbTipoM.BackColor = Color.FromArgb(30, 30, 30);
             txtCost.BackColor = Color.FromArgb(30, 30, 30);
@@ -99,6 +99,62 @@ namespace PowerPulse.Forms
         }
         private void btnCanc_Click(object sender, EventArgs e)
         {
+            try
+            {
+                BD.Open();
+
+                DateTime inicio = dtpDataIni.Value;
+                DateTime fim = dtpDataFim.Value;
+                string tipo = cmbTipoM.Text;
+                string custo = txtCost.Text;
+                string selectedItem = lstMan.SelectedItems[0].Text;
+
+                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_manutencao=@id_usina";
+                SqlCommand cmd = new SqlCommand(query, BD);
+                cmd.Parameters.AddWithValue("@id_usina", selectedItem);
+
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                bool hasChanges = false;
+
+                if (rd.HasRows)
+                {
+                    while (rd.Read())
+                    {
+                        DateTime dbInicio = Convert.ToDateTime(rd["data_ini"]);
+                        DateTime dbFim = Convert.ToDateTime(rd["data_fim"]);
+                        string dbTipo = rd["tipo_manutencao"].ToString();
+                        string dbCusto = rd["custo_manutencao"].ToString();
+                        hasChanges = inicio != dbInicio || fim != dbFim || tipo != dbTipo || custo != dbCusto;
+                    }
+                }
+
+                rd.Close();
+
+                if (hasChanges)
+                {
+                    DialogResult result = MessageBox.Show("Existem alterações nos registros. Deseja Cancelar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        Reset();
+                    }
+                }
+                else
+                {
+                    Reset();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (BD.State == ConnectionState.Open)
+                {
+                    BD.Close();
+                }
+            }
             btnCanc.Visible = false;
             btnConf.Visible = false;
             cmbTipoM.Enabled = false;
@@ -163,7 +219,7 @@ namespace PowerPulse.Forms
                         // Se a conversão falhar, exibir uma mensagem de erro ou definir um valor padrão
                         txtCost.Text = "0.00";
                     }
-                    cmbTipoM.Text = selectedItem.SubItems[3].Text;
+                    cmbTipoM.SelectedItem = selectedItem.SubItems[3].Text;
                     txtCost.ForeColor = Color.White;
                     txtCost.BackColor = Color.FromArgb(30, 30, 30);
                 }
@@ -188,7 +244,7 @@ namespace PowerPulse.Forms
         }
         private void btnConf_Click(object sender, EventArgs e)
         {
-            SqlConnection BD = new SqlConnection(con);
+
             try
             {
                 BD.Open();
@@ -197,6 +253,11 @@ namespace PowerPulse.Forms
                 DateTime fim = dtpDataFim.Value;
                 string tipo = cmbTipoM.SelectedItem.ToString();
                 string custo = txtCost.Text;
+                string selectedItem = lstMan.SelectedItems[0].Text;
+
+                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_usina=@id_usina";
+                SqlCommand cmd = new SqlCommand(query, BD);
+                cmd.Parameters.AddWithValue("@id_usina", selectedItem);
                 ListViewItem selectedItem = lstMan.SelectedItems[0];
                 string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_manutencao="+selectedItem;
                 SqlCommand cmd = new SqlCommand(query, BD);
@@ -217,6 +278,46 @@ namespace PowerPulse.Forms
                         DateTime dbFim = Convert.ToDateTime(rd["data_fim"]);
                         string dbTipo = rd["tipo_manutencao"].ToString();
                         string dbCusto = rd["custo_manutencao"].ToString();
+                        hasChanges = inicio != dbInicio || fim != dbFim || tipo != dbTipo || custo != dbCusto;
+                    }
+                }
+                rd.Close();
+                if (hasChanges)
+                {
+                        string update= "Update Manutencao_usina SET data_ini=@data_ini,data_fim=@data_fim,tipo_manutencao=@tipo_manutencao,custo_manutencao=@custo_manutencao where id_usina=@id_usina";
+                        SqlCommand updateCMD = new SqlCommand(update, BD);
+                        updateCMD.Parameters.AddWithValue("@id_usina", selectedItem);
+                        updateCMD.Parameters.AddWithValue("@data_ini", inicio);
+                        updateCMD.Parameters.AddWithValue("@data_fim", fim);
+                        updateCMD.Parameters.AddWithValue("@tipo_manutencao", tipo);
+                        updateCMD.Parameters.AddWithValue("@custo_manutencao", custo);
+                        int row=(int)updateCMD.ExecuteScalar();
+                    if (row > 0)
+                    {   
+                        MessageBox.Show("Dados inseridos com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Reset();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocorreu um erro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Não Existem alterações nos registros. Deseja cancelar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        Reset();
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
 
                         hasChanges = inicio != dbInicio || fim != dbFim || tipo != dbTipo || custo != dbCusto;
                     }

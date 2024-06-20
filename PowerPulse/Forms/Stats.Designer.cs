@@ -55,6 +55,7 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(891, 557);
             this.panelDesktop.TabIndex = 0;
+            this.panelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDesktop_Paint);
             // 
             // lblClientes
             // 

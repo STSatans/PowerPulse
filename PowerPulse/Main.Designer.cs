@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.lblversion = new System.Windows.Forms.Label();
             this.btnStats = new FontAwesome.Sharp.IconButton();
             this.btnFaturas = new FontAwesome.Sharp.IconButton();
             this.btnCliente = new FontAwesome.Sharp.IconButton();
@@ -60,6 +61,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(17)))), ((int)(((byte)(61)))));
+            this.panelMenu.Controls.Add(this.lblversion);
             this.panelMenu.Controls.Add(this.btnStats);
             this.panelMenu.Controls.Add(this.btnFaturas);
             this.panelMenu.Controls.Add(this.btnCliente);
@@ -76,6 +78,18 @@
             this.panelMenu.Size = new System.Drawing.Size(165, 627);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
+            // 
+            // lblversion
+            // 
+            this.lblversion.AutoSize = true;
+            this.lblversion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblversion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblversion.ForeColor = System.Drawing.Color.White;
+            this.lblversion.Location = new System.Drawing.Point(0, 561);
+            this.lblversion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblversion.Name = "lblversion";
+            this.lblversion.Size = new System.Drawing.Size(0, 17);
+            this.lblversion.TabIndex = 4;
             // 
             // btnStats
             // 
@@ -387,6 +401,7 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
@@ -420,5 +435,6 @@
         private FontAwesome.Sharp.IconButton btnCliente;
         private FontAwesome.Sharp.IconButton btnStats;
         private FontAwesome.Sharp.IconButton btnFaturas;
+        private System.Windows.Forms.Label lblversion;
     }
 }

@@ -195,6 +195,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -227,6 +228,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PowerPulseLogofundo.ico" />
+    <None Include="Resources\icons8-admin-55.png" />
+    <None Include="Resources\icons8-user-55.png" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="PowerPulseLogofundo.ico">

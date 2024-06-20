@@ -228,8 +228,8 @@
             this.cmbTipoM.FormattingEnabled = true;
             this.cmbTipoM.Items.AddRange(new object[] {
             "Simples",
-            "Completa",
-            "Limpeza"});
+            "Geral",
+            "Especifica"});
             this.cmbTipoM.Location = new System.Drawing.Point(170, 102);
             this.cmbTipoM.Name = "cmbTipoM";
             this.cmbTipoM.Size = new System.Drawing.Size(144, 24);

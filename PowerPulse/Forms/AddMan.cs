@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace PowerPulse.Forms

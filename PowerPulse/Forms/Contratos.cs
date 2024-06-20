@@ -245,6 +245,44 @@ namespace PowerPulse.Forms
                 {
                     string contractId = selectedItem.SubItems[0].Text;
 
+                    // Verificar se existem faturas associadas ao contrato
+                    checkInvoicesCmd.Parameters.Clear();
+                    checkInvoicesCmd.Parameters.AddWithValue("@ContractId", contractId);
+                    SqlDataReader invoicesReader = checkInvoicesCmd.ExecuteReader();
+                    bool hasInvoices = invoicesReader.HasRows;
+                    invoicesReader.Close();
+
+                    if (hasInvoices)
+                    {
+                        // Perguntar ao usuário se deseja eliminar o contrato e todas as faturas associadas
+                        DialogResult result = MessageBox.Show("Existem faturas associadas a este contrato. Tem certeza que deseja eliminar o contrato e todas as faturas associadas?", "Confirmação de Eliminação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (result != DialogResult.Yes)
+                        {
+                            continue; // Skip to the next iteration if the user doesn't confirm
+                        }
+                    }
+
+                    // Excluir as faturas associadas ao contrato
+                    deleteInvoiceCmd.Parameters.Clear();
+                    deleteInvoiceCmd.Parameters.AddWithValue("@ContractId", contractId);
+                    deleteInvoiceCmd.ExecuteNonQuery();
+
+                    // Excluir o contrato
+                    deleteContractCmd.Parameters.Clear();
+                    deleteContractCmd.Parameters.AddWithValue("@ContractId", contractId);
+                    int rows = deleteContractCmd.ExecuteNonQuery();
+
+                    if (rows > 0)
+                    {
+                        MessageBox.Show("Contrato e faturas associados eliminados");
+                        listView1.Items.Remove(selectedItem);
+                        Reset();
+                        listView1.SelectedItems.Clear();
+                        btnDel.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao eliminar contrato");
                     // Perguntar ao usuário se deseja eliminar o contrato e todas as faturas associadas
                     DialogResult result = MessageBox.Show("Tem certeza que deseja eliminar o contrato e todas as faturas associadas?", "Confirmação de Eliminação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)

@@ -36,10 +36,13 @@
             this.btnEdit = new FontAwesome.Sharp.IconButton();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
+
             this.cmbCargo = new System.Windows.Forms.ComboBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnClear = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -135,6 +138,11 @@
             // 
             this.txtPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtPass.ForeColor = System.Drawing.Color.White;
+            this.txtPass.Location = new System.Drawing.Point(211, 174);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(159, 20);
+            this.txtPass.TabIndex = 11;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             this.txtPass.Location = new System.Drawing.Point(211, 215);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(159, 20);
@@ -172,6 +180,8 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(159, 20);
             this.txtNome.TabIndex = 14;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label1
             // 
@@ -193,6 +203,7 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Nome:";
             // 
+
             // label3
             // 
             this.label3.AutoSize = true;
@@ -207,11 +218,27 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(135, 174);
             this.label4.Location = new System.Drawing.Point(135, 215);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
             this.label4.TabIndex = 18;
             this.label4.Text = "Password:";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnClear.IconColor = System.Drawing.Color.Black;
+            this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClear.Location = new System.Drawing.Point(233, 506);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 19;
+            this.btnClear.Text = "Limpar";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Admin
             // 
@@ -219,6 +246,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(891, 557);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -257,6 +286,8 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private FontAwesome.Sharp.IconButton btnClear;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
     }
