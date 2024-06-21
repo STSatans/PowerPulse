@@ -307,6 +307,7 @@ namespace PowerPulse.Forms
                 else
                 {
                     MessageBox.Show("Erro ao inserir registro");
+
                 }
                 BD.Open();
                 string[] item=listBox1.SelectedItem.ToString().Split('-');
@@ -409,6 +410,7 @@ namespace PowerPulse.Forms
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
+
         }
 
         private void btnConf_Click(object sender, EventArgs e)

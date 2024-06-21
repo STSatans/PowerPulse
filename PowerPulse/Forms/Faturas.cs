@@ -122,7 +122,6 @@ namespace PowerPulse
                     MessageBox.Show("Inseridos com Sucesso", "Sucesso");
                     Reset();
                     SqlCommand cmd2 = new SqlCommand("Select * from Fatura",BD);
-
                     SqlDataReader rdr = cmd2.ExecuteReader();
                     if (rdr.HasRows)
                     {
@@ -163,6 +162,9 @@ namespace PowerPulse
                     {
                         while (rd.Read())
                         {
+
+                            if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
+
                         if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
                         {
                             SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
@@ -172,6 +174,7 @@ namespace PowerPulse
                             cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
                             int row=cmd2.ExecuteNonQuery();
                             if(row >0)
+
                             {
                                 SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
                                 cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
@@ -188,7 +191,18 @@ namespace PowerPulse
                                 else
                                 {
                                     MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                                 }
+                            }
+                            else
+                            {
+                                DialogResult result = MessageBox.Show("Nao existem alteracoes. Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.No)
+                                {
+                                    isEditing = false;
+                                    Reset();
+                                    return;
+                 }
                             }
                             else
                             {
