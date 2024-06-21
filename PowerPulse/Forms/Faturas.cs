@@ -162,7 +162,19 @@ namespace PowerPulse
                     {
                         while (rd.Read())
                         {
+
                             if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
+
+                        if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
+                        {
+                            SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
+                            cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
+                            cmd2.Parameters.AddWithValue("leitura", txtLeit.Text);
+                            cmd2.Parameters.AddWithValue("Preco", lblPrice.Text);
+                            cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
+                            int row=cmd2.ExecuteNonQuery();
+                            if(row >0)
+
                             {
                                 SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
                                 cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
@@ -179,6 +191,7 @@ namespace PowerPulse
                                 else
                                 {
                                     MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                                 }
                             }
                             else
@@ -189,7 +202,28 @@ namespace PowerPulse
                                     isEditing = false;
                                     Reset();
                                     return;
+                 }
+                            }
+                            else
+                            {
+                                DialogResult result = MessageBox.Show("Nao existem alteracoes. Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.No)
+                                {
+                                    isEditing = false;
+                                    Reset();
+                                    return;
                                 }
+                                MessageBox.Show("Erro ao Atualizar o registo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            DialogResult result = MessageBox.Show("Nao existem alteracoes. Deseja Continuar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result == DialogResult.No)
+                            {
+                                isEditing = false;
+                                Reset();
+                                return;
                             }
                         }
                         rd.Close();
@@ -226,6 +260,12 @@ namespace PowerPulse
                                     Reset();
                                     return;
                                 }
+                            DialogResult result = MessageBox.Show("Existem Alterações por guardar. Deseja Sair do Modo de Edicao?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (result == DialogResult.Yes)
+                            {
+                                isEditing = false;
+                                Reset();
+                                return;
                             }
                         }
                     }
@@ -262,6 +302,7 @@ namespace PowerPulse
                         MessageBox.Show("Erro ao eliminar o registo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                BD.Close();
             }
             catch (Exception ex)
             {
@@ -300,6 +341,22 @@ namespace PowerPulse
             cmbCont.SelectedItem = null;
             cmbNif.SelectedItem = null;
             dateTimePicker1.Value = DateTime.Today;
+        }
+        private void cmbCont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BD.Open();
+            SqlCommand cmd = new SqlCommand("Select ID_Contrato from Fatura where NIF=@ID", BD);
+            cmd.Parameters.AddWithValue("@ID", cmbNif.SelectedItem);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                if (rdr.HasRows)
+                {
+                    cmbCont.Items.Clear();
+                    cmbCont.Items.Add(rdr.GetString(0));
+                }
+            }
+            Verifytxt();
         }
         private void txtLeit_TextChanged(object sender, EventArgs e)
         {

@@ -155,6 +155,13 @@ namespace PowerPulse.Forms
                     BD.Close();
                 }
             }
+            btnCanc.Visible = false;
+            btnConf.Visible = false;
+            cmbTipoM.Enabled = false;
+            dtpDataFim.Enabled = false;
+            dtpDataIni.Enabled = false;
+            txtCost.Enabled = false;
+            Reset();
         }
         private void btnDel_Click(object sender, EventArgs e)
         {
@@ -193,6 +200,7 @@ namespace PowerPulse.Forms
             }
             else
             {
+
                 // Get the selected item
                 ListViewItem selectedItem = lstMan.SelectedItems[0];
 
@@ -236,9 +244,11 @@ namespace PowerPulse.Forms
         }
         private void btnConf_Click(object sender, EventArgs e)
         {
+
             try
             {
                 BD.Open();
+
                 DateTime inicio = dtpDataIni.Value;
                 DateTime fim = dtpDataFim.Value;
                 string tipo = cmbTipoM.SelectedItem.ToString();
@@ -248,6 +258,13 @@ namespace PowerPulse.Forms
                 string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_usina=@id_usina";
                 SqlCommand cmd = new SqlCommand(query, BD);
                 cmd.Parameters.AddWithValue("@id_usina", selectedItem);
+                ListViewItem selectedItem = lstMan.SelectedItems[0];
+                string query = "SELECT data_ini, data_fim, tipo_manutencao, custo_manutencao FROM Manutencao_usina WHERE id_manutencao="+selectedItem;
+                SqlCommand cmd = new SqlCommand(query, BD);
+                cmd.Parameters.AddWithValue("@data_ini", inicio);
+                cmd.Parameters.AddWithValue("@data_fim", fim);
+                cmd.Parameters.AddWithValue("@tipo_manutencao", tipo);
+                cmd.Parameters.AddWithValue("@custo_manutencao", custo);
 
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -301,6 +318,45 @@ namespace PowerPulse.Forms
             }
             finally
             {
+
+                        hasChanges = inicio != dbInicio || fim != dbFim || tipo != dbTipo || custo != dbCusto;
+                    }
+                }
+                else
+                {
+                    hasChanges = true;
+                }
+
+                rd.Close();
+
+                if (hasChanges)
+                {
+                    // Insert the new values into the database
+                    string insertQuery = "INSERT INTO Manutencao_usina (data_ini, data_fim, tipo_manutencao, custo_manutencao) VALUES (@data_ini, @data_fim, @tipo_manutencao, @custo_manutencao)";
+                    SqlCommand insertCmd = new SqlCommand(insertQuery, BD);
+                    insertCmd.Parameters.AddWithValue("@data_ini", inicio);
+                    insertCmd.Parameters.AddWithValue("@data_fim", fim);
+                    insertCmd.Parameters.AddWithValue("@tipo_manutencao", tipo);
+                    insertCmd.Parameters.AddWithValue("@custo_manutencao", custo);
+
+                    insertCmd.ExecuteNonQuery();
+                    MessageBox.Show("Dados inseridos com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Não existem alterações nos registros. Deseja continuar a editar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.No)
+                    {
+                        // Reset or perform any other actions as needed
+                        Reset();
+                    }
+                }
+
+                BD.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (BD.State == ConnectionState.Open)
                 {
                     BD.Close();
