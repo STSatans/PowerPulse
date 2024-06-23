@@ -366,6 +366,7 @@ namespace PowerPulse.Forms
                 btnIns.Enabled = false;
                 listView1.SelectedItems.Clear();
                 btnCancel.Hide();
+                btnDel.Enabled=false;
                 btnClear.Enabled = false;
                 btnEdit.Hide();
                 btnUpdate.Hide();

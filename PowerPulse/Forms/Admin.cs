@@ -30,6 +30,7 @@ namespace PowerPulse.Forms
             if (listBox1.SelectedItem == null)
             {
                 ClearForm();
+
             }
             else
             {

@@ -63,7 +63,10 @@ namespace PowerPulse.Forms
                     txtMorada.Enabled = true;
                     txtCodP1.Enabled = true;
                     txtCodP2.Enabled = true;
-                    btnIns.Enabled = true;
+                    btnIns.Enabled = false;
+                    btnDel.Enabled = false;
+                    btnCanc.Hide();
+                    btnUpdate.Hide();
                     Reset();
                 }
                 else

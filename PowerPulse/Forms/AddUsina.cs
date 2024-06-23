@@ -45,7 +45,7 @@ namespace PowerPulse.Forms
         {
             if (cmbTipo.SelectedItem != null)
             {
-                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidrogénio" || cmbTipo.SelectedItem.ToString() == "Biomassa" || cmbTipo.SelectedItem.ToString() == "Hidráulica")
+                if (cmbTipo.SelectedItem.ToString() == "Eólica" || cmbTipo.SelectedItem.ToString() == "Solar" || cmbTipo.SelectedItem.ToString() == "Hidroeletrica" || cmbTipo.SelectedItem.ToString() == "Geotérmica" || cmbTipo.SelectedItem.ToString() == "Hidráulica")
                 {
                     panel1.Hide();
                     txtCapacidade.Clear();
@@ -57,8 +57,26 @@ namespace PowerPulse.Forms
                     panel1.Show();
                     txtCapacidade.Enabled = true;
                     txtGasto.Enabled = true;
-                    txtMaterial.Enabled = true;
+                    txtMaterial.Enabled = false;
                     VerifyTxt();
+                    switch (cmbTipo.SelectedItem.ToString())
+                    {
+                        case "Nuclear":
+                            txtMaterial.Text = "Uranio-235";
+                            break;
+
+                        case "Fóssil":
+                            txtMaterial.Text = "Fóssil";
+                            break;
+
+                        case "Hidrogênio":
+                            txtMaterial.Text = "Hidrogénio";
+                            break;
+
+                        case "Biomassa":
+                            txtMaterial.Text = "Resíduos";
+                            break;
+                    }
                 }
             }
         }

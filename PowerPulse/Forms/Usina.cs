@@ -356,6 +356,7 @@ namespace PowerPulse.Forms
                     txtCapMat.Enabled = false;
                     txtLoc.Enabled = false;
                     txtNome.Enabled = false;
+                    btnDel.Hide();
                     dtpData.Enabled = false;
                     btnCancel.Hide();
                     btnEditar.Hide();

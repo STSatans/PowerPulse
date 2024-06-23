@@ -190,6 +190,8 @@ namespace PowerPulse.Forms
             if (lstMan.SelectedItems.Count == 0)
             {
                 Reset();
+                btnDel.Hide();
+                btnEdit.Hide();
             }
             else
             {

@@ -68,6 +68,8 @@ namespace PowerPulse
             if (listView1.SelectedItems.Count == 0)
             {
                 Reset();
+                btnEdit.Visible = false;
+                btnDel.Visible = false;
             }
             else
             {
