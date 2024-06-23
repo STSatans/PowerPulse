@@ -43,7 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblMan = new System.Windows.Forms.Label();
             this.lblLucro = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblClientes = new System.Windows.Forms.Label();
@@ -113,9 +113,8 @@
             this.lblUsinas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUsinas.Location = new System.Drawing.Point(39, 98);
             this.lblUsinas.Name = "lblUsinas";
-            this.lblUsinas.Size = new System.Drawing.Size(70, 17);
+            this.lblUsinas.Size = new System.Drawing.Size(0, 17);
             this.lblUsinas.TabIndex = 5;
-            this.lblUsinas.Text = "Nº Usinas";
             this.lblUsinas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTUsinas
@@ -125,9 +124,8 @@
             this.lblTUsinas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblTUsinas.Location = new System.Drawing.Point(233, 98);
             this.lblTUsinas.Name = "lblTUsinas";
-            this.lblTUsinas.Size = new System.Drawing.Size(70, 17);
+            this.lblTUsinas.Size = new System.Drawing.Size(0, 17);
             this.lblTUsinas.TabIndex = 6;
-            this.lblTUsinas.Text = "Nº Usinas";
             this.lblTUsinas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFun
@@ -137,9 +135,8 @@
             this.lblFun.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblFun.Location = new System.Drawing.Point(40, 437);
             this.lblFun.Name = "lblFun";
-            this.lblFun.Size = new System.Drawing.Size(70, 17);
+            this.lblFun.Size = new System.Drawing.Size(0, 17);
             this.lblFun.TabIndex = 7;
-            this.lblFun.Text = "Nº Usinas";
             // 
             // label7
             // 
@@ -179,9 +176,8 @@
             this.lblCargos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblCargos.Location = new System.Drawing.Point(268, 437);
             this.lblCargos.Name = "lblCargos";
-            this.lblCargos.Size = new System.Drawing.Size(53, 17);
+            this.lblCargos.Size = new System.Drawing.Size(0, 17);
             this.lblCargos.TabIndex = 12;
-            this.lblCargos.Text = "Cargos";
             // 
             // label9
             // 
@@ -216,17 +212,16 @@
             this.label10.TabIndex = 14;
             this.label10.Text = "Lucro";
             // 
-            // label11
+            // lblMan
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label11.Location = new System.Drawing.Point(447, 98);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 17);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Nº Usinas";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblMan.AutoSize = true;
+            this.lblMan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblMan.Location = new System.Drawing.Point(447, 98);
+            this.lblMan.Name = "lblMan";
+            this.lblMan.Size = new System.Drawing.Size(0, 17);
+            this.lblMan.TabIndex = 15;
+            this.lblMan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLucro
             // 
@@ -293,7 +288,7 @@
             this.Controls.Add(this.lblClientes);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblLucro);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblMan);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblCargos);
@@ -336,7 +331,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblMan;
         private System.Windows.Forms.Label lblLucro;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblClientes;

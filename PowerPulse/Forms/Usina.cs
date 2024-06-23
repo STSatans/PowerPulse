@@ -22,7 +22,6 @@ namespace PowerPulse.Forms
             try
             {
                 BD.Open();
-
                 ListViewItem selectedItem = listView1.SelectedItems[0];
                 string itemText = selectedItem.Text;
                 string[] Item = itemText.Split('-');
@@ -452,12 +451,10 @@ namespace PowerPulse.Forms
                 {
                     while (rdr.Read())
                     {
-
                         bool hasChanges = (txtNome.Text != rdr["Nome"].ToString() ||
                                             txtLoc.Text != rdr["localizacao"].ToString() ||
                                             txtCapMat.Text != rdr["capacidade"].ToString() ||
                                             dtpData.Value != Convert.ToDateTime(rdr["data_construcao"].ToString()));
-
                         if (!hasChanges)
                         {
                             DialogResult result = MessageBox.Show("Não existe alterações nos registos. Deseja continuar a editar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
