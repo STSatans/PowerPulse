@@ -91,12 +91,14 @@ namespace PowerPulse.Forms
                         txtMorada.Enabled = false;
                         txtCodP1.Enabled = false;
                         txtCodP2.Enabled = false;
-                        btnIns.Enabled = false;
+                        btnIns.Enabled = false;   
+                        btnEdit.Show();
+                        btnDel.Show();
+                        btnDel.Enabled = true;
+                        btnClear.Enabled = true;
 
                     }
-                    btnEdit.Show();
-                    btnDel.Enabled = true;
-                    btnClear.Enabled = true;
+
                 }
             }
             catch (Exception ex)
@@ -535,6 +537,7 @@ namespace PowerPulse.Forms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             isEditing = true;
+            btnDel.Hide();
             btnCanc.Show();
             btnUpdate.Show();
             btnEdit.Hide();

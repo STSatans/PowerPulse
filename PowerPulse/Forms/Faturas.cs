@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
 using System.Windows.Media.Imaging;
 
 namespace PowerPulse
@@ -59,6 +60,7 @@ namespace PowerPulse
             btnCanc.Visible = true;
             btnConf.Visible = true;
             btnEdit.Visible = false;
+            btnDel.Enabled= false;
             isEditing = true;
             txtLeit.Enabled = true;
         }
@@ -93,7 +95,7 @@ namespace PowerPulse
                     btnInserir.Enabled = false;
                     btnEdit.Show();
                     btnDel.Enabled = true;
-
+                    btnDel.Show();
                     cmbNif.Enabled = false;
                     cmbCont.Enabled = false;
                     txtLeit.Enabled = false;
@@ -109,7 +111,6 @@ namespace PowerPulse
         {
             try
             {
-
                 BD.Open();
                 string[] preco = lblPrice.Text.Split(' ');
                 SqlCommand cmd = new SqlCommand("Insert into Fatura(ID_Cliente,Data_Emissao,Leitura,Preco,ID_Contrato) values(@ID_Cliente,@Data_Emissao,@Leitura,@Preco,@ID_Contrato)", BD);
@@ -123,21 +124,7 @@ namespace PowerPulse
                 {
                     MessageBox.Show("Inseridos com Sucesso", "Sucesso");
                     Reset();
-                    SqlCommand cmd2 = new SqlCommand("Select * from Fatura",BD);
-                    SqlDataReader rdr = cmd2.ExecuteReader();
-                    if (rdr.HasRows)
-                    {
-                        while (rdr.Read())
-                        {
-                            ListViewItem item = new ListViewItem(rdr["ID_Fatura"].ToString());
-                            item.SubItems.Add(rdr["Id_Cliente"].ToString());
-                            item.SubItems.Add(rdr["ID_Contrato"].ToString());
-                            item.SubItems.Add(rdr["Data_Emissao"].ToString());
-                            item.SubItems.Add(rdr["Leitura"].ToString());
-                            item.SubItems.Add(rdr["Preco"].ToString());
-                            listView1.Items.Add(item);
-                        }
-                    }
+                    refreshlistview();
                 }
                 else
                 {
@@ -157,6 +144,8 @@ namespace PowerPulse
                 foreach (ListViewItem item in listView1.SelectedItems)
                 {
                     BD.Open();
+                    SqlConnection bd2 = new SqlConnection(con);
+                    bd2.Open();
                     SqlCommand cmd = new SqlCommand("Select Data_Emissao,Leitura,Preco from Fatura where ID_Fatura=@Fatura", BD);
                     cmd.Parameters.AddWithValue("@Fatura", item.SubItems[0].Text);
                     SqlDataReader rd = cmd.ExecuteReader();
@@ -166,10 +155,11 @@ namespace PowerPulse
                         {
                             if (dateTimePicker1.Value != Convert.ToDateTime(rd[0]) || txtLeit.Text != rd[1].ToString() || lblPrice.Text != rd[2].ToString())
                             {
-                                SqlCommand cmd2 = new SqlCommand("Insert into Fatura(Data_Emissao,Leitura,Preco) SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", BD);
+                                string[] price = lblPrice.Text.Split(' ');
+                                SqlCommand cmd2 = new SqlCommand("Update Fatura SET Data_Emissao=@Data, leitura=@leitura,Preco=@Preco where ID_Fatura=@Fatura", bd2);
                                 cmd2.Parameters.AddWithValue("Data", dateTimePicker1.Value);
                                 cmd2.Parameters.AddWithValue("leitura", txtLeit.Text);
-                                cmd2.Parameters.AddWithValue("Preco", lblPrice.Text);
+                                cmd2.Parameters.AddWithValue("Preco", price[0]);
                                 cmd2.Parameters.AddWithValue("Fatura", item.SubItems[0].Text);
                                 int row = cmd2.ExecuteNonQuery();
                                 if (row > 0)
@@ -177,6 +167,7 @@ namespace PowerPulse
                                     MessageBox.Show("Registo Alterado com Sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     isEditing = false;
                                     Reset();
+                                    refreshlistview();
                                 }
                                 else
                                 {
@@ -190,6 +181,7 @@ namespace PowerPulse
                                 {
                                     isEditing = false;
                                     Reset();
+                                    refreshlistview();
                                     return;
                                 }
                             }
@@ -198,9 +190,13 @@ namespace PowerPulse
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                BD.Close();
             }
         }
         private void btnCanc_Click(object sender, EventArgs e)
@@ -258,6 +254,7 @@ namespace PowerPulse
                         MessageBox.Show("Registo eliminado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         isEditing = false;
                         Reset();
+                        refreshlistview();
                     }
                     else
                     {
@@ -299,9 +296,16 @@ namespace PowerPulse
         {
             listView1.SelectedItems.Clear();
             txtLeit.Text = "";
+            lblPrice.Text = "";
             cmbCont.SelectedItem = null;
             cmbNif.SelectedItem = null;
             dateTimePicker1.Value = DateTime.Today;
+            btnCanc.Hide();
+            btnEdit.Hide();
+            btnDel.Enabled = false; ;
+            btnInserir.Enabled=false;
+            btnConf.Hide();
+            cmbNif.Enabled = true;
         }
         private void txtLeit_TextChanged(object sender, EventArgs e)
         {
@@ -334,6 +338,46 @@ namespace PowerPulse
                 }
                 BD.Close();
             }
+        }
+        private void refreshlistview()
+        {
+            listView1.Items.Clear();
+            using (SqlConnection BD = new SqlConnection(con))
+            {
+                try
+                {
+                    BD.Open();
+                    SqlCommand refreshCmd = new SqlCommand("SELECT * FROM Fatura", BD);
+                    SqlDataReader rdr = refreshCmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            ListViewItem lst = new
+                           ListViewItem(rdr["ID_Fatura"].ToString());
+                            lst.SubItems.Add(rdr["Id_Cliente"].ToString());
+                            lst.SubItems.Add(rdr["ID_Contrato"].ToString());
+
+                            lst.SubItems.Add(Convert.ToDateTime(rdr["Data_Emissao"]).ToString("dd/MM/yyyy"));
+
+                            lst.SubItems.Add(rdr["Leitura"].ToString());
+                            lst.SubItems.Add(rdr["Preco"].ToString());
+                            listView1.Items.Add(lst);
+                        }
+                    }
+                    rdr.Close();
+                }
+                catch(Exception ex) 
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void cmbCont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtLeit.Enabled = true;
+            dateTimePicker1.Enabled = true;
         }
     }
 }

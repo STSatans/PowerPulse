@@ -110,6 +110,7 @@
             this.cmbCont.Name = "cmbCont";
             this.cmbCont.Size = new System.Drawing.Size(119, 24);
             this.cmbCont.TabIndex = 9;
+            this.cmbCont.SelectedIndexChanged += new System.EventHandler(this.cmbCont_SelectedIndexChanged);
             // 
             // label5
             // 

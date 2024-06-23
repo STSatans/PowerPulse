@@ -30,7 +30,6 @@ namespace PowerPulse.Forms
             if (listBox1.SelectedItem == null)
             {
                 ClearForm();
-
             }
             else
             {
@@ -101,6 +100,7 @@ namespace PowerPulse.Forms
             btnIns.Enabled = false;
             txtNome.Clear();
             txtPass.Clear();
+            listBox1.SelectedItem = null;
             cmbCargo.Enabled = true;
             cmbCargo.SelectedItem = null; 
             cmbCargo.SelectedIndex = -1;                          
@@ -135,12 +135,20 @@ namespace PowerPulse.Forms
                         if (row > 0)
                         {
                             MessageBox.Show("Registro deletado com sucesso.", "Deletado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (BD.State == ConnectionState.Open)
+                            {
+                                BD.Close();
+                            }
                             ClearForm();
                             LoadListBox();
                         }
                         else
                         {
                             MessageBox.Show("Ocorreu um erro ao deletar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (BD.State == ConnectionState.Open)
+                            {
+                                BD.Close();
+                            }
                             ClearForm();
                             LoadListBox();
                         }
@@ -156,9 +164,7 @@ namespace PowerPulse.Forms
         {
             try
             {
-                if (BD.State == ConnectionState.Closed)
-                    BD.Open();
-
+                BD.Open();
                 string[] item = listBox1.SelectedItem.ToString().Split('-');
                 SqlCommand cmd = new SqlCommand("Select Nome,Cargo,Password from Login where ID=" + item[0], BD);
                 SqlDataReader rdr = cmd.ExecuteReader();
@@ -189,12 +195,20 @@ namespace PowerPulse.Forms
                     if (row > 0)
                     {
                         MessageBox.Show("Registro atualizado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (BD.State == ConnectionState.Open)
+                        {
+                            BD.Close();
+                        }
                         ClearForm();
                         LoadListBox();
                     }
                     else
                     {
                         MessageBox.Show("Erro ao atualizar registro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (BD.State == ConnectionState.Open)
+                        {
+                            BD.Close();
+                        }
                         ClearForm();
                         LoadListBox();
                     }
@@ -272,8 +286,7 @@ namespace PowerPulse.Forms
         {
             try
             {
-                if (BD.State == ConnectionState.Closed)
-                    BD.Open();
+                BD.Open();
                 SqlCommand cmd = new SqlCommand("Insert into Login (Cargo,Password,Nome) values(@cargo,@Password,@nome)", BD);
                 cmd.Parameters.AddWithValue("@cargo", cmbCargo.SelectedItem);
                 cmd.Parameters.AddWithValue("@password", txtPass.Text);
@@ -284,8 +297,12 @@ namespace PowerPulse.Forms
                 if (row > 0)
                 {
                     MessageBox.Show("Inserido com sucesso");
-                    ClearForm();
-                    LoadListBox();
+                    if (BD.State == ConnectionState.Open)
+                    {
+                        BD.Close();
+                    }
+                        ClearForm();
+                        LoadListBox();
                 }
                 else
                 {
@@ -299,8 +316,10 @@ namespace PowerPulse.Forms
             finally
             {
                 if (BD.State == ConnectionState.Open)
+                {
                     BD.Close();
-            }
+                }
+           }
         }
         private void LoadListBox()
         {
