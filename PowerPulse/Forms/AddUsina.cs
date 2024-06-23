@@ -69,7 +69,7 @@ namespace PowerPulse.Forms
                             txtMaterial.Text = "Fóssil";
                             break;
 
-                        case "Hidrogênio":
+                        case "Hidrogénio":
                             txtMaterial.Text = "Hidrogénio";
                             break;
 
