@@ -7,15 +7,8 @@
     <Nullable>enable</Nullable>
     <NoWin32Manifest>true</NoWin32Manifest>
     <SignAssembly>False</SignAssembly>
-  </PropertyGroup>
-
+  </PropertyGroup>  
   <ItemGroup>
-	  <PackageReference Include="Costura.Fody" Version="5.7.0">
-		  <PrivateAssets>All</PrivateAssets>
-	  </PackageReference>
-	 <PackageReference Include="Fody" Version="6.8.1">
-	   <PrivateAssets>all</PrivateAssets>
-	 </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpCompress" Version="0.37.2" />
     <PackageReference Include="System.IO" Version="4.3.0" />
@@ -24,7 +17,13 @@
     <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
   </ItemGroup>
-	
+
+  <ItemGroup>
+    <None Update="System.Runtime.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
