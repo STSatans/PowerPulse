@@ -1,7 +1,0 @@
-﻿<Weavers>
-  <Costura>
-    <ExcludeAssemblies>
-      System.Runtime
-    </ExcludeAssemblies>
-  </Costura>
-</Weavers>
